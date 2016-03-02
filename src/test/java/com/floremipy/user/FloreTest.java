@@ -13,6 +13,9 @@ import javax.persistence.spi.PersistenceProviderResolverHolder;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.floremipy.user.dao.UserDao;
+import com.floremipy.user.dto.UserDto;
+
 
 public class FloreTest {
 	
@@ -28,26 +31,18 @@ public class FloreTest {
 
 	
 	
-//	@Test
+	@Test
 	public void testFindAllUsers() {
-//		transaction.begin();
-//		
-//		List<UserDto> resultUser = UserDao.findAllUsers();
-//		for(UserDto a : resultUser){
-//			System.out.println(a);
-//		}	
-
+		List<UserDto> resultUser = UserDao.findAllUsers();
+		for(UserDto a : resultUser){
+			System.out.println(a);
+		}	
 	}
 	
 	@Test
 	public void testFindFirstUser() {
-//		EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-//		EntityManager em = emf.createEntityManager();
-//		EntityTransaction transaction = em.getTransaction();
 		System.out.println("test");
 		User firstUser = em.find(User.class, new Long(1));
 		System.out.println(firstUser);
-//		emf.close();
-//		em.close();
 	}
 }

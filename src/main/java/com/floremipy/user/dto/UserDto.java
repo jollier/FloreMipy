@@ -1,11 +1,9 @@
 package com.floremipy.user.dto;
 
-import java.io.Serializable;
-
 import com.floremipy.user.UserType;
 
 
-public class UserDto implements Serializable{
+public class UserDto {
 
 	
 	/**
