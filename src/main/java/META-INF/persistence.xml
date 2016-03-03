@@ -6,7 +6,6 @@
 
 	<persistence-unit name="floremipyuser"
 		transaction-type="RESOURCE_LOCAL">
-		
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>com.floremipy.user.User</class>
 		<properties>
@@ -18,6 +17,7 @@
 	<persistence-unit name="FloreMipyWeb"
         transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>com.floremipy.model.New</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/floremipi" />
