@@ -1,4 +1,8 @@
-package com.floremipy.service;
+package com.floremipy.user.service;
+
+import java.util.List;
+
+import com.floremipy.user.User;
 
 public interface UserService {
 	
