@@ -22,17 +22,32 @@ public class UserDao {
 
 	public List<UserDto> findAllUsers(){
 		String requete = 
-				"SELECT NEW com.floremipy.user.dto.UserDto(u.firstname, u.lastname) " +
-				" FROM User u order by u.firstname" ;
+				"SELECT NEW com.floremipy.user.dto.UserDto(" + 
+						"u.id, u.username, u.password, u.firstname, u.lastname, u.usertype) " +
+						"FROM User u order by u.username" ;
 		Query query = null;
-		try {
-			query = em.createQuery(requete, UserDto.class);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		query = em.createQuery(requete, UserDto.class);
 		return (List<UserDto>)query.getResultList();
 	}
 
+	public UserDto findUserByUserName(String userName) {
+		String requete = 
+				"Select NEW com.floremipy.user.dto.UserDto(" + 
+						"u.id, u.username, u.password, u.firstname, u.lastname, u.usertype) " +
+						"FROM User u where u.username = :username" ;
+		Query query = em.createQuery(requete, UserDto.class);;
+		query.setParameter("username", userName);
+		return (UserDto)query.getSingleResult();
+	}
+	
+	public List<UserDto> findUserByUserType(String userType){
+		String requete = 
+				"SELECT NEW com.floremipy.user.dto.UserDto(" + 
+						"u.id, u.username, u.password, u.firstname, u.lastname, u.usertype) " +
+						"FROM User u where lower(u.usertype) = :usertype order by u.username" ;
+		Query query = null;
+		query = em.createQuery(requete, UserDto.class);
+		query.setParameter("usertype", userType.toLowerCase());
+		return (List<UserDto>)query.getResultList();
+	}
 }

@@ -1,42 +1,32 @@
 package com.floremipy.user.dto;
 
-import com.floremipy.user.UserType;
-
-
 public class UserDto {
 
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	private String id;
-
-	private String firstname;
-
-	private String lastname;
-
-	private String password;
-
+	private Long id;
 	private String username;
-	
-	
-	private UserType usertype;
+	private String password;
+	private String firstname;
+	private String lastname;
+	private String usertype;
 
 	public UserDto() {
 	}
-	
-	public UserDto(String firstname, String lastname) {
+
+	public UserDto(Long id, String username, String password, String firstname, String lastname, String usertype) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.usertype = usertype;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -72,11 +62,11 @@ public class UserDto {
 		this.username = username;
 	}
 
-	public UserType getUsertype() {
+	public String getUsertype() {
 		return this.usertype;
 	}
 
-	public void setUsertype(UserType usertype) {
+	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
 
@@ -85,7 +75,7 @@ public class UserDto {
 		return "UserDto [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", password=" + password
 				+ ", username=" + username + ", usertype=" + usertype + "]";
 	}
-	
-	
+
+
 
 }
