@@ -8,12 +8,12 @@ import android.widget.Button;
 
 import com.example.eaversenq.floremipyweb.R;
 
-public class ConnectionActivity extends AppCompatActivity {
+public class ConnexionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connection);
+        setContentView(R.layout.activity_connexion);
 
         // NAVIGATION : accès à l'écran d'administration
         Button btAdministration = (Button)findViewById(R.id.btAdministration);
