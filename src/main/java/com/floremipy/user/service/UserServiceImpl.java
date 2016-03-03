@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService{
 	
 	public List<User> getAll() {
 		//Changer le return dès que le Dao sera OK
-		//userDao.findAll()
+		//return userDao.findAllUsers();
 		return null;
 	}
 
