@@ -20,13 +20,13 @@ public class UserDao {
 		em = emf.createEntityManager();
 	}
 
-	public static List<UserDto> findAllUsers(){
+	public List<UserDto> findAllUsers(){
 		String requete = 
 				"SELECT NEW com.floremipy.user.dto.UserDto(u.firstname, u.lastname) " +
 				" FROM User u order by u.firstname" ;
 		Query query = null;
 		try {
-			query = em.createQuery(requete);
+			query = em.createQuery(requete, UserDto.class);
 			
 		} catch (Exception e) {
 			// TODO: handle exception

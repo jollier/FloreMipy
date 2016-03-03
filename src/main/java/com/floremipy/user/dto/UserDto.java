@@ -26,6 +26,11 @@ public class UserDto {
 
 	public UserDto() {
 	}
+	
+	public UserDto(String firstname, String lastname) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
 
 	public String getId() {
 		return this.id;
