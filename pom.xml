@@ -7,6 +7,10 @@
 	<packaging>war</packaging>
 	<name>FloreMipy</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
 	<repositories>
 		<repository>
 			<url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
@@ -90,6 +94,19 @@
 				<version>2.2</version>
 				<!-- Config: contextPath and Port (Default - /HelloSpringMVC : 8080) -->
 				<!-- <configuration> <path>/</path> <port>8899</port> </configuration> -->
+				<configuration>
+					<skipTests>true</skipTests>
+					<webResources>
+						<resource>
+							<directory>src/main/resources</directory>
+							<!-- override the destination directory for this resource -->
+							<targetPath>META-INF</targetPath>
+							<includes>
+								<include>persistence.xml</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
