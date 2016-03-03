@@ -16,8 +16,8 @@ public class ConnexionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_connexion);
 
         // NAVIGATION : accès à l'écran d'administration
-        Button btAdministration = (Button)findViewById(R.id.btAdministration);
-        btAdministration.setOnClickListener(new View.OnClickListener() {
+        Button btOk = (Button)findViewById(R.id.btOk);
+        btOk.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), AdministrationActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -26,8 +26,8 @@ public class ConnexionActivity extends AppCompatActivity {
         });
 
         // NAVIGATION : exit
-        Button btExit = (Button)findViewById(R.id.btExit);
-        btExit.setOnClickListener(new View.OnClickListener() {
+        Button btCancel = (Button)findViewById(R.id.btCancel);
+        btCancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 System.exit(0);
             }
