@@ -31,7 +31,5 @@ public class FloreModelTest {
 		assertTrue(resultArticle.size() > 0);
 	}
 	
-	@Test
-	
 
 }

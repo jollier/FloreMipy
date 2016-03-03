@@ -70,6 +70,12 @@ public class ArticleDto {
 	public void setQuantityInStock(int quantityInStock) {
 		this.quantityInStock = quantityInStock;
 	}
+
+	@Override
+	public String toString() {
+		return "ArticleDto [id=" + id + ", category=" + category + ", description=" + description + ", imgsrc=" + imgsrc
+				+ ", name=" + name + ", quantityInStock=" + quantityInStock + "]";
+	}
 	
 	
 	
