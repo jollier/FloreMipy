@@ -30,18 +30,20 @@ public class FloreTest {
 	
 	
 	@Test
-	public void testFindAllUsers() {
+	public void testFindAllUsers() { 
 		UserDao userDao = new UserDao();
 		List<UserDto> resultUser = userDao.findAllUsers();
 		for(UserDto a : resultUser){
 			System.out.println("result test FindAllUsers : " +a);
 		}	
+		assertTrue(resultUser.size() > 0);
 	}
 	
 	@Test
 	public void testFindFirstUser() {	
 		User firstUser = em.find(User.class, new Long(1));
 		System.out.println("FirstUser :" + firstUser.toString());
+		assertTrue(firstUser.getId() >= 0);
 	}
 	
 	@Test

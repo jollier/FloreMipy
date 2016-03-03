@@ -1,5 +1,6 @@
 package com.floremipy.user.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,7 +10,11 @@ import javax.persistence.Query;
 
 import com.floremipy.user.dto.UserDto;
 
-public class UserDao {
+public class UserDao implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6181515256377426679L;
 	private final static String PERSISTENCE_UNIT_NAME = "floremipyuser";
 	private static EntityManagerFactory emf;	
 	private static EntityManager em;	
