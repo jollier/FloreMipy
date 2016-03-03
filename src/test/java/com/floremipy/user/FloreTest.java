@@ -33,14 +33,13 @@ public class FloreTest {
 		UserDao userDao = new UserDao();
 		List<UserDto> resultUser = userDao.findAllUsers();
 		for(UserDto a : resultUser){
-			System.out.println(a);
+			System.out.println("result test FindAllUsers : " +a);
 		}	
 	}
 	
 	@Test
-	public void testFindFirstUser() {
-		System.out.println("test");
+	public void testFindFirstUser() {	
 		User firstUser = em.find(User.class, new Long(1));
-		System.out.println(firstUser);
+		System.out.println("FirstUser :" + firstUser.toString());
 	}
 }
