@@ -8,7 +8,8 @@ public class UserServiceTest {
 
 	@Test
 	public void test1(){
-		assertEquals(5,3+2);	
+		assertEquals(4,2+2);	
 	}
 	
 }
+
