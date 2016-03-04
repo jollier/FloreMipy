@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 import com.floremipy.user.dao.UserDao;
 import com.floremipy.user.dto.UserDto;
@@ -37,20 +38,63 @@ public class FloreTest {
 	
 	
 	@Test
-	public void testFindAllUsers() {
+	public void testFindAllUsers() { 
 		UserDao userDao = new UserDao();
 		List<UserDto> resultUser = userDao.findAllUsers();
 		for(UserDto a : resultUser){
 			System.out.println("result test FindAllUsers : " +a);
 		}	
-		assertNotEquals(resultUser.size(), 0);
+
+		assertTrue(resultUser.size() > 0);
+
 	}
 	
 	@Test
 	public void testFindFirstUser() {	
 		User firstUser = em.find(User.class, new Long(1));
 		System.out.println("FirstUser :" + firstUser.toString());
-		assertNotNull(firstUser);
+
+		assertTrue(firstUser.getId() >= 0);
+	}
+	
+
+	
+	@Test
+	public void testFindUserById() {
+		Long id = 1L;
+		User user =em.find(User.class, id);
+		assertEquals(id,user.getId());
+	}
+	
+	@Test
+	public void testFindUserByUserName() {
+		String userName = "user1";
+		UserDao userDao = new UserDao();
+		UserDto user = userDao.findUserByUserName(userName);
+		System.out.println("result test FindUserByUserName : " +user.toString());
+		assertEquals(userName, user.getUsername());
+	}
+	
+	@Test
+	public void testFindAdminUsers() {
+		String userType="Admin";
+		UserDao userDao = new UserDao();
+		List<UserDto> resultUser = userDao.findUserByUserType(userType);
+		for(UserDto a : resultUser){
+			System.out.println("result test FindAdminUsers('" + userType + "'): " +a);
+		}	
+		assertNotNull(resultUser.size());
+	}
+	
+	@Test
+	public void testFindUserUsers() {
+		String userType="User";
+		UserDao userDao = new UserDao();
+		List<UserDto> resultUser = userDao.findUserByUserType(userType);
+		for(UserDto a : resultUser){
+			System.out.println("result test FindUserUsers('" + userType + "'): " +a);
+		}	
+		assertNotNull(resultUser.size());
 	}
 	
 	@AfterClass
@@ -58,4 +102,6 @@ public class FloreTest {
 	em.close();
 	emf.close();
 	}
+	
+	
 }
