@@ -70,7 +70,7 @@ public class FloreTest {
 		for(UserDto a : resultUser){
 			System.out.println("result test FindAdminUsers('" + userType + "'): " +a);
 		}	
-		assertNotNull(resultUser.size());
+		assertTrue(resultUser.size() >= 0);
 	}
 	
 	@Test
@@ -81,7 +81,7 @@ public class FloreTest {
 		for(UserDto a : resultUser){
 			System.out.println("result test FindUserUsers('" + userType + "'): " +a);
 		}	
-		assertNotNull(resultUser.size());
+		assertTrue(resultUser.size() >= 0);
 	}
 	
 	
