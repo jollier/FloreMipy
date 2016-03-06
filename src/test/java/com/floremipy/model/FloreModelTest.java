@@ -1,6 +1,6 @@
 package com.floremipy.model;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -29,6 +29,15 @@ public class FloreModelTest {
 			System.out.println("result test FindAllArticles : " +a);
 		}	
 		assertTrue(resultArticle.size() > 0);
+	}
+	
+	@Test
+	public void testFindArticleById() {
+		int id = 1;
+		ModelDao modelDao = new ModelDao();
+		ArticleDto resultArticle = modelDao.findArticleById(id);
+		System.out.println("result test FindArticleById : " +resultArticle.toString());
+		assertEquals(id,resultArticle.getId());
 	}
 	
 
