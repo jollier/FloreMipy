@@ -20,6 +20,7 @@ import com.floremipy.user.dto.UserDto;
 
 
 
+
 public class FloreTest {
 	
 	private final static String PERSISTENCE_UNIT_NAME = "floremipyuser";
