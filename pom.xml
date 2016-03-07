@@ -35,6 +35,23 @@
 			<scope>test</scope>
 		</dependency>
 
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
 		<!--http://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -75,73 +92,69 @@
 			<artifactId>javax.persistence</artifactId>
 			<version>2.1.0-SNAPSHOT</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-			<version>2.5.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.eclipse.persistence</groupId> <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId> 
+			<version>2.5.0-SNAPSHOT</version> <scope>provided</scope> </dependency> -->
 
 	</dependencies>
-    <build>
-    
-        <plugins>
+	<build>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                  <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
+		<plugins>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <inherited>true</inherited>
-                <version>3.2</version>
-                <configuration>
-                    <source>${compileSource}</source>
-                    <target>${compileSource}</target>
-                    <encoding>utf-8</encoding>
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>war</goal>
-                        </goals>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<inherited>true</inherited>
+				<version>3.2</version>
+				<configuration>
+					<source>${compileSource}</source>
+					<target>${compileSource}</target>
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
 
-                    </execution>
-                </executions>
-                <configuration>
-                    <classifier>webapp</classifier>
-                    <packagingExcludes>
-                        WEB-INF\classes\application.properties,
-                    </packagingExcludes>
-                    
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>war</goal>
+						</goals>
 
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <server>tomcat-development-server</server>
-                </configuration>
-            </plugin>
-        </plugins>
+					</execution>
+				</executions>
+				<configuration>
+					<classifier>webapp</classifier>
+					<packagingExcludes>
+						WEB-INF\classes\application.properties,
+					</packagingExcludes>
 
-        <finalName>${project.artifactId}-${project.version}</finalName>
-    </build>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<server>tomcat-development-server</server>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<finalName>${project.artifactId}-${project.version}</finalName>
+	</build>
 
 
 </project>
