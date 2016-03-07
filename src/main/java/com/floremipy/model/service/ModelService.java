@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.floremipy.model.article.dao.IModelArticleDao;
+import com.floremipy.model.dto.ArticleDto;
 import com.floremipy.model.dto.ArticleLightDto;
 
 public class ModelService implements IModelService {
@@ -13,14 +14,14 @@ public class ModelService implements IModelService {
 	IModelArticleDao articleDao;
 
 	@Override
-	public List<ArticleLightDto> getAll() {
+	public List<ArticleLightDto> findAllDto() {
 		
 		return articleDao.findAllArticlesLight();
 	}
 
 	
 	@Override
-	public ArticleLightDto getArticleById(int id) {
+	public ArticleLightDto findArticleLightById(int id) {
 
 		return articleDao.findArticleLightById(id);
 	}
@@ -44,6 +45,27 @@ public class ModelService implements IModelService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
+	public void setArticleDao(IModelArticleDao articleDao) {
+		this.articleDao = articleDao;
+	}
+
+
+	public ArticleDto findArticleById(int id) {
+		
+		return articleDao.findArticleById(id);
+	}
+
+
+	
+
+
+	@Override
+	public List<ArticleDto> findAll() {
+		return articleDao.findAllArticles();
+	}
+
 
 	
 
