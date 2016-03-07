@@ -65,7 +65,7 @@ public class ModelDao implements Serializable{
 						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
 						"FROM Article a where Upper(a.category) = :category" ;
 		Query query = null;
-		query = em.createQuery(requete, ArticleDto.class);
+		query = em.createQuery(requete, ArticleLightDto.class);
 		query.setParameter("category", category.toUpperCase());
 		return (List<ArticleLightDto>)query.getResultList();
 	}
