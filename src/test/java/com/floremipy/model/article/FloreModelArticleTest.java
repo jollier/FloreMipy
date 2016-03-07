@@ -1,4 +1,4 @@
-package com.floremipy.model;
+package com.floremipy.model.article;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -14,12 +14,15 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.floremipy.model.Adress;
+import com.floremipy.model.Customer;
 import com.floremipy.model.article.dao.IModelArticleDao;
 import com.floremipy.model.article.dao.ModelArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
+import com.floremipy.model.customer.dao.ModelCustomerDao;
 
-public class FloreModelTest {
+public class FloreModelArticleTest {
 	
 	private final static String PERSISTENCE_UNIT_NAME = "FloreMipyWeb";
 	public static EntityManagerFactory emf;

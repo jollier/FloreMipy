@@ -25,7 +25,7 @@ public class ModelCustomerDao {
 		em = emf.createEntityManager();
 	}
 	
-	public void CustomerDaoSave (Customer customer) {
+	public static void CustomerDaoSave (Customer customer) {
 		em.getTransaction().begin();
 		em.persist(customer);
 		em.getTransaction().commit();
