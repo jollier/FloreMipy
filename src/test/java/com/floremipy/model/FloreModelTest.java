@@ -57,12 +57,12 @@ public class FloreModelTest {
 	}
 	
 	@Test
-	public void testFindArticleByCategory() {
-//		String category = "Arbres";
-//		ModelDao modelDao = new ModelDao();
-//		ArticleDto resultArticle = modelDao.findArticleById(id);
-//		System.out.println("result test FindArticleById : " +resultArticle.toString());
-//		assertEquals(id,resultArticle.getId());
+	public void testFindAllArticlesLightByCategory() {
+		String category = "Arbres";
+		ModelDao modelDao = new ModelDao();
+		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLightByCategory(category);
+		System.out.println("result test FindAllArticlesLightByCategory(Arbres) : " +resultArticle.toString());
+		assertTrue(resultArticle.size() > 0);
 	}
 	
 	public void testFindAllArticlesLight() {

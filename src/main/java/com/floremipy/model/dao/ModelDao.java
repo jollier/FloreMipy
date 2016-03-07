@@ -58,6 +58,18 @@ public class ModelDao implements Serializable{
 		return (ArticleLightDto)query.getSingleResult();
 	}
 	
+	
+	public List<ArticleLightDto> findAllArticlesLightByCategory(String category) {
+		String requete = 
+				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
+						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
+						"FROM Article a where Upper(a.category) = :category" ;
+		Query query = null;
+		query = em.createQuery(requete, ArticleDto.class);
+		query.setParameter("category", category.toUpperCase());
+		return (List<ArticleLightDto>)query.getResultList();
+	}
+	
 	public List<ArticleLightDto> findAllArticlesLigt() {
 		String requete = 
 				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
