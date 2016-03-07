@@ -16,8 +16,8 @@ import org.junit.Test;
 
 import com.floremipy.model.article.dao.IModelArticleDao;
 import com.floremipy.model.article.dao.ModelArticleDao;
-import com.floremipy.model.dto.ArticleDto;
-import com.floremipy.model.dto.ArticleLightDto;
+import com.floremipy.model.article.dto.ArticleDto;
+import com.floremipy.model.article.dto.ArticleLightDto;
 
 public class FloreModelTest {
 	
