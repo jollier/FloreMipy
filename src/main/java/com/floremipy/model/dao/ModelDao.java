@@ -1,7 +1,5 @@
 package com.floremipy.model.dao;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,7 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import com.floremipy.model.dto.ArticleDto;
-import com.floremipy.user.User;
+import com.floremipy.model.dto.ArticleLightDto;
 
 public class ModelDao implements Serializable{
 	/**
@@ -48,4 +46,29 @@ public class ModelDao implements Serializable{
 		query.setParameter("id", id);
 		return (ArticleDto)query.getSingleResult();
 	}
+	
+	public ArticleLightDto findArticleLightById(int id) {
+		String requete = 
+				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
+						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
+						"FROM Article a where a.id = :id" ;
+		Query query = null;
+		query = em.createQuery(requete, ArticleLightDto.class);
+		query.setParameter("id", id);
+		return (ArticleLightDto)query.getSingleResult();
+	}
+	
+	public List<ArticleLightDto> findAllArticlesLigt() {
+		String requete = 
+				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
+						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
+						"FROM Article a order by a.name" ;
+		Query query = null;
+		query = em.createQuery(requete, ArticleLightDto.class);
+		return (List<ArticleLightDto>)query.getResultList();
+	}
+	
+	
+	
+	
 }
