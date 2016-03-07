@@ -8,9 +8,6 @@ import android.widget.Button;
 
 import com.example.eaversenq.floremipyweb.R;
 
-/**
- * Created by EAVERSENQ on 03/03/2016.
- */
 public class ProductListActivity  extends Activity {
 
     @Override
@@ -27,6 +24,5 @@ public class ProductListActivity  extends Activity {
                 startActivity(intent);
             }
         });
-
     }
 }

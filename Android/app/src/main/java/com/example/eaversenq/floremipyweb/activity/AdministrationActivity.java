@@ -8,11 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.eaversenq.floremipyweb.R;
-import com.example.eaversenq.floremipyweb.model.Cnx;
+import com.example.eaversenq.floremipyweb.model.Connexion;
+import com.example.eaversenq.floremipyweb.service.ConnexionService;
 
-/**
- * Created by EAVERSENQ on 01/03/2016.
- */
 public class AdministrationActivity extends Activity {
 
     @Override
@@ -20,7 +18,7 @@ public class AdministrationActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administration);
 
-        ((EditText)findViewById(R.id.txUser)).setText("Bienvenu(e) " + Cnx.getInstance().getPrenom() + " " + Cnx.getInstance().getNom());
+        ((EditText)findViewById(R.id.txUser)).setText("Bienvenu(e) " + ConnexionService.getInstance().getCnx().getPrenom() + " " + ConnexionService.getInstance().getCnx().getNom());
 
         // NAVIGATION : accès à l'écran de la liste des produits
         Button btProduit = (Button)findViewById(R.id.btProduit);
