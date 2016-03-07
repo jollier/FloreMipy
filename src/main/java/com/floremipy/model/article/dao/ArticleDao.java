@@ -8,10 +8,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.floremipy.model.Article;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
+import com.floremipy.user.User;
+import com.floremipy.user.dto.UserDto;
 
-public class ModelArticleDao implements Serializable, IModelArticleDao{
+public class ArticleDao implements Serializable, IArticleDao{
 	/**
 	 * 
 	 */
@@ -20,7 +23,7 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 	private static EntityManagerFactory emf;	
 	private static EntityManager em;	
 
-	public ModelArticleDao() {
+	public ArticleDao() {
 		//		super();
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = emf.createEntityManager();
@@ -83,9 +86,9 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.floremipy.model.article.dao.IModelArticleDao#findAllArticlesLigt()
+	 * @see com.floremipy.model.article.dao.IModelArticleDao#findAllArticlesLight()
 	 */
-	public List<ArticleLightDto> findAllArticlesLigt() {
+	public List<ArticleLightDto> findAllArticlesLight() {
 		String requete = 
 				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
 						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
@@ -93,6 +96,36 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 		Query query = null;
 		query = em.createQuery(requete, ArticleLightDto.class);
 		return (List<ArticleLightDto>)query.getResultList();
+	}
+	
+	public ArticleDto findArticleByName(String name) {
+		String requete = 
+				"SELECT NEW com.floremipy.model.article.dto.ArticleDto(" + 
+						"a.id, a.name, a.description, a.category, a.imgsrc, a.quantityInStock) " +
+						"FROM Article a where a.name = :name" ;
+		Query query = null;
+		query = em.createQuery(requete, ArticleDto.class);
+		query.setParameter("name", name);
+		ArticleDto result = null;
+		try {
+			 result = (ArticleDto)query.getSingleResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+			result = null;
+		}
+		return result;
+	}
+	
+	public ArticleDto createNewArticle(ArticleDto newArticle) {
+		em.getTransaction().begin();
+		Article article = new Article();
+		article.setName(newArticle.getName());
+		article.setQuantityInStock(newArticle.getQuantityInStock());
+		article.setDescription(newArticle.getDescription());
+		article.setCategory(newArticle.getCategory());
+		em.persist(article);
+		em.getTransaction().commit();
+		return (ArticleDto)findArticleByName(newArticle.getName());
 	}
 	
 }
