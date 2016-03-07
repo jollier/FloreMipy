@@ -17,8 +17,9 @@ public class ModelWebService {
 	private final AtomicLong counter = new AtomicLong();
 
 	@RequestMapping(value = "/article")
-	public ArticleLightDto article(@RequestParam(value="id", defaultValue="0") int id, String category, String description, String name, Integer quantityInStock) {
-		return new ArticleLightDto(  (int) counter.incrementAndGet(),"","","",0);
+	public ArticleLightDto article(@RequestParam(value="id", defaultValue="0") int id, @RequestParam String category,
+			@RequestParam String description, @RequestParam String name, @RequestParam(value="quantityInStock", defaultValue="0") int quantityInStock) {
+		return new ArticleLightDto(  (int) counter.incrementAndGet(),category,description, name, quantityInStock);
 		
 
 	}
