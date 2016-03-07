@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import com.floremipy.model.Customer;
 
 import com.floremipy.model.customer.dto.CustomerDto;
-
+import com.floremipy.model.customer.dto.CustomerLightDto;
 import com.floremipy.model.article.dto.ArticleDto;
 
 
@@ -62,9 +62,32 @@ public class ModelCustomerDao {
 	public CustomerDto findCustomerById(int id){
 		String requete = "SELECT New com.floremipy.dto.CustomerDto(" +
 				"a.id , a.name, a.firstname, a.phone, a.email, a.adress)" +
-				"From Customer WHERE a.id = id";
-		
-		return null;		
+				"From Customer WHERE a.id = :id";
+		Query query = null;
+		query=em.createQuery(requete, CustomerDto.class);
+		query.setParameter("id", id);
+		return (CustomerDto)query.getSingleResult();
+				
+	}
+	
+	public List<CustomerLightDto> findAllCustomersLight(){
+		String requete = 
+				"SELECT NEW com.floremipy.model.dto.CustomerLightDto(" + 
+		"a.id , a.name, a.firstname)" +
+						"From Customer ORDER BY name";
+		Query query = null;
+		query=em.createQuery(requete, CustomerDto.class);		
+		return (List<CustomerLightDto>)query.getResultList();		
+	}
+	
+	public CustomerLightDto findCustomerLightById(int id){
+		String requete = "SELECT New com.floremipy.dto.CustomerLightDto(" +
+				"a.id , a.name, a.firstname)" +
+				"From Customer WHERE a.id = :id";
+		Query query = null;
+		query=em.createQuery(requete, CustomerDto.class);
+		query.setParameter("id", id);
+		return (CustomerLightDto)query.getSingleResult();		
 	}
 	
 	
