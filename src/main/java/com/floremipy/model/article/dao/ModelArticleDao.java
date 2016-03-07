@@ -31,7 +31,7 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 	 */
 	public List<ArticleDto> findAllArticles() {
 		String requete = 
-				"SELECT NEW com.floremipy.model.dto.ArticleDto(" + 
+				"SELECT NEW com.floremipy.model.article.dto.ArticleDto(" + 
 						"a.id, a.category, a.description, a.imgsrc, a.name, a.quantityInStock) " +
 						"FROM Article a order by a.name" ;
 		Query query = null;
@@ -44,7 +44,7 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 	 */
 	public ArticleDto findArticleById(int id) {
 		String requete = 
-				"SELECT NEW com.floremipy.model.dto.ArticleDto(" + 
+				"SELECT NEW com.floremipy.model.article.dto.ArticleDto(" + 
 						"a.id, a.category, a.description, a.imgsrc, a.name, a.quantityInStock) " +
 						"FROM Article a where a.id = :id" ;
 		Query query = null;
@@ -58,7 +58,7 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 	 */
 	public ArticleLightDto findArticleLightById(int id) {
 		String requete = 
-				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
+				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
 						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
 						"FROM Article a where a.id = :id" ;
 		Query query = null;
@@ -73,7 +73,7 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 	 */
 	public List<ArticleLightDto> findAllArticlesLightByCategory(String category) {
 		String requete = 
-				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
+				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
 						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
 						"FROM Article a where Upper(a.category) = :category" ;
 		Query query = null;
@@ -87,7 +87,7 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 	 */
 	public List<ArticleLightDto> findAllArticlesLigt() {
 		String requete = 
-				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
+				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
 						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
 						"FROM Article a order by a.name" ;
 		Query query = null;
