@@ -68,6 +68,7 @@ public class FloreModelArticleTest {
 		assertTrue(resultArticle.size() > 0);
 	}
 	
+	@Test
 	public void testFindAllArticlesLight() {
 		IArticleDao modelDao = new ArticleDao();
 		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLight();
