@@ -16,7 +16,7 @@ import com.floremipy.model.customer.dto.CustomerLightDto;
 import com.floremipy.model.article.dto.ArticleDto;
 
 
-public class ModelCustomerDao {
+public class ModelCustomerDao implements IModelCustomerDao {
 
 	
 	private final static String PERSISTENCE_UNIT_NAME = "floremipi";
@@ -43,7 +43,7 @@ public class ModelCustomerDao {
 		return id;
 	}
 	
-	public static void CustomerDaoSave (Customer customer) {
+	public void CustomerDaoSave (Customer customer) {
 		em.getTransaction().begin();
 		em.persist(customer);
 		em.getTransaction().commit();
