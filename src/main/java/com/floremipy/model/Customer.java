@@ -55,7 +55,7 @@ public class Customer implements Serializable {
 
 
 
-	public Customer(String email, String firstName, String name, String phone, Adress adress) {
+	public Customer(int id,String email, String firstName, String name, String phone, Adress adress) {
 		super();
 		this.email = email;
 		this.firstName = firstName;
