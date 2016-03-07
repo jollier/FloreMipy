@@ -38,8 +38,7 @@ public class ModelCustomerDao {
 						"From Customer ORDER BY name";
 		Query query = null;
 		query=em.createQuery(requete, CustomerDto.class);		
-		return (List<CustomerDto>)query.getResultList();
-		
+		return (List<CustomerDto>)query.getResultList();		
 	}
 	
 	public CustomerDto findCustomerById(int id){
@@ -47,9 +46,7 @@ public class ModelCustomerDao {
 				"a.id , a.name, a.firstname, a.phone, a.email, a.adress)" +
 				"From Customer WHERE a.id = id";
 		
-		return null;
-		
-		
+		return null;		
 	}
 	
 	
