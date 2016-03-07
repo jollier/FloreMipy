@@ -33,7 +33,7 @@ public class ModelCustomerDao implements IModelCustomerDao {
 		int id = 0;
 		
 		String requete = 
-				"SELECT NEW com.floremipy.model.dto.ArticleDto(" + 
+				"SELECT NEW com.floremipy.model.customer.dto.ArticleDto(" + 
 						"a.id, a.category, a.description, a.imgsrc, a.name, a.quantityInStock) " +
 						"FROM Article a order by a.name" ;
 		Query query = null;
@@ -51,7 +51,7 @@ public class ModelCustomerDao implements IModelCustomerDao {
 	
 	public List<CustomerDto> findAllCustomers(){
 		String requete = 
-				"SELECT NEW com.floremipy.model.dto.CustomerDto(" + 
+				"SELECT NEW com.floremipy.model.customer.dto.CustomerDto(" + 
 		"a.id , a.name, a.firstname, a.phone, a.email, a.adress)" +
 						"From Customer ORDER BY name";
 		Query query = null;
@@ -60,7 +60,7 @@ public class ModelCustomerDao implements IModelCustomerDao {
 	}
 	
 	public CustomerDto findCustomerById(int id){
-		String requete = "SELECT New com.floremipy.dto.CustomerDto(" +
+		String requete = "SELECT New com.floremipy.model.customer.dto.CustomerDto(" +
 				"a.id , a.name, a.firstname, a.phone, a.email, a.adress)" +
 				"From Customer WHERE a.id = :id";
 		Query query = null;
@@ -72,7 +72,7 @@ public class ModelCustomerDao implements IModelCustomerDao {
 	
 	public List<CustomerLightDto> findAllCustomersLight(){
 		String requete = 
-				"SELECT NEW com.floremipy.model.dto.CustomerLightDto(" + 
+				"SELECT NEW com.floremipy.model.customer.dto.CustomerLightDto(" + 
 		"a.id , a.name, a.firstname)" +
 						"From Customer ORDER BY name";
 		Query query = null;
@@ -81,7 +81,7 @@ public class ModelCustomerDao implements IModelCustomerDao {
 	}
 	
 	public CustomerLightDto findCustomerLightById(int id){
-		String requete = "SELECT New com.floremipy.dto.CustomerLightDto(" +
+		String requete = "SELECT New com.floremipy.model.customer.dto.CustomerLightDto(" +
 				"a.id , a.name, a.firstname)" +
 				"From Customer WHERE a.id = :id";
 		Query query = null;
