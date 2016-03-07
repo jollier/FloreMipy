@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.floremipy.user.User;
 import com.floremipy.user.dao.UserDao;
+import com.floremipy.user.dto.UserDto;
 
 public class UserServiceImpl implements UserService{
 
@@ -36,9 +37,8 @@ public class UserServiceImpl implements UserService{
 		return false;
 	}
 
-	public boolean save(User user) {
+	public void save(User user) {
 		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	
