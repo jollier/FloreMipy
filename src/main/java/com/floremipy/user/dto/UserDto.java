@@ -5,20 +5,16 @@ public class UserDto {
 	private Long id;
 	private String username;
 	private String password;
-	private String firstname;
-	private String lastname;
 	private String usertype;
 
 	public UserDto() {
 	}
 
-	public UserDto(Long id, String username, String password, String firstname, String lastname, String usertype) {
+	public UserDto(Long id, String username, String password, String usertype) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.firstname = firstname;
-		this.lastname = lastname;
 		this.usertype = usertype;
 	}
 
@@ -30,21 +26,6 @@ public class UserDto {
 		this.id = id;
 	}
 
-	public String getFirstname() {
-		return this.firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return this.lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
 
 	public String getPassword() {
 		return this.password;
@@ -72,7 +53,7 @@ public class UserDto {
 
 	@Override
 	public String toString() {
-		return "UserDto [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", password=" + password
+		return "UserDto [id=" + id + ", password=" + password
 				+ ", username=" + username + ", usertype=" + usertype + "]";
 	}
 
