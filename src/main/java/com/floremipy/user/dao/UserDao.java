@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.floremipy.user.User;
 import com.floremipy.user.dto.UserDto;
 
 public class UserDao implements Serializable, IUserDao{
@@ -48,7 +49,14 @@ public class UserDao implements Serializable, IUserDao{
 						"FROM User u where u.username = :username" ;
 		Query query = em.createQuery(requete, UserDto.class);;
 		query.setParameter("username", userName);
-		return (UserDto)query.getSingleResult();
+		UserDto result = null;
+		try {
+			 result = (UserDto)query.getSingleResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+			result = null;
+		}
+		return result;
 	}
 	
 	/* (non-Javadoc)
@@ -74,6 +82,18 @@ public class UserDao implements Serializable, IUserDao{
 		query.setParameter("username", userName);
 		query.setParameter("password", password);
 		return (UserDto)query.getSingleResult();
+	}
+	
+	public UserDto createNewUser(UserDto newUserDto) {
+		em.getTransaction().begin();
+		User user = new User();
+		user.setUsername(newUserDto.getUsername());
+		user.setPassword(newUserDto.getPassword());
+		user.setUsertype(newUserDto.getUsertype());
+		user.setIdcustomer(1L);
+		em.persist(user);
+		em.getTransaction().commit();
+		return findUserByUserName(newUserDto.getUsername());
 	}
 	
 }
