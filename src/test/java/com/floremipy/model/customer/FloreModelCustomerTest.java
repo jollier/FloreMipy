@@ -40,12 +40,13 @@ public class FloreModelCustomerTest {
 	}
 	
 
+	@Test
 	public void testCustomerDaoSave() {
 		ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
 		Adress adress = new Adress ("rue du village","31000","Toulouse");
-		Customer customer = new Customer ("Teste","Test","(555)555-5555","test.teste@mail.com",adress);
+		Customer customer = new Customer ("test.teste@mail.com","Teste","Test","(555)555-5555",adress);
 		modelCustomerDao.CustomerDaoSave(customer);
-//		System.out.println("Customer : " +resultArticle.toString());
+		System.out.println("Customer : " +customer.toString());
 //		assertEquals(id,resultArticle.getId());
 	}
 	

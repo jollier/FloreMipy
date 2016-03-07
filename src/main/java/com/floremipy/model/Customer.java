@@ -3,6 +3,7 @@ package com.floremipy.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,10 +36,10 @@ public class Customer implements Serializable {
 	private String name;
 
 	private String phone;
-
+	
 	//bi-directional many-to-one association to Adress
-	@ManyToOne
-	@JoinColumn(name="IdAdress")
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="IdAdress", referencedColumnName = "ID")
 	private Adress adress;
 
 	//bi-directional many-to-one association to Customerorder
