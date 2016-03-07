@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.floremipy.user.User;
-import com.floremipy.user.dao.UserDao;
+import com.floremipy.user.dao.IUserDao;
 
 public class UserServiceImpl implements UserService{
 
 	@Autowired
-	UserDao userDao;
+	IUserDao userDao;
 	
 	public List<User> getAll() {
 		//Changer le return dès que le Dao sera OK

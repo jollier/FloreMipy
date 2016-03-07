@@ -14,6 +14,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.floremipy.model.article.dao.IModelArticleDao;
 import com.floremipy.model.article.dao.ModelArticleDao;
 import com.floremipy.model.dto.ArticleDto;
 import com.floremipy.model.dto.ArticleLightDto;
@@ -35,7 +36,7 @@ public class FloreModelTest {
 	
 	@Test
 	public void testFindAllArticles() {
-		ModelArticleDao modelDao = new ModelArticleDao();
+		IModelArticleDao modelDao = new ModelArticleDao();
 		List<ArticleDto> resultArticle = modelDao.findAllArticles();
 		for(ArticleDto a : resultArticle){
 			System.out.println("result test FindAllArticles : " +a);
@@ -46,7 +47,7 @@ public class FloreModelTest {
 	@Test
 	public void testFindArticleById() {
 		int id = 1;
-		ModelArticleDao modelDao = new ModelArticleDao();
+		IModelArticleDao modelDao = new ModelArticleDao();
 		ArticleDto resultArticle = modelDao.findArticleById(id);
 		System.out.println("result test FindArticleById : " +resultArticle.toString());
 		assertEquals(id,resultArticle.getId());
@@ -55,14 +56,14 @@ public class FloreModelTest {
 	@Test
 	public void testFindAllArticlesLightByCategory() {
 		String category = "Arbres";
-		ModelArticleDao modelDao = new ModelArticleDao();
+		IModelArticleDao modelDao = new ModelArticleDao();
 		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLightByCategory(category);
 		System.out.println("result test FindAllArticlesLightByCategory(Arbres) : " +resultArticle.toString());
 		assertTrue(resultArticle.size() > 0);
 	}
 	
 	public void testFindAllArticlesLight() {
-		ModelArticleDao modelDao = new ModelArticleDao();
+		IModelArticleDao modelDao = new ModelArticleDao();
 		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLigt();
 		for(ArticleLightDto a : resultArticle){
 			System.out.println("result test FindAllArticlesLight : " +a);
@@ -73,7 +74,7 @@ public class FloreModelTest {
 	@Test
 	public void testFindArticleLightById() {
 		int id = 1;
-		ModelArticleDao modelDao = new ModelArticleDao();
+		IModelArticleDao modelDao = new ModelArticleDao();
 		ArticleLightDto resultArticle = modelDao.findArticleLightById(id);
 		System.out.println("result test FindArticleLightById : " +resultArticle.toString());
 		assertEquals(id,resultArticle.getId());
