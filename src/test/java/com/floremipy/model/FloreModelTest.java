@@ -74,8 +74,6 @@ public class FloreModelTest {
 		assertTrue(resultArticle.size() > 0);
 	}
 	
-
-	
 	@Test
 	public void testFindArticleLightById() {
 		int id = 1;
@@ -84,8 +82,6 @@ public class FloreModelTest {
 		System.out.println("result test FindArticleLightById : " +resultArticle.toString());
 		assertEquals(id,resultArticle.getId());
 	}
-	
-
 	
 
 	@AfterClass

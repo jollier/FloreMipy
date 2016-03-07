@@ -4,7 +4,6 @@ public class ArticleLightDto {
 	private int id;
 	private String category;
 	private String description;
-	private String imgsrc;
 	private String name;
 	private int quantityInStock;
 	
