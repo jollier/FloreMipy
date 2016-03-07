@@ -8,8 +8,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import com.floremipy.model.dto.ArticleDto;
-import com.floremipy.model.dto.ArticleLightDto;
+import com.floremipy.model.article.dto.ArticleDto;
+import com.floremipy.model.article.dto.ArticleLightDto;
 
 public class ModelArticleDao implements Serializable, IModelArticleDao{
 	/**

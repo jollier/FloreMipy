@@ -1,4 +1,4 @@
-package com.floremipy.model.dto;
+package com.floremipy.model.article.dto;
 
 public class ArticleDto {
 	private int id;
