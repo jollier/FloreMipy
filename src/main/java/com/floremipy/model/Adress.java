@@ -39,6 +39,17 @@ public class Adress implements Serializable {
 
 	public Adress() {
 	}
+	
+	
+
+	public Adress(String city, String location, String zipCode) {
+		super();
+		this.city = city;
+		this.location = location;
+		this.zipCode = zipCode;
+	}
+
+
 
 	public int getId() {
 		return this.id;
