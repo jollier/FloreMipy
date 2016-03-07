@@ -99,6 +99,20 @@ public class FloreTest {
 		assertTrue(resultUser.size() >= 0);
 	}
 	
+	@Test
+	public void testFindUserByUserNameAndPassword() {
+		String userName = "user1";
+		String password = "user1";
+		IUserDao userDao = new UserDao();
+		UserDto user = userDao.findUserByUserNameAndPassword(userName, password);
+		System.out.println("result test FindUserByUserNameAndPassword : " +user.toString());
+		assertEquals(userName, user.getUsername());
+	}
+	
+	
+	
+	
+	
 	@AfterClass
 	public static void setUpAfterClass() throws Exception {
 	em.close();

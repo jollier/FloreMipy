@@ -64,4 +64,16 @@ public class UserDao implements Serializable, IUserDao{
 		query.setParameter("usertype", userType.toLowerCase());
 		return (List<UserDto>)query.getResultList();
 	}
+	
+	public UserDto findUserByUserNameAndPassword(String userName, String password) {
+		String requete = 
+				"Select NEW com.floremipy.user.dto.UserDto(" + 
+						"u.id, u.username, u.password, u.usertype, u.idcustomer) " +
+						"FROM User u where u.username = :username and u.password = :password" ;
+		Query query = em.createQuery(requete, UserDto.class);;
+		query.setParameter("username", userName);
+		query.setParameter("password", password);
+		return (UserDto)query.getSingleResult();
+	}
+	
 }
