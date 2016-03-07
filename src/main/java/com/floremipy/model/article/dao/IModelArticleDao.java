@@ -15,6 +15,6 @@ public interface IModelArticleDao {
 
 	List<ArticleLightDto> findAllArticlesLightByCategory(String category);
 
-	List<ArticleLightDto> findAllArticlesLigt();
+	List<ArticleLightDto> findAllArticlesLight();
 
 }

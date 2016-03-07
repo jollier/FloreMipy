@@ -85,7 +85,7 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 	/* (non-Javadoc)
 	 * @see com.floremipy.model.article.dao.IModelArticleDao#findAllArticlesLigt()
 	 */
-	public List<ArticleLightDto> findAllArticlesLigt() {
+	public List<ArticleLightDto> findAllArticlesLight() {
 		String requete = 
 				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
 						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
@@ -94,5 +94,6 @@ public class ModelArticleDao implements Serializable, IModelArticleDao{
 		query = em.createQuery(requete, ArticleLightDto.class);
 		return (List<ArticleLightDto>)query.getResultList();
 	}
+
 	
 }
