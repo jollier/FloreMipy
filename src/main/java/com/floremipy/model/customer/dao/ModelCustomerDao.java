@@ -1,7 +1,6 @@
 package com.floremipy.model.customer.dao;
 
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,10 +9,9 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import com.floremipy.model.Customer;
-
 import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.model.customer.dto.CustomerLightDto;
-import com.floremipy.model.article.dto.ArticleDto;
+
 
 
 public class ModelCustomerDao implements IModelCustomerDao {
@@ -30,17 +28,16 @@ public class ModelCustomerDao implements IModelCustomerDao {
 	}
 	
 	public int FindIdLastCustomer() {
-		int id = 0;
-		
 		String requete = 
-				"SELECT NEW com.floremipy.model.customer.dto.ArticleDto(" + 
-						"a.id, a.category, a.description, a.imgsrc, a.name, a.quantityInStock) " +
-						"FROM Article a order by a.name" ;
+				"SELECT NEW com.floremipy.model.customer.dto.CustomerDto(" + 
+						"MAX(c.id),c.name, c.firstName, c.phone, c.email, c.adress) " +
+						"FROM Customer c" ;
+
 		Query query = null;
-		query = em.createQuery(requete, ArticleDto.class);
-//		return (List<ArticleDto>)query.getResultList();
+		query = em.createQuery(requete, CustomerDto.class);
+		CustomerDto res= ((CustomerDto)query.getSingleResult());
 		
-		return id;
+		return res.getId();
 	}
 	
 	public void CustomerDaoSave (Customer customer) {

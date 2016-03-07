@@ -28,6 +28,10 @@ public class CustomerDto {
 		this.adress = adress;
 	}
 
+	public CustomerDto(int id, String name, String firstname, String phone, String email) {
+		this(id, name, firstname, phone, email, null);
+	}
+
 	public int getId() {
 		return id;
 	}
