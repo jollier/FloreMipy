@@ -15,6 +15,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.floremipy.user.dao.IUserDao;
 import com.floremipy.user.dao.UserDao;
 import com.floremipy.user.dto.UserDto;
 
@@ -40,7 +41,7 @@ public class FloreTest {
 	
 	@Test
 	public void testFindAllUsers() { 
-		UserDao userDao = new UserDao();
+		IUserDao userDao = new UserDao();
 		List<UserDto> resultUser = userDao.findAllUsers();
 		for(UserDto a : resultUser){
 			System.out.println("result test FindAllUsers : " +a);
@@ -70,7 +71,7 @@ public class FloreTest {
 	@Test
 	public void testFindUserByUserName() {
 		String userName = "user1";
-		UserDao userDao = new UserDao();
+		IUserDao userDao = new UserDao();
 		UserDto user = userDao.findUserByUserName(userName);
 		System.out.println("result test FindUserByUserName : " +user.toString());
 		assertEquals(userName, user.getUsername());
@@ -79,7 +80,7 @@ public class FloreTest {
 	@Test
 	public void testFindAdminUsers() {
 		String userType="Admin";
-		UserDao userDao = new UserDao();
+		IUserDao userDao = new UserDao();
 		List<UserDto> resultUser = userDao.findUserByUserType(userType);
 		for(UserDto a : resultUser){
 			System.out.println("result test FindAdminUsers('" + userType + "'): " +a);
@@ -90,7 +91,7 @@ public class FloreTest {
 	@Test
 	public void testFindUserUsers() {
 		String userType="User";
-		UserDao userDao = new UserDao();
+		IUserDao userDao = new UserDao();
 		List<UserDto> resultUser = userDao.findUserByUserType(userType);
 		for(UserDto a : resultUser){
 			System.out.println("result test FindUserUsers('" + userType + "'): " +a);
