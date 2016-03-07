@@ -1,6 +1,7 @@
 package com.floremipy.model.customer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,6 +14,7 @@ import org.junit.Test;
 import com.floremipy.model.Adress;
 import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dao.ModelCustomerDao;
+import com.floremipy.user.dto.UserDto;
 
 public class FloreModelCustomerTest {
 	
@@ -39,14 +41,15 @@ public class FloreModelCustomerTest {
 		assertEquals(id,8);
 	}
 	
-
+	
+	@Test
 	public void testCustomerDaoSave() {
 		ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
 		Adress adress = new Adress ("rue du village","31000","Toulouse");
-		Customer customer = new Customer ("Teste","Test","(555)555-5555","test.teste@mail.com",adress);
+		Customer customer = new Customer ("test.teste@mail.com","Teste","Test","(555)555-5555",adress);
 		modelCustomerDao.CustomerDaoSave(customer);
-//		System.out.println("Customer : " +resultArticle.toString());
-//		assertEquals(id,resultArticle.getId());
+		
+		
 	}
 	
 

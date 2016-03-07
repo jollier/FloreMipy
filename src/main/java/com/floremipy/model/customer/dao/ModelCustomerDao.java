@@ -1,6 +1,8 @@
 package com.floremipy.model.customer.dao;
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -8,11 +10,7 @@ import javax.persistence.Query;
 
 import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dto.CustomerDto;
-
-
-import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.model.customer.dto.CustomerLightDto;
-import com.floremipy.model.article.dto.ArticleDto;
 
 
 
