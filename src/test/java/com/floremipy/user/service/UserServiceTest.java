@@ -1,4 +1,4 @@
-package com.floremipy.service;
+package com.floremipy.user.service;
 
 import static org.junit.Assert.*;
 

@@ -2,17 +2,11 @@ package com.floremipy.user.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.floremipy.user.User;
-import com.floremipy.user.dao.UserDao;
-import com.floremipy.user.dto.UserDto;
 
 public class UserServiceImpl implements UserService{
 
-	@Autowired
-	UserDao userDao;
-	
+
 	public List<User> getAll() {
 		//Changer le return dès que le Dao sera OK
 		//return userDao.findAllUsers();

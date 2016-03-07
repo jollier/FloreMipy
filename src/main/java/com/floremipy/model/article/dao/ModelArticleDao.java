@@ -11,7 +11,7 @@ import javax.persistence.Query;
 import com.floremipy.model.dto.ArticleDto;
 import com.floremipy.model.dto.ArticleLightDto;
 
-public class ModelArticleDao implements Serializable{
+public class ModelArticleDao implements Serializable, IModelArticleDao{
 	/**
 	 * 
 	 */
@@ -26,6 +26,9 @@ public class ModelArticleDao implements Serializable{
 		em = emf.createEntityManager();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.floremipy.model.article.dao.IModelArticleDao#findAllArticles()
+	 */
 	public List<ArticleDto> findAllArticles() {
 		String requete = 
 				"SELECT NEW com.floremipy.model.dto.ArticleDto(" + 
@@ -36,6 +39,9 @@ public class ModelArticleDao implements Serializable{
 		return (List<ArticleDto>)query.getResultList();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.floremipy.model.article.dao.IModelArticleDao#findArticleById(int)
+	 */
 	public ArticleDto findArticleById(int id) {
 		String requete = 
 				"SELECT NEW com.floremipy.model.dto.ArticleDto(" + 
@@ -47,6 +53,9 @@ public class ModelArticleDao implements Serializable{
 		return (ArticleDto)query.getSingleResult();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.floremipy.model.article.dao.IModelArticleDao#findArticleLightById(int)
+	 */
 	public ArticleLightDto findArticleLightById(int id) {
 		String requete = 
 				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
@@ -59,6 +68,9 @@ public class ModelArticleDao implements Serializable{
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see com.floremipy.model.article.dao.IModelArticleDao#findAllArticlesLightByCategory(java.lang.String)
+	 */
 	public List<ArticleLightDto> findAllArticlesLightByCategory(String category) {
 		String requete = 
 				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 
@@ -70,6 +82,9 @@ public class ModelArticleDao implements Serializable{
 		return (List<ArticleLightDto>)query.getResultList();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.floremipy.model.article.dao.IModelArticleDao#findAllArticlesLigt()
+	 */
 	public List<ArticleLightDto> findAllArticlesLigt() {
 		String requete = 
 				"SELECT NEW com.floremipy.model.dto.ArticleLightDto(" + 

@@ -10,7 +10,7 @@ import javax.persistence.Query;
 
 import com.floremipy.user.dto.UserDto;
 
-public class UserDao implements Serializable{
+public class UserDao implements Serializable, IUserDao{
 	/**
 	 * 
 	 */
@@ -25,6 +25,9 @@ public class UserDao implements Serializable{
 		em = emf.createEntityManager();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.floremipy.user.dao.IUserDao#findAllUsers()
+	 */
 	public List<UserDto> findAllUsers(){
 		String requete = 
 				"SELECT NEW com.floremipy.user.dto.UserDto(" + 
@@ -35,6 +38,9 @@ public class UserDao implements Serializable{
 		return (List<UserDto>)query.getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.floremipy.user.dao.IUserDao#findUserByUserName(java.lang.String)
+	 */
 	public UserDto findUserByUserName(String userName) {
 		String requete = 
 				"Select NEW com.floremipy.user.dto.UserDto(" + 
@@ -45,6 +51,9 @@ public class UserDao implements Serializable{
 		return (UserDto)query.getSingleResult();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.floremipy.user.dao.IUserDao#findUserByUserType(java.lang.String)
+	 */
 	public List<UserDto> findUserByUserType(String userType){
 		String requete = 
 				"SELECT NEW com.floremipy.user.dto.UserDto(" + 
@@ -55,4 +64,13 @@ public class UserDao implements Serializable{
 		query.setParameter("usertype", userType.toLowerCase());
 		return (List<UserDto>)query.getResultList();
 	}
+
+	@Override
+	public UserDto findUserByNameAndPassword(String name, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
 }

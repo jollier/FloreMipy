@@ -14,5 +14,5 @@ public interface UserService {
 	
 	public boolean delUser(User user);
 	
-	public boolean save(User user);
+	public void save(User user);
 }

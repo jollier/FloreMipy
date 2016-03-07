@@ -8,11 +8,12 @@ public class UserDto {
 	private String firstname;
 	private String lastname;
 	private String usertype;
+	private Long idcustomer;
 
 	public UserDto() {
 	}
 
-	public UserDto(Long id, String username, String password, String firstname, String lastname, String usertype) {
+	public UserDto(Long id, String username, String password, String firstname, String lastname, String usertype, Long idcustomer) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -20,6 +21,7 @@ public class UserDto {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.usertype = usertype;
+		this.idcustomer = idcustomer;
 	}
 
 	public Long getId() {
@@ -64,6 +66,14 @@ public class UserDto {
 
 	public String getUsertype() {
 		return this.usertype;
+	}	
+
+	public Long getIdcustomer() {
+		return idcustomer;
+	}
+
+	public void setIdcustomer(Long idcustomer) {
+		this.idcustomer = idcustomer;
 	}
 
 	public void setUsertype(String usertype) {
