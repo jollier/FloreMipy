@@ -40,5 +40,14 @@ public class FloreModelTest {
 		assertEquals(id,resultArticle.getId());
 	}
 	
+	@Test
+	public void testFindArticleByCategory() {
+//		String category = "Arbres";
+//		ModelDao modelDao = new ModelDao();
+//		ArticleDto resultArticle = modelDao.findArticleById(id);
+//		System.out.println("result test FindArticleById : " +resultArticle.toString());
+//		assertEquals(id,resultArticle.getId());
+	}
+	
 
 }
