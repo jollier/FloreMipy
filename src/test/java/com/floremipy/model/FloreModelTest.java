@@ -64,7 +64,7 @@ public class FloreModelTest {
 	
 	public void testFindAllArticlesLight() {
 		IModelArticleDao modelDao = new ModelArticleDao();
-		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLigt();
+		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLight();
 		for(ArticleLightDto a : resultArticle){
 			System.out.println("result test FindAllArticlesLight : " +a);
 		}	
