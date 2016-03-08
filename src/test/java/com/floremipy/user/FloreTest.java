@@ -1,7 +1,6 @@
 package com.floremipy.user;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -32,9 +31,21 @@ public class FloreTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		int versionBaseUser = 5;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
-		transaction =  em.getTransaction();
+		Version version = em.find(Version.class, 1);
+		
+		if (version.getVersion() != versionBaseUser) {
+			System.out.println("");
+			System.out.println("");
+			System.out.println("********************************");
+			System.out.println("**Version de la BDD floremipyuser incorrecte**");
+			System.out.println("********************************");
+			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiUsers.sql");
+			System.exit(1);
+		}
+		
 	}
 
 
@@ -55,7 +66,6 @@ public class FloreTest {
 	public void testFindFirstUser() {	
 		User firstUser = em.find(User.class, new Long(1));
 		System.out.println("FirstUser :" + firstUser.toString());
-
 		assertTrue(firstUser.getId() >= 0);
 	}
 
@@ -121,7 +131,7 @@ public class FloreTest {
 			userExists = userDao.findUserByUserName(userName);
 		} while (userExists != null);
 
-		UserDto userDto = new UserDto(null,userName, userName, "user", 1L);
+		UserDto userDto = new UserDto(null,userName, userName, "user", 1);
 
 		UserDto newUser = userDao.createNewUser(userDto);
 		System.out.println("result test testCreateNewUser : " +newUser.toString());

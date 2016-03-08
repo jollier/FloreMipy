@@ -96,6 +96,7 @@ public class ArticleDao implements Serializable, IArticleDao{
 		query = em.createQuery(requete, ArticleLightDto.class);
 		return (List<ArticleLightDto>)query.getResultList();
 	}
+
 	
 	public ArticleDto findArticleByName(String name) {
 		String requete = 
@@ -125,6 +126,13 @@ public class ArticleDao implements Serializable, IArticleDao{
 		em.persist(article);
 		em.getTransaction().commit();
 		return (ArticleDto)findArticleByName(newArticle.getName());
+	}
+	
+	public void ArticleDaoSave(Article article) {
+		em.getTransaction().begin();
+		em.persist(article);
+		em.getTransaction().commit();
+		
 	}
 	
 }

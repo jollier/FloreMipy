@@ -12,9 +12,10 @@ public interface IUserDao {
 	UserDto findUserByUserName(String userName);
 
 	List<UserDto> findUserByUserType(String userType);
-	
+
 	UserDto findUserByUserNameAndPassword(String userName, String password);
 	
 	UserDto createNewUser(UserDto newUserDto);
+
 
 }
