@@ -11,7 +11,7 @@ import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
 
-public class ModelServiceTest {
+public class ArticleServiceTest {
 
 	@Test
 	public void testfindAllArticlesDTO(){
@@ -25,7 +25,7 @@ public class ModelServiceTest {
 		
 		Mockito.when(articleDao.findAllArticlesLight()).thenReturn(liste);
 		
-		ModelService modelService = new ModelService();
+		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
 		List<ArticleLightDto> list = modelService.findAllDto();
@@ -42,7 +42,7 @@ public class ModelServiceTest {
 		
 		Mockito.when(articleDao.findArticleLightById(4)).thenReturn(article);
 		
-		ModelService modelService = new ModelService();
+		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
 		
@@ -62,7 +62,7 @@ public class ModelServiceTest {
 		Mockito.when(articleDao.findArticleLightById(0)).thenReturn(null);
 
 		
-		ModelService modelService = new ModelService();
+		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
 		ArticleLightDto art = modelService.findArticleLightById(0);
@@ -93,7 +93,7 @@ public class ModelServiceTest {
 		Mockito.when(articleDao.findAllArticlesLightByCategory("arbuste")).thenReturn(liste);
 		Mockito.when(articleDao.findAllArticlesLightByCategory("mauvaise herbe")).thenReturn(liste2);
 		
-		ModelService modelService = new ModelService();
+		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
 		List<ArticleLightDto> art = modelService.findAllArticlesLightByCategory("arbuste");
@@ -121,7 +121,7 @@ public class ModelServiceTest {
 		
 		Mockito.when(articleDao.findAllArticles()).thenReturn(liste);
 		
-		ModelService modelService = new ModelService();
+		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
 		List<ArticleDto> list = modelService.findAll();
@@ -138,15 +138,35 @@ public class ModelServiceTest {
 		
 		Mockito.when(articleDao.findArticleById(4)).thenReturn(article);
 		
-		ModelService modelService = new ModelService();
+		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
-		
 		
 		ArticleDto art = modelService.findArticleById(4);
 		
 		Assert.assertEquals(art, article);
 		Assert.assertEquals(ArticleDto.class, art.getClass());
 		
+	}
+	
+	@Test
+	public void testCreateNewArticle(){
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
+		
+		ArticleDto a = new ArticleDto();
+		Mockito.when(articleDao.createNewArticle(a)).thenReturn(a);
+		
+		ArticleService modelService = new ArticleService();
+		modelService.setArticleDao(articleDao);
+		
+		ArticleDto art = modelService.createNewArticle(a);
+		
+		Assert.assertEquals(a, art);
+		Assert.assertEquals(ArticleDto.class, a.getClass());
+	}
+	
+	@Test
+	public void testHommage(){
+		Assert.assertNotEquals(4, 3+2);
 	}
 	
 	

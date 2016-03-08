@@ -9,7 +9,7 @@ import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
 
-public class ModelService implements IModelService {
+public class ArticleService implements IArticleService {
 	
 	@Autowired
 	IArticleDao articleDao;

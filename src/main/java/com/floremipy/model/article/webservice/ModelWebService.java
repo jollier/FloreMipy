@@ -19,7 +19,7 @@ public class ModelWebService {
 
 	private final AtomicLong counter = new AtomicLong();
 
-	@RequestMapping(value = "/article")
+	@RequestMapping(value = "/product")
 	public ArticleLightDto article(@RequestParam(value="id", defaultValue="0") int id, @RequestParam String category,
 			@RequestParam String description, @RequestParam String name, @RequestParam(value="quantityInStock", defaultValue="0") int quantityInStock,
 			@RequestParam(value="value", defaultValue="0") BigDecimal value) {
