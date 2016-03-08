@@ -14,9 +14,15 @@ import com.floremipy.user.dto.UserDto;
 
 public class CustomerServiceTest {
 
+	
 	@Test
 	public void testGetCustomerByLoginAndPassword(){
-		IModelCustomerDao customerDao = (IModelCustomerDao) Mockito.mock(IModelCustomerDao.class);
+		// *******************************************
+		// ****               Arrange             ****
+		// *******************************************
+		// *** Pour la mise en place du test      ****
+		// *******************************************
+		IModelCustomerDao customerDao = Mockito.mock(IModelCustomerDao.class);
 		UserDao userDao = Mockito.mock(UserDao.class);
 		
 		CustomerDto customerDto = new CustomerDto();
@@ -32,9 +38,19 @@ public class CustomerServiceTest {
 		CustomerService customerService = new CustomerService();
 		customerService.setCustomerDao(customerDao);
 		customerService.setUserDao(userDao);
+
+		// *****************************************************
+		// ****                     Act                     ****
+		// *****************************************************
+		// *** Pour l'execution de la méthode à tester      ****
+		// *****************************************************
+		CustomerDto customerDto1 = customerService.getCustomerByLoginAndPassword("TEST", "PASSWORD");
 		
-		CustomerDto customerDto1 = customerService.getCustomer("TEST", "PASSWORD");
-		
+		// *****************************************************
+		// ****                  Assert                     ****
+		// *****************************************************
+		// *** Pour vérifier le résultat du test            ****
+		// *****************************************************		
 		Assert.assertNull(customerDto1);
 		//Assert.assertEquals("DURAND", customerDto1.getName());
 		
@@ -42,6 +58,9 @@ public class CustomerServiceTest {
 	
 	@Test
 	public void testfindAllCustomersDTO(){
+		// *******************************************
+		// ****               Arrange             ****
+		// *******************************************
 		IModelCustomerDao customerDao = Mockito.mock(IModelCustomerDao.class);
 		
 		CustomerDto customer1 = new CustomerDto();
@@ -54,9 +73,14 @@ public class CustomerServiceTest {
 		
 		CustomerService customerService = new CustomerService();
 		customerService.setCustomerDao(customerDao);
+		// *****************************************************
+		// ****                     Act                     ****
+		// *****************************************************
+		List<CustomerDto> list = customerService.findAllCustomers();
 		
-		List<CustomerDto> list = customerService.findAll();
-		
+		// *****************************************************
+		// ****                  Assert                     ****
+		// *****************************************************		
 		Assert.assertEquals(2, list.size());		
 	}
 }

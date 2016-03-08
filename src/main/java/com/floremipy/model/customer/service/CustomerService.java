@@ -34,7 +34,7 @@ public class CustomerService implements ICustomerService {
 	}
 	
 	@Override
-	public CustomerDto getCustomer(String login, String password){
+	public CustomerDto getCustomerByLoginAndPassword(String login, String password){
 		UserDto userDto = userDao.findUserByUserNameAndPassword(login, password);
 		CustomerDto customerDto = null;
 		if ((userDto != null) && (userDto.getIdcustomer()>0)){
@@ -44,7 +44,7 @@ public class CustomerService implements ICustomerService {
 	}
 
 	@Override
-	public List<CustomerDto> findAll() {
+	public List<CustomerDto> findAllCustomers() {
 		// TODO Auto-generated method stub
 		return customerDao.findAllCustomers();
 	}

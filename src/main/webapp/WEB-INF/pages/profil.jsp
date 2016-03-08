@@ -147,7 +147,7 @@
     
  		    <div class="form-group">
 		      <div class="col-lg-10 col-lg-offset-2">
-		        <a href="index"></jsp:forward>
+		        <a href="index.jsp">
 		        <button class="btn btn-default">Annuler</button>
 		         </a>
 		        <button type="submit" class="btn btn-primary">Envoyer</button>

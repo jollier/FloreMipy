@@ -39,22 +39,22 @@ public class FloreModelCustomerTest {
 		int versionBaseUser = 5;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
-		Version version = em.find(Version.class, 1);
-		
-		if (version.getVersion() != versionBaseUser) {
-			System.out.println("");
-			System.out.println("");
-			System.out.println("********************************");
-			System.out.println("**Version de la BDD floremipi incorrecte**");
-			System.out.println("********************************");
-			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiInit.sql");
-			
-			System.exit(1);
-		}
+//		Version version = em.find(Version.class, 1);
+//		
+//		if (version.getVersion() != versionBaseUser) {
+//			System.out.println("");
+//			System.out.println("");
+//			System.out.println("********************************");
+//			System.out.println("**Version de la BDD floremipi incorrecte**");
+//			System.out.println("********************************");
+//			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiInit.sql");
+//			
+//			System.exit(1);
+//		}
 		
 	}
 	
-	/*
+	
 	@Test
 	public void testNameLastCustomer() {
 		ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
@@ -63,7 +63,7 @@ public class FloreModelCustomerTest {
 		System.out.println("Nom : " + name);
 		assertEquals(name,"Test");
 	}
-	*/
+	
 	
 	@Test
 	public void testCustomerDaoSave() {
@@ -73,6 +73,13 @@ public class FloreModelCustomerTest {
 		modelCustomerDao.CustomerDaoSave(customer);				
 	}
 	
+	@Test
+	public void testCustomerDaoRemove() {
+		ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
+		Adress adress = new Adress ("rue du village","31000","Toulouse");
+		Customer customer = new Customer (0,"test.teste@mail.com","Teste","Test","(555)555-5555",adress);
+		modelCustomerDao.CustomerDaoRemove(customer);				
+	}
 	
 	@Test
 	public void findAllCustomers(){
