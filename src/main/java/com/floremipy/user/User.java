@@ -26,7 +26,7 @@ public class User implements Serializable {
 
 	private String usertype;
 	
-	private Long idcustomer;
+	private int idcustomer;
 	
 	
 
@@ -84,12 +84,12 @@ public class User implements Serializable {
 	}
 
 
-	public Long getIdcustomer() {
+	public int getIdcustomer() {
 		return idcustomer;
 	}
 
 
-	public void setIdcustomer(Long idcustomer) {
+	public void setIdcustomer(int idcustomer) {
 		this.idcustomer = idcustomer;
 	}
 	
