@@ -9,7 +9,7 @@ public class TestController {
 
 	@RequestMapping("/")
 	public ModelAndView test(){
-		return new ModelAndView("index");
+		return new ModelAndView("identification");
 	}
 	
 }
