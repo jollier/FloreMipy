@@ -42,9 +42,11 @@ public class CustomerService implements ICustomerService {
 		}
 		return customerDto;
 	}
-	
-	@Override 
-	public List<CustomerDto> findAll(){
-		return customerDao.findAllCustomers();
+
+	@Override
+	public List<CustomerDto> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }

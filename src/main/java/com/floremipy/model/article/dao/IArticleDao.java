@@ -1,5 +1,8 @@
 package com.floremipy.model.article.dao;
 
+/**
+ * 
+ */
 import java.util.List;
 
 import com.floremipy.model.Article;
