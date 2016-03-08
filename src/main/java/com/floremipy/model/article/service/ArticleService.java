@@ -66,7 +66,4 @@ public class ArticleService implements IArticleService {
 		return articleDao.createNewArticle(newArticle);
 	}
 
-
-	
-
 }
