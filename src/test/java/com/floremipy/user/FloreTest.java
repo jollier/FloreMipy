@@ -1,7 +1,6 @@
 package com.floremipy.user;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -32,9 +31,21 @@ public class FloreTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		int versionBaseUser = 5;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
-		transaction =  em.getTransaction();
+		Version version = em.find(Version.class, 1);
+		
+		if (version.getVersion() != versionBaseUser) {
+			System.out.println("");
+			System.out.println("");
+			System.out.println("********************************");
+			System.out.println("**Version de la BDD floremipyuser incorrecte**");
+			System.out.println("********************************");
+			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiUsers.sql");
+			System.exit(1);
+		}
+		
 	}
 
 
