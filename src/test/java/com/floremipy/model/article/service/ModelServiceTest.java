@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.floremipy.model.article.dao.IModelArticleDao;
+import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
 
@@ -15,7 +15,7 @@ public class ModelServiceTest {
 
 	@Test
 	public void testfindAllArticlesDTO(){
-		IModelArticleDao articleDao = Mockito.mock(IModelArticleDao.class);
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleLightDto article = new ArticleLightDto();
 		ArticleLightDto article2 = new ArticleLightDto();
@@ -35,7 +35,7 @@ public class ModelServiceTest {
 	
 	@Test
 	public void testfindArticleDTOByID_OK(){
-		IModelArticleDao articleDao = Mockito.mock(IModelArticleDao.class);
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleLightDto article = new ArticleLightDto();
 		article.setId(4);
@@ -55,7 +55,7 @@ public class ModelServiceTest {
 	
 	@Test
 	public void testfindArticleDTOByID_NOK(){
-		IModelArticleDao articleDao = Mockito.mock(IModelArticleDao.class);
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleLightDto article2 = new ArticleLightDto();
 		
@@ -73,7 +73,7 @@ public class ModelServiceTest {
 	
 	@Test
 	public void testfindArticleDTOByCategorie_OK(){
-		IModelArticleDao articleDao = Mockito.mock(IModelArticleDao.class);
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleLightDto article = new ArticleLightDto();
 		article.setCategory("arbuste");
@@ -111,7 +111,7 @@ public class ModelServiceTest {
 	
 	@Test
 	public void testfindAllArticles(){
-		IModelArticleDao articleDao = Mockito.mock(IModelArticleDao.class);
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleDto article = new ArticleDto();
 		ArticleDto article2 = new ArticleDto();
@@ -131,7 +131,7 @@ public class ModelServiceTest {
 	
 	@Test
 	public void testfindArticleByID_OK(){
-		IModelArticleDao articleDao = Mockito.mock(IModelArticleDao.class);
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleDto article = new ArticleDto();
 		article.setId(4);
