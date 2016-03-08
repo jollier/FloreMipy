@@ -132,7 +132,6 @@ public class ArticleDao implements Serializable, IArticleDao{
 		em.getTransaction().begin();
 		em.persist(article);
 		em.getTransaction().commit();
-		
 	}
 	
 }
