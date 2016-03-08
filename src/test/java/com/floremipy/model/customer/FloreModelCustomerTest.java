@@ -15,12 +15,16 @@ import org.junit.Test;
 
 import com.floremipy.model.Adress;
 import com.floremipy.model.Customer;
+import com.floremipy.model.Version;
+import com.floremipy.model.article.dao.ArticleDao;
+import com.floremipy.model.article.dao.IArticleDao;
+import com.floremipy.model.article.dto.ArticleDto;
+import com.floremipy.model.article.dto.ArticleLightDto;
 import com.floremipy.model.customer.dao.IModelCustomerDao;
 import com.floremipy.model.customer.dao.ModelCustomerDao;
 import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.model.customer.dto.CustomerLightDto;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
-
+import com.floremipy.user.dto.UserDto;
 
 public class FloreModelCustomerTest {
 	
@@ -32,9 +36,22 @@ public class FloreModelCustomerTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		int versionBaseUser = 5;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
-		transaction =  em.getTransaction();
+		Version version = em.find(Version.class, 1);
+		
+		if (version.getVersion() != versionBaseUser) {
+			System.out.println("");
+			System.out.println("");
+			System.out.println("********************************");
+			System.out.println("**Version de la BDD floremipi incorrecte**");
+			System.out.println("********************************");
+			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiInit.sql");
+			
+			System.exit(1);
+		}
+		
 	}
 	
 	/*
