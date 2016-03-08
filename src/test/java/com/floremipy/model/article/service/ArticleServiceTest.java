@@ -153,12 +153,12 @@ public class ArticleServiceTest {
 		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleDto a = new ArticleDto();
-		Mockito.when(articleDao.createNewArticle(a)).thenReturn(a);
+		Mockito.when(articleDao.createArticle(a)).thenReturn(a);
 		
 		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
-		ArticleDto art = modelService.createNewArticle(a);
+		ArticleDto art = modelService.createArticle(a);
 		
 		Assert.assertEquals(a, art);
 		Assert.assertEquals(ArticleDto.class, a.getClass());
