@@ -34,7 +34,7 @@ public class FloreTest {
 		int versionBaseUser = 5;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
-		Version version = em.find(Version.class, 1);
+		UserDbVersion version = em.find(UserDbVersion.class, 1);
 		
 		if (version.getVersion() != versionBaseUser) {
 			System.out.println("");
