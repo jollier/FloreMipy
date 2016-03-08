@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.floremipy.controller.FloreMipyController;
+
 public class FloreAdminApplication {
 
 	/**
@@ -18,8 +20,11 @@ public class FloreAdminApplication {
 		new ClassPathXmlApplicationContext("applicationContext.xml",
 				FloreAdminApplication.class);
 		
-		JFrame f=new JFrame();
-		f.show();
+		
+		FloreMipyController f = new FloreMipyController();
+
+		//		JFrame f=new JFrame();
+//		f.show();
 		
 		System.out.println("Démarre");
 	}
