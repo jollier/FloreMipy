@@ -7,7 +7,7 @@ import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
 
 
-public interface IModelService {
+public interface IArticleService {
 
 	void save(Article art);
 
