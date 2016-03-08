@@ -35,7 +35,7 @@ public class CustomerService {
 	public CustomerDto getCustomer(String login, String password){
 		UserDto userDto = userDao.findUserByUserNameAndPassword(login, password);
 		CustomerDto customerDto = null;
-		if (!(userDto.getIdcustomer()==null)){
+		if (userDto != null){
 			//customerDto = customerDao.findCustomerById(userDto.getIdcustomer());
 		}
 		return customerDto;

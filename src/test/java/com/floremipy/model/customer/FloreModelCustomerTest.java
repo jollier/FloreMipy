@@ -40,7 +40,7 @@ public class FloreModelCustomerTest {
 		transaction =  em.getTransaction();
 	}
 	
-	
+	/*
 	@Test
 	public void testIdLastCustomer() {
 		ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
@@ -49,13 +49,13 @@ public class FloreModelCustomerTest {
 		System.out.println("MaxId : " + id);
 		assertEquals(id,8);
 	}
-	
+	*/
 	
 	@Test
 	public void testCustomerDaoSave() {
 		ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
 		Adress adress = new Adress ("rue du village","31000","Toulouse");
-		Customer customer = new Customer ("test.teste@mail.com","Teste","Test","(555)555-5555",adress);
+		Customer customer = new Customer (0,"test.teste@mail.com","Teste","Test","(555)555-5555",adress);
 		modelCustomerDao.CustomerDaoSave(customer);				
 	}
 	

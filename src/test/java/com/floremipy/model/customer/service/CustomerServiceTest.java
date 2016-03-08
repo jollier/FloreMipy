@@ -21,7 +21,7 @@ public class CustomerServiceTest {
 		
 		UserDto userDto = new UserDto();
 		userDto.setUsername("TEST");
-		userDto.setIdcustomer(1L);
+		userDto.setIdcustomer(1);
 		
 		Mockito.when(customerDao.findCustomerById(1)).thenReturn(customerDto);
 		Mockito.when(userDao.findUserByUserNameAndPassword("TEST","PASSWORD")).thenReturn(userDto);
