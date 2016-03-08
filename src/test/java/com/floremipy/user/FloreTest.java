@@ -31,7 +31,7 @@ public class FloreTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		int versionBaseUser = 5;
+		int versionBaseUser = 6;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
 		UserDbVersion version = em.find(UserDbVersion.class, 1);
