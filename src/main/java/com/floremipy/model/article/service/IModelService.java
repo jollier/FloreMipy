@@ -1,4 +1,4 @@
-package com.floremipy.model.service;
+package com.floremipy.model.article.service;
 
 import java.util.List;
 
