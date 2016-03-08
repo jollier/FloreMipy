@@ -35,12 +35,25 @@ public class FloreModelCustomerTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		int versionBaseUser = 5;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
-		transaction =  em.getTransaction();
+		Version version = em.find(Version.class, 1);
+		
+		if (version.getVersion() != versionBaseUser) {
+			System.out.println("");
+			System.out.println("");
+			System.out.println("********************************");
+			System.out.println("**Version de la BDD floremipi incorrecte**");
+			System.out.println("********************************");
+			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiInit.sql");
+			
+			System.exit(1);
+		}
+		
 	}
 	
-	/*
+	
 	@Test
 	public void testIdLastCustomer() {
 		ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
@@ -49,13 +62,13 @@ public class FloreModelCustomerTest {
 		System.out.println("MaxId : " + id);
 		assertEquals(id,8);
 	}
-	*/
+	
 	
 	@Test
 	public void testCustomerDaoSave() {
 		ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
 		Adress adress = new Adress ("rue du village","31000","Toulouse");
-		Customer customer = new Customer (0,"test.teste@mail.com","Teste","Test","(555)555-5555",adress);
+		Customer customer = new Customer ("test.teste@mail.com","Teste","Test","(555)555-5555",adress);
 		modelCustomerDao.CustomerDaoSave(customer);				
 	}
 	
