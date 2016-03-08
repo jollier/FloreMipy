@@ -123,7 +123,7 @@ public class ArticleDao implements Serializable, IArticleDao{
 		return result;
 	}
 	
-	public ArticleDto createNewArticle(ArticleDto newArticle) {
+	public ArticleDto createArticle(ArticleDto newArticle) {
 		em.getTransaction().begin();
 		Article article = new Article();
 		article.setName(newArticle.getName());
@@ -133,12 +133,6 @@ public class ArticleDao implements Serializable, IArticleDao{
 		em.persist(article);
 		em.getTransaction().commit();
 		return (ArticleDto)findArticleByName(newArticle.getName());
-	}
-	
-	public void articleDaoSave(Article article) {
-		em.getTransaction().begin();
-		em.persist(article);
-		em.getTransaction().commit();
 	}
 	
 	public void deleteArticle(ArticleDto articleDto) {

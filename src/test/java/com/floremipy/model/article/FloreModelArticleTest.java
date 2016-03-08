@@ -117,7 +117,7 @@ public class FloreModelArticleTest {
 
 		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
 
-		ArticleDto newArticle = articleDao.createNewArticle(articleDto);
+		ArticleDto newArticle = articleDao.createArticle(articleDto);
 		System.out.println("result test testCreateNewArticle : " +newArticle.toString());
 		assertTrue(newArticle.getId() != 0L);
 	}
@@ -134,7 +134,7 @@ public class FloreModelArticleTest {
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
 		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
-		ArticleDto newArticle = articleDao.createNewArticle(articleDto);
+		ArticleDto newArticle = articleDao.createArticle(articleDto);
 		
 		int id = newArticle.getId();
 		articleDao.deleteArticle(newArticle);
