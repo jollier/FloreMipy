@@ -128,10 +128,19 @@ public class ArticleDao implements Serializable, IArticleDao{
 		return (ArticleDto)findArticleByName(newArticle.getName());
 	}
 	
-	public void ArticleDaoSave(Article article) {
+	public void articleDaoSave(Article article) {
 		em.getTransaction().begin();
 		em.persist(article);
 		em.getTransaction().commit();
 	}
+	
+	public void deleteArticle(ArticleDto articleDto) {
+		Article article = em.find(Article.class, articleDto.getId());
+		em.getTransaction().begin();
+		em.remove(article);
+		em.getTransaction().commit();
+	}
+	
+		
 	
 }

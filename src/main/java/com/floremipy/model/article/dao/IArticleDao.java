@@ -25,6 +25,8 @@ public interface IArticleDao {
 	
 	ArticleDto createNewArticle(ArticleDto newArticle);
 	
-	void ArticleDaoSave(Article article);
+	void articleDaoSave(Article article);
+	
+	void deleteArticle(ArticleDto articleDto);
 
 }
