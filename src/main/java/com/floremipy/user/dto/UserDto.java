@@ -6,13 +6,13 @@ public class UserDto {
 	private String username;
 	private String password;
 	private String usertype;
-	private Long idcustomer;
+	private int idcustomer;
 
 	public UserDto() {
 	}
 
-	public UserDto(Long id, String username, String password, String usertype, Long idcustomer) {
 
+	public UserDto(Long id, String username, String password, String usertype, int idcustomer) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -49,13 +49,6 @@ public class UserDto {
 		return this.usertype;
 	}	
 
-	public Long getIdcustomer() {
-		return idcustomer;
-	}
-
-	public void setIdcustomer(Long idcustomer) {
-		this.idcustomer = idcustomer;
-	}
 
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
@@ -65,6 +58,14 @@ public class UserDto {
 	public String toString() {
 		return "UserDto [id=" + id + ", password=" + password
 				+ ", username=" + username + ", usertype=" + usertype + "]";
+	}
+
+	public int getIdcustomer() {
+		return idcustomer;
+	}
+
+	public void setIdcustomer(int idcustomer) {
+		this.idcustomer = idcustomer;
 	}
 
 }

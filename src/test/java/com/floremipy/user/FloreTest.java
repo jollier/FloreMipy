@@ -55,7 +55,6 @@ public class FloreTest {
 	public void testFindFirstUser() {	
 		User firstUser = em.find(User.class, new Long(1));
 		System.out.println("FirstUser :" + firstUser.toString());
-
 		assertTrue(firstUser.getId() >= 0);
 	}
 
@@ -121,7 +120,7 @@ public class FloreTest {
 			userExists = userDao.findUserByUserName(userName);
 		} while (userExists != null);
 
-		UserDto userDto = new UserDto(null,userName, userName, "user", 1L);
+		UserDto userDto = new UserDto(null,userName, userName, "user", 1);
 
 		UserDto newUser = userDao.createNewUser(userDto);
 		System.out.println("result test testCreateNewUser : " +newUser.toString());
