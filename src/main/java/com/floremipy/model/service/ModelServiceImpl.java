@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.floremipy.model.article.dao.ModelArticleDao;
-import com.floremipy.model.dto.ArticleLightDto;
+import com.floremipy.model.article.dao.IArticleDao;
+import com.floremipy.model.article.dto.ArticleLightDto;
+
 
 public class ModelServiceImpl implements ModelService {
 	
 	@Autowired
-	ModelArticleDao articleDao;
+	IArticleDao articleDao;
 
 	@Override
 	public List<ArticleLightDto> getAll() {

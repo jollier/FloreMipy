@@ -23,7 +23,7 @@ import com.floremipy.user.dto.UserDto;
 
 
 public class FloreTest {
-	
+
 	private final static String PERSISTENCE_UNIT_NAME = "floremipyuser";
 	public static EntityManagerFactory emf;
 	public static EntityManager em;
@@ -37,8 +37,8 @@ public class FloreTest {
 		transaction =  em.getTransaction();
 	}
 
-	
-	
+
+
 	@Test
 	public void testFindAllUsers() { 
 		IUserDao userDao = new UserDao();
@@ -50,7 +50,7 @@ public class FloreTest {
 		assertTrue(resultUser.size() > 0);
 
 	}
-	
+
 	@Test
 	public void testFindFirstUser() {	
 		User firstUser = em.find(User.class, new Long(1));
@@ -58,16 +58,16 @@ public class FloreTest {
 
 		assertTrue(firstUser.getId() >= 0);
 	}
-	
 
-	
+
+
 	@Test
 	public void testFindUserById() {
 		Long id = 1L;
 		User user =em.find(User.class, id);
 		assertEquals(id,user.getId());
 	}
-	
+
 	@Test
 	public void testFindUserByUserName() {
 		String userName = "user1";
@@ -76,7 +76,7 @@ public class FloreTest {
 		System.out.println("result test FindUserByUserName : " +user.toString());
 		assertEquals(userName, user.getUsername());
 	}
-	
+
 	@Test
 	public void testFindAdminUsers() {
 		String userType="Admin";
@@ -87,7 +87,7 @@ public class FloreTest {
 		}	
 		assertTrue(resultUser.size() >= 0);
 	}
-	
+
 	@Test
 	public void testFindUserUsers() {
 		String userType="User";
@@ -98,12 +98,43 @@ public class FloreTest {
 		}	
 		assertTrue(resultUser.size() >= 0);
 	}
-	
+
+	@Test
+	public void testFindUserByUserNameAndPassword() {
+		String userName = "user1";
+		String password = "user1";
+		IUserDao userDao = new UserDao();
+		UserDto user = userDao.findUserByUserNameAndPassword(userName, password);
+		System.out.println("result test FindUserByUserNameAndPassword : " +user.toString());
+		assertEquals(userName, user.getUsername());
+	}
+
+	@Test
+	public void testCreateNewUser() {
+		IUserDao userDao = new UserDao();
+		int i = 0;
+		String userName = "";
+		UserDto userExists = null;
+		do {
+			i++;
+			userName = "testCreateUser" + i;
+			userExists = userDao.findUserByUserName(userName);
+		} while (userExists != null);
+
+		UserDto userDto = new UserDto(null,userName, userName, "user", 1L);
+
+		UserDto newUser = userDao.createNewUser(userDto);
+		System.out.println("result test testCreateNewUser : " +newUser.toString());
+		assertTrue(newUser.getId() != 0L);
+	}
+
+
+
 	@AfterClass
 	public static void setUpAfterClass() throws Exception {
-	em.close();
-	emf.close();
+		em.close();
+		emf.close();
 	}
-	
-	
+
+
 }

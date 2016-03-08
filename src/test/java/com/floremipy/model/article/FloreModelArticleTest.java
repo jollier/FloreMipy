@@ -1,4 +1,4 @@
-package com.floremipy.model;
+package com.floremipy.model.article;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -14,12 +14,18 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.floremipy.model.article.dao.IModelArticleDao;
-import com.floremipy.model.article.dao.ModelArticleDao;
-import com.floremipy.model.dto.ArticleDto;
-import com.floremipy.model.dto.ArticleLightDto;
+import com.floremipy.model.Adress;
+import com.floremipy.model.Customer;
+import com.floremipy.model.article.dao.IArticleDao;
+import com.floremipy.model.article.dao.ArticleDao;
+import com.floremipy.model.article.dto.ArticleDto;
+import com.floremipy.model.article.dto.ArticleLightDto;
+import com.floremipy.model.customer.dao.ModelCustomerDao;
+import com.floremipy.user.dao.IUserDao;
+import com.floremipy.user.dao.UserDao;
+import com.floremipy.user.dto.UserDto;
 
-public class FloreModelTest {
+public class FloreModelArticleTest {
 	
 	private final static String PERSISTENCE_UNIT_NAME = "FloreMipyWeb";
 	public static EntityManagerFactory emf;
@@ -36,7 +42,7 @@ public class FloreModelTest {
 	
 	@Test
 	public void testFindAllArticles() {
-		IModelArticleDao modelDao = new ModelArticleDao();
+		IArticleDao modelDao = new ArticleDao();
 		List<ArticleDto> resultArticle = modelDao.findAllArticles();
 		for(ArticleDto a : resultArticle){
 			System.out.println("result test FindAllArticles : " +a);
@@ -47,7 +53,7 @@ public class FloreModelTest {
 	@Test
 	public void testFindArticleById() {
 		int id = 1;
-		IModelArticleDao modelDao = new ModelArticleDao();
+		IArticleDao modelDao = new ArticleDao();
 		ArticleDto resultArticle = modelDao.findArticleById(id);
 		System.out.println("result test FindArticleById : " +resultArticle.toString());
 		assertEquals(id,resultArticle.getId());
@@ -56,14 +62,16 @@ public class FloreModelTest {
 	@Test
 	public void testFindAllArticlesLightByCategory() {
 		String category = "Arbres";
-		IModelArticleDao modelDao = new ModelArticleDao();
+		IArticleDao modelDao = new ArticleDao();
 		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLightByCategory(category);
 		System.out.println("result test FindAllArticlesLightByCategory(Arbres) : " +resultArticle.toString());
 		assertTrue(resultArticle.size() > 0);
 	}
 	
 	public void testFindAllArticlesLight() {
-		IModelArticleDao modelDao = new ModelArticleDao();
+
+		IArticleDao modelDao = new ArticleDao();
+
 		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLight();
 		for(ArticleLightDto a : resultArticle){
 			System.out.println("result test FindAllArticlesLight : " +a);
@@ -74,10 +82,29 @@ public class FloreModelTest {
 	@Test
 	public void testFindArticleLightById() {
 		int id = 1;
-		IModelArticleDao modelDao = new ModelArticleDao();
+		IArticleDao modelDao = new ArticleDao();
 		ArticleLightDto resultArticle = modelDao.findArticleLightById(id);
 		System.out.println("result test FindArticleLightById : " +resultArticle.toString());
 		assertEquals(id,resultArticle.getId());
+	}
+	
+	@Test
+	public void testCreateNewArticle() {
+		IArticleDao articleDao = new ArticleDao();
+		int i = 0;
+		String name = "";
+		ArticleDto articleExists = null;
+		do {
+			i++;
+			name = "testCreateArticle" + i;
+			articleExists = articleDao.findArticleByName(name);
+		} while (articleExists != null);
+
+		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
+
+		ArticleDto newArticle = articleDao.createNewArticle(articleDto);
+		System.out.println("result test testCreateNewArticle : " +newArticle.toString());
+		assertTrue(newArticle.getId() != 0L);
 	}
 	
 

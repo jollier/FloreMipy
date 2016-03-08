@@ -2,7 +2,7 @@ package com.floremipy.model.service;
 
 import java.util.List;
 
-import com.floremipy.model.dto.ArticleLightDto;
+import com.floremipy.model.article.dto.ArticleLightDto;
 
 
 public interface ModelService {

@@ -2,6 +2,7 @@ package com.floremipy.user.dao;
 
 import java.util.List;
 
+import com.floremipy.user.User;
 import com.floremipy.user.dto.UserDto;
 
 public interface IUserDao {
@@ -11,7 +12,10 @@ public interface IUserDao {
 	UserDto findUserByUserName(String userName);
 
 	List<UserDto> findUserByUserType(String userType);
+
+	UserDto findUserByUserNameAndPassword(String userName, String password);
 	
-	UserDto findUserByNameAndPassword(String name, String password);
+	UserDto createNewUser(UserDto newUserDto);
+
 
 }

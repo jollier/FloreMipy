@@ -16,8 +16,9 @@ public class UserWebService {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/user")
-    public User user(@RequestParam String lastname, @RequestParam String firstname, @RequestParam String password, @RequestParam String username, @RequestParam String usertype) {
-        return new User(counter.incrementAndGet(),String.format(lastname), String.format(firstname), String.format(password), String.format(username), String.format(usertype) );
+    public User user(@RequestParam String password, @RequestParam String username, @RequestParam String usertype, @RequestParam Long idcustomer) {
+        //return new User(counter.incrementAndGet(), String.format(password), String.format(username), String.format(usertype), String.valueOf(idcustomer) );
+    	return null;
     }
  
 }

@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.floremipy.user.User;
 import com.floremipy.user.dto.UserDto;
 
 public class UserDao implements Serializable, IUserDao{
@@ -31,7 +32,7 @@ public class UserDao implements Serializable, IUserDao{
 	public List<UserDto> findAllUsers(){
 		String requete = 
 				"SELECT NEW com.floremipy.user.dto.UserDto(" + 
-						"u.id, u.username, u.password, u.firstname, u.lastname, u.usertype) " +
+						"u.id, u.username, u.password, u.usertype, u.idcustomer) " +
 						"FROM User u order by u.username" ;
 		Query query = null;
 		query = em.createQuery(requete, UserDto.class);
@@ -44,11 +45,18 @@ public class UserDao implements Serializable, IUserDao{
 	public UserDto findUserByUserName(String userName) {
 		String requete = 
 				"Select NEW com.floremipy.user.dto.UserDto(" + 
-						"u.id, u.username, u.password, u.firstname, u.lastname, u.usertype) " +
+						"u.id, u.username, u.password, u.usertype, u.idcustomer) " +
 						"FROM User u where u.username = :username" ;
 		Query query = em.createQuery(requete, UserDto.class);;
 		query.setParameter("username", userName);
-		return (UserDto)query.getSingleResult();
+		UserDto result = null;
+		try {
+			 result = (UserDto)query.getSingleResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+			result = null;
+		}
+		return result;
 	}
 	
 	/* (non-Javadoc)
@@ -57,20 +65,35 @@ public class UserDao implements Serializable, IUserDao{
 	public List<UserDto> findUserByUserType(String userType){
 		String requete = 
 				"SELECT NEW com.floremipy.user.dto.UserDto(" + 
-						"u.id, u.username, u.password, u.firstname, u.lastname, u.usertype) " +
+						"u.id, u.username, u.password, u.usertype, u.idcustomer) " +
 						"FROM User u where lower(u.usertype) = :usertype order by u.username" ;
 		Query query = null;
 		query = em.createQuery(requete, UserDto.class);
 		query.setParameter("usertype", userType.toLowerCase());
 		return (List<UserDto>)query.getResultList();
 	}
-
-	@Override
-	public UserDto findUserByNameAndPassword(String name, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public UserDto findUserByUserNameAndPassword(String userName, String password) {
+		String requete = 
+				"Select NEW com.floremipy.user.dto.UserDto(" + 
+						"u.id, u.username, u.password, u.usertype, u.idcustomer) " +
+						"FROM User u where u.username = :username and u.password = :password" ;
+		Query query = em.createQuery(requete, UserDto.class);;
+		query.setParameter("username", userName);
+		query.setParameter("password", password);
+		return (UserDto)query.getSingleResult();
 	}
 	
-	
+	public UserDto createNewUser(UserDto newUserDto) {
+		em.getTransaction().begin();
+		User user = new User();
+		user.setUsername(newUserDto.getUsername());
+		user.setPassword(newUserDto.getPassword());
+		user.setUsertype(newUserDto.getUsertype());
+		user.setIdcustomer(1L);
+		em.persist(user);
+		em.getTransaction().commit();
+		return findUserByUserName(newUserDto.getUsername());
+	}
 	
 }

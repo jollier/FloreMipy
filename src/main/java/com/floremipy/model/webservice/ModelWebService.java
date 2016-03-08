@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.floremipy.model.dto.ArticleLightDto;
+import com.floremipy.model.article.dto.ArticleLightDto;
+
+
 
 @RestController
 public class ModelWebService {
