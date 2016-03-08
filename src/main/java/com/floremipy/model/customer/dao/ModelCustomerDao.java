@@ -27,17 +27,18 @@ public class ModelCustomerDao implements IModelCustomerDao {
 		em = emf.createEntityManager();
 	}
 	
-	public int FindIdLastCustomer() {
+	public String FindNameLastCustomer() {
 		String requete = 
 				"SELECT NEW com.floremipy.model.customer.dto.CustomerDto(" + 
-						"MAX(c.id),c.name, c.firstName, c.phone, c.email, c.adress) " +
-						"FROM Customer c" ;
+						"c.id,c.name, c.firstName, c.phone, c.email, c.adress) " +
+						"FROM Customer c ORDER BY c.id DESC" ;
 
 		Query query = null;
 		query = em.createQuery(requete, CustomerDto.class);
-		CustomerDto res= ((CustomerDto)query.getSingleResult());
+		List<CustomerDto> lst=((List<CustomerDto>)query.getResultList());
+		CustomerDto res = lst.get(0);
 		
-		return res.getId();
+		return res.getName();
 	}
 	
 	public void CustomerDaoSave (Customer customer) {
@@ -86,7 +87,7 @@ public class ModelCustomerDao implements IModelCustomerDao {
 		query.setParameter("id", id);
 		return (CustomerLightDto)query.getSingleResult();		
 	}
-	
-	
+
+
 
 }
