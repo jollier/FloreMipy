@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dao.IModelCustomerDao;
 import com.floremipy.model.customer.dto.CustomerDto;
-import com.floremipy.user.User;
 import com.floremipy.user.dao.IUserDao;
-import com.floremipy.user.dao.UserDao;
 import com.floremipy.user.dto.UserDto;
 
 public class CustomerService implements ICustomerService {
