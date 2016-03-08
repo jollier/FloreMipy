@@ -47,6 +47,12 @@ public class ModelCustomerDao implements IModelCustomerDao {
 		em.getTransaction().commit();
 	}
 	
+	public void CustomerDaoRemove (Customer customer) {
+		em.getTransaction().begin();
+		em.remove(customer);
+		em.getTransaction().commit();
+	}
+	
 	public List<CustomerDto> findAllCustomers(){
 		String requete = 
 				"SELECT NEW com.floremipy.model.customer.dto.CustomerDto(" + 
