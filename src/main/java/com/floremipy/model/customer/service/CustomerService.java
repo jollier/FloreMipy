@@ -1,5 +1,7 @@
 package com.floremipy.model.customer.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.floremipy.model.Customer;
@@ -10,7 +12,7 @@ import com.floremipy.user.dao.IUserDao;
 import com.floremipy.user.dao.UserDao;
 import com.floremipy.user.dto.UserDto;
 
-public class CustomerService {
+public class CustomerService implements ICustomerService {
 	
 	@Autowired
 	IModelCustomerDao customerDao;
@@ -28,17 +30,23 @@ public class CustomerService {
 		this.userDao = userDao;
 	}
 
+	@Override
 	public void save(Customer customer) {
-		//customerDao.save(customer);
+		customerDao.CustomerDaoSave(customer);
 	}
 	
+	@Override
 	public CustomerDto getCustomer(String login, String password){
 		UserDto userDto = userDao.findUserByUserNameAndPassword(login, password);
 		CustomerDto customerDto = null;
-		if (userDto != null){
+		if ((userDto != null) && (userDto.getIdcustomer()>0)){
 			//customerDto = customerDao.findCustomerById(userDto.getIdcustomer());
 		}
 		return customerDto;
 	}
 	
+	@Override 
+	public List<CustomerDto> findAll(){
+		return customerDao.findAllCustomers();
+	}
 }

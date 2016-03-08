@@ -1,5 +1,8 @@
 package com.floremipy.model.customer.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -37,4 +40,23 @@ public class CustomerServiceTest {
 		
 	}
 	
+	@Test
+	public void testfindAllCustomersDTO(){
+		IModelCustomerDao customerDao = Mockito.mock(IModelCustomerDao.class);
+		
+		CustomerDto customer1 = new CustomerDto();
+		CustomerDto customer2 = new CustomerDto();
+		List<CustomerDto> liste = new ArrayList<CustomerDto>();
+		liste.add(customer1);
+		liste.add(customer2);
+		
+		Mockito.when(customerDao.findAllCustomers()).thenReturn(liste);
+		
+		CustomerService customerService = new CustomerService();
+		customerService.setCustomerDao(customerDao);
+		
+		List<CustomerDto> list = customerService.findAll();
+		
+		Assert.assertEquals(2, list.size());		
+	}
 }
