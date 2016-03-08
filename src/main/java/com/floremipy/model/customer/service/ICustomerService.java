@@ -10,7 +10,7 @@ public interface ICustomerService {
 	
 	void save(Customer customer);
 	
-	CustomerDto getCustomer(String login, String password);
+	CustomerDto getCustomerByLoginAndPassword(String login, String password);
 	
-	List<CustomerDto> findAll();  
+	List<CustomerDto> findAllCustomers();  
 }
