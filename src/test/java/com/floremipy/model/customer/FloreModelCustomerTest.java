@@ -15,15 +15,12 @@ import org.junit.Test;
 
 import com.floremipy.model.Adress;
 import com.floremipy.model.Customer;
-import com.floremipy.model.article.dao.ArticleDao;
-import com.floremipy.model.article.dao.IArticleDao;
-import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.article.dto.ArticleLightDto;
 import com.floremipy.model.customer.dao.IModelCustomerDao;
 import com.floremipy.model.customer.dao.ModelCustomerDao;
 import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.model.customer.dto.CustomerLightDto;
-import com.floremipy.user.dto.UserDto;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+
 
 public class FloreModelCustomerTest {
 	
@@ -42,12 +39,12 @@ public class FloreModelCustomerTest {
 	
 	
 	@Test
-	public void testIdLastCustomer() {
+	public void testNameLastCustomer() {
 		ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
-		int id;
-		id = modelCustomerDao.FindIdLastCustomer();
-		System.out.println("MaxId : " + id);
-		assertEquals(id,8);
+		String name;
+		name = modelCustomerDao.FindNameLastCustomer();
+		System.out.println("Nom : " + name);
+		assertEquals(name,"Test");
 	}
 	
 	
