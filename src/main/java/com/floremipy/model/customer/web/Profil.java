@@ -1,4 +1,4 @@
-package com.floremipy.model.web;
+package com.floremipy.model.customer.web;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
