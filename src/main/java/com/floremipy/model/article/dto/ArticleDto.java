@@ -3,7 +3,7 @@ package com.floremipy.model.article.dto;
 public class ArticleDto {
 	private int id;
 	private String category;
-	//private String description;
+	private String description;
 	private String imgsrc;
 	private String name;
 	private int quantityInStock;
