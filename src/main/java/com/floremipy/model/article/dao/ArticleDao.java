@@ -11,8 +11,7 @@ import javax.persistence.Query;
 import com.floremipy.model.Article;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
-import com.floremipy.user.User;
-import com.floremipy.user.dto.UserDto;
+
 
 public class ArticleDao implements Serializable, IArticleDao{
 	/**
@@ -62,8 +61,8 @@ public class ArticleDao implements Serializable, IArticleDao{
 	public ArticleLightDto findArticleLightById(int id) {
 		String requete = 
 				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
-						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
-						"FROM Article a where a.id = :id" ;
+						"a.id, a.category, a.description, a.name, a.quantityInStock, p.value) " +
+						"FROM Price p, Article a where a.id = :id and a=p.article" ;
 		Query query = null;
 		query = em.createQuery(requete, ArticleLightDto.class);
 		query.setParameter("id", id);
@@ -77,8 +76,8 @@ public class ArticleDao implements Serializable, IArticleDao{
 	public List<ArticleLightDto> findAllArticlesLightByCategory(String category) {
 		String requete = 
 				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
-						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
-						"FROM Article a where Upper(a.category) = :category" ;
+						"a.id, a.category, a.description, a.name, a.quantityInStock, p.value) " +
+						"FROM Price p, Article a where Upper(a.category) = :category and a=p.article" ;
 		Query query = null;
 		query = em.createQuery(requete, ArticleLightDto.class);
 		query.setParameter("category", category.toUpperCase());
@@ -91,8 +90,8 @@ public class ArticleDao implements Serializable, IArticleDao{
 	public List<ArticleLightDto> findAllArticlesLight() {
 		String requete = 
 				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
-						"a.id, a.category, a.description, a.name, a.quantityInStock) " +
-						"FROM Article a order by a.name" ;
+						"a.id, a.category, a.description, a.name, a.quantityInStock, p.value) " +
+						"FROM Price p, Article a where a=p.article order by a.name" ;
 		Query query = null;
 		query = em.createQuery(requete, ArticleLightDto.class);
 		return (List<ArticleLightDto>)query.getResultList();

@@ -49,8 +49,8 @@ public class ModelCustomerDao implements IModelCustomerDao {
 	public List<CustomerDto> findAllCustomers(){
 		String requete = 
 				"SELECT NEW com.floremipy.model.customer.dto.CustomerDto(" + 
-		"a.id , a.name, a.firstname, a.phone, a.email, a.adress)" +
-						"From Customer ORDER BY name";
+		"a.id , a.name, a.firstName, a.phone, a.email, a.adress)" +
+						"FROM Customer a ORDER BY a.name";
 		Query query = null;
 		query=em.createQuery(requete, CustomerDto.class);		
 		return (List<CustomerDto>)query.getResultList();		
@@ -58,8 +58,8 @@ public class ModelCustomerDao implements IModelCustomerDao {
 	
 	public CustomerDto findCustomerById(int id){
 		String requete = "SELECT New com.floremipy.model.customer.dto.CustomerDto(" +
-				"a.id , a.name, a.firstname, a.phone, a.email, a.adress)" +
-				"From Customer WHERE a.id = :id";
+				"a.id , a.name, a.firstName, a.phone, a.email, a.adress)" +
+				"From Customer a  WHERE a.id = :id";
 		Query query = null;
 		query=em.createQuery(requete, CustomerDto.class);
 		query.setParameter("id", id);
@@ -70,8 +70,8 @@ public class ModelCustomerDao implements IModelCustomerDao {
 	public List<CustomerLightDto> findAllCustomersLight(){
 		String requete = 
 				"SELECT NEW com.floremipy.model.customer.dto.CustomerLightDto(" + 
-		"a.id , a.name, a.firstname)" +
-						"From Customer ORDER BY name";
+		"a.id , a.name, a.firstName)" +
+						"From Customer a ORDER BY a.name";
 		Query query = null;
 		query=em.createQuery(requete, CustomerDto.class);		
 		return (List<CustomerLightDto>)query.getResultList();		
@@ -79,8 +79,8 @@ public class ModelCustomerDao implements IModelCustomerDao {
 	
 	public CustomerLightDto findCustomerLightById(int id){
 		String requete = "SELECT New com.floremipy.model.customer.dto.CustomerLightDto(" +
-				"a.id , a.name, a.firstname)" +
-				"From Customer WHERE a.id = :id";
+				"a.id , a.name, a.firstName)" +
+				"From Customer a WHERE a.id = :id";
 		Query query = null;
 		query=em.createQuery(requete, CustomerDto.class);
 		query.setParameter("id", id);
