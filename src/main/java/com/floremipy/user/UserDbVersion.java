@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Version implements Serializable {
+public class UserDbVersion implements Serializable {
 
 	/**
 	 * 
@@ -21,7 +21,7 @@ public class Version implements Serializable {
 	
 	private int version;
 
-	public Version() {
+	public UserDbVersion() {
 
 	}
 
