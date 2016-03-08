@@ -122,6 +122,28 @@ public class FloreModelArticleTest {
 		assertTrue(newArticle.getId() != 0L);
 	}
 	
+	@Test
+	public void testDeleteArticle(){
+		IArticleDao articleDao = new ArticleDao();
+		int i = 0;
+		String name = "";
+		ArticleDto articleExists = null;
+		do {
+			i++;
+			name = "testDeleteArticle" + i;
+			articleExists = articleDao.findArticleByName(name);
+		} while (articleExists != null);
+		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
+		ArticleDto newArticle = articleDao.createNewArticle(articleDto);
+		
+		int id = newArticle.getId();
+		articleDao.deleteArticle(newArticle);
+		assertTrue(articleDao.findArticleById(id) == null);
+		
+	}
+	
+	
+	
 
 	@AfterClass
 	public static void setUpAfterClass() throws Exception {
