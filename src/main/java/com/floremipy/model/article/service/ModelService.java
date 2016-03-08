@@ -1,4 +1,4 @@
-package com.floremipy.model.service;
+package com.floremipy.model.article.service;
 
 import java.util.List;
 
@@ -25,13 +25,11 @@ public class ModelService implements IModelService {
 
 		return articleDao.findArticleLightById(id);
 	}
-	
-	
+		
 	@Override
 	public List<ArticleLightDto> findAllArticlesLightByCategory(String cat){
 		return articleDao.findAllArticlesLightByCategory(cat);
 	}
-
 	
 	@Override
 	public boolean delArticle(ArticleLightDto art) {

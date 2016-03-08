@@ -1,4 +1,4 @@
-package com.floremipy.model.webservice;
+package com.floremipy.model.article.webservice;
 
 import java.util.concurrent.atomic.AtomicLong;
 

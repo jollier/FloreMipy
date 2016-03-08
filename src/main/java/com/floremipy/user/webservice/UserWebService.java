@@ -17,8 +17,8 @@ public class UserWebService {
 
     @RequestMapping("/user")
     public User user(@RequestParam String password, @RequestParam String username, @RequestParam String usertype, @RequestParam Long idcustomer) {
-        //return new User(counter.incrementAndGet(), String.format(password), String.format(username), String.format(usertype), String.valueOf(idcustomer) );
+        //return new User(password, username,usertype, idcustomer );
     	return null;
-    }
+	}
  
 }
