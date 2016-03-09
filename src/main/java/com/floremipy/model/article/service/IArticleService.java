@@ -9,10 +9,6 @@ import com.floremipy.model.article.dto.ArticleLightDto;
 
 public interface IArticleService {
 
-	void updateArticle(ArticleDto articleDto);
-
-	boolean delArticle(ArticleLightDto art);
-
 	List<ArticleLightDto> findAllArticlesLightByCategory(String cat);
 
 	ArticleLightDto findArticleLightById(int id);
@@ -23,7 +19,13 @@ public interface IArticleService {
 	
 	ArticleDto findArticleById(int id);
 	
+	ArticleDto findArticleByName(String name);
+
 	ArticleDto createArticle(ArticleDto newArticle);
+	
+	void deleteArticle(ArticleDto articleDto);
+	
+	void updateArticle(ArticleDto articleDto);
 
 
 }

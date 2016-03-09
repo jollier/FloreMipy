@@ -33,13 +33,7 @@ public class ArticleService implements IArticleService {
 		return articleDao.findAllArticlesLightByCategory(cat);
 	}
 	
-	@Override
-	public boolean delArticle(ArticleLightDto art) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	
+		
 	@Override
 	public void updateArticle(ArticleDto articleDto) {
 		articleDao.updateArticle(articleDto);
@@ -67,4 +61,17 @@ public class ArticleService implements IArticleService {
 		return articleDao.createArticle(newArticle);
 	}
 
+
+	@Override
+	public ArticleDto findArticleByName(String name) {
+		return articleDao.findArticleByName(name);
+	} 
+
+
+	@Override
+	public void deleteArticle(ArticleDto articleDto) {
+		articleDao.deleteArticle(articleDto);
+	}
+
 }
+

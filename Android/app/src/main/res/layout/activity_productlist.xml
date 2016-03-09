@@ -3,18 +3,38 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Retour"
-        android:id="@+id/btExit"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <TableLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/btExit"
-        android:layout_alignParentEnd="true"></TableLayout>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Liste des produits"
+            android:id="@+id/textView3"
+            android:textColor="#669900"
+            android:textSize="24dp"
+            android:textIsSelectable="false"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="713dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/btExit"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/table"></TableLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retour"
+            android:id="@+id/btExit"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+    </LinearLayout>
 </RelativeLayout>

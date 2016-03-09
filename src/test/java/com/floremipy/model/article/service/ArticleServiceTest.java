@@ -1,3 +1,4 @@
+
 package com.floremipy.model.article.service;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class ArticleServiceTest {
 		//Assert
 		Assert.assertEquals(art, article);
 		Assert.assertEquals(ArticleLightDto.class, art.getClass());
-		
+		 
 	}
 	
 	@Test
@@ -241,6 +242,7 @@ public class ArticleServiceTest {
 	
 	@Test
 	public void testfindArticleByID_OK(){
+		//Arrange
 		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleDto article = new ArticleDto();
@@ -251,8 +253,10 @@ public class ArticleServiceTest {
 		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
+		//Act
 		ArticleDto art = modelService.findArticleById(4);
 		
+		//Assert
 		Assert.assertEquals(art, article);
 		Assert.assertEquals(ArticleDto.class, art.getClass());
 		
@@ -261,6 +265,8 @@ public class ArticleServiceTest {
 	
 	@Test
 	public void testCreateNewArticle(){
+		
+		//Arrange
 		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleDto a = new ArticleDto();
@@ -269,8 +275,10 @@ public class ArticleServiceTest {
 		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
+		//Act
 		ArticleDto art = modelService.createArticle(a);
 		
+		//Assert
 		Assert.assertEquals(a, art);
 		Assert.assertEquals(ArticleDto.class, a.getClass());
 	}
@@ -281,7 +289,29 @@ public class ArticleServiceTest {
 		Assert.assertNotEquals(4, 3+2);
 	}
 	
+	@Test
+	public void testfindArticleByName_OK(){
+		//Arrange
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
+		
+		ArticleDto article = new ArticleDto();
+		String name="article_name";
+		article.setName(name);
+		
+		Mockito.when(articleDao.findArticleByName(name)).thenReturn(article);
+		
+		ArticleService modelService = new ArticleService();
+		modelService.setArticleDao(articleDao);
+		
+		//Act
+		ArticleDto art = modelService.findArticleByName(name);
+		
+		//Assert
+		Assert.assertEquals(art, article);
+		
+	}
 	
+
 
 }
 
