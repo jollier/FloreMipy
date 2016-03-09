@@ -1,4 +1,6 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
 <html lang="fr">
@@ -25,7 +27,7 @@
       
       
       
-      <form action="profil" class="form-horizontal">
+      <form:form action="profil" method="post" modelAttribute="profil" class="form-horizontal">
   <fieldset>
 <div class="jumbotron">
     <legend>Profil</legend>
@@ -34,11 +36,11 @@
 	      <div class="col-lg-10">
 	        <div class="radio">
 	          <label> 
-	            <input type="radio" name="optionsRadios" id="iRadios1" value="${optParticulier}" >
+	            <form:input type="radio"  path="iRadios1"  />
 	           Particulier
 	          </label>
 	          <label>
-	            <input type="radio" name="optionsRadios" id="iRadios2" value="${optEntreprise}">
+	            <form:input type="radio" name="optionsRadios" path="iRadios2" value="${optEntreprise}"/>
 	            Entreprise
 	          </label>
 	        </div>
@@ -46,33 +48,33 @@
 	    </div>
     
         <div class="form-group">
-	      <label for="input" class="col-lg-2 control-label">Entreprise</label>
+	      <label for="form:input" class="col-lg-2 control-label">Entreprise</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" id="iEntreprise" placeholder="Entreprise" value="${nomEntreprise}">
+	        <form:input type="text" class="form-control" path="iEntreprise" placeholder="Entreprise" value="${nomEntreprise}"/>
 	      </div>
 	    </div>
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">Raison Sociale</label>
+          <label for="form:input" class="col-lg-2 control-label">Raison Sociale</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" id="iRaison" placeholder="Raison Sociale" value="${raisonSociale}">
+            <form:input type="text" class="form-control" path="iRaison" placeholder="Raison Sociale" value="${raisonSociale}"/>
           </div>
         </div>
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">SIRET</label>
+          <label for="form:input" class="col-lg-2 control-label">SIRET</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" id="iSiret" placeholder="" value="${SIRET}">
+            <form:input type="text" class="form-control" path="iSiret" placeholder="" value="${SIRET}"/>
           </div>
         </div>
         
         <div class="form-group">
-         <!-- <label for="input" class="col-lg-2 control-label">Forme Juridique</label>
+         <!-- <label for="form:input" class="col-lg-2 control-label">Forme Juridique</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="iJuriduque" placeholder="">
+            <form:input type="text" class="form-control" path="iJuriduque" placeholder="">
           </div>
             -->
-            <label for="input" class="col-lg-2 control-label">Forme Juridique</label>
-          <div class="col-lg-2 ">
-                <select class="form-control" id="iJuriduque" value="${iJuridique}">
+            <label for="form:input" class="col-lg-2 control-label">Forme Juridique</label>
+          <div class="col-lg-2 ">v
+                <select class="form-control" path="iJuriduque" ">
                     <option>France</option>
                     <option class="divider"></option>
                     <option>Belgique</option>
@@ -80,45 +82,43 @@
                     <option>Luxembourg</option>
                 </select>
             </div>
-           <label for="input" class="col-lg-2 control-label">TVA Intracommunaitaire</label>
+           <label for="form:input" class="col-lg-2 control-label">TVA Intracommunaitaire</label>
           <div class="col-lg-6">
-            <input type="text" class="form-control" id="iTVA" placeholder="" value="${TVA}">
+            <form:input type="text" class="form-control" path="iTVA" placeholder="" />
           </div>
         </div>
        
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">Nom</label>
+          <label for="form:input" class="col-lg-2 control-label">Nom</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="iNom" placeholder="" value="${name}">
+            <form:input type="text" class="form-control" path="iNom" placeholder=""/>
           </div>
-          <label for="input" class="col-lg-2 control-label">Prénom</label>
+          <label for="form:input" class="col-lg-2 control-label">Prénom</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="iPrenom" placeholder="" value="${firstName}">
+            <form:input type="text" class="form-control" path="iPrenom" placeholder="" />
           </div>
         </div>
         
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">Adresse</label>
+          <label for="form:input" class="col-lg-2 control-label">Adresse</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" id="iAdresse" placeholder="" value="${adresse}">
+            <form:input type="text" class="form-control" path="iAdresse" placeholder="" />
           </div>
         </div>        
         
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">Code postal</label>
-          <div class="col-lg-2">
-            <input type="text" class="form-control" id="iCP" placeholder="" value="${CP}">
+          <label for="form:input" class="col-lg-2 control-label">Code postal</label>
+          <div class="col-lg-2">value="${CP}"/>
           </div>
           
-          <label for="input" class="col-lg-1 control-label">Ville</label>
+          <label for="form:input" class="col-lg-1 control-label">Ville</label>
           <div class="col-lg-3">
-            <input type="text" class="form-control" id="iVille" placeholder="" value="${city}">
+            <form:input type="text" class="form-control" path="iVille" placeholder="" />
           </div>
 
           <div class="col-lg-4 ">
-                <select class="form-control" id="sPays" value="${country}">
+                <select class="form-control" path="sPays" >
                     <option>France</option>
-                    <option class="divider"></option>
                     <option>Belgique</option>
                     <option>Angleterre</option>
                     <option>Luxembourg</option>
@@ -128,26 +128,26 @@
         </div>       
          
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">Telephone 1</label>
+          <label for="form:input" class="col-lg-2 control-label">Telephone 1</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="itel1" placeholder="" value="${tel1}">
+            <form:input type="text" class="form-control" path="itel1" placeholder="" />
           </div>
-          <label for="input" class="col-lg-2 control-label">Telephone 2</label>
+          <label for="form:input" class="col-lg-2 control-label">Telephone 2</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="iTel2" placeholder="" value="${tel2}">
+            <form:input type="text" class="form-control" path="iTel2" placeholder="" />
           </div>
         </div>
         
 	    <div class="form-group">
-	      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+	      <label for="form:inputEmail" class="col-lg-2 control-label">Email</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" id="inputEmail" placeholder="Email" value="${email}">
+	        <form:input type="text" class="form-control" path="email" placeholder="Email"/>
 	      </div>
 	    </div>
     
  		    <div class="form-group">
 		      <div class="col-lg-10 col-lg-offset-2">
-		        <a href="index.jsp">
+		        <a href="/accueil">
 		        <button class="btn btn-default">Annuler</button>
 		         </a>
 		        <button type="submit" class="btn btn-primary">Envoyer</button>
@@ -155,7 +155,7 @@
 		    </div>
 		        </div>
 		  </fieldset>
-	</form>
+	</form:form>
         </div>
        </div>
 
