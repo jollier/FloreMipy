@@ -22,7 +22,6 @@ public class FloreMipyController {
 		super();
 		this.myProductListController = myProductListController;
 		// test de la liste de produit
-		//myProductListController.launch();
 		
 //		ProductListController productListController = new ProductListController(
 ////				new ProductListModel(
@@ -30,7 +29,7 @@ public class FloreMipyController {
 ////				)
 //				);
 		
-		
+				
 //		// model
 //		ArrayList<ProductLight> listProduct = new ArrayList<ProductLight>();
 //

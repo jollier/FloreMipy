@@ -52,7 +52,14 @@ public class ArticleDao implements Serializable, IArticleDao{
 		Query query = null;
 		query = em.createQuery(requete, ArticleDto.class);
 		query.setParameter("id", id);
-		return (ArticleDto)query.getSingleResult();
+		ArticleDto result = null;
+		try {
+			result = (ArticleDto)query.getSingleResult();
+		} catch (Exception e) {
+			result = null;
+			// TODO: handle exception
+		}
+		return result;
 	}
 	
 	/* (non-Javadoc)
@@ -110,13 +117,13 @@ public class ArticleDao implements Serializable, IArticleDao{
 		try {
 			 result = (ArticleDto)query.getSingleResult();
 		} catch (Exception e) {
-			// TODO: handle exception
+			// TODO: handle exception 
 			result = null;
 		}
 		return result;
 	}
 	
-	public ArticleDto createNewArticle(ArticleDto newArticle) {
+	public ArticleDto createArticle(ArticleDto newArticle) {
 		em.getTransaction().begin();
 		Article article = new Article();
 		article.setName(newArticle.getName());
@@ -128,10 +135,26 @@ public class ArticleDao implements Serializable, IArticleDao{
 		return (ArticleDto)findArticleByName(newArticle.getName());
 	}
 	
-	public void ArticleDaoSave(Article article) {
+	public void deleteArticle(ArticleDto articleDto) {
+		Article article = em.find(Article.class, articleDto.getId());
 		em.getTransaction().begin();
-		em.persist(article);
+		em.remove(article);
 		em.getTransaction().commit();
 	}
+	
+	public void updateArticle(ArticleDto articleDto) {
+		Article article = em.find(Article.class, articleDto.getId());
+		article.setCategory(articleDto.getCategory());
+		article.setDescription(articleDto.getDescription());
+		article.setImgsrc(articleDto.getImgsrc());
+		article.setName(articleDto.getName());
+		em.getTransaction().begin();
+		em.merge(article);
+//		em.persist(article);
+		em.flush();
+		em.getTransaction().commit();
+	}
+	
+		
 	
 }

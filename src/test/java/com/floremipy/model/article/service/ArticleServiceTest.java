@@ -14,6 +14,112 @@ import com.floremipy.model.article.dto.ArticleLightDto;
 public class ArticleServiceTest {
 
 	@Test
+	public void testFindAllDto(){
+		//Arrange - preparation du mock
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
+		
+		ArticleLightDto article = new ArticleLightDto();
+		ArticleLightDto article2 = new ArticleLightDto();
+		List<ArticleLightDto> liste = new ArrayList<ArticleLightDto>();
+		liste.add(article);
+		liste.add(article2);
+		
+		Mockito.when(articleDao.findAllArticlesLight()).thenReturn(liste);
+		
+		ArticleService modelService = new ArticleService();
+		modelService.setArticleDao(articleDao);
+		
+		//Act - appel de la methode a tester
+		List<ArticleLightDto> list = modelService.findAllDto();
+		
+		//Assert - verification du test
+		Assert.assertEquals(2, list.size());		
+	}
+
+	@Test
+	public void testFindArticleLightByID_OK(){
+		//Arrange
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
+		
+		ArticleLightDto article = new ArticleLightDto();
+		article.setId(4);
+		
+		Mockito.when(articleDao.findArticleLightById(4)).thenReturn(article);
+		
+		ArticleService modelService = new ArticleService();
+		modelService.setArticleDao(articleDao);
+		
+		//Act
+		ArticleLightDto art = modelService.findArticleLightById(4);
+		
+		//Assert
+		Assert.assertEquals(art, article);
+		Assert.assertEquals(ArticleLightDto.class, art.getClass());
+		
+	}
+	
+	@Test
+	public void testFindArticleLightByID_NOK(){
+		//Arrange
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
+		
+		ArticleLightDto article2 = new ArticleLightDto();
+		
+		Mockito.when(articleDao.findArticleLightById(0)).thenReturn(null);
+
+		
+		ArticleService modelService = new ArticleService();
+		modelService.setArticleDao(articleDao);
+		
+		//Act
+		ArticleLightDto art = modelService.findArticleLightById(0);
+		
+		//Assert
+		Assert.assertEquals(null, modelService.findArticleLightById(0));
+		Assert.assertEquals(null, modelService.findArticleLightById(2));
+	}
+	
+	@Test
+	public void testFindArticleLightByCategorie_OK(){
+		//Arrange		
+		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
+		
+		ArticleLightDto article = new ArticleLightDto();
+		article.setCategory("arbuste");
+		ArticleLightDto article2 = new ArticleLightDto();
+		article.setCategory("arbuste");
+		ArticleLightDto article3 = new ArticleLightDto();
+		article.setCategory("mauvaise herbe");
+		
+		List<ArticleLightDto> liste = new ArrayList<ArticleLightDto>();
+		liste.add(article);
+		liste.add(article2);
+		
+		List<ArticleLightDto> liste2 = new ArrayList<ArticleLightDto>();
+		liste2.add(article3);
+
+		
+		Mockito.when(articleDao.findAllArticlesLightByCategory("arbuste")).thenReturn(liste);
+		Mockito.when(articleDao.findAllArticlesLightByCategory("mauvaise herbe")).thenReturn(liste2);
+		
+		ArticleService modelService = new ArticleService();
+		modelService.setArticleDao(articleDao);
+		
+		//act
+		List<ArticleLightDto> art = modelService.findAllArticlesLightByCategory("arbuste");
+		List<ArticleLightDto> art2 = modelService.findAllArticlesLightByCategory("mauvaise herbe");
+		List<ArticleLightDto> art3 = modelService.findAllArticlesLightByCategory("palmier");
+
+		//assert
+		
+		Assert.assertEquals(liste, art);
+		Assert.assertEquals(article3, art2.get(0));
+		Assert.assertEquals(1,  art2.size());
+		Assert.assertEquals(new ArrayList<ArticleLightDto>(), art3);
+
+	}
+
+	@Test
 	public void testfindAllArticlesDTO(){
 		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
@@ -108,9 +214,10 @@ public class ArticleServiceTest {
 		Assert.assertEquals(new ArrayList<ArticleLightDto>(), art3);
 
 	}
-	
+
 	@Test
-	public void testfindAllArticles(){
+	public void testFindAll(){
+		//Arrange
 		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleDto article = new ArticleDto();
@@ -124,10 +231,13 @@ public class ArticleServiceTest {
 		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
+		//act
 		List<ArticleDto> list = modelService.findAll();
 		
+		//assert
 		Assert.assertEquals(2, list.size());		
 	}
+
 	
 	@Test
 	public void testfindArticleByID_OK(){
@@ -148,22 +258,24 @@ public class ArticleServiceTest {
 		
 	}
 	
+	
 	@Test
 	public void testCreateNewArticle(){
 		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
 		ArticleDto a = new ArticleDto();
-		Mockito.when(articleDao.createNewArticle(a)).thenReturn(a);
+		Mockito.when(articleDao.createArticle(a)).thenReturn(a);
 		
 		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
-		ArticleDto art = modelService.createNewArticle(a);
+		ArticleDto art = modelService.createArticle(a);
 		
 		Assert.assertEquals(a, art);
 		Assert.assertEquals(ArticleDto.class, a.getClass());
 	}
 	
+	//pas besoin de commentaire
 	@Test
 	public void testHommage(){
 		Assert.assertNotEquals(4, 3+2);
@@ -171,6 +283,5 @@ public class ArticleServiceTest {
 	
 	
 
-	
-
 }
+

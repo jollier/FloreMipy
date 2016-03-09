@@ -104,6 +104,9 @@ public class JsonUtilsTest {
 
 		listProduct = jsonUtils.listProductLightRequest(conn);
 
+		//URL url = new URL(SITEURL + "product?Lightlist");
+		//listProduct = jsonUtils.listProductLightRequest(url);
+		
 		int i = 0;
 		for (ProductLight productLight : listProduct) {
 			assertEquals("getAllProductLightTest", listProductExpected.get(i), productLight);
