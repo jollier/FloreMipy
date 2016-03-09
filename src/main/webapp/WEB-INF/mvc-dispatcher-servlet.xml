@@ -16,13 +16,16 @@
 		   
 	<context:component-scan base-package="com.floremipy" />
 	<context:annotation-config />
+	
 	<bean 
 	   class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	    <property name="prefix" value="/WEB-INF/pages/" />
 	    <property name="suffix" value=".jsp" />
 	</bean>
+
     <mvc:resources mapping="/img/**" location="/img/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
 	<mvc:resources mapping="/fonts/**" location="/fonts/"/>
 	
 </beans>
+

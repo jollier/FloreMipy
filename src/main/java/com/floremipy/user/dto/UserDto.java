@@ -1,59 +1,32 @@
 package com.floremipy.user.dto;
 
-import com.floremipy.user.UserType;
-
-
 public class UserDto {
 
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	private String id;
-
-	private String firstname;
-
-	private String lastname;
-
-	private String password;
-
+	private Long id;
 	private String username;
-	
-	
-	private UserType usertype;
+	private String password;
+	private String usertype;
+	private int idcustomer;
 
 	public UserDto() {
 	}
-	
-	public UserDto(String firstname, String lastname) {
-		this.firstname = firstname;
-		this.lastname = lastname;
+
+
+	public UserDto(Long id, String username, String password, String usertype, int idcustomer) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.usertype = usertype;
+		this.idcustomer = idcustomer;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getFirstname() {
-		return this.firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return this.lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
 	}
 
 	public String getPassword() {
@@ -72,20 +45,27 @@ public class UserDto {
 		this.username = username;
 	}
 
-	public UserType getUsertype() {
+	public String getUsertype() {
 		return this.usertype;
-	}
+	}	
 
-	public void setUsertype(UserType usertype) {
+
+	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
 
 	@Override
 	public String toString() {
-		return "UserDto [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", password=" + password
+		return "UserDto [id=" + id + ", password=" + password
 				+ ", username=" + username + ", usertype=" + usertype + "]";
 	}
-	
-	
+
+	public int getIdcustomer() {
+		return idcustomer;
+	}
+
+	public void setIdcustomer(int idcustomer) {
+		this.idcustomer = idcustomer;
+	}
 
 }
