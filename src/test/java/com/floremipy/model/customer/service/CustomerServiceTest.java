@@ -14,12 +14,7 @@ import com.floremipy.user.dto.UserDto;
 
 public class CustomerServiceTest {
 
-<<<<<<< HEAD
-	/*@Test
-=======
-	
 	@Test
->>>>>>> brancheJC
 	public void testGetCustomerByLoginAndPassword(){
 		// *******************************************
 		// ****               Arrange             ****
@@ -86,5 +81,5 @@ public class CustomerServiceTest {
 		// ****                  Assert                     ****
 		// *****************************************************		
 		Assert.assertEquals(2, list.size());		
-	}*/
+	}
 }
