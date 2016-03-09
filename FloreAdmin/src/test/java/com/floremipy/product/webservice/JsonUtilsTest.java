@@ -22,14 +22,12 @@ import com.floremipy.product.model.ProductLight;
 import com.floremipy.product.webservice.JsonUtils;
 import com.floremipy.product.webservice.ProductWebService;
 
-//@RunWith(MockitoJUnitRunner.class)
 public class JsonUtilsTest {
 
-	private static final String SITEURL = "http://localhost:8080/";
+	private static final String SITEURL = "http://localhost:8080/FloreMipy/";
 
 	ArrayList<ProductLight> listProductExpected;
 
-	//@Mock
 	URL url;
 	
 	@Mock
@@ -42,12 +40,6 @@ public class JsonUtilsTest {
 	public void beforeTest() {
 		MockitoAnnotations.initMocks(this);
 
-		
-		//URL url  = Mockito.mock(URL.class);
-		//HttpURLConnection conn  = Mockito.mock(HttpURLConnection.class);
-
-		//@InjectMocks
-		//JsonUtils 
 		jsonUtils = new JsonUtils();
 
 		listProductExpected = new ArrayList<ProductLight>();
@@ -82,30 +74,8 @@ public class JsonUtilsTest {
 	public void listProductLightRequestTest() throws IOException {
 
 		ArrayList<ProductLight> listProduct;
-		// JsonUtils jsonUtils = new JsonUtils();
-
-		// ProductLightJsonExpected.read();
-
-		// URL url = Mockito.mock(URL.class)
-		// url.openConnection()
-		// new ProductWebService();
-
-		// ProductWebService productWebService = new ProductWebService();
-		// listProduct = productWebService.getAllProductLight();
-
-		//URL url = new URL(SITEURL + "product/list");
-		//Mockito.when(methodCall)
-		
-//		listProduct = JsonUtils.listProductLightRequest(url);
-		
-//		conn = (HttpURLConnection) url.openConnection();
-//		conn.setConnectTimeout(2000);
-//		conn.setReadTimeout(10000);
 
 		listProduct = jsonUtils.listProductLightRequest(conn);
-
-		//URL url = new URL(SITEURL + "product?Lightlist");
-		//listProduct = jsonUtils.listProductLightRequest(url);
 		
 		int i = 0;
 		for (ProductLight productLight : listProduct) {
