@@ -19,7 +19,6 @@ public class CustomerService implements ICustomerService {
 	IUserDao userDao;
 	
 	
-	
 	public void setCustomerDao(IModelCustomerDao customerDao) {
 		this.customerDao = customerDao;
 	}
@@ -37,8 +36,8 @@ public class CustomerService implements ICustomerService {
 	public CustomerDto getCustomerByLoginAndPassword(String login, String password){
 		UserDto userDto = userDao.findUserByUserNameAndPassword(login, password);
 		CustomerDto customerDto = null;
-		if ((userDto != null) && (userDto.getIdcustomer()>0)){
-			//customerDto = customerDao.findCustomerById(userDto.getIdcustomer());
+		if ((userDto != null) && (userDto.getIdcustomer() > 0)){
+			customerDto = customerDao.findCustomerById(userDto.getIdcustomer());
 		}
 		return customerDto;
 	}

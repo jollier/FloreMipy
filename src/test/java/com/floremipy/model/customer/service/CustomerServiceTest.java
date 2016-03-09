@@ -51,8 +51,8 @@ public class CustomerServiceTest {
 		// *****************************************************
 		// *** Pour vérifier le résultat du test            ****
 		// *****************************************************		
-		Assert.assertNull(customerDto1);
-		//Assert.assertEquals("DURAND", customerDto1.getName());
+		//Assert.assertNull(customerDto1);
+		Assert.assertEquals("DURAND", customerDto1.getName());
 		
 	}
 	
