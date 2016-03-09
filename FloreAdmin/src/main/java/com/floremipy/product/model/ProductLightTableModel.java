@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-public class ProductLightModel extends AbstractTableModel {
+public class ProductLightTableModel extends AbstractTableModel {
 
 	int PRODUCTLIGHTCOLUMNCOUNT = 4;
 	ArrayList<ProductLight> listProduct;
 	
-	public ProductLightModel(ArrayList<ProductLight> listProduct) {
+	public ProductLightTableModel(ArrayList<ProductLight> listProduct) {
 		super();
 		this.listProduct = listProduct;
 	}
