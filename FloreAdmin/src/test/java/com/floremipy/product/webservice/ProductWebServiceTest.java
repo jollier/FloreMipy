@@ -15,11 +15,6 @@ import com.floremipy.product.webservice.ProductWebService;
 
 public class ProductWebServiceTest {
 
-	@Test
-	public void getAllProductTest() {
-//		ProductWebService productWebService = new ProductWebService();
-//		productWebService.getAllProduct();
-	}
 
 	@Test
 	public void getAllProductLightTest() throws IOException {
@@ -40,11 +35,9 @@ public class ProductWebServiceTest {
 				return 0;
 			}
 		};
-			//ProductLightJsonExpected.read();	
 
 		
 		HttpURLConnection connectionWebService = Mockito.mock(HttpURLConnection.class); 
-				//new ProductWebService();
 		
 		Mockito.when(connectionWebService.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
 		Mockito.when(connectionWebService.getInputStream()).thenReturn(ProductLightJsonExpected);
@@ -58,9 +51,6 @@ public class ProductWebServiceTest {
 			i++;
 		}
 		
-//		"{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1}" +
-//		"{\"id\":2,\"category\":\"Fagacées\",\"description\":\"\",\"name\":\"Chêne\",\"quantityInStock\":10,\"alertLotMature\":0}";
-//		return 0;
 	}
 
 }

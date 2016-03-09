@@ -66,9 +66,10 @@ public class JsonUtils {
 		// instead of the file
 		if (this.conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
 
-			return null; // "Server returned HTTP " +
-							// connection.getResponseCode() + " " +
-							// connection.getResponseMessage();
+			return null; 
+			// "Server returned HTTP " +
+			// connection.getResponseCode() + " " +
+			// connection.getResponseMessage();
 		}
 
 		InputStream is = this.conn.getInputStream();
