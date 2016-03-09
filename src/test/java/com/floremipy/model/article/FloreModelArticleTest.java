@@ -104,7 +104,7 @@ public class FloreModelArticleTest {
 	}
 	
 	@Test
-	public void testCreateNewArticle() {
+	public void testCreateArticle() {
 		IArticleDao articleDao = new ArticleDao();
 		int i = 0;
 		String name = "";
@@ -118,7 +118,7 @@ public class FloreModelArticleTest {
 		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
 
 		ArticleDto newArticle = articleDao.createArticle(articleDto);
-		System.out.println("result test testCreateNewArticle : " +newArticle.toString());
+		System.out.println("result test testCreateArticle : " +newArticle.toString());
 		assertTrue(newArticle.getId() != 0L);
 	}
 	
@@ -134,11 +134,34 @@ public class FloreModelArticleTest {
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
 		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
-		ArticleDto newArticle = articleDao.createArticle(articleDto);
+		ArticleDto newArticleDto = articleDao.createArticle(articleDto);
 		
-		int id = newArticle.getId();
-		articleDao.deleteArticle(newArticle);
+		int id = newArticleDto.getId();
+		articleDao.deleteArticle(newArticleDto);
 		assertTrue(articleDao.findArticleById(id) == null);
+	}
+	
+	
+	public void testUpdateArticle() {
+		IArticleDao articleDao = new ArticleDao();
+		int i = 0;
+		String name = "";
+		ArticleDto articleExists = null;
+		do {
+			i++;
+			name = "testUpdateArticle" + i;
+			articleExists = articleDao.findArticleByName(name);
+		} while (articleExists != null);
+
+		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
+		ArticleDto newArticleDto = articleDao.createArticle(articleDto);
+		name = name+"Update";
+		newArticleDto.setDescription(name);
+		articleDao.updateArticle(newArticleDto);
+		
+		ArticleDto verifyArticle = articleDao.findArticleByName(name);
+		assertEquals(verifyArticle.getDescription(),name);
+		
 		
 	}
 	

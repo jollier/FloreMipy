@@ -117,7 +117,7 @@ public class ArticleDao implements Serializable, IArticleDao{
 		try {
 			 result = (ArticleDto)query.getSingleResult();
 		} catch (Exception e) {
-			// TODO: handle exception
+			// TODO: handle exception 
 			result = null;
 		}
 		return result;
@@ -149,7 +149,8 @@ public class ArticleDao implements Serializable, IArticleDao{
 		article.setImgsrc(articleDto.getImgsrc());
 		article.setName(articleDto.getName());
 		em.getTransaction().begin();
-		em.persist(article);
+		em.merge(article);
+//		em.persist(article);
 		em.flush();
 		em.getTransaction().commit();
 	}
