@@ -3,12 +3,14 @@ package com.floremipy.model.article.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.floremipy.model.Article;
 import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
 
+@Component
 public class ArticleService implements IArticleService {
 	
 	@Autowired

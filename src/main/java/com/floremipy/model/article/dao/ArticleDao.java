@@ -8,11 +8,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Component;
+
 import com.floremipy.model.Article;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
 
-
+@Component
 public class ArticleDao implements Serializable, IArticleDao{
 	/**
 	 * 
