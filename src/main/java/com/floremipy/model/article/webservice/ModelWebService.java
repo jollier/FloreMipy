@@ -38,9 +38,9 @@ public class ModelWebService {
 			@RequestParam String description, @RequestParam String name, @RequestParam(value="quantityInStock", defaultValue="0") int quantityInStock,
 			@RequestParam(value="value", defaultValue="0") BigDecimal value) {
 		
-		
-		
-		return art.findAllArticlesLight();
+		List<ArticleLightDto> result = art.findAllArticlesLight();
+			
+		return result;
 		
 
 	}
