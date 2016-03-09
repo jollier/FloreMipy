@@ -7,9 +7,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TestController {
 
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public ModelAndView test(){
 		return new ModelAndView("index");
 	}
 	
+	@RequestMapping("/identification")
+	public ModelAndView identification(){
+		return new ModelAndView("identification");
+	}
 }
