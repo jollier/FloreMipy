@@ -23,8 +23,10 @@ public interface IArticleDao {
 	
 	ArticleDto findArticleByName(String name);
 	
-	ArticleDto createNewArticle(ArticleDto newArticle);
+	ArticleDto createArticle(ArticleDto newArticle);
 	
-	void ArticleDaoSave(Article article);
+	void deleteArticle(ArticleDto articleDto);
+	
+	void updateArticle(ArticleDto articleDto);
 
 }

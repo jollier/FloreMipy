@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.floremipy.model.Article;
 import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
@@ -40,8 +39,8 @@ public class ArticleService implements IArticleService {
 
 	
 	@Override
-	public void save(Article art) {
-		articleDao.ArticleDaoSave(art);
+	public void updateArticle(ArticleDto articleDto) {
+		articleDao.updateArticle(articleDto);
 	}
 
 
@@ -62,11 +61,8 @@ public class ArticleService implements IArticleService {
 
 
 	@Override
-	public ArticleDto createNewArticle(ArticleDto newArticle) {
-		return articleDao.createNewArticle(newArticle);
+	public ArticleDto createArticle(ArticleDto newArticle) {
+		return articleDao.createArticle(newArticle);
 	}
-
-
-	
 
 }

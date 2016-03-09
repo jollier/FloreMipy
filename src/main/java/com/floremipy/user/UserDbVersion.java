@@ -33,7 +33,4 @@ public class UserDbVersion implements Serializable {
 	}
 
 	
-	
-	
-	
 }
