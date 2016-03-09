@@ -8,9 +8,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Component;
+
+import com.floremipy.model.Article;
+import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.user.User;
 import com.floremipy.user.dto.UserDto;
 
+@Component
 public class UserDao implements Serializable, IUserDao{
 	/**
 	 * 
@@ -96,4 +101,24 @@ public class UserDao implements Serializable, IUserDao{
 		return findUserByUserName(newUserDto.getUsername());
 	}
 	
+	public void updateUser (UserDto userDto){
+		User user = em.find(User.class,	userDto.getId());
+		user.setIdcustomer(userDto.getIdcustomer());
+		user.setPassword(userDto.getPassword());
+		user.setUsername(userDto.getUsername());
+		user.setUsertype(userDto.getUsertype());
+		em.getTransaction().begin();
+		em.merge(user);
+		em.flush();
+		em.getTransaction().commit();
+
+	}
+	
+	
+	public void deleteUser(UserDto userDto) {
+		User user = em.find(User.class, userDto.getId());
+		em.getTransaction().begin();
+		em.remove(user);
+		em.getTransaction().commit();
+	}
 }
