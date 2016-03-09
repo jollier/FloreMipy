@@ -3,6 +3,7 @@ package com.floremipy.model.customer.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dao.IModelCustomerDao;
@@ -10,6 +11,7 @@ import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.user.dao.IUserDao;
 import com.floremipy.user.dto.UserDto;
 
+@Service
 public class CustomerService implements ICustomerService {
 	
 	@Autowired
