@@ -9,7 +9,7 @@ import com.floremipy.model.article.dto.ArticleLightDto;
 
 public interface IArticleService {
 
-	void save(Article art);
+	void updateArticle(ArticleDto articleDto);
 
 	boolean delArticle(ArticleLightDto art);
 
@@ -23,7 +23,7 @@ public interface IArticleService {
 	
 	ArticleDto findArticleById(int id);
 	
-	ArticleDto createNewArticle(ArticleDto newArticle);
+	ArticleDto createArticle(ArticleDto newArticle);
 
 
 }
