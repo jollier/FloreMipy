@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import com.floremipy.model.Adress;
 import com.floremipy.model.Customer;
+import com.floremipy.model.Version;
 import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dao.ArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
@@ -35,9 +36,22 @@ public class FloreModelArticleTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		int versionBaseUser = 5;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
-		transaction =  em.getTransaction();
+		Version version = em.find(Version.class, 1);
+		
+		if (version.getVersion() != versionBaseUser) {
+			System.out.println("");
+			System.out.println("");
+			System.out.println("********************************");
+			System.out.println("**Version de la BDD floremipi incorrecte**");
+			System.out.println("********************************");
+			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiInit.sql");
+			
+			System.exit(1);
+		}
+		
 	}
 	
 	@Test
@@ -90,7 +104,7 @@ public class FloreModelArticleTest {
 	}
 	
 	@Test
-	public void testCreateNewArticle() {
+	public void testCreateArticle() {
 		IArticleDao articleDao = new ArticleDao();
 		int i = 0;
 		String name = "";
@@ -103,10 +117,55 @@ public class FloreModelArticleTest {
 
 		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
 
-		ArticleDto newArticle = articleDao.createNewArticle(articleDto);
-		System.out.println("result test testCreateNewArticle : " +newArticle.toString());
+		ArticleDto newArticle = articleDao.createArticle(articleDto);
+		System.out.println("result test testCreateArticle : " +newArticle.toString());
 		assertTrue(newArticle.getId() != 0L);
 	}
+	
+	@Test
+	public void testDeleteArticle(){
+		IArticleDao articleDao = new ArticleDao();
+		int i = 0;
+		String name = "";
+		ArticleDto articleExists = null;
+		do {
+			i++;
+			name = "testDeleteArticle" + i;
+			articleExists = articleDao.findArticleByName(name);
+		} while (articleExists != null);
+		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
+		ArticleDto newArticleDto = articleDao.createArticle(articleDto);
+		
+		int id = newArticleDto.getId();
+		articleDao.deleteArticle(newArticleDto);
+		assertTrue(articleDao.findArticleById(id) == null);
+	}
+	
+	
+	public void testUpdateArticle() {
+		IArticleDao articleDao = new ArticleDao();
+		int i = 0;
+		String name = "";
+		ArticleDto articleExists = null;
+		do {
+			i++;
+			name = "testUpdateArticle" + i;
+			articleExists = articleDao.findArticleByName(name);
+		} while (articleExists != null);
+
+		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
+		ArticleDto newArticleDto = articleDao.createArticle(articleDto);
+		name = name+"Update";
+		newArticleDto.setDescription(name);
+		articleDao.updateArticle(newArticleDto);
+		
+		ArticleDto verifyArticle = articleDao.findArticleByName(name);
+		assertEquals(verifyArticle.getDescription(),name);
+		
+		
+	}
+	
+	
 	
 
 	@AfterClass

@@ -42,8 +42,8 @@ public class ArticleService implements IArticleService {
 
 	
 	@Override
-	public void save(Article art) {
-		articleDao.ArticleDaoSave(art);
+	public void updateArticle(ArticleDto articleDto) {
+		articleDao.updateArticle(articleDto);
 	}
 
 
@@ -64,11 +64,8 @@ public class ArticleService implements IArticleService {
 
 
 	@Override
-	public ArticleDto createNewArticle(ArticleDto newArticle) {
-		return articleDao.createNewArticle(newArticle);
+	public ArticleDto createArticle(ArticleDto newArticle) {
+		return articleDao.createArticle(newArticle);
 	}
-
-
-	
 
 }

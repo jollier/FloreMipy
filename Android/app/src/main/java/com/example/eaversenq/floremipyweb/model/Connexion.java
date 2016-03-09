@@ -3,18 +3,10 @@ package com.example.eaversenq.floremipyweb.model;
 /**
  * Created by EAVERSENQ on 01/03/2016.
  */
-public class Cnx {
+public class Connexion {
 
-    private Cnx() {}
-    private String nom = "KETAMER";
-    private String prenom = "Jenny";
-
-    private static Cnx c;
-
-    public static Cnx getInstance() {
-        if (c == null) c = new Cnx();
-        return c;
-    }
+    private String nom;
+    private String prenom;
 
     public String getNom() {
         return nom;

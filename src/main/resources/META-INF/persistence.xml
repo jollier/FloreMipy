@@ -8,6 +8,7 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>com.floremipy.user.User</class>
+		<class>com.floremipy.user.UserDbVersion</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/floremipyuser" />
@@ -31,6 +32,7 @@
         <class>com.floremipy.model.New</class>
         <class>com.floremipy.model.Price</class>
         <class>com.floremipy.model.Result</class>
+        <class>com.floremipy.model.Version</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/floremipi" />
