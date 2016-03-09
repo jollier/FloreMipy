@@ -5,10 +5,10 @@ public class Product {
     private long id;
     private String name;
     private String category;
-    private String quantityInStock;
+    private int quantityInStock;
     private int alertLotMature;
 
-    public Product(long id, String name, String category, String quantityInStock, int alertLotMature) {
+    public Product(long id, String name, String category, int quantityInStock, int alertLotMature) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -40,11 +40,11 @@ public class Product {
         this.category = category;
     }
 
-    public String getQuantityInStock() {
+    public int getQuantityInStock() {
         return quantityInStock;
     }
 
-    public void setQuantityInStock(String quantityInStock) {
+    public void setQuantityInStock(int quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
 
