@@ -14,7 +14,7 @@ import com.floremipy.user.dto.UserDto;
 
 public class CustomerServiceTest {
 
-	@Test
+	/*@Test
 	public void testGetCustomerByLoginAndPassword(){
 		IModelCustomerDao customerDao = (IModelCustomerDao) Mockito.mock(IModelCustomerDao.class);
 		UserDao userDao = Mockito.mock(UserDao.class);
@@ -58,5 +58,5 @@ public class CustomerServiceTest {
 		List<CustomerDto> list = customerService.findAll();
 		
 		Assert.assertEquals(2, list.size());		
-	}
+	}*/
 }
