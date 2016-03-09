@@ -14,7 +14,6 @@ import com.floremipy.user.dto.UserDto;
 
 public class CustomerServiceTest {
 
-	
 	@Test
 	public void testGetCustomerByLoginAndPassword(){
 		// *******************************************

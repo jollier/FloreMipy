@@ -19,7 +19,7 @@
                         <span class="glyphicon glyphicon-lock"></span> Login
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal"  method="Post" action="Identification">
+                        <form class="form-horizontal"  method="Post" action="index">
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">
                                     Email</label>
