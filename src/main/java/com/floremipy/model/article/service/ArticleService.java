@@ -3,11 +3,13 @@ package com.floremipy.model.article.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
 
+@Service
 public class ArticleService implements IArticleService {
 	
 	@Autowired
@@ -31,13 +33,7 @@ public class ArticleService implements IArticleService {
 		return articleDao.findAllArticlesLightByCategory(cat);
 	}
 	
-	@Override
-	public boolean delArticle(ArticleLightDto art) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	
+		
 	@Override
 	public void updateArticle(ArticleDto articleDto) {
 		articleDao.updateArticle(articleDto);
@@ -63,6 +59,18 @@ public class ArticleService implements IArticleService {
 	@Override
 	public ArticleDto createArticle(ArticleDto newArticle) {
 		return articleDao.createArticle(newArticle);
+	}
+
+
+	@Override
+	public ArticleDto findArticleByName(String name) {
+		return articleDao.findArticleByName(name);
+	} 
+
+
+	@Override
+	public void deleteArticle(ArticleDto articleDto) {
+		articleDao.deleteArticle(articleDto);
 	}
 
 }
