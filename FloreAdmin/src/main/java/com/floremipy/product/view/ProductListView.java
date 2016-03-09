@@ -90,10 +90,9 @@ public class ProductListView extends Observable implements Observer {
         deleteButton.addActionListener(e -> System.out.println("deleteButton"));
         
         productList = new JTable();
-        ProductLightTableModel model = new ProductLightTableModel(productListModel.getListProduct()); //listProduct
+        ProductLightTableModel model = new ProductLightTableModel(productListModel.getListProduct());
         productList.setModel(model);
         
-//		productListPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		productListPanel = new JPanel(new BorderLayout());
 		productListPanel.setPreferredSize(new Dimension(400, 400));
 		productListPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 10));
@@ -104,21 +103,12 @@ public class ProductListView extends Observable implements Observer {
 		productListPanel.add(deleteButton);
 		productListPanel.setLayout(new BoxLayout(productListPanel, BoxLayout.LINE_AXIS));
 
-		//productListFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		productListFrame = new JFrame();
 		productListFrame.setBounds(50, 50, 800, 600);
 		productListFrame.add(productListPanel);
 		productListFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
-		// Jeu de données Test
-//		ProductLight p = new ProductLight(1L, "Sapin", "Conifère", 5, 1);
-//		listProduct.add(p);
-		
-		
-		
-		//productListFrame.show();
 
 	}
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.floremipy.model.article.webservice;
 
 import java.math.BigDecimal;
