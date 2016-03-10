@@ -16,6 +16,9 @@ public interface IUserDao {
 	UserDto findUserByUserNameAndPassword(String userName, String password);
 	
 	UserDto createNewUser(UserDto newUserDto);
+	
+	void updateUser (UserDto userDto);
 
+	void deleteUser(UserDto userDto);
 
 }
