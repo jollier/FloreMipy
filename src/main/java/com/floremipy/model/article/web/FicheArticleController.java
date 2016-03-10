@@ -5,10 +5,13 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
 import com.floremipy.model.article.service.ArticleService;
 import com.floremipy.model.article.service.IArticleService;
@@ -21,6 +24,7 @@ public class FicheArticleController {
 	
 	@RequestMapping(value = "/ficheArticle/{id}" , method = RequestMethod.GET)
    public String ficheArticle(Model model,@PathVariable("id") int id) {
+	//   public String ficheArticle(Model model,@ModelAttribute("ficheArticle") @Validated ArticleDto articleLightDto) {
 	   
 	   ArticleLightDto articleLightDto = new ArticleLightDto();
 	   articleLightDto = articleService.findArticleLightById(id);
