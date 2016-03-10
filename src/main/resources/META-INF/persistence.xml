@@ -10,10 +10,13 @@
 		<class>com.floremipy.user.User</class>
 		<class>com.floremipy.user.UserDbVersion</class>
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/floremipyuser" />
-			<property name="javax.persistence.jdbc.user" value="pic" />
-			<property name="javax.persistence.jdbc.password" value="pic" />
+
+
+			<property name="javax.persistence.jdbc.driver" value="${jdbc.driver}" />
+			<property name="javax.persistence.jdbc.url" value="${jdbc.urluser}" />
+			<property name="javax.persistence.jdbc.user" value="${jdbc.username}" />
+			<property name="javax.persistence.jdbc.password" value="${jdbc.password}" />
+
 
 		</properties>
 	</persistence-unit>
@@ -36,11 +39,15 @@
 		<class>com.floremipy.model.Result</class>
 		<class>com.floremipy.model.Version</class>
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/floremipi" />
-			<property name="javax.persistence.jdbc.user" value="pic" />
-			<property name="javax.persistence.jdbc.password" value="pic" />
+
+			<property name="javax.persistence.jdbc.driver" value="${jdbc.driver}" />
+            <property name="javax.persistence.jdbc.url" value="${jdbc.urlfloremipi}" />
+            <property name="javax.persistence.jdbc.user" value="${jdbc.username}" />
+            <property name="javax.persistence.jdbc.password" value="${jdbc.password}" />
+
 		</properties>
 	</persistence-unit>
+
+
 
 </persistence>
