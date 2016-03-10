@@ -155,6 +155,14 @@
 					<server>tomcat-development-server</server>
 				</configuration>
 			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <runOrder>random</runOrder>
+                </configuration>
+            </plugin>
+
 		</plugins>
 
 		<finalName>${project.artifactId}-${project.version}</finalName>
