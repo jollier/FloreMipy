@@ -9,6 +9,7 @@
  <link href="css/home/signin.css" rel="stylesheet">
  
 <title>Insert title here</title>
+  
 </head>
 <body>
     <div class="container">
@@ -19,19 +20,19 @@
                         <span class="glyphicon glyphicon-lock"></span> Login
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal"  method="Post" action="index">
+                        <form class="form-horizontal"  method="Post" action="identification">
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">
                                     Email</label>
                                 <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required>
-                                </div>
+                                    <input type="text" class="form-control" id="inputEmail3" name="Email" required>
+                                 ${message}</div>
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-3 control-label">
                                     Password</label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required>
+                                    <input type="password" class="form-control" id="inputPassword3" name="Password" required>
                                 </div>
                             </div>
                             <div class="form-group">
