@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dao.IModelCustomerDao;
 import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.user.dao.UserDao;
@@ -83,4 +84,5 @@ public class CustomerServiceTest {
 		// *****************************************************		
 		Assert.assertEquals(2, list.size());		
 	}
+	
 }

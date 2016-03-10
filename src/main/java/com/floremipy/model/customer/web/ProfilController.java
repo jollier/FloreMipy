@@ -1,12 +1,15 @@
 package com.floremipy.model.customer.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.floremipy.model.Adress;
 import com.floremipy.model.Customer;
+import com.floremipy.model.customer.service.ICustomerService;
 
 
 @Controller
@@ -14,6 +17,7 @@ public class ProfilController {
 
 	Profil data = new Profil();
 
+	@Autowired ICustomerService customerService;
 
 	@RequestMapping(value = "/profil", method = RequestMethod.GET)
 	public String profilGet(Model model){
@@ -58,11 +62,15 @@ public class ProfilController {
 		newCustomer.setFirstName(profil.getFirstName());
 		newCustomer.setName(profil.getName());
 		newCustomer.setPhone(profil.getTel1());
-		String sAdress = profil.getAdresse() + " " + profil.getCP() + " " + profil.getCity() ;
-		//newCustomer.setAdress(sAdress);
-			
-		//newCustomer.addNews1(newCustomer);
 		
+		Adress adress = new Adress();
+		adress.setLocation(profil.getAdresse());
+		adress.setZipCode(profil.getCP());
+		adress.setCity(profil.getCity());
+
+		newCustomer.setAdress(adress);
+		
+		customerService.save(newCustomer);
 		
 		return "profil";
 		

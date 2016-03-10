@@ -2,37 +2,46 @@ package com.floremipy.user.service;
 
 import java.util.List;
 
-import com.floremipy.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.floremipy.user.User;
+import com.floremipy.user.dao.IUserDao;
+import com.floremipy.user.dto.UserDto;
+
+@Service
 public class UserService implements IUserService{
 
-
-	public List<User> getAll() {
-		//Changer le return dès que le Dao sera OK
-		//return userDao.findAllUsers();
-		return null;
+	@Autowired
+	IUserDao userDao;
+	
+	@Override
+	public List<UserDto> getAll() {
+		return userDao.findAllUsers();
 	}
 
-	public User getUser() {
-		//Changer le return dès que le Dao sera OK
-		//userDao.findOne()
-		return null;
+	@Override
+	public UserDto getUser(String userName) {
+		return userDao.findUserByUserName(userName);
 	}
 
-	public User getUserById() {
-		Long id = 1L;
-		//Changer le return dès que le Dao sera OK
-		//userDao.findById(id);
-		return null;
-	}
-
+	@Override
 	public boolean delUser(User user) {
-		// TODO Auto-generated method stub
+		// not implemented
 		return false;
 	}
 
+	@Override
 	public void save(User user) {
-		// TODO Auto-generated method stub
+		// not implemented
+	}
+
+	public IUserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(IUserDao userDao) {
+		this.userDao = userDao;
 	}
 	
 	
