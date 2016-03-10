@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.floremipy.model.Customer;
+
 
 @Controller
 public class ProfilController {
@@ -50,27 +52,18 @@ public class ProfilController {
 		 */
 		profil.getName();
 		
+		Customer newCustomer = new Customer();
 		
-//		model.addAttribute("optParticulier",data.getOptParticulier());
-//		model.addAttribute("optEntreprise",data.getOptEntreprise());
-//		model.addAttribute("nomEntreprise",data.getNomEntreprise());
-//		model.addAttribute("raisonSociale",data.getRaisonSociale());
-//		model.addAttribute("SIRET",data.getSIRET());
-//		model.addAttribute("iJuridique",data.getiJuridique());
-//		model.addAttribute("TVA",data.getTVA());
-//		model.addAttribute("name",data.getOptEntreprise());
-//		model.addAttribute("optEntreprise",data.getName());
-//		model.addAttribute("firstName",data.getFirstName());
-//		model.addAttribute("adresse",data.getAdresse());
-//		model.addAttribute("CP",data.getCP());
-//		model.addAttribute("city",data.getCity());
-//		model.addAttribute("country",data.getCountry());
-//		model.addAttribute("tel1",data.getTel1());
-//		model.addAttribute("tel2",data.getTel2());
-//		model.addAttribute("email",data.getEmail());
+		newCustomer.setEmail(profil.getEmail());
+		newCustomer.setFirstName(profil.getFirstName());
+		newCustomer.setName(profil.getName());
+		newCustomer.setPhone(profil.getTel1());
+		String sAdress = profil.getAdresse() + " " + profil.getCP() + " " + profil.getCity() ;
+		//newCustomer.setAdress(sAdress);
+			
+		//newCustomer.addNews1(newCustomer);
 		
 		
-				
 		return "profil";
 		
 	}
