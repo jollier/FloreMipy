@@ -92,15 +92,22 @@
 			<artifactId>javax.persistence</artifactId>
 			<version>2.1.0</version>
 		</dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 	<build>
+
+   <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
 
 		<plugins>
 
@@ -168,5 +175,32 @@
 		<finalName>${project.artifactId}-${project.version}</finalName>
 	</build>
 
-
+<profiles>
+        <profile>
+            <id>pic</id>
+            <properties>
+                <jdbc.urluser>jdbc:mysql://localhost:3306/floremipyuser</jdbc.urluser>
+                 <jdbc.urlfloremipi>jdbc:mysql://localhost:3306/floremipi</jdbc.urlfloremipi>
+                <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+                <jdbc.username>pic</jdbc.username>
+                <jdbc.password>pic</jdbc.password>
+           
+            </properties>
+        </profile>
+ 
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <jdbc.urluser>jdbc:mysql://localhost:3306/floremipyuser</jdbc.urluser>
+                 <jdbc.urlfloremipi>jdbc:mysql://localhost:3306/floremipi</jdbc.urlfloremipi>
+                <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password></jdbc.password>
+                
+            </properties>
+        </profile>
+    </profiles>
 </project>
