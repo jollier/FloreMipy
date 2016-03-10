@@ -21,22 +21,6 @@ public class FloreMipyController {
 	public FloreMipyController(ProductListController myProductListController) {
 		super();
 		this.myProductListController = myProductListController;
-		// test de la liste de produit
-		
-//		ProductListController productListController = new ProductListController(
-////				new ProductListModel(
-////				//new ProductWebService()
-////				)
-//				);
-		
-				
-//		// model
-//		ArrayList<ProductLight> listProduct = new ArrayList<ProductLight>();
-//
-//		// view et Controller intégré à la view
-//		ProductListView productList = new ProductListView(listProduct);
-//		
-//		
 		
 	}
 	

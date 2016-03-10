@@ -22,15 +22,6 @@ public class ProductListController implements Observer {
 	public ProductListController(IProductListModel productListModel) {
 		super();
 		this.productListModel = productListModel;
-		//productListView = new ProductListView(productListModel);
-		
-//		/* ajout du pattern observer de la view vers le controler */
-//		productListView.addObserver(this);
-//		
-//		/* ajout du pattern observer du model vers la view */
-//		((Observable) productListModel).addObserver(productListView);
-//		
-		//productListView.view();
 	}
 
 	public ProductListController() {
@@ -45,6 +36,13 @@ public class ProductListController implements Observer {
 
 	public void launch() {
 		productListView = new ProductListView(productListModel);
+
+//		/* ajout du pattern observer de la view vers le controler */
+//		productListView.addObserver(this);
+//		
+//		/* ajout du pattern observer du model vers la view */
+//		((Observable) productListModel).addObserver(productListView);
+
 		productListView.view();
 		
 	}

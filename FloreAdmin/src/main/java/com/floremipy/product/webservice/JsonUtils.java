@@ -47,17 +47,17 @@ public class JsonUtils {
 		this.conn = conn;
 
 		// *************** Stub HttpURLConnection **************
-		MockitoAnnotations.initMocks(this);
-		this.conn = Mockito.mock(HttpURLConnection.class);
-		String jsonExpected = "[{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1},"
-				+ "{\"id\":2,\"category\":\"Fagacées\",\"description\":\"\",\"name\":\"Chêne\",\"quantityInStock\":10,\"alertLotMature\":0}]";
-		InputStream ProductLightJsonExpected = null;
-
-		ProductLightJsonExpected = new ByteArrayInputStream(jsonExpected.getBytes("UTF-8"));
-
-		Mockito.when(this.conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
-		Mockito.when(this.conn.getInputStream()).thenReturn(ProductLightJsonExpected);
-		
+//		MockitoAnnotations.initMocks(this);
+//		this.conn = Mockito.mock(HttpURLConnection.class);
+//		String jsonExpected = "[{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1},"
+//				+ "{\"id\":2,\"category\":\"Fagacées\",\"description\":\"\",\"name\":\"Chêne\",\"quantityInStock\":10,\"alertLotMature\":0}]";
+//		InputStream ProductLightJsonExpected = null;
+//
+//		ProductLightJsonExpected = new ByteArrayInputStream(jsonExpected.getBytes("UTF-8"));
+//
+//		Mockito.when(this.conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+//		Mockito.when(this.conn.getInputStream()).thenReturn(ProductLightJsonExpected);
+//		
 		// *************** Fin du Stub **************
 
 		this.conn.connect();
@@ -66,9 +66,10 @@ public class JsonUtils {
 		// instead of the file
 		if (this.conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
 
-			return null; // "Server returned HTTP " +
-							// connection.getResponseCode() + " " +
-							// connection.getResponseMessage();
+			return null; 
+			// "Server returned HTTP " +
+			// connection.getResponseCode() + " " +
+			// connection.getResponseMessage();
 		}
 
 		InputStream is = this.conn.getInputStream();
