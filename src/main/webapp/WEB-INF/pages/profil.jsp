@@ -71,7 +71,7 @@
 		          <div class="col-lg-4">
 		          </div>
 
-		            <label for="select" class="col-lg-2 control-label">Forme Juridique</label>
+		            <label for="select" class="col-lg-2 control-label">Pays</label>
 		          <div class="col-lg-2 ">
 		                <form:select class="form-control" path="juridique" >
 		                    <form:option value = "France" label = "France"/>
@@ -149,8 +149,10 @@
 		    
 		 		    <div class="form-group">
 				      <div class="col-lg-10 col-lg-offset-2">
-				        <a href="/FloreMipy/accueil">
-				        <button class="btn btn-default">Annuler</button>
+				        
+				      <spring:url value="/accueil" var="accueil"></spring:url>
+				      <a href="${accueil}" class="btn btn-default">
+                        Annuler
 				         </a>
 				        <button type="submit" class="btn btn-primary">Envoyer</button>
 				      </div>
