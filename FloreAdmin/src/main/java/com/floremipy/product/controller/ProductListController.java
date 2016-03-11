@@ -17,24 +17,36 @@ public class ProductListController implements Observer {
 	@Autowired
 	IProductListModel productListModel;
 	
+	//@Autowired
 	ProductListView productListView;
 
-	public ProductListController(IProductListModel productListModel) {
+
+	public ProductListController(IProductListModel productListModel
+			//, ProductListView productListView
+			) {
 		super();
 		this.productListModel = productListModel;
-		//productListView = new ProductListView(productListModel);
-		
-//		/* ajout du pattern observer de la view vers le controler */
-//		productListView.addObserver(this);
-//		
-//		/* ajout du pattern observer du model vers la view */
-//		((Observable) productListModel).addObserver(productListView);
-//		
-		//productListView.view();
+		//this.productListView = productListView;
 	}
 
 	public ProductListController() {
 		super();
+	}
+
+	public IProductListModel getProductListModel() {
+		return productListModel;
+	}
+
+	public void setProductListModel(IProductListModel productListModel) {
+		this.productListModel = productListModel;
+	}
+
+	public ProductListView getProductListView() {
+		return productListView;
+	}
+
+	public void setProductListView(ProductListView productListView) {
+		this.productListView = productListView;
 	}
 
 	@Override
@@ -45,6 +57,13 @@ public class ProductListController implements Observer {
 
 	public void launch() {
 		productListView = new ProductListView(productListModel);
+
+//		/* ajout du pattern observer de la view vers le controler */
+//		productListView.addObserver(this);
+//		
+//		/* ajout du pattern observer du model vers la view */
+//		((Observable) productListModel).addObserver(productListView);
+
 		productListView.view();
 		
 	}

@@ -8,15 +8,20 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import com.floremipy.product.model.ProductLight;
+import com.floremipy.product.model.ProductLightTableModel;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 public class JsonUtils {
@@ -41,37 +46,39 @@ public class JsonUtils {
 	}
 
 	public ArrayList<ProductLight> listProductLightRequest(HttpURLConnection conn)
-			throws IOException, UnsupportedEncodingException {
+			throws IOException, UnsupportedEncodingException, JsonSyntaxException {
 		ArrayList<ProductLight> response;
 		String responseStr;
 		this.conn = conn;
 
 		// *************** Stub HttpURLConnection **************
-		MockitoAnnotations.initMocks(this);
-		this.conn = Mockito.mock(HttpURLConnection.class);
-		String jsonExpected = "[{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1},"
-				+ "{\"id\":2,\"category\":\"Fagacées\",\"description\":\"\",\"name\":\"Chêne\",\"quantityInStock\":10,\"alertLotMature\":0}]";
-		InputStream ProductLightJsonExpected = null;
-
-		ProductLightJsonExpected = new ByteArrayInputStream(jsonExpected.getBytes("UTF-8"));
-
-		Mockito.when(this.conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
-		Mockito.when(this.conn.getInputStream()).thenReturn(ProductLightJsonExpected);
-		
+//		MockitoAnnotations.initMocks(this);
+//		this.conn = Mockito.mock(HttpURLConnection.class);
+//		String jsonExpected = "[{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1},"
+//				+ "{\"id\":2,\"category\":\"Fagacées\",\"description\":\"\",\"name\":\"Chêne\",\"quantityInStock\":10,\"alertLotMature\":0}]";
+//		InputStream ProductLightJsonExpected = null;
+//
+//		ProductLightJsonExpected = new ByteArrayInputStream(jsonExpected.getBytes("UTF-8"));
+//
+//		Mockito.when(this.conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+//		Mockito.when(this.conn.getInputStream()).thenReturn(ProductLightJsonExpected);
+//		
 		// *************** Fin du Stub **************
-
+		
 		this.conn.connect();
 
 		// expect HTTP 200 OK, so we don't mistakenly save error report
 		// instead of the file
 		if (this.conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
 
-			return null; // "Server returned HTTP " +
-							// connection.getResponseCode() + " " +
-							// connection.getResponseMessage();
+			return null; 
+			// "Server returned HTTP " +
+			// connection.getResponseCode() + " " +
+			// connection.getResponseMessage();
 		}
 
 		InputStream is = this.conn.getInputStream();
+
 		BufferedReader streamReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 		StringBuilder responseStrBuilder = new StringBuilder();
 
