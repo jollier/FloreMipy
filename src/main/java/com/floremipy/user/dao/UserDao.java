@@ -86,7 +86,13 @@ public class UserDao implements Serializable, IUserDao{
 		Query query = em.createQuery(requete, UserDto.class);;
 		query.setParameter("username", userName);
 		query.setParameter("password", password);
-		return (UserDto)query.getSingleResult();
+		UserDto result = null;
+		try {
+			 result = (UserDto)query.getSingleResult();
+		} catch (Exception e) {
+			result = null;
+		}
+		return result;
 	}
 	
 	public UserDto createNewUser(UserDto newUserDto) {

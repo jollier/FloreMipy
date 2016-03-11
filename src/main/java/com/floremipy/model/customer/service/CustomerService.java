@@ -36,8 +36,9 @@ public class CustomerService implements ICustomerService {
 	
 	@Override
 	public CustomerDto getCustomerByLoginAndPassword(String login, String password){
-		UserDto userDto = userDao.findUserByUserNameAndPassword(login, password);
 		CustomerDto customerDto = null;
+		UserDto userDto = userDao.findUserByUserNameAndPassword(login, password);
+		
 		if ((userDto != null) && (userDto.getIdcustomer() > 0)){
 			customerDto = customerDao.findCustomerById(userDto.getIdcustomer());
 		}

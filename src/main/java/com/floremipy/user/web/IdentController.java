@@ -41,9 +41,16 @@ public class IdentController {
 			 //
 			 System.out.print("XXXXXXXXXXXXXXX" +login);
 			 System.out.print("yyyyyyyyyyyyyy" + pwd);
-		      // model.addAttribute("message", "Login ou mot de passe incorrect");
-		    CustomerDto monCus= monService.getCustomerByLoginAndPassword(login, pwd);
-		// monCus.getId()
-		return new ModelAndView("index");
+		     // model.addAttribute("message", "Login ou mot de passe incorrect");
+		    CustomerDto monCus = monService.getCustomerByLoginAndPassword(login, pwd);
+		    
+		    // monCus.getId()
+		    if (monCus!=null) {
+		    	return new ModelAndView("index");
+		    	
+		    } else {
+
+		    	return new ModelAndView("identification");
+		    }
 		}
 }
