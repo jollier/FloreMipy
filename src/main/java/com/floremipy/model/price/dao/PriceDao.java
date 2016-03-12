@@ -90,7 +90,7 @@ public class PriceDao implements IPriceDao{
 	}
 	
 	@Override
-	public void updatePrice(PriceDto priceDto) {
+	public void updatePrice(PriceDto priceDto) { 
 		em.getTransaction().begin();
 		Price price = em.find(Price.class, priceDto.getId());
 		price.setDate(priceDto.getDate());

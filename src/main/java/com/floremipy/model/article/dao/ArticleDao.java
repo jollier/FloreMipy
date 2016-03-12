@@ -126,17 +126,16 @@ public class ArticleDao implements IArticleDao{
 		em.getTransaction().commit();
 	}
 	
-	public void updateArticle(ArticleDto articleDto) {
+	public void updateArticle(ArticleDto articleDto) { 
+		em.getTransaction().begin();
+		em.flush();
 		Article article = em.find(Article.class, articleDto.getId());
 		article.setCategory(articleDto.getCategory());
 		article.setDescription(articleDto.getDescription());
 		article.setImgsrc(articleDto.getImgsrc());
 		article.setName(articleDto.getName());
-		em.getTransaction().begin();
-		em.merge(article);
-		em.persist(article);
+		article.setQuantityInStock(articleDto.getQuantityInStock());
 		em.getTransaction().commit();
 	}
-	
 		
 }
