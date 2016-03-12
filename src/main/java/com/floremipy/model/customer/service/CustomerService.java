@@ -1,3 +1,4 @@
+
 package com.floremipy.model.customer.service;
 
 import java.util.List;
@@ -45,7 +46,6 @@ public class CustomerService implements ICustomerService {
 
 	@Override
 	public List<CustomerDto> findAllCustomers() {
-		// TODO Auto-generated method stub
 		return customerDao.findAllCustomers();
 	}
 
