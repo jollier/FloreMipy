@@ -14,6 +14,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.floremipy.model.article.dao.ArticleDao;
+import com.floremipy.model.article.dao.IArticleDao;
+import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.user.dao.IUserDao;
 import com.floremipy.user.dao.UserDao;
 import com.floremipy.user.dto.UserDto;
@@ -136,6 +139,34 @@ public class FloreTest {
 		UserDto newUser = userDao.createNewUser(userDto);
 		System.out.println("result test testCreateNewUser : " +newUser.toString());
 		assertTrue(newUser.getId() != 0L);
+	}
+	
+	@Test
+	public void testUpdateUser(){
+		IUserDao userDao = new UserDao();
+		String name = "";
+		String usertype = "user";
+		name = "testUserUpdate" ;		
+		UserDto userDto = new UserDto(null,name, name, usertype, 2);
+		UserDto newUserDto = userDao.createNewUser(userDto);
+		name = name + "Update";		
+		newUserDto.setUsername(name);
+		userDao.updateUser(newUserDto);		
+		UserDto verifyUser = userDao.findUserByUserName(name);
+		assertEquals(verifyUser.getUsername(),name);
+				
+	}
+	
+	@Test
+	public void testDeleteUser(){
+		IUserDao userDao = new UserDao();
+		String name = "";
+		name = "testUserDelete" ;
+		UserDto userDto = new UserDto(null,name, name, name,   1);
+		UserDto newUserDto = userDao.createNewUser(userDto);
+		System.out.println("result test testDeleteNewUser : " + newUserDto.toString());
+		userDao.deleteUser(newUserDto);		
+		assertTrue(userDao.findUserByUserName(name) == null);
 	}
 
 
