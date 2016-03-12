@@ -1,6 +1,7 @@
 package com.floremipy.model.article.webservice;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.service.IArticleService;
+import com.floremipy.model.articleinprogress.service.IArticleInProgressService;
 
 
 
@@ -19,6 +21,8 @@ public class ModelWebService {
 
 	@Autowired
 	IArticleService articleService;
+	@Autowired
+	IArticleInProgressService articleInProgressService;
 	//private final AtomicLong counter = new AtomicLong();
 	private List<ProductLight> list;
 
@@ -31,7 +35,7 @@ public class ModelWebService {
 
 	@ResponseBody @RequestMapping(value = "/Product/list")
 	public List<ProductLight> articlelist() {
-
+		Date today = new Date();
 		List<ArticleDto> result = articleService.findAll();
 		list = new ArrayList<ProductLight>();
 		for (ArticleDto articleDto : result) {
@@ -41,7 +45,14 @@ public class ModelWebService {
 			pl.setName(articleDto.getName());
 			pl.setCategory(articleDto.getCategory());
 			pl.setQuantityInStock(articleDto.getQuantityInStock());
-			pl.setAlertLotMature(0);
+			
+			boolean lotMature = articleInProgressService.findArticleInProgressByArticleId(articleDto.getId()).get(0).getReleaseDate().before(today);
+			if (lotMature) {
+				pl.setAlertLotMature(1);
+			}else{
+				pl.setAlertLotMature(0);
+			}
+				
 			list.add(pl);
 		}
 
