@@ -3,28 +3,27 @@ package com.floremipy.model.article;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.floremipy.model.Adress;
-import com.floremipy.model.Customer;
 import com.floremipy.model.Version;
-import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dao.ArticleDao;
+import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.article.dto.ArticleLightDto;
-import com.floremipy.model.customer.dao.ModelCustomerDao;
-import com.floremipy.user.dao.IUserDao;
-import com.floremipy.user.dao.UserDao;
-import com.floremipy.user.dto.UserDto;
+import com.floremipy.model.article.dto.ArticleDtoARED;
+import com.floremipy.model.price.dao.IPriceDao;
+import com.floremipy.model.price.dao.PriceDao;
+import com.floremipy.model.price.dto.PriceDto;
 
 public class FloreModelArticleTest {
 	
@@ -74,33 +73,12 @@ public class FloreModelArticleTest {
 	}
 	
 	@Test
-	public void testFindAllArticlesLightByCategory() {
+	public void testFindAllArticlesByCategory() {
 		String category = "Arbres";
 		IArticleDao modelDao = new ArticleDao();
-		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLightByCategory(category);
-		System.out.println("result test FindAllArticlesLightByCategory(Arbres) : " +resultArticle.toString());
+		List<ArticleDto> resultArticle = modelDao.findAllArticlesByCategory(category);
+		System.out.println("result test FindAllArticlesByCategory(Arbres) : " +resultArticle.toString());
 		assertTrue(resultArticle.size() > 0);
-	}
-	
-	@Test
-	public void testFindAllArticlesLight() {
-
-		IArticleDao modelDao = new ArticleDao();
-
-		List<ArticleLightDto> resultArticle = modelDao.findAllArticlesLight();
-		for(ArticleLightDto a : resultArticle){
-			System.out.println("result test FindAllArticlesLight : " +a);
-		}	
-		assertTrue(resultArticle.size() > 0);
-	}
-	
-	@Test
-	public void testFindArticleLightById() {
-		int id = 1;
-		IArticleDao modelDao = new ArticleDao();
-		ArticleLightDto resultArticle = modelDao.findArticleLightById(id);
-		System.out.println("result test FindArticleLightById : " +resultArticle.toString());
-		assertEquals(id,resultArticle.getId());
 	}
 	
 	@Test
@@ -114,9 +92,11 @@ public class FloreModelArticleTest {
 			name = "testCreateArticle" + i;
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
-
-		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
-
+//		LocalDate localDate = LocalDate.now();
+//		Date date = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+// int id, String category, String description, String imgsrc, String name, int quantityInStock
+		ArticleDto articleDto = new ArticleDto(0,name, name, name, name, 1);
+		
 		ArticleDto newArticle = articleDao.createArticle(articleDto);
 		System.out.println("result test testCreateArticle : " +newArticle.toString());
 		assertTrue(newArticle.getId() != 0L);
@@ -133,11 +113,13 @@ public class FloreModelArticleTest {
 			name = "testDeleteArticle" + i;
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
-		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
-		ArticleDto newArticleDto = articleDao.createArticle(articleDto);
+		ArticleDto articleDto = new ArticleDto(
+				0,"category", "description", "imgsrc", name, 1
+		);
 		
-		int id = newArticleDto.getId();
-		articleDao.deleteArticle(newArticleDto);
+		ArticleDto newArticle = articleDao.createArticle(articleDto);
+		int id = newArticle.getId();
+		articleDao.deleteArticle(newArticle);
 		assertTrue(articleDao.findArticleById(id) == null);
 	}
 	
@@ -153,7 +135,9 @@ public class FloreModelArticleTest {
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
 
-		ArticleDto articleDto = new ArticleDto(0,name, name, name, name,  1);
+		ArticleDto articleDto = new ArticleDto(
+				0,"category", "description", "imgsrc", name, 1
+		);
 		ArticleDto newArticleDto = articleDao.createArticle(articleDto);
 		name = name+"Update";
 		newArticleDto.setDescription(name);
@@ -162,10 +146,7 @@ public class FloreModelArticleTest {
 		ArticleDto verifyArticle = articleDao.findArticleByName(name);
 		assertEquals(verifyArticle.getDescription(),name);
 		
-		
 	}
-	
-	
 	
 
 	@AfterClass
