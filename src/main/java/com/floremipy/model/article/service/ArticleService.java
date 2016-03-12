@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.price.article.dto.ArticleLightDto;
+//import com.floremipy.model.price.article.dto.ArticleLightDto;
 
 @Service
 public class ArticleService implements IArticleService {
@@ -15,7 +15,7 @@ public class ArticleService implements IArticleService {
 	@Autowired
 	IArticleDao articleDao;
 
-	@Override
+	/*@Override
 	public List<ArticleLightDto> findAllDto() {
 		
 		return articleDao.findAllArticlesLight();
@@ -32,7 +32,7 @@ public class ArticleService implements IArticleService {
 	public List<ArticleLightDto> findAllArticlesLightByCategory(String cat){
 		return articleDao.findAllArticlesLightByCategory(cat);
 	}
-	
+	*/
 		
 	@Override
 	public void updateArticle(ArticleDto articleDto) {
