@@ -70,7 +70,7 @@ public class ArticleInProgressDao implements IArticleInProgressDao {
 	}
 	
 	@Override
-	public void createArticleInProgressForArticleId(ArticleInProgressDto articleInProgressDto, int idArticle) {
+	public ArticleInProgressDto createArticleInProgressForArticleId(ArticleInProgressDto articleInProgressDto, int idArticle) {
 		Article article = em.find(Article.class, idArticle);
 		Articleinprogress articleInProgress = new Articleinprogress();
 		articleInProgress.setArticle(article);
@@ -80,6 +80,7 @@ public class ArticleInProgressDao implements IArticleInProgressDao {
 		em.getTransaction().begin();
 		em.persist(articleInProgress);
 		em.getTransaction().commit();
+		return (ArticleInProgressDto)findArticleInProgressById(articleInProgress.getId());
 	}
 	
 	@Override

@@ -10,7 +10,7 @@ public interface IArticleInProgressDao {
 	
 	ArticleInProgressDto findArticleInProgressById(int id);
 	
-	void createArticleInProgressForArticleId(ArticleInProgressDto articleInProgressDto, int idArticle);
+	ArticleInProgressDto createArticleInProgressForArticleId(ArticleInProgressDto articleInProgressDto, int idArticle);
 	
 	void updateArticleInProgress(ArticleInProgressDto articleInProgressDto);
 	

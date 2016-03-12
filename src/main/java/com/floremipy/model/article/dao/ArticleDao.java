@@ -114,10 +114,6 @@ public class ArticleDao implements IArticleDao{
 		article.setQuantityInStock(newArticle.getQuantityInStock());
 		article.setDescription(newArticle.getDescription());
 		article.setCategory(newArticle.getCategory());
-		
-//		LocalDate localDate = LocalDate.now();
-//		Date date = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-		
 		em.persist(article);
 		em.getTransaction().commit();
 		return (ArticleDto)findArticleByName(newArticle.getName());
@@ -138,8 +134,7 @@ public class ArticleDao implements IArticleDao{
 		article.setName(articleDto.getName());
 		em.getTransaction().begin();
 		em.merge(article);
-//		em.persist(article);
-		em.flush();
+		em.persist(article);
 		em.getTransaction().commit();
 	}
 	

@@ -3,14 +3,12 @@ package com.floremipy.model.article;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -20,10 +18,6 @@ import com.floremipy.model.Version;
 import com.floremipy.model.article.dao.ArticleDao;
 import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.article.dto.ArticleDtoARED;
-import com.floremipy.model.price.dao.IPriceDao;
-import com.floremipy.model.price.dao.PriceDao;
-import com.floremipy.model.price.dto.PriceDto;
 
 public class FloreModelArticleTest {
 	
@@ -86,15 +80,12 @@ public class FloreModelArticleTest {
 		IArticleDao articleDao = new ArticleDao();
 		int i = 0;
 		String name = "";
-		ArticleDto articleExists = null;
+		ArticleDto articleExists = null; 
 		do {
 			i++;
 			name = "testCreateArticle" + i;
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
-//		LocalDate localDate = LocalDate.now();
-//		Date date = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-// int id, String category, String description, String imgsrc, String name, int quantityInStock
 		ArticleDto articleDto = new ArticleDto(0,name, name, name, name, 1);
 		
 		ArticleDto newArticle = articleDao.createArticle(articleDto);
@@ -123,7 +114,7 @@ public class FloreModelArticleTest {
 		assertTrue(articleDao.findArticleById(id) == null);
 	}
 	
-	
+	@Test
 	public void testUpdateArticle() {
 		IArticleDao articleDao = new ArticleDao();
 		int i = 0;
@@ -140,11 +131,11 @@ public class FloreModelArticleTest {
 		);
 		ArticleDto newArticleDto = articleDao.createArticle(articleDto);
 		name = name+"Update";
-		newArticleDto.setDescription(name);
+		newArticleDto.setName(name);
 		articleDao.updateArticle(newArticleDto);
 		
 		ArticleDto verifyArticle = articleDao.findArticleByName(name);
-		assertEquals(verifyArticle.getDescription(),name);
+		assertEquals(verifyArticle.getName(),name);
 		
 	}
 	

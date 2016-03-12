@@ -75,7 +75,7 @@ public class PriceDao implements IPriceDao{
 	}
 	
 	@Override
-	public void createPriceForArticleId(PriceDto priceDto, int idArticle) {
+	public PriceDto createPriceForArticleId(PriceDto priceDto, int idArticle) {
 		Article article = em.find(Article.class, idArticle);
 		Price price = new Price();
 		price.setDate(priceDto.getDate());
@@ -84,14 +84,17 @@ public class PriceDao implements IPriceDao{
 		em.getTransaction().begin();
 		em.persist(price);
 		em.getTransaction().commit();
+		List<PriceDto> liste = findPriceByArticleId(idArticle);
+		PriceDto result = liste.get(liste.size()-1);
+		return result;
 	}
 	
 	@Override
 	public void updatePrice(PriceDto priceDto) {
-		Price price = em.find(Price.class, priceDto.getId());
 		em.getTransaction().begin();
-		em.merge(price);
-		em.persist(price);
+		Price price = em.find(Price.class, priceDto.getId());
+		price.setDate(priceDto.getDate());
+		price.setValue(priceDto.getValue());
 		em.getTransaction().commit();
 	}
 	

@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.article.dto.ArticleLightDto;
 import com.floremipy.model.article.service.ArticleService;
 import com.floremipy.model.article.service.IArticleService;
+import com.floremipy.model.price.article.dto.ArticleLightDto;
  
 @Controller
 public class FicheArticleController {

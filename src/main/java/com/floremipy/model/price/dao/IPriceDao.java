@@ -6,7 +6,7 @@ import com.floremipy.model.price.dto.PriceDto;
 
 public interface IPriceDao {
 
-	void createPriceForArticleId(PriceDto priceDto, int idArticle);
+	PriceDto createPriceForArticleId(PriceDto priceDto, int idArticle);
 
 	List<PriceDto> findPriceByArticleId(int id);
 	PriceDto findPriceById(int id);

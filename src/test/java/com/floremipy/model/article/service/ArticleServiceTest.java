@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 
 import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.article.dto.ArticleLightDto;
+import com.floremipy.model.price.article.dto.ArticleLightDto;
 
 public class ArticleServiceTest {
 

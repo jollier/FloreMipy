@@ -16,6 +16,9 @@ public class PriceDto {
 
 	private BigDecimal value;
 	
+	public PriceDto() {
+		
+	}
 
 	public PriceDto(int id, int idArticle, Date date, BigDecimal value) {
 		super();
