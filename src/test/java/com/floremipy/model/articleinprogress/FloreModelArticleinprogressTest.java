@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -41,7 +42,7 @@ public class FloreModelArticleinprogressTest {
 			System.out.println("********************************");
 			System.out.println("**Version de la BDD floremipi incorrecte**");
 			System.out.println("********************************");
-			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiInit.sql");
+			System.out.println("Veuillez l'importer depuis sql/FloreMipi.sql");
 
 			System.exit(1);
 		}
@@ -64,12 +65,12 @@ public class FloreModelArticleinprogressTest {
 	}
 
 	@Test
-	public void testFindArticleInProgressByArticleId() {
+	public void testFindArticleInProgressByArticleId() { 
 		int idArticle = 1;
 		IArticleInProgressDao articleInProgressDao = new ArticleInProgressDao();
-		ArticleInProgressDto articleInProgressDto = articleInProgressDao.findArticleInProgressById(idArticle);
-		System.out.println("result test CreateArticleInProgressForArticleId : " +articleInProgressDto.toString());
-		assertEquals(articleInProgressDto.getIdArticle(), idArticle);
+		List<ArticleInProgressDto> liste = articleInProgressDao.findArticleInProgressByArticleId(idArticle);
+		System.out.println("result test FindArticleInProgressByArticleId : " +liste.toString());
+		assertTrue(liste.size() > 0);
 	}
 
 	@Test
@@ -77,7 +78,7 @@ public class FloreModelArticleinprogressTest {
 		int id = 1;
 		IArticleInProgressDao articleInProgressDao = new ArticleInProgressDao();
 		ArticleInProgressDto articleInProgressDto = articleInProgressDao.findArticleInProgressById(id);
-		System.out.println("result test CreateArticleInProgressForArticleId : " +articleInProgressDto.toString());
+		System.out.println("result test FindArticleInProgressById : " +articleInProgressDto.toString());
 		assertEquals(articleInProgressDto.getId(), id);
 	}
 

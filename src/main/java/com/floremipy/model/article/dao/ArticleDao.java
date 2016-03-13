@@ -128,7 +128,7 @@ public class ArticleDao implements IArticleDao{
 	
 	public void updateArticle(ArticleDto articleDto) { 
 		em.getTransaction().begin();
-		em.flush();
+//		em.flush();
 		Article article = em.find(Article.class, articleDto.getId());
 		article.setCategory(articleDto.getCategory());
 		article.setDescription(articleDto.getDescription());
