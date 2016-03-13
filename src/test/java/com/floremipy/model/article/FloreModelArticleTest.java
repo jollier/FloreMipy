@@ -55,6 +55,7 @@ public class FloreModelArticleTest {
 			System.out.println("result test FindAllArticles : " +a);
 		}	
 		assertTrue(resultArticle.size() > 0);
+		
 	}
 	
 	@Test

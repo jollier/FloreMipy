@@ -14,9 +14,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.floremipy.model.article.dao.ArticleDao;
-import com.floremipy.model.article.dao.IArticleDao;
-import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.user.dao.IUserDao;
 import com.floremipy.user.dao.UserDao;
 import com.floremipy.user.dto.UserDto;
