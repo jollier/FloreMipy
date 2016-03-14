@@ -12,5 +12,5 @@ public interface ICustomerService {
 	
 	CustomerDto getCustomerByLoginAndPassword(String login, String password);
 	
-	List<CustomerDto> findAllCustomers();
+	List<CustomerDto> findAllCustomers();  
 }

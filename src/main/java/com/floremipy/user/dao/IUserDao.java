@@ -18,7 +18,8 @@ public interface IUserDao {
 	UserDto createNewUser(UserDto newUserDto);
 	
 	void updateUser (UserDto userDto);
-
+	
 	void deleteUser(UserDto userDto);
+
 
 }

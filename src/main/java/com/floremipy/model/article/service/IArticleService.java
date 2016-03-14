@@ -4,26 +4,28 @@ import java.util.List;
 
 import com.floremipy.model.Article;
 import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.article.dto.ArticleLightDto;
+//import com.floremipy.model.price.article.dto.ArticleLightDto;
 
 
 public interface IArticleService {
 
-	void updateArticle(ArticleDto articleDto);
+	//List<ArticleLightDto> findAllArticlesLightByCategory(String cat);
 
-	boolean delArticle(ArticleLightDto art);
+	//ArticleLightDto findArticleLightById(int id);
 
-	List<ArticleLightDto> findAllArticlesLightByCategory(String cat);
-
-	ArticleLightDto findArticleLightById(int id);
-
-	List<ArticleLightDto> findAllDto();
+	//List<ArticleLightDto> findAllDto();
 	
 	List<ArticleDto> findAll();
 	
 	ArticleDto findArticleById(int id);
 	
+	ArticleDto findArticleByName(String name);
+
 	ArticleDto createArticle(ArticleDto newArticle);
+	
+	void deleteArticle(ArticleDto articleDto);
+	
+	void updateArticle(ArticleDto articleDto);
 
 
 }

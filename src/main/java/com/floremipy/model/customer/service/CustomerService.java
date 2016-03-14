@@ -1,3 +1,4 @@
+
 package com.floremipy.model.customer.service;
 
 import java.util.List;
@@ -36,8 +37,9 @@ public class CustomerService implements ICustomerService {
 	
 	@Override
 	public CustomerDto getCustomerByLoginAndPassword(String login, String password){
-		UserDto userDto = userDao.findUserByUserNameAndPassword(login, password);
 		CustomerDto customerDto = null;
+		UserDto userDto = userDao.findUserByUserNameAndPassword(login, password);
+		
 		if ((userDto != null) && (userDto.getIdcustomer() > 0)){
 			customerDto = customerDao.findCustomerById(userDto.getIdcustomer());
 		}
@@ -46,7 +48,6 @@ public class CustomerService implements ICustomerService {
 
 	@Override
 	public List<CustomerDto> findAllCustomers() {
-		// TODO Auto-generated method stub
 		return customerDao.findAllCustomers();
 	}
 

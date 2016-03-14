@@ -118,9 +118,9 @@
                                 <!-- <img src="http://placehold.it/320x150" alt=""> -->
                                 <img src="${art.imgsrc}" alt="">
                                 
-                                <url value="/ficheArticle/${art.id}" var="articleUrl" />
+                                <url value="/FloreMipy/ficheArticle/${art.id}" var="articleUrl" />
                                 <div class="caption">
-                                    <h4><a href='{articleUrl}'><c:out value="${art.name}" /></a></h4>
+                                    <h4><a href="/FloreMipy/ficheArticle/${art.id}"><c:out value="${art.name}" /></a></h4>
                                     <p><c:out value="${art.description}" /></p>
                                 </div>
                             </div>

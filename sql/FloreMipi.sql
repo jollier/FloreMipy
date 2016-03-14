@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS `adress` (
   `ZipCode` varchar(200) DEFAULT NULL,
   `City` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.adress : ~12 rows (environ)
+-- Export de données de la table floremipi.adress : ~30 rows (environ)
 DELETE FROM `adress`;
 /*!40000 ALTER TABLE `adress` DISABLE KEYS */;
 INSERT INTO `adress` (`Id`, `Location`, `ZipCode`, `City`) VALUES
@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS `article` (
   `Imgsrc` varchar(300) DEFAULT NULL,
   `QuantityInStock` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.article : ~19 rows (environ)
+-- Export de données de la table floremipi.article : ~21 rows (environ)
 DELETE FROM `article`;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 INSERT INTO `article` (`Id`, `Name`, `Description`, `Category`, `Imgsrc`, `QuantityInStock`) VALUES
@@ -77,11 +77,13 @@ CREATE TABLE IF NOT EXISTS `articleinprogress` (
   PRIMARY KEY (`Id`),
   KEY `IdArticle` (`IdArticle`),
   CONSTRAINT `articleinprogress_ibfk_1` FOREIGN KEY (`IdArticle`) REFERENCES `article` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.articleinprogress : ~0 rows (environ)
+-- Export de données de la table floremipi.articleinprogress : ~5 rows (environ)
 DELETE FROM `articleinprogress`;
 /*!40000 ALTER TABLE `articleinprogress` DISABLE KEYS */;
+INSERT INTO `articleinprogress` (`Id`, `Quantity`, `StartDate`, `ReleaseDate`, `IdArticle`) VALUES
+	(1, 5, '2016-03-10', '2016-03-10', 1);
 /*!40000 ALTER TABLE `articleinprogress` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipi. customer
@@ -95,9 +97,9 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`Id`),
   KEY `IdAdress` (`IdAdress`),
   CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`IdAdress`) REFERENCES `adress` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.customer : ~12 rows (environ)
+-- Export de données de la table floremipi.customer : ~20 rows (environ)
 DELETE FROM `customer`;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`Id`, `Name`, `FirstName`, `Phone`, `Email`, `IdAdress`) VALUES
@@ -265,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `price` (
   CONSTRAINT `price_ibfk_1` FOREIGN KEY (`IdArticle`) REFERENCES `article` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.price : ~11 rows (environ)
+-- Export de données de la table floremipi.price : ~19 rows (environ)
 DELETE FROM `price`;
 /*!40000 ALTER TABLE `price` DISABLE KEYS */;
 INSERT INTO `price` (`Id`, `IdArticle`, `Value`, `Date`) VALUES

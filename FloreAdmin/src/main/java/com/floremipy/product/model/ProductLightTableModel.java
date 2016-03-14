@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-public class ProductLightModel extends AbstractTableModel {
+public class ProductLightTableModel extends AbstractTableModel {
 
 	int PRODUCTLIGHTCOLUMNCOUNT = 4;
+	final public String[] names = {"Nom", "Catégorie", "Stock", "Alert Lot mature"};
+	
 	ArrayList<ProductLight> listProduct;
 	
-	public ProductLightModel(ArrayList<ProductLight> listProduct) {
+	public ProductLightTableModel(ArrayList<ProductLight> listProduct) {
 		super();
 		this.listProduct = listProduct;
 	}
@@ -48,4 +50,6 @@ public class ProductLightModel extends AbstractTableModel {
         
 	}
 
+	public String getColumnName(int column) {return names[column];}
+	public Class getColumnClass(int col) {return getValueAt(0,col) .getClass() ;}
 }
