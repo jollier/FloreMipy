@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.service.IArticleService;
+import com.floremipy.model.articleinprogress.dto.ArticleInProgressDto;
 import com.floremipy.model.articleinprogress.service.IArticleInProgressService;
 
 
@@ -35,18 +36,19 @@ public class ModelWebService {
 
 	@ResponseBody @RequestMapping(value = "/Product/list")
 	public List<ProductLight> articlelist() {
-		Date today = new Date();
+		
 		List<ArticleDto> result = articleService.findAll();
 		list = new ArrayList<ProductLight>();
 		for (ArticleDto articleDto : result) {
 
 			ProductLight pl = new ProductLight();
 			pl.setId(articleDto.getId());
+			System.out.println(articleDto.getId());
 			pl.setName(articleDto.getName());
 			pl.setCategory(articleDto.getCategory());
 			pl.setQuantityInStock(articleDto.getQuantityInStock());
 			
-			boolean lotMature = articleInProgressService.findArticleInProgressByArticleId(articleDto.getId()).get(0).getReleaseDate().before(today);
+			boolean lotMature = articleMature(articleDto.getId());
 			if (lotMature) {
 				pl.setAlertLotMature(1);
 			}else{
@@ -57,5 +59,19 @@ public class ModelWebService {
 		}
 
 		return list;
+	}
+	
+	private boolean articleMature(int id){
+		Date today = new Date();
+		List<ArticleInProgressDto> result = articleInProgressService.findArticleInProgressByArticleId(id);
+		boolean mature=false;
+		for (ArticleInProgressDto article : result){
+			
+			mature = article.getReleaseDate().before(today)?true:false;
+			System.out.println("article id : "+id+" date maturité : "+article.getReleaseDate().toString()+" Maturite : "+mature+" today is :"+today);
+			if (mature==true) {return mature;}
+		}
+		return mature;
+		
 	}
 }

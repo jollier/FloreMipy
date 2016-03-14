@@ -85,7 +85,7 @@
 						<img class="img-responsive" src="http://placehold.it/800x300"
 							alt="">
 						<div class="caption-full">
-							<h3 class="pull-right">${article.value} TTC</h3>
+							<h3 class="pull-right"> TTC</h3>
 							<p>
 							<h3>
 								<a href="#">${article.name}</a>
