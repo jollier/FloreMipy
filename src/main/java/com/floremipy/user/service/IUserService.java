@@ -9,11 +9,13 @@ public interface IUserService {
 	
 	public List<User> getAll();
 	
-	public User getUser();
+	public UserDto getUserByName(String name);
 	
 	public User getUserById();
 	
 	public boolean delUser(User user);
 	
-	public UserDto save(UserDto userDto);
+	public void save(UserDto userDto);
+	
+	public UserDto create(UserDto userDto);
 }

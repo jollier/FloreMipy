@@ -6,9 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.floremipy.model.Adress;
 import com.floremipy.model.Customer;
+import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.model.customer.service.ICustomerService;
 import com.floremipy.user.dto.UserDto;
 import com.floremipy.user.service.IUserService;
@@ -33,7 +35,7 @@ public class ProfilController {
 	}
 
 	@RequestMapping(value = "/profil", method = RequestMethod.POST)
-	public String profilPOST(@ModelAttribute("profil") Profil profil, Model model){
+	public ModelAndView profilPOST(@ModelAttribute("profil") Profil profil, Model model){
 		/*
 		 *- crétaion d'un objet profil  (cf la clase à la fin de cette page).
 		 * - passage de cet objet à une variable de profil.jsp appellée profil: @ModelAttribute("profil")
@@ -41,11 +43,36 @@ public class ProfilController {
 		 * 
 		 */
 		profil.getName();
+		System.out.println("email : " + profil.getEmail() + " login : " + profil.getLogin());
 		
-		Customer newCustomer = new Customer();
+		// *********************************************************
+		// *** Controle que les saisies n'existent pas déjà      ***
+		//**********************************************************
+		
+		//Verification que l'email n'existe pas déjà dans un customer
+		CustomerDto customerDtoCtrl = null;
+		customerDtoCtrl = customerService.getCustomerByEmail(profil.getEmail());
+		
+		if (customerDtoCtrl != null) {
+			model.addAttribute("message", "Compte déjà existant avec ce user !");
+	    	return new ModelAndView("profil");
+		}
+		
+		//Verification que le name n'existe pas déjà dans un user
+		UserDto userDtoCtrl = null;
+		userDtoCtrl = userService.getUserByName(profil.getName());
+		if (userDtoCtrl != null) {
+			model.addAttribute("message", "Compte déjà existant avec cet email !");
+	    	return new ModelAndView("profil");
+		}
+		
+		// *********************************************************
+		// ***           Passage à l'enregistrement              ***
+		// *********************************************************
+		CustomerDto newCustomer = new CustomerDto();
 		
 		newCustomer.setEmail(profil.getEmail());
-		newCustomer.setFirstName(profil.getFirstName());
+		newCustomer.setFirstname(profil.getFirstName());
 		newCustomer.setName(profil.getName());
 		newCustomer.setPhone(profil.getTel1());
 		
@@ -60,19 +87,24 @@ public class ProfilController {
 		
 		newUserDto.setUsername(profil.getLogin());
 		newUserDto.setPassword(profil.getPassword());
-
-		System.out.println("email : " + profil.getEmail() + " login : " + profil.getLogin());
+		newUserDto.setUsertype("user");
+		
 		try {
-			// Sauvegarde
-			userService.save(newUserDto);
-			customerService.save(newCustomer);
+			// 1. Sauvegarde du user
+			UserDto userDtoSave = userService.create(newUserDto);
+			// 2. Sauvegarde du customer
+			CustomerDto customerDtoSave = customerService.save(newCustomer);
+			// 3. Mise à jour de l'id customer
+			userDtoSave.setIdcustomer(customerDtoSave.getId());
+			// 4. Enregistrement de ce nouveau UserDto avec l'id du customer
+			userService.save(userDtoSave);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		
-		return "/accueil";
+		return new ModelAndView("/accueil");
 		
 	}
 

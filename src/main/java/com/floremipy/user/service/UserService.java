@@ -21,10 +21,9 @@ public class UserService implements IUserService{
 		return null;
 	}
 
-	public User getUser() {
+	public UserDto getUserByName(String name) {
 		//Changer le return dès que le Dao sera OK
-		//userDao.findOne()
-		return null;
+		return userDao.findUserByUserName(name);
 	}
 
 	public User getUserById() {
@@ -39,9 +38,12 @@ public class UserService implements IUserService{
 		return false;
 	}
 
-	public UserDto save(UserDto userDto) {
-		return userDao.createNewUser(userDto);
+	public void save(UserDto userDto) {
+		userDao.updateUser(userDto);
 	}
 	
+	public UserDto create(UserDto userDto) {
+		return userDao.createNewUser(userDto);
+	}
 	
 }
