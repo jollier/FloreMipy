@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.floremipy.model.Adress;
 import com.floremipy.model.Customer;
 import com.floremipy.model.customer.service.ICustomerService;
+import com.floremipy.user.dto.UserDto;
 
 
 @Controller
@@ -70,7 +71,13 @@ public class ProfilController {
 
 		newCustomer.setAdress(adress);
 		
-		customerService.save(newCustomer);
+		UserDto newUserDto = new UserDto();
+		
+		//newUserDto.setUsername(profil.getLogin());
+		//newUserDto.setPassword(profil.getPassword());
+		
+		
+		customerService.save(newCustomer, newUserDto);
 		
 		return "profil";
 		

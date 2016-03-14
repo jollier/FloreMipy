@@ -2,10 +2,18 @@ package com.floremipy.user.service;
 
 import java.util.List;
 
-import com.floremipy.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.floremipy.user.User;
+import com.floremipy.user.dao.IUserDao;
+import com.floremipy.user.dto.UserDto;
+
+@Service
 public class UserService implements IUserService{
 
+	@Autowired
+	IUserDao userDao;
 
 	public List<User> getAll() {
 		//Changer le return dès que le Dao sera OK
@@ -31,8 +39,8 @@ public class UserService implements IUserService{
 		return false;
 	}
 
-	public void save(User user) {
-		// TODO Auto-generated method stub
+	public UserDto save(UserDto userDto) {
+		return userDao.createNewUser(userDto);
 	}
 	
 	

@@ -31,7 +31,8 @@ public class CustomerService implements ICustomerService {
 	}
 
 	@Override
-	public void save(Customer customer) {
+	public void save(Customer customer, UserDto userDto) {
+		userDao.createNewUser(userDto);
 		customerDao.CustomerDaoSave(customer);
 	}
 	
