@@ -3,6 +3,9 @@ package com.floremipy.user;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -140,10 +143,11 @@ public class FloreTest {
 	
 	@Test
 	public void testUpdateUser(){
+		LocalDateTime localDateTime = LocalDateTime.now();
+//		Date date = Date.from(localDateTime.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+		String name = "testupdateUser " + localDateTime.toString();
 		IUserDao userDao = new UserDao();
-		String name = "";
 		String usertype = "user";
-		name = "testUserUpdate" ;		
 		UserDto userDto = new UserDto(null,name, name, usertype, 2);
 		UserDto newUserDto = userDao.createNewUser(userDto);
 		name = name + "Update";		

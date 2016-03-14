@@ -3,6 +3,10 @@ package com.floremipy.model.article;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -117,15 +121,10 @@ public class FloreModelArticleTest {
 	
 	@Test
 	public void testUpdateArticle() {
+		LocalDateTime localDateTime = LocalDateTime.now();
 		IArticleDao articleDao = new ArticleDao();
 		int i = 0;
-		String name = "";
-		ArticleDto articleExists = null;
-		do {
-			i++;
-			name = "testUpdateArticle" + i;
-			articleExists = articleDao.findArticleByName(name);
-		} while (articleExists != null);
+		String name = "testupdate " + localDateTime.toString();
 
 		ArticleDto articleDto = new ArticleDto(
 				0,"category", "description", "imgsrc", name, 1
@@ -137,7 +136,6 @@ public class FloreModelArticleTest {
 		
 		ArticleDto verifyArticle = articleDao.findArticleByName(name);
 		assertEquals(verifyArticle.getName(),name);
-		
 	}
 	
 
