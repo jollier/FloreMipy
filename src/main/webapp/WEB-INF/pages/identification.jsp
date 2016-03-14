@@ -53,7 +53,7 @@
                          </form>
                      </div>
                      <div class="panel-footer">
-                         Non enregistré? <a href="">s'enregistrer maintenant</a>
+                         Non enregistré? <a href="profil">s'enregistrer maintenant</a>
                      </div>
                  </div>
              </div>
