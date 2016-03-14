@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ public class ProductListModel extends Observable implements IProductListModel{
 	
 	@Autowired
 	IProductWebService productWebService;
+	
 	
 	public ProductListModel(IProductWebService productWebService) {
 		super();
