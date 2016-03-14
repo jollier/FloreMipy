@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -31,12 +32,12 @@ public class ProductWebService implements IProductWebService {
 	 * com.floremipy.product.webservice.IProductWebService#getAllProductLight()
 	 */
 	@Override
-	public ArrayList<ProductLight> getAllProductLight() {
+	public ArrayList<ProductLight> getAllProductLight() throws IOException, MalformedURLException {
 		ArrayList<ProductLight> response = new ArrayList<ProductLight>();
 
 		// HttpURLConnection conn = null;
 		JsonUtils jsonUtils = new JsonUtils();
-		try {
+		
 
 			URL url = new URL(SITEURL + "Product/list");
 			HttpURLConnection conn;
@@ -45,10 +46,7 @@ public class ProductWebService implements IProductWebService {
 			conn.setReadTimeout(10000);
 			response = jsonUtils.listProductLightRequest(conn);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
+		
 
 		return response;
 	}

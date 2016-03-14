@@ -27,7 +27,9 @@ public class JsonUtilsTest {
 	private static final String SITEURL = "http://localhost:8080/FloreMipy/";
 
 	ArrayList<ProductLight> listProductExpected;
-
+	
+	InputStream ProductLightJsonExpected;
+	
 	URL url;
 	
 	@Mock
@@ -53,12 +55,10 @@ public class JsonUtilsTest {
 		String jsonExpected = "[{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1},"
 				+ "{\"id\":2,\"category\":\"Fagacées\",\"description\":\"\",\"name\":\"Chêne\",\"quantityInStock\":10,\"alertLotMature\":0}]";
 
-		InputStream ProductLightJsonExpected = null;
+		ProductLightJsonExpected = null;
 		try {
 			ProductLightJsonExpected = new ByteArrayInputStream(jsonExpected.getBytes("UTF-8"));
 
-			Mockito.when(conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
-			Mockito.when(conn.getInputStream()).thenReturn(ProductLightJsonExpected);
 
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -71,9 +71,12 @@ public class JsonUtilsTest {
 	}
 
 	@Test
-	public void listProductLightRequestTest() throws IOException {
+	public void listProductLightRequestOkTest() throws IOException {
 
 		ArrayList<ProductLight> listProduct;
+
+		Mockito.when(conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+		Mockito.when(conn.getInputStream()).thenReturn(ProductLightJsonExpected);
 
 		listProduct = jsonUtils.listProductLightRequest(conn);
 		
@@ -85,4 +88,18 @@ public class JsonUtilsTest {
 
 	}
 
+	@Test
+	public void listProductLightRequestConnectKOTest() throws IOException {
+
+		ArrayList<ProductLight> listProduct;
+
+		Mockito.when(conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_NOT_FOUND);
+		//Mockito.when(conn.getInputStream()).thenReturn(null);
+
+		listProduct = jsonUtils.listProductLightRequest(conn);
+		
+		assertNull(listProduct);
+		
+
+	}
 }

@@ -30,6 +30,8 @@ public class CustomerServiceTest {
 		UserDto userDto = new UserDto();
 		userDto.setUsername("TEST");
 		userDto.setIdcustomer(1);
+		userDto.setPassword("PASSWORD");
+		
 		
 		Mockito.when(customerDao.findCustomerById(1)).thenReturn(customerDto);
 		Mockito.when(userDao.findUserByUserNameAndPassword("TEST","PASSWORD")).thenReturn(userDto);
@@ -50,8 +52,8 @@ public class CustomerServiceTest {
 		// *****************************************************
 		// *** Pour vérifier le résultat du test            ****
 		// *****************************************************		
-		Assert.assertNull(customerDto1);
-		//Assert.assertEquals("DURAND", customerDto1.getName());
+//		Assert.assertNull(customerDto1);
+		Assert.assertEquals("DURAND", customerDto1.getName());
 		
 	}
 	

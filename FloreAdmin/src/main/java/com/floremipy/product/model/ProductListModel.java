@@ -1,11 +1,13 @@
 package com.floremipy.product.model;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Observable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.floremipy.product.webservice.IProductWebService;
 
@@ -30,7 +32,7 @@ public class ProductListModel extends Observable implements IProductListModel{
 	 * @see com.floremipy.product.model.IProductListModel#getListProduct()
 	 */
 	@Override
-	public ArrayList<ProductLight> getListProduct() {
+	public ArrayList<ProductLight> getListProduct() throws MalformedURLException, UnsupportedEncodingException, IOException {
 		listProduct = productWebService.getAllProductLight();
 		return listProduct;
 	}

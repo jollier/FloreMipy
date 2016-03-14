@@ -8,15 +8,20 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import com.floremipy.product.model.ProductLight;
+import com.floremipy.product.model.ProductLightTableModel;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 public class JsonUtils {
@@ -41,7 +46,7 @@ public class JsonUtils {
 	}
 
 	public ArrayList<ProductLight> listProductLightRequest(HttpURLConnection conn)
-			throws IOException, UnsupportedEncodingException {
+			throws IOException, UnsupportedEncodingException, JsonSyntaxException {
 		ArrayList<ProductLight> response;
 		String responseStr;
 		this.conn = conn;
@@ -59,7 +64,7 @@ public class JsonUtils {
 //		Mockito.when(this.conn.getInputStream()).thenReturn(ProductLightJsonExpected);
 //		
 		// *************** Fin du Stub **************
-
+		
 		this.conn.connect();
 
 		// expect HTTP 200 OK, so we don't mistakenly save error report
@@ -73,6 +78,7 @@ public class JsonUtils {
 		}
 
 		InputStream is = this.conn.getInputStream();
+
 		BufferedReader streamReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 		StringBuilder responseStrBuilder = new StringBuilder();
 
