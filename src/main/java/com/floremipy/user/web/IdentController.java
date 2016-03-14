@@ -42,7 +42,7 @@ public class IdentController {
 		    
 		    // monCus.getId()
 		    if (monCus!=null) {
-		    	return new ModelAndView("index");
+		    	return new ModelAndView("accueil");
 		    	
 		    } else {
 		    	model.addAttribute("message", "Login ou mot de passe incorrect");
