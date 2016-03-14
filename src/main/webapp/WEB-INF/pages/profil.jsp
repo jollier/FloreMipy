@@ -50,13 +50,13 @@
                 <div class="form-group">
                   <label for="input" class="col-lg-2 control-label">Entreprise</label>
                   <div class="col-lg-10">
-                  <form:input type="text" class="form-control" path="NomEntreprise" placeholder="Entreprise" />
+                  <form:input type="text" class="form-control" path="nomEntreprise" placeholder="Entreprise" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="input" class="col-lg-2 control-label">Raison Sociale</label>
                   <div class="col-lg-10">
-                  <<form:input type="text" class="form-control" path="RaisonSociale" placeholder="Raison Sociale" />
+                  <form:input type="text" class="form-control" path="raisonSociale" placeholder="Raison Sociale" />
                   </div>
                 </div>
                 <div class="form-group">
@@ -67,17 +67,11 @@
                 </div>
                 
                 <div class="form-group">
-                  <label for="input" class="col-lg-2 control-label">Forme Juridique</label>
-                  <div class="col-lg-4">
-                  </div>
-
                     <label for="select" class="col-lg-2 control-label">Forme Juridique</label>
                   <div class="col-lg-2 ">
                         <form:select class="form-control" path="juridique" >
-                            <form:option value = "France" label = "France"/>
-                            <form:option value= "Belgique" label = "France"/>
-                            <form:option value = "Angleterre" label = "France"/>
-                            <form:option value = "Luxembourg" label = "France"/>
+                            <form:option value = "SCI" label = "SCI"/>
+                            <form:option value= "SA" label = "SA"/>
                         </form:select>
                          
                     </div>
@@ -90,49 +84,45 @@
                 <div class="form-group">
                   <label for="input" class="col-lg-2 control-label">Nom</label>
                   <div class="col-lg-4">
-                   <form:input type="text" class="form-control" path="name" placeholder=""/>
+                   <form:input type="text" class="form-control" path="name" placeholder="" required="true"/>
                   </div>
                   <label for="input" class="col-lg-2 control-label">Prénom</label>
                   <div class="col-lg-4">
-                   <form:input type="text" class="form-control" path="firstName" placeholder="" />
+                   <form:input type="text" class="form-control" path="firstName" placeholder="" required="true"/>
                   </div>
                 </div>
                 
                 <div class="form-group">
-                  <label for="input" class="col-lg-2 control-label">Adresse</label>
+                  <label for="input" class="col-lg-2 control-label required">Adresse</label>
                   <div class="col-lg-10">
-                   <form:input type="text" class="form-control" path="adresse" placeholder="" />
+                   <form:input type="text" class="form-control required" path="adresse" placeholder="" required="true" />
                   </div>
                 </div>        
                 
                 <div class="form-group">
-                  <label for="input" class="col-lg-2 control-label">Code postal</label>
+                  <label for="input" class="col-lg-2 control-label required">Code postal</label>
                   <div class="col-lg-2">
-                  <form:input type="text" class="form-control" path="CP" />
+                  <form:input type="text" class="form-control required" path="CP" required="true"/>
                   </div>
                   
-                  <label for="input" class="col-lg-1 control-label">Ville</label>
+                  <label for="input" class="col-lg-1 control-label required">Ville</label>
                   <div class="col-lg-3">
-                   <form:input type="text" class="form-control" path="city" placeholder="" />
+                   <form:input type="text" class="form-control" path="city" placeholder=""  required="true"/>
                   </div>
         
                   <div class="col-lg-4 ">
-                  <!-- 
-                        <form:select class="form-control" path="Country" >
-                            <option>France</option>
-                            <option>Belgique</option>
-                            <option>Angleterre</option>
-                            <option>Luxembourg</option>
+                       <form:select class="form-control required" path="country" >
+                            <form:option value = "France" label = "France"/>
+                            <form:option value= "Belgique" label = "Belgique"/>
                         </form:select>
-                        -->
                     </div>
                           
                 </div>       
                  
                 <div class="form-group">
-                  <label for="input" class="col-lg-2 control-label">Telephone 1</label>
+                  <label for="input" class="col-lg-2 control-label required">Telephone 1</label>
                   <div class="col-lg-4">
-                   <form:input type="text" class="form-control" path="tel1" placeholder="" />
+                   <form:input type="text" class="form-control required" path="tel1" placeholder="" required="true"/>
                   </div>
                   <label for="input" class="col-lg-2 control-label">Telephone 2</label>
                   <div class="col-lg-4">
@@ -141,18 +131,18 @@
                 </div>
                 
                   <div class="form-group">
-          <label for="input" class="col-lg-2 control-label required">Login</label>
+          <label for="input" class="col-lg-2 control-label required required">Login</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="itel1" placeholder="" value="${login}" required>
+            <form:input type="text" class="form-control required" path="login" placeholder="" required="true"/>
           </div>
           <label for="input" class="col-lg-2 control-label required">Mot de passe</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="iTel2" placeholder="" value="${password}" required>
+               <form:input type="password" class="form-control required" path="password" placeholder="" required="true"/>
           </div>
         </div>
         
                 <div class="form-group">
-                  <label for="input" class="col-lg-2 control-label">Email</label>
+                  <label for="input" class="col-lg-2 control-label required">Email</label>
                   <div class="col-lg-10">
                    <form:input type="text" class="form-control" path="email" placeholder="Email"/>
                   </div>
