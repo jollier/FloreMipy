@@ -114,6 +114,7 @@ public class ArticleDao implements IArticleDao{
 		article.setQuantityInStock(newArticle.getQuantityInStock());
 		article.setDescription(newArticle.getDescription());
 		article.setCategory(newArticle.getCategory());
+		article.setImgsrc(newArticle.getImgsrc());
 		em.persist(article);
 		em.getTransaction().commit();
 		return (ArticleDto)findArticleByName(newArticle.getName());
