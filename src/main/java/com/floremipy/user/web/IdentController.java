@@ -27,9 +27,8 @@ public class IdentController {
 	
 	 @RequestMapping(value = "/identification", method = RequestMethod.GET)
 	public ModelAndView identification(Model model,HttpServletRequest request){
-//		 String login = request.getParameter("Email"); 
-//		 System.out.print("XXXXXXXXXXXXXXX" +login);
-//	     message
+
+		 model.addAttribute("message", "");
 		return new ModelAndView("identification");
 	}
 	 
@@ -38,10 +37,7 @@ public class IdentController {
 		public ModelAndView identification2(Model model,HttpServletRequest request){
 			 String login = request.getParameter("Email"); 
 			 String pwd = request.getParameter("Password"); 
-			 //
-			 System.out.print("XXXXXXXXXXXXXXX" +login);
-			 System.out.print("yyyyyyyyyyyyyy" + pwd);
-		     // 
+			
 		    CustomerDto monCus = monService.getCustomerByLoginAndPassword(login, pwd);
 		    
 		    // monCus.getId()
