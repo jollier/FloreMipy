@@ -27,10 +27,11 @@ public class FicheArticleController {
 	@RequestMapping(value = "/ficheArticle/{id}" , method = RequestMethod.GET)
    public String ficheArticle(Model model,@PathVariable("id") int id) {
 	   
-//	   ArticleLightDto articleLightDto = new ArticleLightDto();
-//	   articleLightDto = articleService.findArticleLightById(id);
-//	   System.out.println(articleLightDto.getName());
-//       model.addAttribute("article", articleLightDto);
+	   ArticleDto articleDto = new ArticleDto();
+	   articleDto = articleService.findArticleById(id);
+	   
+	   //System.out.println(articleDto.getName());
+       model.addAttribute("article", articleDto);
        return "ficheArticle";
    }
  
