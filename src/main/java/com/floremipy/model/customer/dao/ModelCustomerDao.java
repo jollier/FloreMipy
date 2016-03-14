@@ -44,10 +44,17 @@ public class ModelCustomerDao implements IModelCustomerDao {
 		return res.getName();
 	}
 	
-	public void CustomerDaoSave (Customer customer) {
+//	public void CustomerDaoSave (Customer customer) {
+//		em.getTransaction().begin();
+//		em.persist(customer);
+//		em.getTransaction().commit();
+//	}
+	
+	public Customer CustomerDaoSave (Customer customer) {
 		em.getTransaction().begin();
 		em.persist(customer);
 		em.getTransaction().commit();
+		return customer;
 	}
 	
 	public void CustomerDaoRemove (Customer customer) {
