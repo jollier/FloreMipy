@@ -3,10 +3,12 @@ package com.floremipy.model.articleinprogress.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.floremipy.model.articleinprogress.dao.IArticleInProgressDao;
 import com.floremipy.model.articleinprogress.dto.ArticleInProgressDto;
 
+@Service
 public class ArticleInProgressService implements IArticleInProgressService {
 
 	@Autowired
