@@ -28,12 +28,12 @@ public class ArticleService implements IArticleService {
 		return articleDao.findArticleLightById(id);
 	}
 	*/
-	
+
 	@Override
 	public List<ArticleDto> findAllArticlesByCategory(String cat){
 		return articleDao.findAllArticlesByCategory(cat);
 	}
-			
+
 	@Override
 	public void updateArticle(ArticleDto articleDto) {
 		articleDao.updateArticle(articleDto);

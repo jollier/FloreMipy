@@ -103,7 +103,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <c:forEach items="${artList}" var="art">                
                         <div class="col-sm-4 col-lg-4 col-md-4">
