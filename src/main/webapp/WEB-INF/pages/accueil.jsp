@@ -9,9 +9,9 @@
     
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/FloreMipy/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
+    <link href="/FloreMipy/css/shop-homepage.css" rel="stylesheet">
     
     <title>Flore Mipy</title>
 </head>
@@ -64,9 +64,11 @@
             <div class="col-md-2">
                 <p class="lead">Flore Mipy</p>
                 <div class="list-group">
-                    <a href="#?categorie=Arbres" class="list-group-item">Arbres</a>
-                    <a href="#?categorie=Arbustes" class="list-group-item">Arbustes</a>
-                    <a href="#?categorie=Fleurs" class="list-group-item">Fleurs</a>
+
+                    <a href="/FloreMipy/accueil?categorie=Arbres" class="list-group-item">Arbres</a>
+                    <a href="/FloreMipy/accueil?categorie=Arbustes" class="list-group-item">Arbustes</a>
+                    <a href="/FloreMipy/accueil?categorie=Fruit" class="list-group-item">Fruit</a>
+         
                 </div>
             </div>
 
@@ -83,13 +85,13 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="img/Bambou_1.jpg" alt="">
+                                    <img class="slide-image" src="/FloreMipy/img/Bambou_1.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="img/Buis_1.jpg" alt="">
+                                    <img class="slide-image" src="/FloreMipy/img/Buis_1.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="img/Arbuste_persistant_1.jpg" alt="">
+                                    <img class="slide-image" src="/FloreMipy/img/Arbuste_persistant_1.jpg" alt="">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -107,7 +109,7 @@
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
                                 <!-- <img src="http://placehold.it/320x150" alt=""> -->
-                                <img src="${art.imgsrc}" alt="">
+                                <img src="/FloreMipy/${art.imgsrc}" alt="">
                                 
                                 <url value="/FloreMipy/ficheArticle/${art.id}" var="articleUrl" />
                                 
