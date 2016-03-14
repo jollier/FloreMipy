@@ -12,6 +12,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.floremipy.model.articleinprogress.dao.IArticleInProgressDao;
+import com.floremipy.model.articleinprogress.dto.ArticleInProgressDto;
+import com.floremipy.model.articleinprogress.service.ArticleInProgressService;
 import com.floremipy.model.price.dao.IPriceDao;
 import com.floremipy.model.price.dto.PriceDto;
 
@@ -27,11 +30,9 @@ public class PriceServiceTest {
 		try {
 			d = sdf.parse("01/07/2016");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-				
+					
 		PriceDto price = new PriceDto();
 		price.setDate(d);
 		price.setIdArticle(1);
@@ -41,7 +42,6 @@ public class PriceServiceTest {
 		try {
 			d = sdf.parse("01/03/2016");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		price1.setDate(d);
@@ -52,21 +52,17 @@ public class PriceServiceTest {
 		try {
 			d = sdf.parse("01/01/2016");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		price2.setDate(d);
 		price2.setIdArticle(1);
 		price2.setValue(new BigDecimal(6));
 
-
 		List<PriceDto> list = new ArrayList<PriceDto>();
 		list.add(price);
 		list.add(price1);
 		list.add(price2);
-
-
-				
+	
 		Mockito.when(pricedao.findPriceByArticleId(1)).thenReturn(list);
 		
 		PriceService modelService = new PriceService();
@@ -77,6 +73,47 @@ public class PriceServiceTest {
 		
 	}
 
+	@Test
+	public void testCreatePriceforArticleId(){
+		
+		IPriceDao pricedao = Mockito.mock(IPriceDao.class);
+
+		PriceDto price = new PriceDto();
+		price.setIdArticle(1);
+		price.setValue(new BigDecimal(10));
+		
+		Mockito.when(pricedao.createPriceForArticleId(price, 1)).thenReturn(price);
+		
+		PriceService modelService = new PriceService();
+		modelService.setPriceDao(pricedao);
+		
+		PriceDto pdto = modelService.createPriceForArticleId(price, 1);
+		
+		Assert.assertEquals(price, pdto);	
+		
+	}
+	
+	@Test
+	public void testFindPriceById(){
+		//Arrange
+		IPriceDao priceDao = Mockito.mock(IPriceDao.class);
+		
+		PriceDto price = new PriceDto();
+		price.setId(4);
+		
+		Mockito.when(priceDao.findPriceById(4)).thenReturn(price);
+		
+		PriceService modelService = new PriceService();
+		modelService.setPriceDao(priceDao);
+		
+		//Act
+		PriceDto p = modelService.findPriceById(4);
+		
+		//Assert
+		Assert.assertEquals(p, price);
+		Assert.assertEquals(PriceDto.class, p.getClass());
+		 
+	}
 	
 }
 

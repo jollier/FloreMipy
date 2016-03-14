@@ -1,7 +1,6 @@
 package com.floremipy.model.price.service;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.floremipy.model.article.dao.IArticleDao;
 import com.floremipy.model.price.dao.IPriceDao;
 import com.floremipy.model.price.dto.PriceDto;
 
@@ -21,8 +19,7 @@ public class PriceService implements IPriceService {
 
 	@Override
 	public PriceDto createPriceForArticleId(PriceDto priceDto, int idArticle) {
-		// TODO Auto-generated method stub
-		return null;
+		return Ipricedao.createPriceForArticleId(priceDto, idArticle);
 	}
 
 	@Override
@@ -45,20 +42,17 @@ public class PriceService implements IPriceService {
 
 	@Override
 	public PriceDto findPriceById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return Ipricedao.findPriceById(id);
 	}
 
 	@Override
 	public void updatePrice(PriceDto priceDto) {
-		// TODO Auto-generated method stub
-		
+		Ipricedao.updatePrice(priceDto);
 	}
 
 	@Override
 	public void deletePrice(PriceDto priceDto) {
-		// TODO Auto-generated method stub
-		
+		Ipricedao.deletePrice(priceDto);
 	}
 	
 	public void setPriceDao(IPriceDao pricedao) {
