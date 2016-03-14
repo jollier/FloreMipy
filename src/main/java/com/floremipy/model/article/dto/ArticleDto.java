@@ -9,8 +9,19 @@ public class ArticleDto {
 	private int quantityInStock;
 	
 	public ArticleDto() {
-		
 	}
+	
+//	public ArticleDto(int id, String category, String description, String imgsrc, String name,
+//			int quantityInStock, Date releaseDate) {
+//		super();
+//		this.id = id;
+//		this.category = category;
+//		this.description = description;
+//		this.imgsrc = imgsrc;
+//		this.name = name;
+//		this.quantityInStock = quantityInStock;
+//		this.releaseDate = releaseDate;
+//	}
 	
 	public ArticleDto(int id, String category, String description, String imgsrc, String name,
 			int quantityInStock) {
@@ -71,12 +82,13 @@ public class ArticleDto {
 		this.quantityInStock = quantityInStock;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "ArticleDto [id=" + id + ", category=" + category + ", description=" + description + ", imgsrc=" + imgsrc
 				+ ", name=" + name + ", quantityInStock=" + quantityInStock + "]";
 	}
-	
 	
 	
 }

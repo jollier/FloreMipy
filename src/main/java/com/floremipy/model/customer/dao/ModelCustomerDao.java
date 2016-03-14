@@ -8,12 +8,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Component;
+
 import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.model.customer.dto.CustomerLightDto;
 
 
 
+@Component
 public class ModelCustomerDao implements IModelCustomerDao {
 
 	

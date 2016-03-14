@@ -5,9 +5,7 @@ package com.floremipy.model.article.dao;
  */
 import java.util.List;
 
-import com.floremipy.model.Article;
 import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.article.dto.ArticleLightDto;
 
 public interface IArticleDao {
 
@@ -15,11 +13,7 @@ public interface IArticleDao {
 
 	ArticleDto findArticleById(int id);
 
-	ArticleLightDto findArticleLightById(int id);
-
-	List<ArticleLightDto> findAllArticlesLightByCategory(String category);
-
-	List<ArticleLightDto> findAllArticlesLight();
+	List<ArticleDto> findAllArticlesByCategory(String category);
 	
 	ArticleDto findArticleByName(String name);
 	

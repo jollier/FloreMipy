@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS `adress` (
   `ZipCode` varchar(200) DEFAULT NULL,
   `City` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.adress : ~12 rows (environ)
+-- Export de données de la table floremipi.adress : ~30 rows (environ)
 DELETE FROM `adress`;
 /*!40000 ALTER TABLE `adress` DISABLE KEYS */;
 INSERT INTO `adress` (`Id`, `Location`, `ZipCode`, `City`) VALUES
@@ -48,23 +48,23 @@ CREATE TABLE IF NOT EXISTS `article` (
   `Imgsrc` varchar(300) DEFAULT NULL,
   `QuantityInStock` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.article : ~19 rows (environ)
+-- Export de données de la table floremipi.article : ~21 rows (environ)
 DELETE FROM `article`;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 INSERT INTO `article` (`Id`, `Name`, `Description`, `Category`, `Imgsrc`, `QuantityInStock`) VALUES
 	(1, 'Câdre en boule', '', 'Arbres', '', 10),
-	(2, 'Sapin', 'Les sapins sont des arbres conifères du genre Abies originaires des régions tempérées de l’hémisphère nord. Ils font partie de la famille des Pinaceae. Ils sont reconnaissables au mode de fixation des aiguilles sur la tige, à leurs formes qui diffèrent de l’épicéa ainsi qu’à leurs cônes dressés qui se désagrègent à maturité. Ce sont des arbres monoïques à écorce quelquefois ponctuée de vésicules résinifères, à branches verticillées et étagées. Les aiguilles du sapin sont fixées une par une contrairement au pin d’alep.', 'Epicéa', '', 12),
-	(3, 'Epinette bleue', 'L’épicéa du Colorado, Picea pungens, est un conifère originaire des Montagnes Rocheuses de l’Amérique du nord. Si ce sapin bleu extrêmement rustique atteint des hauteurs de 30 à 40 m dans sa région d’origine, il reste plus modeste en culture.', 'Epicéa', '', 10),
-	(4, 'Chêne', 'Le bord des feuilles est lobé, denté ou entier. Les feuilles sont simples et alternes. Le fruit est un akène, appelé gland, fixé dans sa cupule — le gland du chêne pédonculé possède un long pédoncule alors que le gland du chêne sessile possède un pédoncule court.', 'Conifère', '', 8),
-	(5, 'Erable argenté', 'L’écorce est gris argenté et son bois tendre est peu apprécié dans l’industrie1. Le système de racines est peu profond et fibreux. Il s’étend en largeur beaucoup plus qu’en profondeur.', 'Conifère', '', 10),
-	(6, 'Herbe à puce', 'L’herbe à puce est une plante ligneuse rampante ou grimpante bien connue pour causer des démangeaisons. Elle est répandue dans toutes les provinces du Canada, sauf Terre-Neuve-et-Labrador. Elle croît sur les berges sablonneuses, pierreuses ou rocailleuses et pousse en touffes dans les clairières, à la lisière des bois et le long des routes.', 'Herbe', '', 11),
-	(7, 'Poirier', 'Le poirier cultivé est un arbre originaire des régions tempérées d’Europe et d’Asie. De taille moyenne, il peut atteindre dix à quinze mètres de haut et vivre jusqu’à 200 ans. Il est cultivé et naturalisé dans tous les continents. ', 'Arbre fruitier', '', 10),
-	(8, 'Catalpa', 'Catalpa est un genre d’arbres originaire d’Amérique du Nord et d’Asie de l’Est appartenant à la famille des Bignoniaceae.', 'Arbre', '', 0),
-	(9, 'Pommier', 'Le pommier est un arbre du genre botanique Malus et de la famille des Rosacées dont le fruit est la pomme. Ce genre, aux origines asiatiques, comprend une quarantaine d’espèces d’arbres ou d’arbustes dont la plus importante, sur le plan économique, est le pommier domestique (Malus domestica)', 'Arbre fruitier', '', 15),
-	(10, 'Génévrier', 'Le genre botanique des genévriers, également appelé poivre du pauvre, nom scientifique Juniperus, famille des Cupressacées, comporte un grand nombre d’espèces, des variétés « rigides » aux aiguilles piquantes et des variétés « souples » au feuillage en écailles.', 'Plante', '', 22),
-	(11, 'Abricotier rustique', 'L’abricotier (Prunus armeniaca) est un arbre de taille moyenne aux feuilles dentées, cultivé pour les abricots, gros fruits soyeux à noyau, de couleur orange, marqués d’un léger sillon dans le sens de la longueur.', 'Arbre fruitier', '', 10);
+	(2, 'Sapin', '', '', '', 10),
+	(3, 'Epinette bleue', '', '', '', 10),
+	(4, 'Chêne', '', '', '', 10),
+	(5, 'Erable argenté', '', '', '', 10),
+	(6, 'Herbe à puce', '', '', '', 10),
+	(7, 'Poirier', '', '', '', 10),
+	(8, 'Catalpa', '', '', '', 10),
+	(9, 'Pommier', '', '', '', 10),
+	(10, 'Génévrier', '', '', '', 10),
+	(11, 'Abricotier rustique', '', 'Fruit', '', 10);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipi. articleinprogress
@@ -77,11 +77,13 @@ CREATE TABLE IF NOT EXISTS `articleinprogress` (
   PRIMARY KEY (`Id`),
   KEY `IdArticle` (`IdArticle`),
   CONSTRAINT `articleinprogress_ibfk_1` FOREIGN KEY (`IdArticle`) REFERENCES `article` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.articleinprogress : ~0 rows (environ)
+-- Export de données de la table floremipi.articleinprogress : ~5 rows (environ)
 DELETE FROM `articleinprogress`;
 /*!40000 ALTER TABLE `articleinprogress` DISABLE KEYS */;
+INSERT INTO `articleinprogress` (`Id`, `Quantity`, `StartDate`, `ReleaseDate`, `IdArticle`) VALUES
+	(1, 5, '2016-03-10', '2016-03-10', 1);
 /*!40000 ALTER TABLE `articleinprogress` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipi. customer
@@ -95,9 +97,9 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`Id`),
   KEY `IdAdress` (`IdAdress`),
   CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`IdAdress`) REFERENCES `adress` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.customer : ~12 rows (environ)
+-- Export de données de la table floremipi.customer : ~20 rows (environ)
 DELETE FROM `customer`;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`Id`, `Name`, `FirstName`, `Phone`, `Email`, `IdAdress`) VALUES
@@ -265,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `price` (
   CONSTRAINT `price_ibfk_1` FOREIGN KEY (`IdArticle`) REFERENCES `article` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.price : ~11 rows (environ)
+-- Export de données de la table floremipi.price : ~19 rows (environ)
 DELETE FROM `price`;
 /*!40000 ALTER TABLE `price` DISABLE KEYS */;
 INSERT INTO `price` (`Id`, `IdArticle`, `Value`, `Date`) VALUES
