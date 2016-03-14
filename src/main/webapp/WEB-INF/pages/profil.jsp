@@ -1,4 +1,3 @@
-
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 
 
@@ -25,33 +24,35 @@
       <div class="container">
       
       
+      <hr><hr>
       
-      <form action="profil" class="form-horizontal">
+      <form action="profil" class="form-horizontal" method="post" modelAttribute="profil">
   <fieldset>
 <div class="jumbotron">
     <legend>Profil</legend>
     <div class="form-group">
       <label class="col-lg-2 control-label"></label>
-	      <div class="col-lg-10">
-	        <div class="radio">
-	          <label> 
-	            <input type="radio" name="optionsRadios" id="iRadios1" value="${optParticulier}" >
-	           Particulier
-	          </label>
-	          <label>
-	            <input type="radio" name="optionsRadios" id="iRadios2" value="${optEntreprise}">
-	            Entreprise
-	          </label>
-	        </div>
-	      </div>
-	    </div>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label> 
+            <input type="radio" name="optionsRadios" id="iRadios1" value="${optParticulier}" >
+           Particulier
+          </label>
+          
+          <label>
+            <input type="radio" name="optionsRadios" id="iRadios2" value="${optEntreprise}">
+            Entreprise
+          </label>
+        </div>
+      </div>
+	  </div>
     
         <div class="form-group">
 	      <label for="input" class="col-lg-2 control-label">Entreprise</label>
 	      <div class="col-lg-10">
 	        <input type="text" class="form-control" id="iEntreprise" placeholder="Entreprise" value="${nomEntreprise}">
 	      </div>
-	    </div>
+	    </div>  
         <div class="form-group">
           <label for="input" class="col-lg-2 control-label">Raison Sociale</label>
           <div class="col-lg-10">
@@ -74,46 +75,43 @@
             <label for="input" class="col-lg-2 control-label">Forme Juridique</label>
           <div class="col-lg-2 ">
                 <select class="form-control" id="iJuriduque" value="${iJuridique}">
-                    <option>France</option>
-                    <option class="divider"></option>
-                    <option>Belgique</option>
-                    <option>Angleterre</option>
-                    <option>Luxembourg</option>
+                    <option>SA</option>
+                    <option>SCI</option>
                 </select>
             </div>
-           <label for="input" class="col-lg-2 control-label">TVA Intracommunaitaire</label>
+           <label for="input" class="col-lg-2 control-label">TVA Intracom.</label>
           <div class="col-lg-6">
             <input type="text" class="form-control" id="iTVA" placeholder="" value="${TVA}">
           </div>
         </div>
        
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">Nom</label>
+          <label for="input" class="col-lg-2 control-label required" >Nom</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="iNom" placeholder="" value="${name}">
+            <input type="text" class="form-control" id="iNom" placeholder="" value="${name}" required>
           </div>
-          <label for="input" class="col-lg-2 control-label">Prénom</label>
+          <label for="input" class="col-lg-2 control-label required">Prénom</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="iPrenom" placeholder="" value="${firstName}">
+            <input type="text" class="form-control" id="iPrenom" placeholder="" value="${firstName}" required>
           </div>
         </div>
         
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">Adresse</label>
+          <label for="input" class="col-lg-2 control-label required">Adresse</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" id="iAdresse" placeholder="" value="${adresse}">
+            <input type="text" class="form-control" id="iAdresse" placeholder="" value="${adresse}" required>
           </div>
         </div>        
         
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">Code postal</label>
+          <label for="input" class="col-lg-2 control-label required">Code postal</label>
           <div class="col-lg-2">
-            <input type="text" class="form-control" id="iCP" placeholder="" value="${CP}">
+            <input type="text" class="form-control" id="iCP" placeholder="" value="${CP}" required>
           </div>
           
-          <label for="input" class="col-lg-1 control-label">Ville</label>
+          <label for="input" class="col-lg-1 control-label required">Ville</label>
           <div class="col-lg-3">
-            <input type="text" class="form-control" id="iVille" placeholder="" value="${city}">
+            <input type="text" class="form-control" id="iVille" placeholder="" value="${city}" required>
           </div>
 
           <div class="col-lg-4 ">
@@ -129,9 +127,9 @@
         </div>       
          
         <div class="form-group">
-          <label for="input" class="col-lg-2 control-label">Telephone 1</label>
+          <label for="input" class="col-lg-2 control-label required">Telephone 1</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" id="itel1" placeholder="" value="${tel1}">
+            <input type="text" class="form-control" id="itel1" placeholder="" value="${tel1}" required>
           </div>
           <label for="input" class="col-lg-2 control-label">Telephone 2</label>
           <div class="col-lg-4">
@@ -139,18 +137,29 @@
           </div>
         </div>
         
+        <div class="form-group">
+          <label for="input" class="col-lg-2 control-label required">Login</label>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" id="itel1" placeholder="" value="${login}" required>
+          </div>
+          <label for="input" class="col-lg-2 control-label required">Mot de passe</label>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" id="iTel2" placeholder="" value="${password}" required>
+          </div>
+        </div>
+        
 	    <div class="form-group">
 	      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
 	      <div class="col-lg-10">
-	        <input type="text" class="form-control" id="inputEmail" placeholder="Email" value="${email}">
+	        <input type="text" class="form-control" id="inputEmail" placeholder="Email" value="${email}" required>
 	      </div>
 	    </div>
     
  		    <div class="form-group">
-		      <div class="col-lg-10 col-lg-offset-2">
-		        <a href="index.jsp">
-		        <button class="btn btn-default">Annuler</button>
-		         </a>
+		      <div class="col-lg-10 col-lg-offset-2"> 
+                <spring:url value="/accueil" var="accueil" htmlEscape="true"/>
+                <a href="${accueil}" type="reset" class="btn btn-default"> Annuler4 </a>
+
 		        <button type="submit" class="btn btn-primary">Envoyer</button>
 		      </div>
 		    </div>
