@@ -31,12 +31,6 @@ public class FloreAdminApplication {
         FloreAdminApplication p = context.getBean(FloreAdminApplication.class);
         p.start(args);
 		
-		//FloreMipyController f = new FloreMipyController();
-		//floreMipyController.launch();
-
-		//		JFrame f=new JFrame();
-//		f.show();
-		
 		System.out.println("Démarre");
 	}
 	

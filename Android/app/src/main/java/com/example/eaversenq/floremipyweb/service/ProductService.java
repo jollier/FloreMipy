@@ -8,6 +8,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class ProductService {
@@ -23,6 +34,32 @@ public class ProductService {
 
     public ArrayList<Product> fournirListeProduct(String strJson) {
         return defaultFournirListeProduct();
+    }
+
+    public ArrayList<Product> urlFournirListeProduct(URL url) throws IOException, UnsupportedEncodingException {
+        ArrayList<Product> result = new ArrayList<Product>();
+
+        HttpURLConnection conn;
+        conn = (HttpURLConnection) url.openConnection();
+        conn.setConnectTimeout(2000);
+        conn.setReadTimeout(10000);
+        conn.connect();
+
+        if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+            return null;
+        }
+
+        InputStream is = conn.getInputStream();
+        BufferedReader streamReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+        StringBuilder responseStrBuilder = new StringBuilder();
+        String inputStr;
+
+        while ((inputStr = streamReader.readLine()) != null) responseStrBuilder.append(inputStr);
+        Type listType = new TypeToken<ArrayList<Product>>() {
+        }.getType();
+        result = new Gson().fromJson(responseStrBuilder.toString(), listType);
+
+        return result;
     }
 
     public ArrayList<Product> jsonFournirListeProduct(String strJson) {
@@ -53,3 +90,4 @@ public class ProductService {
         return result;
     }
 }
+

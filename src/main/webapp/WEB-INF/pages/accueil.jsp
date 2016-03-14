@@ -47,8 +47,8 @@
                     <li><a href="<c:url value="/profil"/>">S'inscrire</a></li>  
                     -->
                     
-                    <li><a href="<c:url value="/identification"/>"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
-                    <li><a href="<c:url value="/profil"/>"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>                 
+                    <li><a href="<c:url value="/profil"/>"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
+                    <li><a href="<c:url value="/identification"/>"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>                 
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -64,9 +64,9 @@
             <div class="col-md-2">
                 <p class="lead">Flore Mipy</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Arbres</a>
-                    <a href="#" class="list-group-item">Arbustes</a>
-                    <a href="#" class="list-group-item">Fleurs</a>
+                    <a href="#?categorie=Arbres" class="list-group-item">Arbres</a>
+                    <a href="#?categorie=Arbustes" class="list-group-item">Arbustes</a>
+                    <a href="#?categorie=Fleurs" class="list-group-item">Fleurs</a>
                 </div>
             </div>
 
@@ -83,13 +83,13 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="img/Bambou 1.jpg" alt="">
+                                    <img class="slide-image" src="img/Bambou_1.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="img/Buis 1.jpg" alt="">
+                                    <img class="slide-image" src="img/Buis_1.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="img/Arbuste persistant 1.jpg" alt="">
+                                    <img class="slide-image" src="img/Arbuste_persistant_1.jpg" alt="">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -109,9 +109,10 @@
                                 <!-- <img src="http://placehold.it/320x150" alt=""> -->
                                 <img src="${art.imgsrc}" alt="">
                                 
-                                <c:url value="/ficheArticle/${art.id}" var="articleUrl" />
+                                <url value="/FloreMipy/ficheArticle/${art.id}" var="articleUrl" />
+                                
                                 <div class="caption">
-                                    <h4><a href='{articleUrl}'><c:out value="${art.name}" /></a></h4>
+                                    <h4><a href="/FloreMipy/ficheArticle/${art.id}"><c:out value="${art.name}" /></a></h4>
                                     <p><c:out value="${art.description}" /></p>
                                 </div>
                             </div>

@@ -1,0 +1,3 @@
+com.floremipy.model.article.dao
+com.floremipy.model.articleinprogress.dao
+com.floremipy.model.price.dao

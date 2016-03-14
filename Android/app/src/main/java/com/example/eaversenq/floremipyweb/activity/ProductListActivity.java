@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.eaversenq.floremipyweb.R;
 import com.example.eaversenq.floremipyweb.model.Product;
+import com.example.eaversenq.floremipyweb.service.ProductListTask2;
 import com.example.eaversenq.floremipyweb.service.ProductService;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class ProductListActivity  extends Activity {
 
     private TableLayout table;
 
+    private ProductListTask2 task;
     private String strTraitement;
     private ArrayList<Product> productList;
 
@@ -31,25 +33,24 @@ public class ProductListActivity  extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productlist);
 
-/*        // Handler de communication avec le thread des listes
+        // Handler de communication avec le thread des listes
         Handler handler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(final Message msg) {
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        //strTraitement
+                        strTraitement = task.getResultBack();
                         productList = ProductService.getInstance().fournirListeProduct(strTraitement);
                         displayList();
                     }
                 });
                 return false;
             }
-        });*/
+        });
+        task = new ProductListTask2(handler);
+        //task.execute();
 
         table = (TableLayout)findViewById(R.id.table);
-        productList = ProductService.getInstance().fournirListeProduct(null);
-        displayList();
-
 
         // NAVIGATION : retour à l'écran d'accueil
         Button btExit = (Button) findViewById(R.id.btExit);

@@ -4,16 +4,16 @@ import java.util.List;
 
 import com.floremipy.model.Article;
 import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.article.dto.ArticleLightDto;
+//import com.floremipy.model.price.article.dto.ArticleLightDto;
 
 
 public interface IArticleService {
 
-	List<ArticleLightDto> findAllArticlesLightByCategory(String cat);
+	//List<ArticleLightDto> findAllArticlesLightByCategory(String cat);
 
-	ArticleLightDto findArticleLightById(int id);
+	//ArticleLightDto findArticleLightById(int id);
 
-	List<ArticleLightDto> findAllDto();
+	//List<ArticleLightDto> findAllDto();
 	
 	List<ArticleDto> findAll();
 	
