@@ -36,28 +36,19 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li><a href="#">C.G. de ventes</a></li>
+                    <li><a href="#">C.G. d'envois</a></li>
+                    <li><a href="#">Qui sommes-nous ?</a></li>
+                </ul>
+                                        
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- 
+                    <li><a href="<c:url value="/identification"/>">Se connecter</a></li>
+                    <li><a href="<c:url value="/profil"/>">S'inscrire</a></li>  
+                    -->
                     
-                    
-                    <li>
-                        <a href="#">C.G. de ventes</a>
-                    </li>
-                    <li>
-                        <a href="#">C.G. d'envois</a>
-                    </li>
-                    <li>
-                        <a href="#">Qui sommes-nous ?</a>
-                    </li>
-                    
-                    
-                    
-                    
-                    <li>
-                        <a href="<c:url value="/identification"/>">Se connecter</a>      
-                    </li>
-                    <li>
-                        <a href="<c:url value="/profil"/>">S'inscrire</a>                        
-                    </li>
-                    
+                    <li><a href="<c:url value="/identification"/>"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
+                    <li><a href="<c:url value="/profil"/>"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>                 
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -74,8 +65,8 @@
                 <p class="lead">Flore Mipy</p>
                 <div class="list-group">
                     <a href="#" class="list-group-item">Arbres</a>
-                    <a href="#" class="list-group-item">Accessoires</a>
-                    <a href="#" class="list-group-item">Livres</a>
+                    <a href="#" class="list-group-item">Arbustes</a>
+                    <a href="#" class="list-group-item">Fleurs</a>
                 </div>
             </div>
 
@@ -118,7 +109,7 @@
                                 <!-- <img src="http://placehold.it/320x150" alt=""> -->
                                 <img src="${art.imgsrc}" alt="">
                                 
-                                <url value="/ficheArticle/${art.id}" var="articleUrl" />
+                                <c:url value="/ficheArticle/${art.id}" var="articleUrl" />
                                 <div class="caption">
                                     <h4><a href='{articleUrl}'><c:out value="${art.name}" /></a></h4>
                                     <p><c:out value="${art.description}" /></p>
@@ -127,12 +118,26 @@
                         </div>
                     </c:forEach>
                 </div>
+                
+                <div>
 
+					<ul class="pagination">
+					    <li>
+					       <a href="#">Prev</a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">Next</a></li>
+					</ul>
+
+
+	            </div>
             </div>
-
+			
             <div class="col-md-2">
-            
-            
+                      
             </div>
             
         </div>
