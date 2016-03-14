@@ -13,12 +13,12 @@ import com.floremipy.model.article.service.IArticleService;
 
 
 @Controller
-public class Accueil {
+public class Accueil { 
 	
 	@Autowired
 	IArticleService accueilService;
 	
-	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
+	@RequestMapping(value = {"/accueil", "/"}, method = RequestMethod.GET)
 	public String getdata(Model model) {
 
 		//accueilService = new ArticleService();
