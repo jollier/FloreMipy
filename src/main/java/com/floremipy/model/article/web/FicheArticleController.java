@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.dto.ArticleLightDto;
@@ -21,19 +23,14 @@ public class FicheArticleController {
  
 	@Autowired
 	IArticleService articleService;
-	
+
 	@RequestMapping(value = "/ficheArticle/{id}" , method = RequestMethod.GET)
    public String ficheArticle(Model model,@PathVariable("id") int id) {
-	//   public String ficheArticle(Model model,@ModelAttribute("ficheArticle") @Validated ArticleDto articleLightDto) {
 	   
-	   ArticleLightDto articleLightDto = new ArticleLightDto();
-	   articleLightDto = articleService.findArticleLightById(id);
-//	   
-       model.addAttribute("article", articleLightDto);
-//       model.addAttribute("qteStock", articleLightDto.getQuantityInStock());
-//       model.addAttribute("PUTTC", articleLightDto.getValue());
-//       model.addAttribute("description", articleLightDto.getDescription());
-       //model.addAttribute("image", articleLightDto.getDescription());
+//	   ArticleLightDto articleLightDto = new ArticleLightDto();
+//	   articleLightDto = articleService.findArticleLightById(id);
+//	   System.out.println(articleLightDto.getName());
+//       model.addAttribute("article", articleLightDto);
        return "ficheArticle";
    }
  

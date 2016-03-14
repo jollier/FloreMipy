@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1"
-	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	
+    xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-	<persistence-unit name="floremipyuser"
-		transaction-type="RESOURCE_LOCAL">
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>com.floremipy.user.User</class>
-		<class>com.floremipy.user.UserDbVersion</class>
-		<properties>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/floremipyuser" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-		</properties>
-	</persistence-unit>
-	<persistence-unit name="FloreMipyWeb"
+
+    <persistence-unit name="floremipyuser"
+        transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>com.floremipy.user.User</class>
+        <class>com.floremipy.user.UserDbVersion</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="${jdbc.driver}" />
+            <property name="javax.persistence.jdbc.url" value="${jdbc.urluser}" />
+            <property name="javax.persistence.jdbc.user" value="${jdbc.username}" />
+            <property name="javax.persistence.jdbc.password" value="${jdbc.password}" />
+
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="FloreMipyWeb"
         transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>com.floremipy.model.Adress</class>
@@ -34,9 +36,11 @@
         <class>com.floremipy.model.Result</class>
         <class>com.floremipy.model.Version</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/floremipi" />
-            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.driver" value="${jdbc.driver}" />
+            <property name="javax.persistence.jdbc.url" value="${jdbc.urlfloremipi}" />
+            <property name="javax.persistence.jdbc.user" value="${jdbc.username}" />
+            <property name="javax.persistence.jdbc.password" value="${jdbc.password}" />
+
         </properties>
     </persistence-unit>
 
