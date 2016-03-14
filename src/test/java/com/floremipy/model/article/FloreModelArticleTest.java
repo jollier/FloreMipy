@@ -91,7 +91,9 @@ public class FloreModelArticleTest {
 			name = "testCreateArticle" + i;
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
-		ArticleDto articleDto = new ArticleDto(0,name, name, name, name, 1);
+		ArticleDto articleDto = new ArticleDto(
+				0,"category", "description", "img/logo-naturemp.png", name, 1
+				);
 		
 		ArticleDto newArticle = articleDao.createArticle(articleDto);
 		System.out.println("result test testCreateArticle : " +newArticle.toString());
@@ -110,7 +112,7 @@ public class FloreModelArticleTest {
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
 		ArticleDto articleDto = new ArticleDto(
-				0,"category", "description", "imgsrc", name, 1
+				0,"category", "description", "img/logo-naturemp.png", name, 1
 		);
 		
 		ArticleDto newArticle = articleDao.createArticle(articleDto);
@@ -127,7 +129,7 @@ public class FloreModelArticleTest {
 		String name = "testupdate " + localDateTime.toString();
 
 		ArticleDto articleDto = new ArticleDto(
-				0,"category", "description", "imgsrc", name, 1
+				0,"category", "description", "img/logo-naturemp.png", name, 1
 		);
 		ArticleDto newArticleDto = articleDao.createArticle(articleDto);
 		name = name+"Update";
@@ -148,3 +150,4 @@ public class FloreModelArticleTest {
 	
 
 }
+
