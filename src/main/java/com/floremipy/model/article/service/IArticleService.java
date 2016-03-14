@@ -9,7 +9,7 @@ import com.floremipy.model.article.dto.ArticleDto;
 
 public interface IArticleService {
 
-	//List<ArticleLightDto> findAllArticlesLightByCategory(String cat);
+	List<ArticleDto> findAllArticlesByCategory(String cat);
 
 	//ArticleLightDto findArticleLightById(int id);
 
