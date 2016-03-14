@@ -2,14 +2,12 @@ package com.floremipy.model.article.service;
 
 import java.util.List;
 
-import com.floremipy.model.Article;
 import com.floremipy.model.article.dto.ArticleDto;
-//import com.floremipy.model.price.article.dto.ArticleLightDto;
 
 
 public interface IArticleService {
 
-	//List<ArticleLightDto> findAllArticlesLightByCategory(String cat);
+	List<ArticleDto> findAllArticlesByCategory(String cat);
 
 	//ArticleLightDto findArticleLightById(int id);
 
