@@ -23,25 +23,7 @@ public class ProfilController {
 	public String profilGet(Model model){
 		Profil profil=data;
 		model.addAttribute("profil", profil);
-		/*
-		model.addAttribute("optParticulier",data.getOptParticulier());
-		model.addAttribute("optEntreprise",data.getOptEntreprise());
-		model.addAttribute("nomEntreprise",data.getNomEntreprise());
-		model.addAttribute("raisonSociale",data.getRaisonSociale());
-		model.addAttribute("SIRET",data.getSIRET());
-		model.addAttribute("iJuridique",data.getiJuridique());
-		model.addAttribute("TVA",data.getTVA());
-		model.addAttribute("name",data.getOptEntreprise());
-		model.addAttribute("optEntreprise",data.getName());
-		model.addAttribute("firstName",data.getFirstName());
-		model.addAttribute("adresse",data.getAdresse());
-		model.addAttribute("CP",data.getCP());
-		model.addAttribute("city",data.getCity());
-		model.addAttribute("country",data.getCountry());
-		model.addAttribute("tel1",data.getTel1());
-		model.addAttribute("tel2",data.getTel2());
-		model.addAttribute("email",data.getEmail());
-		*/
+	
 		return "profil";
 		
 	}
@@ -70,9 +52,15 @@ public class ProfilController {
 
 		newCustomer.setAdress(adress);
 		
-		customerService.save(newCustomer);
+		try {
+			// Sauvegarde
+			customerService.save(newCustomer);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return "profil";
+		return "/accueil";
 		
 	}
 
@@ -95,10 +83,12 @@ class Profil {
 	private String tel2;
 	private String email;
 	private String TVA;
+	private String password;
+	private String login;
 
 	public Profil(String iRadios, String nomEntreprise, String raisonSociale,
 			String sIRET, String iJuridique, String name, String firstName, String adresse, String cP, String city,
-			String country, String tel1, String tel2, String email, String tVA) {
+			String country, String tel1, String tel2, String email, String tVA, String password, String login) {
 		this.radios = iRadios;
 		this.nomEntreprise = nomEntreprise;
 		this.raisonSociale = raisonSociale;
@@ -114,6 +104,8 @@ class Profil {
 		this.tel2 = tel2;
 		this.email = email;
 		this.TVA = tVA;
+		this.login = login;
+		this.password = password;
 	}
 	
 	 public Profil(){
@@ -237,5 +229,21 @@ class Profil {
 
 	public void setTVA(String tVA) {
 		TVA = tVA;
+	}
+	
+	public String getLogin() {
+		return login;
+	}
+
+	public void setlogin(String login) {
+		this.login = login;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
