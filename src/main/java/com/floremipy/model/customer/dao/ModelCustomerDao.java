@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dto.CustomerDto;
 
-
-
 @Component
 public class ModelCustomerDao implements IModelCustomerDao {
 

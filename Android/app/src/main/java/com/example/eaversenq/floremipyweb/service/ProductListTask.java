@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ProductListTask extends AsyncTask<Void,Void,Void> {
 
-    private final String URL_SERVICE = "http://localhost/Produit/list";
+    private final String URL_SERVICE = "http://localhost:8080/FloreMipy/Product/list";
     ArrayList<Product> resultBack;
     private Handler handler;
 

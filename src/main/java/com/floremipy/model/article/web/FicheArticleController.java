@@ -29,7 +29,14 @@ public class FicheArticleController {
 	@Autowired
 	IPriceService priceService;
 
-	@RequestMapping(value = "/ficheArticle/{id}" , method = RequestMethod.GET)
+//	@RequestMapping(value = {"/ficheArticle/", "/ficheArticle"}, method = RequestMethod.GET)
+//    public String ficheArticle(Model model,@RequestParam(value="id", required=false) int id) {
+
+//	@RequestMapping(value = {"/ficheArticle/","/"}, method = RequestMethod.GET)
+//	public String ficheArticle(@RequestParam(value="id", required=false) Integer id, Model model) {
+
+	
+   @RequestMapping(value = {"/ficheArticle/{id}"} , method = RequestMethod.GET)
    public String ficheArticle(Model model,@PathVariable("id") int id) {
 	   
 	   ArticleDto articleDto = new ArticleDto();
@@ -43,12 +50,22 @@ public class FicheArticleController {
        return "ficheArticle";
    }
  
-   @RequestMapping(value = "/ficheArticle/addkart/{id}{qte}", method = RequestMethod.GET)
-   public String addKart(Model model,@PathVariable("id") int id,@PathVariable("qte") int qte) {
 
-	   //TODO : Ajouter l'article au panier
-	   
-       return "addKart";
-   }
+	@RequestMapping(value = {"/ficheArticle/{id}/ajouter"} , method = RequestMethod.GET)
+	   public String addArticle(Model model, @PathVariable("id") int id, @RequestParam(value="qte",required=false) Integer qte) {
+		//@RequestMapping(value = {"/panier/","/"}, method = RequestMethod.GET)
+		// public String addKart(Model model,@RequestParam(value="id",required=false) Integer id,@RequestParam(value="qte",required=false) Integer qte) {
+		
+			   //TODO : Ajouter l'article au panier
+		
+			   ArticleDto articleDto = new ArticleDto();
+			   articleDto = articleService.findArticleById(id);
+			   
+			   BigDecimal price = priceService.findPriceByArticleId(id);
+		
+			   System.out.println("passe addArticle : "+qte);
+			   
+		    return "redirect:/ficheArticle/"+id;
+		}
 
 }

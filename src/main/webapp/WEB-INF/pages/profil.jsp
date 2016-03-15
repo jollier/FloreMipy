@@ -29,6 +29,7 @@
 <body>
         <div class="container">
      
+            <c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
         
            <!-- Page Content -->
             <form:form action="profil" method="post" modelAttribute="profil"
@@ -192,6 +193,9 @@
             </form:form>
             
                <!-- /Page Content -->
+               
+                   <c:import url="/WEB-INF/pages/footer.jsp" /></br>
+               
         </div>
         <!-- //<div class="container"> -->
 
