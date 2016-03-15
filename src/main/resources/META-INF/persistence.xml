@@ -12,6 +12,7 @@
             <property name="javax.persistence.jdbc.url" value="${jdbc.urluser}" />
             <property name="javax.persistence.jdbc.user" value="${jdbc.username}" />
             <property name="javax.persistence.jdbc.password" value="${jdbc.password}" />
+            <property name="database.version" value="${jdbc.version}" />
 
         </properties>
     </persistence-unit>
@@ -38,6 +39,7 @@
             <property name="javax.persistence.jdbc.url" value="${jdbc.urlfloremipi}" />
             <property name="javax.persistence.jdbc.user" value="${jdbc.username}" />
             <property name="javax.persistence.jdbc.password" value="${jdbc.password}" />
+            <property name="database.version" value="${jdbc.version}" />
         </properties>
     </persistence-unit>
 </persistence>

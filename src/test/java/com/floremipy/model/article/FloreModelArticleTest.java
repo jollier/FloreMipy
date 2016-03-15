@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -30,9 +31,10 @@ public class FloreModelArticleTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		int versionBaseUser = 7;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
+		Map<String, Object> propertiesMap = emf.getProperties();
+		int versionBaseUser = Integer.parseInt(propertiesMap.get("database.version").toString());
 		Version version = em.find(Version.class, 1);
 		
 		if (version.getVersion() != versionBaseUser) {
@@ -41,7 +43,7 @@ public class FloreModelArticleTest {
 			System.out.println("********************************");
 			System.out.println("**Version de la BDD floremipi incorrecte**");
 			System.out.println("********************************");
-			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiInit.sql");
+			System.out.println("Veuillez l'importer depuis sql/FloreMipi.sql");
 			
 			System.exit(1);
 		}

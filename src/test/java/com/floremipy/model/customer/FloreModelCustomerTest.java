@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,34 +23,35 @@ import com.floremipy.model.customer.dto.CustomerDto;
 
 
 public class FloreModelCustomerTest {
-       
-       private final static String PERSISTENCE_UNIT_NAME = "FloreMipyWeb";
-       public static EntityManagerFactory emf;
-       public static EntityManager em;
-       public static EntityTransaction transaction;
+
+	private final static String PERSISTENCE_UNIT_NAME = "FloreMipyWeb";
+	public static EntityManagerFactory emf;
+	public static EntityManager em;
+	public static EntityTransaction transaction;
 
 
-       @BeforeClass
-       public static void setUpBeforeClass() throws Exception {
-             int versionBaseUser = 7;
-             emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-             em =  emf.createEntityManager();
-             Version version = em.find(Version.class, 1);
-             
-             if (version.getVersion() != versionBaseUser) {
-                    System.out.println("");
-                    System.out.println("");
-                    System.out.println("********************************");
-                    System.out.println("**Version de la BDD floremipi incorrecte**");
-                    System.out.println("********************************");
-                    System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiInit.sql");
-                    
-                    System.exit(1);
-             }
-             
-       }
-       
-       /*
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		em =  emf.createEntityManager();
+		Map<String, Object> propertiesMap = emf.getProperties();
+		int versionBaseUser = Integer.parseInt(propertiesMap.get("database.version").toString());
+		Version version = em.find(Version.class, 1);
+
+		if (version.getVersion() != versionBaseUser) {
+			System.out.println("");
+			System.out.println("");
+			System.out.println("********************************");
+			System.out.println("**Version de la BDD floremipi incorrecte**");
+			System.out.println("********************************");
+			System.out.println("Veuillez l'importer depuis sql/FloreMipi.sql");
+
+			System.exit(1);
+		}
+
+	}
+
+	/*
        @Test
        public void testNameLastCustomer() {
              ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
@@ -94,36 +96,15 @@ public class FloreModelCustomerTest {
 
 	}
 
-       @Test
-       public void findAllCustomers(){
-             IModelCustomerDao modelDao = new ModelCustomerDao();
-             List<CustomerDto> result = modelDao.findAllCustomers();
-             for(CustomerDto c : result){
-                    System.out.println("result test findAllCustomers "+ c);
-             }
-             assertTrue(result.size() > 0);    
-       }
-       
-       @Test
-       
-       public void testFindArticleById() {
-             int id = 1;
-             IModelCustomerDao modelDao = new ModelCustomerDao();
-             CustomerDto result = modelDao.findCustomerById(id);
-             System.out.println("result test findCustomerById : " +result.toString());
-             assertEquals(id,result.getId());
-       
-       }
-       
-      
-       
-       @AfterClass
-   		public static void setUpAfterClass() throws Exception {
-    	   em.close();
-    	   emf.close();
 
-       }
-       
+
+	@AfterClass
+	public static void setUpAfterClass() throws Exception {
+		em.close();
+		emf.close();
+
+	}
+
 
 }
 
