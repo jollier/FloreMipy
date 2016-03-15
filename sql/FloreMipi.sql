@@ -25,7 +25,11 @@ CREATE TABLE IF NOT EXISTS `adress` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 -- Export de données de la table floremipi.adress : ~14 rows (environ)
+=======
+-- Export de données de la table floremipi.adress : ~8 rows (environ)
+>>>>>>> developpement
 DELETE FROM `adress`;
 /*!40000 ALTER TABLE `adress` DISABLE KEYS */;
 INSERT INTO `adress` (`Id`, `Location`, `ZipCode`, `City`) VALUES
@@ -64,7 +68,13 @@ INSERT INTO `article` (`Id`, `Name`, `Description`, `Category`, `Imgsrc`, `Quant
 	(8, 'Catalpa', '', 'Arbres', 'img/Catalpa.jpg', 10),
 	(9, 'Pommier', '', 'Fruits', 'img/Pommier.jpg', 10),
 	(10, 'Génévrier', '', 'Arbustes', 'img/Genevrier.jpg', 10),
+<<<<<<< HEAD
 	(11, 'Abricotier rustique', '', 'Fruits', 'img/Abricotier.jpg', 10);
+=======
+	(11, 'Abricotier rustique', '', 'Fruits', 'img/Abricotier.jpg', 10),
+	(82, 'Cactus', ' ', 'Cactus', 'img/Dancing_cactus.gif', 12),
+	(83, 'Try and Pray', ' ', 'Arbres', 'img/Try_and_Pray.jpg', 1);
+>>>>>>> developpement
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipi. articleinprogress
@@ -99,7 +109,11 @@ CREATE TABLE IF NOT EXISTS `customer` (
   CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`IdAdress`) REFERENCES `adress` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 -- Export de données de la table floremipi.customer : ~14 rows (environ)
+=======
+-- Export de données de la table floremipi.customer : ~8 rows (environ)
+>>>>>>> developpement
 DELETE FROM `customer`;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`Id`, `Name`, `FirstName`, `Phone`, `Email`, `IdAdress`) VALUES
