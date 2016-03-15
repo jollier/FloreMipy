@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -24,10 +25,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.table.TableModel;
-
 import org.apache.log4j.Appender;
 import org.apache.log4j.Layout;
 import org.apache.log4j.Logger;
@@ -41,6 +42,12 @@ import com.floremipy.product.model.IProductListModel;
 import com.floremipy.product.model.ProductLight;
 import com.floremipy.product.model.ProductLightTableModel;
 import com.google.gson.JsonSyntaxException;
+
+import javax.swing.JMenuBar;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JTextPane;
 
 //@org.springframework.stereotype.Component
 @org.springframework.stereotype.Component(value = "productListView")
@@ -57,6 +64,21 @@ public class ProductListView extends JPanel implements IListView {
 
 	boolean ready = false;
 
+//	public ProductListView(IProductListModel productListModel) {
+//		super();
+//		this.productListModel = productListModel;
+//		log4j = Logger.getLogger(ProductListView.class);
+//		// this.listProduct = listProduct;
+//		// initialize();
+//	}
+//
+//	JFrame productListFrame = null;
+//	JPanel productListPanel = null;
+//	JScrollPane scrollpane = null;
+//	JTable productList = null;
+//	JButton createButton = null;
+//	JButton updateButton = null;
+//	JButton deleteButton = null;
 
 	public ProductListView() {
 		super();
@@ -116,6 +138,7 @@ public class ProductListView extends JPanel implements IListView {
 		deleteButton.addActionListener(e -> System.out.println("deleteButton"));
 
 		productList = new JTable();
+
 		ProductLightTableModel model = null;
 
 		textPane.setText("Liste de produits");
@@ -153,6 +176,17 @@ public class ProductListView extends JPanel implements IListView {
 		createButton.addActionListener(e -> System.out.println("createButton"));
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
+
+
+
+		
+		//		
+//		JMenuBar mb = new JMenuBar();
+//		JMenu fileMenu = new JMenu("File");
+//		fileMenu.add(new ShowDialogAction());
+//		fileMenu.add(new ExitAction());
+//		mb.add (fileMenu);
+//		setJMenuBar (mb);
 
 	}
 

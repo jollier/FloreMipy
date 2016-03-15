@@ -1,8 +1,8 @@
 package com.floremipy.model.article.webservice;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.service.IArticleService;
+import com.floremipy.model.articleinprogress.dto.ArticleInProgressDto;
+import com.floremipy.model.articleinprogress.service.IArticleInProgressService;
 
 
 
@@ -20,6 +22,8 @@ public class ModelWebService {
 
 	@Autowired
 	IArticleService articleService;
+	@Autowired
+	IArticleInProgressService articleInProgressService;
 	//private final AtomicLong counter = new AtomicLong();
 	private List<ProductLight> list;
 
@@ -32,20 +36,42 @@ public class ModelWebService {
 
 	@ResponseBody @RequestMapping(value = "/Product/list")
 	public List<ProductLight> articlelist() {
-
+		
 		List<ArticleDto> result = articleService.findAll();
 		list = new ArrayList<ProductLight>();
 		for (ArticleDto articleDto : result) {
 
 			ProductLight pl = new ProductLight();
 			pl.setId(articleDto.getId());
+			System.out.println(articleDto.getId());
 			pl.setName(articleDto.getName());
 			pl.setCategory(articleDto.getCategory());
 			pl.setQuantityInStock(articleDto.getQuantityInStock());
-			pl.setAlertLotMature(0);
+			
+			boolean lotMature = articleMature(articleDto.getId());
+			if (lotMature) {
+				pl.setAlertLotMature(1);
+			}else{
+				pl.setAlertLotMature(0);
+			}
+				
 			list.add(pl);
 		}
 
 		return list;
+	}
+	
+	private boolean articleMature(int id){
+		Date today = new Date();
+		List<ArticleInProgressDto> result = articleInProgressService.findArticleInProgressByArticleId(id);
+		boolean mature=false;
+		for (ArticleInProgressDto article : result){
+			
+			mature = article.getReleaseDate().before(today)?true:false;
+			System.out.println("article id : "+id+" date maturité : "+article.getReleaseDate().toString()+" Maturite : "+mature+" today is :"+today);
+			if (mature==true) {return mature;}
+		}
+		return mature;
+		
 	}
 }

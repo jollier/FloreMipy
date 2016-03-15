@@ -3,6 +3,9 @@ package com.floremipy.user;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -31,7 +34,7 @@ public class FloreTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		int versionBaseUser = 6;
+		int versionBaseUser = 7;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
 		UserDbVersion version = em.find(UserDbVersion.class, 1);
@@ -136,6 +139,35 @@ public class FloreTest {
 		UserDto newUser = userDao.createNewUser(userDto);
 		System.out.println("result test testCreateNewUser : " +newUser.toString());
 		assertTrue(newUser.getId() != 0L);
+	}
+	
+	@Test
+	public void testUpdateUser(){
+		LocalDateTime localDateTime = LocalDateTime.now();
+//		Date date = Date.from(localDateTime.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+		String name = "testupdateUser " + localDateTime.toString();
+		IUserDao userDao = new UserDao();
+		String usertype = "user";
+		UserDto userDto = new UserDto(null,name, name, usertype, 2);
+		UserDto newUserDto = userDao.createNewUser(userDto);
+		name = name + "Update";		
+		newUserDto.setUsername(name);
+		userDao.updateUser(newUserDto);		
+		UserDto verifyUser = userDao.findUserByUserName(name);
+		assertEquals(verifyUser.getUsername(),name);
+				
+	}
+	
+	@Test
+	public void testDeleteUser(){
+		IUserDao userDao = new UserDao();
+		String name = "";
+		name = "testUserDelete" ;
+		UserDto userDto = new UserDto(null,name, name, name,   1);
+		UserDto newUserDto = userDao.createNewUser(userDto);
+		System.out.println("result test testDeleteNewUser : " + newUserDto.toString());
+		userDao.deleteUser(newUserDto);		
+		assertTrue(userDao.findUserByUserName(name) == null);
 	}
 
 

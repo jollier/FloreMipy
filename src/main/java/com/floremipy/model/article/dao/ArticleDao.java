@@ -1,6 +1,5 @@
 package com.floremipy.model.article.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,14 +11,12 @@ import org.springframework.stereotype.Component;
 
 import com.floremipy.model.Article;
 import com.floremipy.model.article.dto.ArticleDto;
-import com.floremipy.model.article.dto.ArticleLightDto;
 
 @Component
-public class ArticleDao implements Serializable, IArticleDao{
+public class ArticleDao implements IArticleDao{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3203724104256506631L;
 	private final static String PERSISTENCE_UNIT_NAME = "FloreMipyWeb";
 	private static EntityManagerFactory emf;	
 	private static EntityManager em;	
@@ -33,14 +30,22 @@ public class ArticleDao implements Serializable, IArticleDao{
 	/* (non-Javadoc)
 	 * @see com.floremipy.model.article.dao.IModelArticleDao#findAllArticles()
 	 */
+	@SuppressWarnings("unchecked")
 	public List<ArticleDto> findAllArticles() {
 		String requete = 
 				"SELECT NEW com.floremipy.model.article.dto.ArticleDto(" + 
 						"a.id, a.category, a.description, a.imgsrc, a.name, a.quantityInStock) " +
-						"FROM Article a order by a.name" ;
+						"FROM Article a ORDER BY a.name" ;
 		Query query = null;
 		query = em.createQuery(requete, ArticleDto.class);
-		return (List<ArticleDto>)query.getResultList();
+		List<ArticleDto> result = null;
+		try {
+			result = (List<ArticleDto>)query.getResultList(); 
+		} catch (Exception e) {
+			// TODO: handle exception
+			result = null;
+		}
+		return result;
 	}
 	
 	/* (non-Javadoc)
@@ -50,7 +55,7 @@ public class ArticleDao implements Serializable, IArticleDao{
 		String requete = 
 				"SELECT NEW com.floremipy.model.article.dto.ArticleDto(" + 
 						"a.id, a.category, a.description, a.imgsrc, a.name, a.quantityInStock) " +
-						"FROM Article a where a.id = :id" ;
+						"FROM Article a WHERE a.id = :id" ;
 		Query query = null;
 		query = em.createQuery(requete, ArticleDto.class);
 		query.setParameter("id", id);
@@ -64,62 +69,39 @@ public class ArticleDao implements Serializable, IArticleDao{
 		return result;
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.floremipy.model.article.dao.IModelArticleDao#findArticleLightById(int)
-	 */
-	public ArticleLightDto findArticleLightById(int id) {
+	@SuppressWarnings("unchecked")
+	public List<ArticleDto> findAllArticlesByCategory(String category) {
 		String requete = 
-				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
-						"a.id, a.category, a.description, a.name, a.quantityInStock, p.value) " +
-						"FROM Price p, Article a where a.id = :id and a=p.article" ;
+				"SELECT NEW com.floremipy.model.article.dto.ArticleDto(" + 
+						"a.id, a.category, a.description, a.imgsrc, a.name, a.quantityInStock) " +
+						"FROM Article a WHERE Upper(a.category) = :category" ;
 		Query query = null;
-		query = em.createQuery(requete, ArticleLightDto.class);
-		query.setParameter("id", id);
-		return (ArticleLightDto)query.getSingleResult();
-	}
-	
-	
-	/* (non-Javadoc)
-	 * @see com.floremipy.model.article.dao.IModelArticleDao#findAllArticlesLightByCategory(java.lang.String)
-	 */
-	public List<ArticleLightDto> findAllArticlesLightByCategory(String category) {
-		String requete = 
-				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
-						"a.id, a.category, a.description, a.name, a.quantityInStock, p.value) " +
-						"FROM Price p, Article a where Upper(a.category) = :category and a=p.article" ;
-		Query query = null;
-		query = em.createQuery(requete, ArticleLightDto.class);
+		query = em.createQuery(requete, ArticleDto.class);
 		query.setParameter("category", category.toUpperCase());
-		return (List<ArticleLightDto>)query.getResultList();
+		List<ArticleDto> result = null;
+		try {
+			result = (List<ArticleDto>)query.getResultList(); 
+		} catch (Exception e) {
+			result = null;
+			// TODO: handle finally clause
+		}
+		return result;
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.floremipy.model.article.dao.IModelArticleDao#findAllArticlesLight()
-	 */
-	public List<ArticleLightDto> findAllArticlesLight() {
-		String requete = 
-				"SELECT NEW com.floremipy.model.article.dto.ArticleLightDto(" + 
-						"a.id, a.category, a.description, a.name, a.quantityInStock, p.value) " +
-						"FROM Price p, Article a where a=p.article order by a.name" ;
-		Query query = null;
-		query = em.createQuery(requete, ArticleLightDto.class);
-		return (List<ArticleLightDto>)query.getResultList();
-	}
-
 	
 	public ArticleDto findArticleByName(String name) {
 		String requete = 
 				"SELECT NEW com.floremipy.model.article.dto.ArticleDto(" + 
-						"a.id, a.name, a.description, a.category, a.imgsrc, a.quantityInStock) " +
-						"FROM Article a where a.name = :name" ;
+						"a.id, a.category, a.description, a.imgsrc, a.name, a.quantityInStock) " +
+						"FROM Article a WHERE Upper(a.name) = :name" ;
 		Query query = null;
 		query = em.createQuery(requete, ArticleDto.class);
-		query.setParameter("name", name);
+		query.setParameter("name", name.toUpperCase());
 		ArticleDto result = null;
 		try {
 			 result = (ArticleDto)query.getSingleResult();
 		} catch (Exception e) {
 			// TODO: handle exception 
+			//e.printStackTrace();
 			result = null;
 		}
 		return result;
@@ -132,6 +114,7 @@ public class ArticleDao implements Serializable, IArticleDao{
 		article.setQuantityInStock(newArticle.getQuantityInStock());
 		article.setDescription(newArticle.getDescription());
 		article.setCategory(newArticle.getCategory());
+		article.setImgsrc(newArticle.getImgsrc());
 		em.persist(article);
 		em.getTransaction().commit();
 		return (ArticleDto)findArticleByName(newArticle.getName());
@@ -144,19 +127,16 @@ public class ArticleDao implements Serializable, IArticleDao{
 		em.getTransaction().commit();
 	}
 	
-	public void updateArticle(ArticleDto articleDto) {
+	public void updateArticle(ArticleDto articleDto) { 
+		em.getTransaction().begin();
+//		em.flush();
 		Article article = em.find(Article.class, articleDto.getId());
 		article.setCategory(articleDto.getCategory());
 		article.setDescription(articleDto.getDescription());
 		article.setImgsrc(articleDto.getImgsrc());
 		article.setName(articleDto.getName());
-		em.getTransaction().begin();
-		em.merge(article);
-//		em.persist(article);
-		em.flush();
+		article.setQuantityInStock(articleDto.getQuantityInStock());
 		em.getTransaction().commit();
 	}
-	
 		
-	
 }
