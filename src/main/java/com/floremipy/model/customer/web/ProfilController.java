@@ -28,8 +28,9 @@ public class ProfilController {
 	@RequestMapping(value = "/profil", method = RequestMethod.GET)
 	public String profilGet(Model model){
 		Profil profil=data;
+	//	model.addAttribute("message", "Compte déjà existant avec ce user !");
 		model.addAttribute("profil", profil);
-	
+		
 		return "profil";
 		
 	}
@@ -129,6 +130,7 @@ class Profil {
 	private String password;
 	private String login;
 
+
 	public Profil(String iRadios, String nomEntreprise, String raisonSociale,
 			String sIRET, String iJuridique, String name, String firstName, String adresse, String cP, String city,
 			String country, String tel1, String tel2, String email, String tVA, String password, String login) {
@@ -149,7 +151,10 @@ class Profil {
 		this.TVA = tVA;
 		this.login = login;
 		this.password = password;
+
 	}
+	
+	
 	
 	 public Profil(){
 		super(); 
@@ -289,4 +294,5 @@ class Profil {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 }
