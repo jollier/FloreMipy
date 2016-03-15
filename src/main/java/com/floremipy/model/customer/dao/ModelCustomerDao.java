@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dto.CustomerDto;
-import com.floremipy.model.customer.dto.CustomerLightDto;
+
 
 
 
@@ -44,10 +44,22 @@ public class ModelCustomerDao implements IModelCustomerDao {
 		return res.getName();
 	}
 	
-	public void CustomerDaoSave (Customer customer) {
+
+	public CustomerDto CustomerDaoSave (CustomerDto customerDto) {
+		Customer customer = new Customer();
+		
+		customer.setName(customerDto.getName());
+		customer.setFirstName(customerDto.getFirstname());
+		customer.setEmail(customerDto.getEmail());
+		customer.setPhone(customerDto.getPhone());
+		customer.setAdress(customerDto.getAdress());
+		
 		em.getTransaction().begin();
 		em.persist(customer);
 		em.getTransaction().commit();
+		
+		return (CustomerDto)findCustomerByEmail(customerDto.getEmail());
+
 	}
 	
 	public void CustomerDaoRemove (Customer customer) {
@@ -77,26 +89,24 @@ public class ModelCustomerDao implements IModelCustomerDao {
 				
 	}
 	
-	public List<CustomerLightDto> findAllCustomersLight(){
-		String requete = 
-				"SELECT NEW com.floremipy.model.customer.dto.CustomerLightDto(" + 
-		"a.id , a.name, a.firstName)" +
-						"From Customer a ORDER BY a.name";
-		Query query = null;
-		query=em.createQuery(requete, CustomerDto.class);		
-		return (List<CustomerLightDto>)query.getResultList();		
-	}
 	
-	public CustomerLightDto findCustomerLightById(int id){
-		String requete = "SELECT New com.floremipy.model.customer.dto.CustomerLightDto(" +
-				"a.id , a.name, a.firstName)" +
-				"From Customer a WHERE a.id = :id";
+
+	public CustomerDto findCustomerByEmail(String email){
+		String requete = "SELECT New com.floremipy.model.customer.dto.CustomerDto(" +
+				"a.id , a.name, a.firstName, a.phone, a.email, a.adress)" +
+				"From Customer a  WHERE a.email = :email";
 		Query query = null;
 		query=em.createQuery(requete, CustomerDto.class);
-		query.setParameter("id", id);
-		return (CustomerLightDto)query.getSingleResult();		
+		query.setParameter("email", email);
+		
+		CustomerDto result = null;
+		try {
+			 result = (CustomerDto)query.getSingleResult();
+		} catch (Exception e) {
+			result = null;
+		}
+		return result;
+			
 	}
-
-
 
 }
