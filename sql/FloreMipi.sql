@@ -2,7 +2,7 @@
 -- Hôte :                        127.0.0.1
 -- Version du serveur:           10.1.9-MariaDB - mariadb.org binary distribution
 -- SE du serveur:                Win32
--- HeidiSQL Version:             9.3.0.5052
+-- HeidiSQL Version:             9.3.0.5055
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS `adress` (
   `ZipCode` varchar(200) DEFAULT NULL,
   `City` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.adress : ~30 rows (environ)
+-- Export de données de la table floremipi.adress : ~8 rows (environ)
 DELETE FROM `adress`;
 /*!40000 ALTER TABLE `adress` DISABLE KEYS */;
 INSERT INTO `adress` (`Id`, `Location`, `ZipCode`, `City`) VALUES
@@ -48,23 +48,25 @@ CREATE TABLE IF NOT EXISTS `article` (
   `Imgsrc` varchar(300) DEFAULT NULL,
   `QuantityInStock` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.article : ~21 rows (environ)
+-- Export de données de la table floremipi.article : ~13 rows (environ)
 DELETE FROM `article`;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 INSERT INTO `article` (`Id`, `Name`, `Description`, `Category`, `Imgsrc`, `QuantityInStock`) VALUES
-	(1, 'Câdre en boule', '', 'Arbres', '', 10),
-	(2, 'Sapin', '', '', '', 10),
-	(3, 'Epinette bleue', '', '', '', 10),
-	(4, 'Chêne', '', '', '', 10),
-	(5, 'Erable argenté', '', '', '', 10),
-	(6, 'Herbe à puce', '', '', '', 10),
-	(7, 'Poirier', '', '', '', 10),
-	(8, 'Catalpa', '', '', '', 10),
-	(9, 'Pommier', '', '', '', 10),
-	(10, 'Génévrier', '', '', '', 10),
-	(11, 'Abricotier rustique', '', 'Fruit', '', 10);
+	(1, 'Câdre en boule', 'Super cadre de Noël avec des boules (de Noël)', 'Arbres', 'img/cadre_en_boule.jpg', 10),
+	(2, 'Sapin', 'Ca sent le ...', 'Arbres', 'img/Sapin.JPG', 10),
+	(3, 'Epinette bleue', 'Epi net', 'Arbres', 'img/Epinette_bleue.jpg', 10),
+	(4, 'Chêne', 'SM bienvenu', 'Arbres', 'img/Chene.jpg', 10),
+	(5, 'Erable argenté', 'Tabernacle', 'Arbres', 'img/Erable_argente.jpg', 10),
+	(6, 'Herbe à puce', 'Gratt Gratt', 'Herbacées', 'img/Herbe_a_puce.jpg', 10),
+	(7, 'Poirier', 'Jean-Marie (RIP)', 'Fruits', 'img/Poirier.jpg', 10),
+	(8, 'Catalpa', '????', 'Arbres', 'img/Catalpa.jpg', 10),
+	(9, 'Pommier', 'Jean-Marie (private joke)', 'Fruits', 'img/Pommier.jpg', 10),
+	(10, 'Génévrier', 'hips', 'Arbustes', 'img/Genevrier.jpg', 10),
+	(11, 'Abricotier rustique', 'J\'adore sucer un abricot pendant des heures', 'Fruits', 'img/Abricotier.jpg', 10),
+	(82, 'Cactus', 'Aie ça pique', 'Cactus', 'img/Dancing_cactus.gif', 12),
+	(83, 'Try and Pray', 'Même pas cap !', 'Arbres', 'img/Try_and_Pray.jpg', 1);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipi. articleinprogress
@@ -77,9 +79,9 @@ CREATE TABLE IF NOT EXISTS `articleinprogress` (
   PRIMARY KEY (`Id`),
   KEY `IdArticle` (`IdArticle`),
   CONSTRAINT `articleinprogress_ibfk_1` FOREIGN KEY (`IdArticle`) REFERENCES `article` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.articleinprogress : ~5 rows (environ)
+-- Export de données de la table floremipi.articleinprogress : ~1 rows (environ)
 DELETE FROM `articleinprogress`;
 /*!40000 ALTER TABLE `articleinprogress` DISABLE KEYS */;
 INSERT INTO `articleinprogress` (`Id`, `Quantity`, `StartDate`, `ReleaseDate`, `IdArticle`) VALUES
@@ -97,19 +99,19 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`Id`),
   KEY `IdAdress` (`IdAdress`),
   CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`IdAdress`) REFERENCES `adress` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.customer : ~20 rows (environ)
+-- Export de données de la table floremipi.customer : ~8 rows (environ)
 DELETE FROM `customer`;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`Id`, `Name`, `FirstName`, `Phone`, `Email`, `IdAdress`) VALUES
-	(1, 'Sansom', 'Luc', '(999)999-9999', '', 1),
+	(1, 'Sansom', 'Luc', '(999)999-9999', 'Sansom.Luc@mail.com', 1),
 	(2, 'Tremblay', 'Dollard', '(888)888-8888', 'Tremblay.Dollard@mail.com', 2),
-	(3, 'Bô', 'Lin', '(777)777-7777', '', 3),
-	(4, 'Leconte', 'Jean', '(666)666-6666', '', 4),
-	(5, 'Alaoui', 'Hafed', '(555)555-5555', '', 5),
-	(6, 'Leconte', 'Marie', '(666)666-6666', '', 6),
-	(7, 'Lecoq', 'Simon', '(444)444-4419', '', 7),
+	(3, 'Bô', 'Lin', '(777)777-7777', 'Bo.Lin@mail.com', 3),
+	(4, 'Leconte', 'Jean', '(666)666-6666', 'Leconte.Jean@mail.com', 4),
+	(5, 'Alaoui', 'Hafed', '(555)555-5555', 'Alaoui.hafed@mail.com', 5),
+	(6, 'Leconte', 'Marie', '(666)666-6666', 'Leconte.marie@mail.com', 6),
+	(7, 'Lecoq', 'Simon', '(444)444-4419', 'Lecoq.simon@mail.com', 7),
 	(8, 'Tremblay', 'Dollard', '(333)333-3333', 'Tremblay.Dollard@mail.com', 8);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
@@ -265,9 +267,9 @@ CREATE TABLE IF NOT EXISTS `price` (
   PRIMARY KEY (`Id`),
   KEY `IdArticle` (`IdArticle`),
   CONSTRAINT `price_ibfk_1` FOREIGN KEY (`IdArticle`) REFERENCES `article` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.price : ~19 rows (environ)
+-- Export de données de la table floremipi.price : ~11 rows (environ)
 DELETE FROM `price`;
 /*!40000 ALTER TABLE `price` DISABLE KEYS */;
 INSERT INTO `price` (`Id`, `IdArticle`, `Value`, `Date`) VALUES
@@ -311,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `version` (
 DELETE FROM `version`;
 /*!40000 ALTER TABLE `version` DISABLE KEYS */;
 INSERT INTO `version` (`id`, `version`) VALUES
-	(1, 5);
+	(1, 7);
 /*!40000 ALTER TABLE `version` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

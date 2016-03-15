@@ -3,10 +3,7 @@ package com.floremipy.model.article;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -33,7 +30,7 @@ public class FloreModelArticleTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		int versionBaseUser = 5;
+		int versionBaseUser = 7;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
 		Version version = em.find(Version.class, 1);
@@ -91,7 +88,9 @@ public class FloreModelArticleTest {
 			name = "testCreateArticle" + i;
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
-		ArticleDto articleDto = new ArticleDto(0,name, name, name, name, 1);
+		ArticleDto articleDto = new ArticleDto(
+				0,"category", "description", "img/logo-naturemp.png", name, 1
+				);
 		
 		ArticleDto newArticle = articleDao.createArticle(articleDto);
 		System.out.println("result test testCreateArticle : " +newArticle.toString());
@@ -110,7 +109,7 @@ public class FloreModelArticleTest {
 			articleExists = articleDao.findArticleByName(name);
 		} while (articleExists != null);
 		ArticleDto articleDto = new ArticleDto(
-				0,"category", "description", "imgsrc", name, 1
+				0,"category", "description", "img/logo-naturemp.png", name, 1
 		);
 		
 		ArticleDto newArticle = articleDao.createArticle(articleDto);
@@ -127,7 +126,7 @@ public class FloreModelArticleTest {
 		String name = "testupdate " + localDateTime.toString();
 
 		ArticleDto articleDto = new ArticleDto(
-				0,"category", "description", "imgsrc", name, 1
+				0,"category", "description", "img/logo-naturemp.png", name, 1
 		);
 		ArticleDto newArticleDto = articleDao.createArticle(articleDto);
 		name = name+"Update";
@@ -138,6 +137,15 @@ public class FloreModelArticleTest {
 		assertEquals(verifyArticle.getName(),name);
 	}
 	
+	@Test
+	public void testFindAllCategory() {
+		IArticleDao modelDao = new ArticleDao();
+		List<String> resultCategory = modelDao.findAllCategory();
+		for (String s : resultCategory) {
+			System.out.println("result test FindAllCategory : " +s);
+		}
+		assertTrue(resultCategory.size() > 0);
+	}
 
 	@AfterClass
 	public static void setUpAfterClass() throws Exception {
@@ -148,3 +156,4 @@ public class FloreModelArticleTest {
 	
 
 }
+

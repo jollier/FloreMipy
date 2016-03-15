@@ -1,6 +1,8 @@
 package com.floremipy.model.articleinprogress;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -31,7 +33,7 @@ public class FloreModelArticleinprogressTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		int versionBaseUser = 5;
+		int versionBaseUser = 7;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
 		Version version = em.find(Version.class, 1);

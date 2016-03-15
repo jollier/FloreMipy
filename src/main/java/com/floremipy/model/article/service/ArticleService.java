@@ -15,25 +15,11 @@ public class ArticleService implements IArticleService {
 	@Autowired
 	IArticleDao articleDao;
 
-	/*@Override
-	public List<ArticleLightDto> findAllDto() {
-		
-		return articleDao.findAllArticlesLight();
+	@Override
+	public List<ArticleDto> findAllArticlesByCategory(String cat){
+		return articleDao.findAllArticlesByCategory(cat);
 	}
 
-	
-	@Override
-	public ArticleLightDto findArticleLightById(int id) {
-
-		return articleDao.findArticleLightById(id);
-	}
-		
-	@Override
-	public List<ArticleLightDto> findAllArticlesLightByCategory(String cat){
-		return articleDao.findAllArticlesLightByCategory(cat);
-	}
-	*/
-		
 	@Override
 	public void updateArticle(ArticleDto articleDto) {
 		articleDao.updateArticle(articleDto);
@@ -71,6 +57,11 @@ public class ArticleService implements IArticleService {
 	@Override
 	public void deleteArticle(ArticleDto articleDto) {
 		articleDao.deleteArticle(articleDto);
+	}
+
+	@Override
+	public List<String> findAllCategories() {
+		return articleDao.findAllCategory();
 	}
 
 }

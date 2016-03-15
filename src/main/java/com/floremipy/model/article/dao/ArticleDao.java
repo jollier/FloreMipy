@@ -114,6 +114,7 @@ public class ArticleDao implements IArticleDao{
 		article.setQuantityInStock(newArticle.getQuantityInStock());
 		article.setDescription(newArticle.getDescription());
 		article.setCategory(newArticle.getCategory());
+		article.setImgsrc(newArticle.getImgsrc());
 		em.persist(article);
 		em.getTransaction().commit();
 		return (ArticleDto)findArticleByName(newArticle.getName());
@@ -136,6 +137,22 @@ public class ArticleDao implements IArticleDao{
 		article.setName(articleDto.getName());
 		article.setQuantityInStock(articleDto.getQuantityInStock());
 		em.getTransaction().commit();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> findAllCategory() {
+		String requete = 
+				"SELECT DISTINCT a.category FROM Article a";
+		Query query = null;
+		query = em.createQuery(requete, ArticleDto.class);
+		List<String> result = null;
+		try {
+			result = (List<String>)query.getResultList(); 
+		} catch (Exception e) {
+			// TODO: handle exception
+			result = null;
+		}
+		return result;
 	}
 		
 }

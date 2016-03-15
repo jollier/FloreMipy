@@ -13,6 +13,7 @@ public class ProductLightTableModel extends AbstractTableModel {
 	
 	public ProductLightTableModel(ArrayList<ProductLight> listProduct) {
 		super();
+		System.out.println("ProductLightTableModel");
 		this.listProduct = listProduct;
 	}
 

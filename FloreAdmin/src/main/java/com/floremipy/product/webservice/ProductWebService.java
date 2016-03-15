@@ -18,7 +18,7 @@ import com.floremipy.product.model.ProductLight;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-@Component
+@Component(value="ProductWebService")
 public class ProductWebService implements IProductWebService {
 
 	private static final String SITEURL = "http://localhost:8080/FloreMipy/";
@@ -32,9 +32,10 @@ public class ProductWebService implements IProductWebService {
 	 * com.floremipy.product.webservice.IProductWebService#getAllProductLight()
 	 */
 	@Override
-	public ArrayList<ProductLight> getAllProductLight() throws IOException, MalformedURLException {
+	public ArrayList<ProductLight> getAllProductLight() throws MalformedURLException, UnsupportedEncodingException, IOException {
 		ArrayList<ProductLight> response = new ArrayList<ProductLight>();
 
+		System.out.println("ProductWebService.getAllProductLight()");
 		// HttpURLConnection conn = null;
 		JsonUtils jsonUtils = new JsonUtils();
 		
@@ -50,5 +51,10 @@ public class ProductWebService implements IProductWebService {
 
 		return response;
 	}
+	
+	public ProductWebService() {
+		//super();
+	}
+	
 
 }
