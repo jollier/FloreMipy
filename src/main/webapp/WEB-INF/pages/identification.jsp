@@ -6,15 +6,16 @@
 <head>
 <meta charset="ISO-8859-1">
 
- <link href="css/home/bootstrap.min.css" rel="stylesheet">
- <link href="css/home/signin.css" rel="stylesheet">
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+ <link href="css/signin.css" rel="stylesheet">
  
 <title>Insert title here</title>
 </head>
 <body>
      <div class="container">
-         <div class="row">
-             <div class="col-md-4 col-md-offset-7">
+
+       <div class="row">
+             <div class="col-md-4 ">
                  <div class="panel panel-default">
                      <div class="panel-heading">
                          <span class="glyphicon glyphicon-lock"></span> Login
@@ -57,7 +58,8 @@
                      </div>
                  </div>
              </div>
-         </div>
+          </div>
+                            <c:import url="/WEB-INF/pages/footer.jsp" /></br>
      </div>
 </body>
 </html>
