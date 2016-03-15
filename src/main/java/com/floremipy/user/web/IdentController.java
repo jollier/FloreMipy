@@ -41,13 +41,11 @@ public class IdentController {
 			
 		    CustomerDto monCus = monService.getCustomerByLoginAndPassword(login, pwd);
 		    
-		    // monCus.getId()
 		    if (monCus!=null) {
 		    	// Récupération de la session
 		    	HttpSession session = request.getSession(true);
 		    	session.setAttribute("login", login);
 		    	session.setAttribute("id", monCus.getId());
-		    	
 		    	return new ModelAndView("accueil");
 		    	
 		    } else {
