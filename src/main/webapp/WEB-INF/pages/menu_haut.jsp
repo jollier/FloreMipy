@@ -18,9 +18,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">C.G. de ventes</a></li>
-                    <li><a href="#">C.G. d'envois</a></li>
-                    <li><a href="#">Qui sommes-nous ?</a></li>
+                    <li><a href="<c:url value ="/cGVentes"/>">C.G. de ventes</a></li>
+                    <li><a href="<c:url value ="/cGEnvoi"/>">C.G. d'envois</a></li>
+                    <li><a href="<c:url value ="/quiSommesNous"/>">Qui sommes-nous ?</a></li>
                 </ul>
                                         
                 <ul class="nav navbar-nav navbar-right">
