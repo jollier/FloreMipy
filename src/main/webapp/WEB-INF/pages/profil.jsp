@@ -4,6 +4,8 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,7 +17,9 @@
 
 <!-- Custom CSS -->
 <link href="css/home/shop-homepage.css" rel="stylesheet">
-
+<link href="fonts/*" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic,600italic,700italic|Varela+Round&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -174,6 +178,15 @@
                                 </div>
                         </div>
                         
+                       <!-- Alerte -->
+                         <c:if test="${!empty message}">
+                         <div class="alert alert-danger" role="alert">
+							  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  <span class="sr-only">Error:</span>
+								 ${message}
+						</div>
+                       <%--      <div class="alert alert-warning" role="alert">${message}</div> --%>
+                         </c:if>
                     </div>
                 </fieldset>
             </form:form>
