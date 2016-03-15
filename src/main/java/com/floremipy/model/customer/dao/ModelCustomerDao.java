@@ -89,25 +89,7 @@ public class ModelCustomerDao implements IModelCustomerDao {
 				
 	}
 	
-	public List<CustomerLightDto> findAllCustomersLight(){
-		String requete = 
-				"SELECT NEW com.floremipy.model.customer.dto.CustomerLightDto(" + 
-		"a.id , a.name, a.firstName)" +
-						"From Customer a ORDER BY a.name";
-		Query query = null;
-		query=em.createQuery(requete, CustomerDto.class);		
-		return (List<CustomerLightDto>)query.getResultList();		
-	}
 	
-	public CustomerLightDto findCustomerLightById(int id){
-		String requete = "SELECT New com.floremipy.model.customer.dto.CustomerLightDto(" +
-				"a.id , a.name, a.firstName)" +
-				"From Customer a WHERE a.id = :id";
-		Query query = null;
-		query=em.createQuery(requete, CustomerDto.class);
-		query.setParameter("id", id);
-		return (CustomerLightDto)query.getSingleResult();		
-	}
 
 	public CustomerDto findCustomerByEmail(String email){
 		String requete = "SELECT New com.floremipy.model.customer.dto.CustomerDto(" +

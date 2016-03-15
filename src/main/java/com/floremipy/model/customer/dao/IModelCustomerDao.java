@@ -12,7 +12,5 @@ public interface IModelCustomerDao {
 	CustomerDto CustomerDaoSave (CustomerDto customerDto);
 	List<CustomerDto> findAllCustomers();
 	CustomerDto findCustomerById(int id);
-	List<CustomerLightDto> findAllCustomersLight();
-	CustomerLightDto findCustomerLightById(int id);
 	CustomerDto findCustomerByEmail(String email);
 }
