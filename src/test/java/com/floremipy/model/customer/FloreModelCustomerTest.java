@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -31,7 +32,7 @@ public class FloreModelCustomerTest {
 
        @BeforeClass
        public static void setUpBeforeClass() throws Exception {
-             int versionBaseUser = 5;
+             int versionBaseUser = 7;
              emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
              em =  emf.createEntityManager();
              Version version = em.find(Version.class, 1);
@@ -64,8 +65,8 @@ public class FloreModelCustomerTest {
        public void testCustomerDaoSave() {
              ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
              Adress adress = new Adress ("rue du village","31000","Toulouse");
-             Customer customer = new Customer (0,"test.teste@mail.com","Teste","Test","(555)555-5555",adress);
-             modelCustomerDao.CustomerDaoSave(customer);                        
+             CustomerDto customerDto = new CustomerDto (0,"test.teste@mail.com","Teste","Test","(555)555-5555",adress);
+             modelCustomerDao.CustomerDaoSave(customerDto);                        
        }
        
        
@@ -107,6 +108,13 @@ public class FloreModelCustomerTest {
              CustomerLightDto result = modelDao.findCustomerLightById(id);
              System.out.println("result test FindCustomerLightById : " +result.toString());
              assertEquals(id,result.getId());
+       }
+       
+       @AfterClass
+   		public static void setUpAfterClass() throws Exception {
+    	   em.close();
+    	   emf.close();
+
        }
        
 

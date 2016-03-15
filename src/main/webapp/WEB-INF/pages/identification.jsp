@@ -23,7 +23,7 @@
                          <form class="form-horizontal"  method="Post" action="identification">
                              <div class="form-group">
                                  <label for="inputEmail3" class="col-sm-3 control-label">
-                                     Email</label>
+                                     Login</label>
                                  <div class="col-sm-9">
                                      <input type="text" class="form-control" id="inputEmail3" name="Email" required> ${message}</div>
                              </div>

@@ -2,7 +2,7 @@
 -- Hôte :                        127.0.0.1
 -- Version du serveur:           10.1.9-MariaDB - mariadb.org binary distribution
 -- SE du serveur:                Win32
--- HeidiSQL Version:             9.3.0.5052
+-- HeidiSQL Version:             9.3.0.5055
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `userdbversion` (
 DELETE FROM `userdbversion`;
 /*!40000 ALTER TABLE `userdbversion` DISABLE KEYS */;
 INSERT INTO `userdbversion` (`id`, `version`) VALUES
-	(1, 6);
+	(1, 7);
 /*!40000 ALTER TABLE `userdbversion` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipyuser. users
@@ -38,21 +38,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `usertype` varchar(250) NOT NULL,
   `idcustomer` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipyuser.users : ~34 rows (environ)
+-- Export de données de la table floremipyuser.users : ~11 rows (environ)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `usertype`, `idcustomer`) VALUES
 	(1, 'user1', 'user1', 'user', 1),
 	(2, 'admin1', 'admin1', 'admin', NULL),
-	(3, 'employee1', 'employee1', 'employee', NULL),
-	(67, 'testUserUpdateUpdate', 'testUserUpdate', 'user', 1),
-	(69, 'testCreateUser1', 'testCreateUser1', 'user', 1),
-	(70, 'testUserUpdateUpdate', 'testUserUpdate', 'user', 1),
-	(72, 'testCreateUser2', 'testCreateUser2', 'user', 1),
-	(73, 'testUserUpdateUpdate', 'testUserUpdate', 'user', 1),
-	(75, 'testCreateUser3', 'testCreateUser3', 'user', 1);
+	(3, 'employee1', 'employee1', 'employee', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
