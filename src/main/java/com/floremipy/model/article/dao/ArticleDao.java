@@ -138,5 +138,21 @@ public class ArticleDao implements IArticleDao{
 		article.setQuantityInStock(articleDto.getQuantityInStock());
 		em.getTransaction().commit();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> findAllCategory() {
+		String requete = 
+				"SELECT DISTINCT a.category FROM Article a";
+		Query query = null;
+		query = em.createQuery(requete, ArticleDto.class);
+		List<String> result = null;
+		try {
+			result = (List<String>)query.getResultList(); 
+		} catch (Exception e) {
+			// TODO: handle exception
+			result = null;
+		}
+		return result;
+	}
 		
 }
