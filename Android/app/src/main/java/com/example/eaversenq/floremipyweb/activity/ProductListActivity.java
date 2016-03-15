@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.eaversenq.floremipyweb.R;
 import com.example.eaversenq.floremipyweb.model.Product;
 
+import com.example.eaversenq.floremipyweb.service.ConnexionService;
 import com.example.eaversenq.floremipyweb.service.ProductService;
 
 import java.net.URL;
@@ -70,7 +71,7 @@ public class ProductListActivity  extends Activity {
         }
         new GetListProductTask().execute();
 
-            // </Récupération des données du web service>
+        // </Récupération des données du web service>
 
         // NAVIGATION : retour à l'écran d'accueil
         Button btExit = (Button) findViewById(R.id.btExit);
@@ -129,12 +130,9 @@ public class ProductListActivity  extends Activity {
             row.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(), ProductActivity.class);
-                    //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Log.i("Manolo", "Send " + id);
-                    int requestCode = (int)id;
-                    intent.putExtra("requestCode", requestCode);
-                    startActivityForResult(intent, requestCode);
+                    ConnexionService.getInstance().getCtx().setProductId(id);
+                    startActivityForResult(intent, 0);
                 }
             });
 

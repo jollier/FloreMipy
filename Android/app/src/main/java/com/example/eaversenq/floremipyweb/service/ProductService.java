@@ -36,6 +36,31 @@ public class ProductService {
         return defaultFournirListeProduct();
     }
 
+    public Product urlFournirProduct(URL url) throws IOException, UnsupportedEncodingException {
+        Product result;
+
+        HttpURLConnection conn;
+        conn = (HttpURLConnection) url.openConnection();
+        conn.setConnectTimeout(2000);
+        conn.setReadTimeout(10000);
+        conn.connect();
+        if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+            return null;
+        }
+
+        InputStream is = conn.getInputStream();
+        BufferedReader streamReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+        StringBuilder responseStrBuilder = new StringBuilder();
+        String inputStr;
+
+        while ((inputStr = streamReader.readLine()) != null) responseStrBuilder.append(inputStr);
+        Type listType = new TypeToken<ArrayList<Product>>() {
+        }.getType();
+        result = new Gson().fromJson(responseStrBuilder.toString(), listType);
+
+        return result;
+    }
+
     public ArrayList<Product> urlFournirListeProduct(URL url) throws IOException, UnsupportedEncodingException {
         ArrayList<Product> result = new ArrayList<Product>();
 

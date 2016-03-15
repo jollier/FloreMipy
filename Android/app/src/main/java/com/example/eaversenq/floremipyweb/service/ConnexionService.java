@@ -1,10 +1,10 @@
 package com.example.eaversenq.floremipyweb.service;
 
-import com.example.eaversenq.floremipyweb.model.Connexion;
+import com.example.eaversenq.floremipyweb.model.Context;
 
 public class ConnexionService {
 
-    private Connexion cnx = new Connexion();
+    private Context ctx = new Context();
     private static ConnexionService c;
 
     private ConnexionService() {}
@@ -14,7 +14,7 @@ public class ConnexionService {
         return c;
     }
 
-    public Connexion getCnx() {
-        return cnx;
+    public Context getCtx() {
+        return ctx;
     }
 }
