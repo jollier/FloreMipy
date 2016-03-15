@@ -41,14 +41,17 @@
                     <li><a href="#">Qui sommes-nous ?</a></li>
                 </ul>
                                         
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- 
-                    <li><a href="<c:url value="/identification"/>">Se connecter</a></li>
-                    <li><a href="<c:url value="/profil"/>">S'inscrire</a></li>  
-                    -->
-                    
-                    <li><a href="<c:url value="/profil"/>"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
-                    <li><a href="<c:url value="/identification"/>"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>                 
+                <ul class="nav navbar-nav navbar-right">            
+                    <c:choose>
+                        <c:when test="${empty sessionScope.login}">
+                            <li><a href="<c:url value="/profil"/>"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
+                            <li><a href="<c:url value="/identification"/>"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
+                        </c:when>    
+                        <c:otherwise>
+                            <li><a href="<c:url value="/profil"/>">Bonjour : <c:out value="${login}" /></a></li>                            
+                            <li><a href="Deconnexion"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+                        </c:otherwise>
+                    </c:choose>            
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -64,11 +67,9 @@
             <div class="col-md-2">
                 <p class="lead">Flore Mipy</p>
                 <div class="list-group">
-
                     <a href="/FloreMipy/accueil?categorie=Arbres" class="list-group-item">Arbres</a>
                     <a href="/FloreMipy/accueil?categorie=Arbustes" class="list-group-item">Arbustes</a>
-                    <a href="/FloreMipy/accueil?categorie=Fruit" class="list-group-item">Fruit</a>
-         
+                    <a href="/FloreMipy/accueil?categorie=Fruit" class="list-group-item">Fruit</a>         
                 </div>
             </div>
 

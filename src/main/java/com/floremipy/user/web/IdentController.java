@@ -1,6 +1,7 @@
 package com.floremipy.user.web;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,11 @@ public class IdentController {
 		    
 		    // monCus.getId()
 		    if (monCus!=null) {
+		    	// Récupération de la session
+		    	HttpSession session = request.getSession(true);
+		    	session.setAttribute("login", login);
+		    	session.setAttribute("id", monCus.getId());
+		    	
 		    	return new ModelAndView("accueil");
 		    	
 		    } else {
