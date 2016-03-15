@@ -7,22 +7,20 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.floremipy.product.webservice.IProductWebService;
 
-@Component
+@Component(value="ProductListModel")
 public class ProductListModel extends Observable implements IProductListModel{
 	
 	ArrayList<ProductLight> listProduct;
 	
 	@Autowired
+	@Qualifier("ProductWebService")
 	IProductWebService productWebService;
 	
-	public ProductListModel(IProductWebService productWebService) {
-		super();
-		this.productWebService = productWebService;
-	}
 
 	public ProductListModel() {
 		super();
@@ -33,6 +31,7 @@ public class ProductListModel extends Observable implements IProductListModel{
 	 */
 	@Override
 	public ArrayList<ProductLight> getListProduct() throws MalformedURLException, UnsupportedEncodingException, IOException {
+		//listProduct = new ArrayList<ProductLight>();
 		listProduct = productWebService.getAllProductLight();
 		return listProduct;
 	}
@@ -41,4 +40,15 @@ public class ProductListModel extends Observable implements IProductListModel{
 		setChanged();
 		notifyObservers();
 	}
+
+//	public IProductWebService getProductWebService() {
+//		return productWebService;
+//	}
+//
+//	public void setProductWebService(IProductWebService productWebService) {
+//		System.out.println("setProductWebService" + productWebService);
+//		this.productWebService = productWebService;
+//	}
+	
+	
 }
