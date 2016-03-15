@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.model.customer.dto.CustomerLightDto;
-import com.floremipy.user.dto.UserDto;
 
 
 
@@ -45,6 +44,7 @@ public class ModelCustomerDao implements IModelCustomerDao {
 		return res.getName();
 	}
 	
+
 	public CustomerDto CustomerDaoSave (CustomerDto customerDto) {
 		Customer customer = new Customer();
 		
@@ -59,7 +59,7 @@ public class ModelCustomerDao implements IModelCustomerDao {
 		em.getTransaction().commit();
 		
 		return (CustomerDto)findCustomerByEmail(customerDto.getEmail());
-		
+
 	}
 	
 	public void CustomerDaoRemove (Customer customer) {

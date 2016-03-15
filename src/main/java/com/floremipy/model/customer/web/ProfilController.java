@@ -43,8 +43,7 @@ public class ProfilController {
 		 * 
 		 */
 		profil.getName();
-		System.out.println("email : " + profil.getEmail() + " login : " + profil.getLogin());
-		
+				
 		// *********************************************************
 		// *** Controle que les saisies n'existent pas déjà      ***
 		//**********************************************************

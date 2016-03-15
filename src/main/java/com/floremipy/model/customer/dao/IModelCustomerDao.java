@@ -8,6 +8,7 @@ import com.floremipy.model.customer.dto.CustomerLightDto;
 public interface IModelCustomerDao {
 	
 	String FindNameLastCustomer();
+
 	CustomerDto CustomerDaoSave (CustomerDto customerDto);
 	List<CustomerDto> findAllCustomers();
 	CustomerDto findCustomerById(int id);
