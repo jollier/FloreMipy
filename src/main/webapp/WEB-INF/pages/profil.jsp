@@ -1,6 +1,5 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -25,9 +24,9 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
       
-      
-      
+
       <form:form action="profil" method="post" modelAttribute="profil" class="form-horizontal">
+
   <fieldset>
         <div class="jumbotron">
             <!--  <legend>Profil</legend>-->
@@ -131,6 +130,7 @@
                 </div>
                 
                   <div class="form-group">
+
           <label for="input" class="col-lg-2 control-label required required">Login</label>
           <div class="col-lg-4">
             <form:input type="text" class="form-control required" path="login" placeholder="" required="true"/>
@@ -140,6 +140,7 @@
                <form:input type="password" class="form-control required" path="password" placeholder="" required="true"/>
           </div>
         </div>
+
         
                 <div class="form-group">
                   <label for="input" class="col-lg-2 control-label required">Email</label>
