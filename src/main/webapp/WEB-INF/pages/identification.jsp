@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -45,11 +47,13 @@
                              </div>
                              <div class="form-group last">
                                  <div class="col-sm-offset-3 col-sm-9">
-                                     <button type="submit" class="btn btn-success btn-sm">
-                                         S'identifier</button>
-                                     <button type="reset" class="btn btn-default btn-sm">
+                                      <button type="submit" class="btn btn-success btn-sm">
+                                         S'identifier</button> 
+                                     <spring:url value="/accueil" var="accueil" htmlEscape="true" />
+                                    <a href="${accueil}" type="reset" class="btn btn-default">Annuler </a>
+<!--                                      <button type="reset" class="btn btn-default btn-sm">
                                          Annuler</button>
-                                 </div>
+                                 </div> -->
                              </div>
                          </form>
                      </div>

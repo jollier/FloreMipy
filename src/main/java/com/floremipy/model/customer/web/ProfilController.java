@@ -28,8 +28,9 @@ public class ProfilController {
 	@RequestMapping(value = "/profil", method = RequestMethod.GET)
 	public String profilGet(Model model){
 		Profil profil=data;
+	//	model.addAttribute("message", "Compte déjà existant avec ce user !");
 		model.addAttribute("profil", profil);
-	
+		
 		return "profil";
 		
 	}
@@ -49,17 +50,17 @@ public class ProfilController {
 		//**********************************************************
 		
 		//Verification que l'email n'existe pas déjà dans un customer
-		CustomerDto customerDtoCtrl = null;
-		customerDtoCtrl = customerService.getCustomerByEmail(profil.getEmail());
-		if (customerDtoCtrl != null) {
+		CustomerDto newCustomer = null;
+		newCustomer = customerService.getCustomerByEmail(profil.getEmail());
+		if (newCustomer != null) {
 			model.addAttribute("message", "Compte déjà existant avec cet email !");
 	    	return new ModelAndView("profil");
 		}
 		
 		//Verification que le name n'existe pas déjà dans un user
-		UserDto userDtoCtrl = null;
-		userDtoCtrl = userService.getUserByName(profil.getLogin());
-		if (userDtoCtrl != null) {
+		UserDto newUserDto = null;
+		newUserDto = userService.getUserByName(profil.getLogin());
+		if (newUserDto != null) {
 			model.addAttribute("message", "Compte déjà existant pour ce user !");
 	    	return new ModelAndView("profil");
 		}
@@ -67,7 +68,7 @@ public class ProfilController {
 		// *********************************************************
 		// ***           Passage à l'enregistrement              ***
 		// *********************************************************
-		CustomerDto newCustomer = new CustomerDto();
+		newCustomer = new CustomerDto();
 		
 		newCustomer.setEmail(profil.getEmail());
 		newCustomer.setFirstname(profil.getFirstName());
@@ -81,27 +82,25 @@ public class ProfilController {
 
 		newCustomer.setAdress(adress);
 
-		UserDto newUserDto = new UserDto();
+		newUserDto = new UserDto();
 		
 		newUserDto.setUsername(profil.getLogin());
 		newUserDto.setPassword(profil.getPassword());
 		newUserDto.setUsertype("user");
 		
+		String message="";
 		try {
-			// 1. Sauvegarde du user
-			UserDto userDtoSave = userService.create(newUserDto);
-			// 2. Sauvegarde du customer
-			CustomerDto customerDtoSave = customerService.save(newCustomer);
-			// 3. Mise à jour de l'id customer
-			userDtoSave.setIdcustomer(customerDtoSave.getId());
-			// 4. Enregistrement de ce nouveau UserDto avec l'id du customer
-			userService.save(userDtoSave);
+			
+			message = customerService.save(newCustomer, newUserDto);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		
+		if (!message.equals("")) {
+			model.addAttribute("message", message);
+			return new ModelAndView("/profil");
+		}
 		return new ModelAndView("/accueil");
 		
 	}
@@ -128,6 +127,7 @@ class Profil {
 	private String password;
 	private String login;
 
+
 	public Profil(String iRadios, String nomEntreprise, String raisonSociale,
 			String sIRET, String iJuridique, String name, String firstName, String adresse, String cP, String city,
 			String country, String tel1, String tel2, String email, String tVA, String password, String login) {
@@ -148,7 +148,10 @@ class Profil {
 		this.TVA = tVA;
 		this.login = login;
 		this.password = password;
+
 	}
+	
+	
 	
 	 public Profil(){
 		super(); 
@@ -288,4 +291,5 @@ class Profil {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 }

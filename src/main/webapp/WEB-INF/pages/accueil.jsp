@@ -21,7 +21,6 @@
 
     <c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
 
-
     <!-- Page Content -->
     <div class="container">
 
@@ -30,18 +29,17 @@
             <div class="col-md-2">
                 <p class="lead">Flore Mipy</p>
                 <div class="list-group">
-
-                    <a href="/FloreMipy/accueil?categorie=Arbres" class="list-group-item">Arbres</a>
-                    <a href="/FloreMipy/accueil?categorie=Arbustes" class="list-group-item">Arbustes</a>
-                    <a href="/FloreMipy/accueil?categorie=Fruit" class="list-group-item">Fruit</a>
-         
-                </div>
+                
+                    <a href="/FloreMipy/accueil?categorie=Toutes" class="list-group-item">Toutes</a>
+                    <c:forEach items="${catList}" var="cat"> 
+	                    <a href="/FloreMipy/accueil?categorie=${cat}" class="list-group-item">${cat}</a>	                    	                                 
+                    </c:forEach>
+                
+                </div>           
             </div>
 
-            <div class="col-md-7">
-
+            <div class="col-md-8">
                 <div class="row carousel-holder">
-
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -51,13 +49,13 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="/FloreMipy/img/Bambou_1.jpg" alt="">
+                                    <img class="slide-image" src="/FloreMipy/img/Bambou_1.jpg" width="50" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="/FloreMipy/img/Buis_1.jpg" alt="">
+                                    <img class="slide-image" src="/FloreMipy/img/Buis_1.jpg" width="50" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="/FloreMipy/img/Arbuste_persistant_1.jpg" alt="">
+                                    <img class="slide-image" src="/FloreMipy/img/Arbuste_persistant_1.jpg" width="50" alt="">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -74,7 +72,7 @@
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
                                 <!-- <img src="http://placehold.it/320x150" alt=""> -->
-                                <img src="/FloreMipy/${art.imgsrc}" alt="">
+                                <img src="/FloreMipy/${art.imgsrc}" alt="" width="50">
                                 
                                 <url value="/FloreMipy/ficheArticle/${art.id}" var="articleUrl" />
                                 
