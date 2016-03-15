@@ -54,7 +54,6 @@ public class CustomerService implements ICustomerService {
 
 	@Override
 	public CustomerDto getCustomerByEmail(String email){
-		CustomerDto customerDto = null;
 		return customerDao.findCustomerByEmail(email);
 	}
 	
