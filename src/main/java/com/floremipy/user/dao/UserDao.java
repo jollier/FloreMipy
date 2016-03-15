@@ -101,7 +101,7 @@ public class UserDao implements Serializable, IUserDao{
 		user.setUsername(newUserDto.getUsername());
 		user.setPassword(newUserDto.getPassword());
 		user.setUsertype(newUserDto.getUsertype());
-		user.setIdcustomer(1);
+		user.setIdcustomer(newUserDto.getIdcustomer());
 		em.persist(user);
 		em.getTransaction().commit();
 		return findUserByUserName(newUserDto.getUsername());
