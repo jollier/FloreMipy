@@ -41,6 +41,8 @@ body {
 
 	<div class="container">
 
+        <c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
+
 		<div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -98,6 +100,8 @@ body {
                                     
 			</div>
 		</div>
+
+    <c:import url="/WEB-INF/pages/footer.jsp" /></br>
 
 	</div>
 
