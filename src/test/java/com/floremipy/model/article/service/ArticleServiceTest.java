@@ -4,6 +4,8 @@ package com.floremipy.model.article.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.DocFlavor.STRING;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -157,26 +159,35 @@ public class ArticleServiceTest {
 		Assert.assertEquals(art, article);
 		Assert.assertEquals(ArticleLightDto.class, art.getClass());
 		
-	}
+	}*/
 	
 	@Test
-	public void testfindArticleDTOByID_NOK(){
+	public void testfindAllCategories(){
 		IArticleDao articleDao = Mockito.mock(IArticleDao.class);
 		
-		ArticleLightDto article2 = new ArticleLightDto();
+		ArticleDto article = new ArticleDto();
+		article.setCategory("Arbre");
+		ArticleDto article1 = new ArticleDto();
+		article1.setCategory("Arbuste");
+		ArticleDto article2 = new ArticleDto();
+		article2.setCategory("Arbre");
+		ArticleDto article3 = new ArticleDto();	
+		article3.setCategory(null);
+		List<String> list = new ArrayList<String>();
+		list.add(article.getCategory()); list.add(article1.getCategory());
+		//list.add(article2.getCategory());list.add(article3.getCategory());
 		
-		Mockito.when(articleDao.findArticleLightById(0)).thenReturn(null);
+		Mockito.when(articleDao.findAllCategory()).thenReturn(list);
 
 		
 		ArticleService modelService = new ArticleService();
 		modelService.setArticleDao(articleDao);
 		
-		ArticleLightDto art = modelService.findArticleLightById(0);
+		List<String> categories = modelService.findAllCategories();
 		
-		Assert.assertEquals(null, modelService.findArticleLightById(0));
-		Assert.assertEquals(null, modelService.findArticleLightById(2));
+		Assert.assertEquals(2, categories.size());
 	}
-	*/
+	
 	
 	@Test
 	public void testfindArticleDTOByCategorie_OK(){

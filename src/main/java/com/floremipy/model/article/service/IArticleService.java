@@ -11,7 +11,7 @@ public interface IArticleService {
 
 	//ArticleLightDto findArticleLightById(int id);
 
-	//List<ArticleLightDto> findAllDto();
+	List<String> findAllCategories();
 	
 	List<ArticleDto> findAll();
 	
