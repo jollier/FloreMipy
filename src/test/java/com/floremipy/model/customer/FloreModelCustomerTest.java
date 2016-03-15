@@ -20,7 +20,7 @@ import com.floremipy.model.Version;
 import com.floremipy.model.customer.dao.IModelCustomerDao;
 import com.floremipy.model.customer.dao.ModelCustomerDao;
 import com.floremipy.model.customer.dto.CustomerDto;
-import com.floremipy.model.customer.dto.CustomerLightDto;
+
 
 public class FloreModelCustomerTest {
        
@@ -91,24 +91,7 @@ public class FloreModelCustomerTest {
        
        }
        
-       @Test
-       public void testFindAllCustomersLight() {
-             IModelCustomerDao modelDao = new ModelCustomerDao();
-             List<CustomerLightDto> result = modelDao.findAllCustomersLight();
-             for(CustomerLightDto a : result){
-                    System.out.println("result test FindAllArticlesLight : " +a);
-             }      
-             assertTrue(result.size() > 0);
-       }
-       
-       @Test
-       public void testFindCustomerLightById() {
-             int id = 1;
-             IModelCustomerDao modelDao = new ModelCustomerDao();
-             CustomerLightDto result = modelDao.findCustomerLightById(id);
-             System.out.println("result test FindCustomerLightById : " +result.toString());
-             assertEquals(id,result.getId());
-       }
+      
        
        @AfterClass
    		public static void setUpAfterClass() throws Exception {

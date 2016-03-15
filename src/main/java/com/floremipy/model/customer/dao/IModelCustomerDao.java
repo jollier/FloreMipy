@@ -3,7 +3,7 @@ package com.floremipy.model.customer.dao;
 import java.util.List;
 
 import com.floremipy.model.customer.dto.CustomerDto;
-import com.floremipy.model.customer.dto.CustomerLightDto;
+
 
 public interface IModelCustomerDao {
 	
