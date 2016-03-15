@@ -18,11 +18,11 @@
 <title>Fiche article</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/item/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="../css/item/shop-item.css" rel="stylesheet">
-<link href="../css/item/produit.css" rel="stylesheet">
+<link href="../css/shop-item.css" rel="stylesheet">
+<link href="../css/produit.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,20 +37,10 @@
 
 	    <c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
 	
-
 	<!-- Page Content -->
 	<div class="container">
 
 		<div class="row">
-
-			<div class="col-md-3">
-				<p class="lead">Shop Name</p>
-				<div class="list-group">
-					<a href="#" class="list-group-item active">Category 1</a> <a
-						href="#" class="list-group-item">Category 2</a> <a href="#"
-						class="list-group-item">Category 3</a>
-				</div>
-			</div>
 
 			<div class="col-md-9">
 				<spring:url value="/ficheArticle" var="ficheArticleUrl" />
@@ -58,10 +48,10 @@
 				<form:form class="form-horizontal" method="post" modelAttribute="article" action="${ficheArticleUrl}">
 
 					<div class="thumbnail">
-						<img class="img-responsive" src="http://placehold.it/800x300"
+						<img class="img-responsive" src="/FloreMipy/${article.imgsrc}"
 							alt="">
 						<div class="caption-full">
-							<h3 class="pull-right">${price} TTC</h3>
+							<h3 class="pull-right">${price} € TTC</h3>
 							<p>
 							<h3>
 								<a href="#">${article.name}</a>
@@ -71,7 +61,8 @@
 								</div>
 							</h3>
 							<div class="text-right">
-								<span>Quantité à commander</span> <select id="quantite"
+								<span>Quantité à commander</span> 
+								<select id="quantite" var="qte"
 									class="wrapper-dropdown">
 									<c:forEach var="i" begin="1" end="${article.quantityInStock}" step="1">
 									<option><c:out value="${i}" />
@@ -81,8 +72,9 @@
 								<p>
 							</div>
 							<div class="text-right">
-								<span class="glyphicon glyphicon-shopping-cart"></span> <a
-									class="btn btn-success">Ajouter au panier</a>
+								<!-- <span class="glyphicon glyphicon-shopping-cart"></span> --> 
+								<!-- <a class="glyphicon glyphicon-user"> </a> -->
+								    <a href="/FloreMipy/ficheArticle/${article.id}/ajouter/?qte=${qte}" } class="btn btn-success">Ajouter au panier</a>
 							</div>
 							<p>${article.description}<a target="_blank"></a>.
 							</p>
