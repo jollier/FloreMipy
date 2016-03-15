@@ -31,9 +31,10 @@ public class CustomerService implements ICustomerService {
 	}
 
 	@Override
-	public void save(Customer customer) {
-		customerDao.CustomerDaoSave(customer);
+	public CustomerDto save(CustomerDto customerDto) {
+		return customerDao.CustomerDaoSave(customerDto);
 	}
+
 	
 	@Override
 	public CustomerDto getCustomerByLoginAndPassword(String login, String password){
@@ -51,4 +52,10 @@ public class CustomerService implements ICustomerService {
 		return customerDao.findAllCustomers();
 	}
 
+	@Override
+	public CustomerDto getCustomerByEmail(String email){
+		CustomerDto customerDto = null;
+		return customerDao.findCustomerByEmail(email);
+	}
+	
 }
