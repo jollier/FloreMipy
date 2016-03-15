@@ -123,7 +123,7 @@ public class ProductListView extends JPanel implements IListView {
 		scrollpane = new JScrollPane(productList);
 
 		// productListPanel = new JPanel(new BorderLayout());
-		this.setPreferredSize(new Dimension(402, 400));
+		this.setPreferredSize(new Dimension(800, 600));
 		this.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 10));
 
 		this.add(scrollpane, BorderLayout.CENTER);
