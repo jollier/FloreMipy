@@ -22,12 +22,18 @@ public class Accueil {
 	@RequestMapping(value = {"/accueil", "/"}, method = RequestMethod.GET)
 	public String getdata(@RequestParam(value="categorie", required=false) String categorie, Model model) {
 		List<ArticleDto> artList = null;
-		if (categorie != null) {
-			artList = accueilService.findAllArticlesByCategory(categorie);
-		} else {
+		if (categorie == null) {
+			categorie = "Toutes";
 			artList = accueilService.findAll();
+		} else {
+			artList = accueilService.findAllArticlesByCategory(categorie);
+		
 		}
+		
+		List<String> catList = accueilService.findAllCategories();
+
 		model.addAttribute("artList", artList);
+		model.addAttribute("catList", catList);
 
 		return "accueil";
 	}

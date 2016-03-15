@@ -67,14 +67,16 @@
             <div class="col-md-2">
                 <p class="lead">Flore Mipy</p>
                 <div class="list-group">
-                    <a href="/FloreMipy/accueil?categorie=Arbres" class="list-group-item">Arbres</a>
-                    <a href="/FloreMipy/accueil?categorie=Arbustes" class="list-group-item">Arbustes</a>
-                    <a href="/FloreMipy/accueil?categorie=Fruit" class="list-group-item">Fruit</a>         
-                </div>
+                
+                    <a href="/FloreMipy/accueil?categorie=Toutes" class="list-group-item">Toutes</a>
+                    <c:forEach items="${catList}" var="cat"> 
+	                    <a href="/FloreMipy/accueil?categorie=${cat}" class="list-group-item">${cat}</a>	                    	                                 
+                    </c:forEach>
+                
+                </div>           
             </div>
 
             <div class="col-md-7">
-
                 <div class="row carousel-holder">
 
                     <div class="col-md-12">
