@@ -172,9 +172,10 @@
 
                         <div class="form-group">
                                 <div class="col-lg-12 col-lg-offset-2">
+
+                                    <button type="submit" class="btn btn-success">Envoyer</button>
                                     <spring:url value="/accueil" var="accueil" htmlEscape="true" />
                                     <a href="${accueil}" type="reset" class="btn btn-default">Annuler </a>
-                                    <button type="submit" class="btn btn-primary">Envoyer</button>
                                 </div>
                         </div>
                         

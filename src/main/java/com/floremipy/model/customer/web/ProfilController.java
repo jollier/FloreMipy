@@ -1,5 +1,8 @@
 package com.floremipy.model.customer.web;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,51 +23,117 @@ import com.floremipy.user.service.IUserService;
 public class ProfilController {
 
 	Profil data = new Profil();
-
+	boolean isNew = true;
+	
+	Adress adress = null;
+	CustomerDto cust = null;
+		
 	@Autowired ICustomerService customerService;
 	
 	@Autowired IUserService userService;
 
 	@RequestMapping(value = "/profil", method = RequestMethod.GET)
-	public String profilGet(Model model){
+	public ModelAndView profilGet(Model model,HttpServletRequest request){
 		Profil profil=data;
-	//	model.addAttribute("message", "Compte déjà existant avec ce user !");
-		model.addAttribute("profil", profil);
+		profil.setBUpdate(false);
 		
-		return "profil";
+		/*
+		 * test si session active 
+		 * Si oui: recupe des informations de l'utilisateur connecté
+		 */
+        HttpSession session = request.getSession(true);
+              
+		String login = (String) session.getAttribute("Email"); 
+		String pwd = (String) session.getAttribute("Password"); 
+		
+        if ((session.getAttribute("id") != null) && (login!=null) && (pwd!=null)) {
+			// session active
+		    cust = customerService.getCustomerByLoginAndPassword(login, pwd);
+		    
+		    if (cust!=null) {
+		    	isNew = false;
+		    	
+		    	profil.setFirstName(cust.getFirstname());
+		    	profil.setName(cust.getName());
+		    	profil.setEmail(cust.getEmail());
+		    	profil.setTel1(cust.getPhone());
+		    	profil.setTel1(cust.getPhone());
+		    	
+		    	// Adress
+		    	adress = cust.getAdress();
+		    	
+		    	profil.setCity(adress.getCity());
+		    	profil.setCP(adress.getZipCode());
+		    	profil.setAdresse(adress.getLocation());
+		    	
+		    	
+		    	UserDto userDto =userService.getUserByName(login);
+		    	if (userDto != null) {
+		    		profil.setlogin(userDto.getUsername());
+		    		profil.setPassword(userDto.getPassword());
+		    		profil.setBUpdate(true);
+		    	}
+		    }
+        } /*else {
+		    cust = customerService.getCustomerByLoginAndPassword("user1","user1");
+		    
+		    	profil.setFirstName(cust.getFirstname());
+		    	profil.setName(cust.getName());
+		    	profil.setEmail(cust.getEmail());
+		    	profil.setTel1(cust.getPhone());
+		    	profil.setTel1(cust.getPhone());
+		    	
+		    	// Adress
+		    	adress = cust.getAdress();
+		    	
+		    	profil.setCity(adress.getCity());
+		    	profil.setCP(adress.getZipCode());
+		    	profil.setAdresse(adress.getLocation());
+		    	
+        }*/
+		
+		model.addAttribute("profil", profil);
+		return new ModelAndView("profil");
 		
 	}
 
 	@RequestMapping(value = "/profil", method = RequestMethod.POST)
 	public ModelAndView profilPOST(@ModelAttribute("profil") Profil profil, Model model){
+		boolean bUdate = false;
+		
 		/*
 		 *- crétaion d'un objet profil  (cf la clase à la fin de cette page).
 		 * - passage de cet objet à une variable de profil.jsp appellée profil: @ModelAttribute("profil")
 		 * - mapping automatique de SPRING avec les valeurs de l'objet
 		 * 
 		 */
-		profil.getName();
+//		profil.getName();
+	
+		
+		if (!profil.getBUpdate()) {
 				
-		// *********************************************************
-		// *** Controle que les saisies n'existent pas déjà      ***
-		//**********************************************************
-		
-		//Verification que l'email n'existe pas déjà dans un customer
-		CustomerDto customerDtoCtrl = null;
-		customerDtoCtrl = customerService.getCustomerByEmail(profil.getEmail());
-		if (customerDtoCtrl != null) {
-			model.addAttribute("message", "Compte déjà existant avec cet email !");
-	    	return new ModelAndView("profil");
-		}
-		
-		//Verification que le name n'existe pas déjà dans un user
-		UserDto userDtoCtrl = null;
-		userDtoCtrl = userService.getUserByName(profil.getLogin());
-		if (userDtoCtrl != null) {
-			model.addAttribute("message", "Compte déjà existant pour ce user !");
-	    	return new ModelAndView("profil");
-		}
-		
+			
+			// *********************************************************
+			// *** Controle que les saisies n'existent pas déjà      ***
+			//**********************************************************
+			
+			//Verification que l'email n'existe pas déjà dans un customer
+			CustomerDto customerDtoCtrl = null;
+			customerDtoCtrl = customerService.getCustomerByEmail(profil.getEmail());
+			if (customerDtoCtrl != null) {
+				model.addAttribute("message", "Compte déjà existant avec cet email !");
+		    	return new ModelAndView("profil");
+			}
+			
+			//Verification que le name n'existe pas déjà dans un user
+			UserDto userDtoCtrl = null;
+			userDtoCtrl = userService.getUserByName(profil.getLogin());
+			if (userDtoCtrl != null) {
+				model.addAttribute("message", "Compte déjà existant pour ce user !");
+		    	return new ModelAndView("profil");
+			}
+		}	
+			
 		// *********************************************************
 		// ***           Passage à l'enregistrement              ***
 		// *********************************************************
@@ -128,11 +197,12 @@ class Profil {
 	private String TVA;
 	private String password;
 	private String login;
+	private boolean bUpdate = false;
 
 
 	public Profil(String iRadios, String nomEntreprise, String raisonSociale,
 			String sIRET, String iJuridique, String name, String firstName, String adresse, String cP, String city,
-			String country, String tel1, String tel2, String email, String tVA, String password, String login) {
+			String country, String tel1, String tel2, String email, String tVA, String password, String login,boolean bUpdate) {
 		this.radios = iRadios;
 		this.nomEntreprise = nomEntreprise;
 		this.raisonSociale = raisonSociale;
@@ -150,6 +220,7 @@ class Profil {
 		this.TVA = tVA;
 		this.login = login;
 		this.password = password;
+		this.bUpdate = bUpdate;
 
 	}
 	
@@ -292,6 +363,14 @@ class Profil {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean getBUpdate() {
+		return bUpdate;
+	}
+	
+	public void setBUpdate(boolean bUpdate) {
+		this.bUpdate = bUpdate;
 	}
 
 }
