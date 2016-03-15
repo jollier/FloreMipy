@@ -44,7 +44,7 @@ body {
 		<div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Votre pannier</h3>
+					<h3 class="panel-title">Votre panier</h3>
 				</div>
 				<div class="panel-body">
 					<table class="table table-sm">
@@ -58,22 +58,22 @@ body {
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">xx</th>
+								<td>xx</td>
 								<td>yyy</td>
 								<td>zzzz</td>
 								<td>tttt</td>
 							</tr>
 							<tr>
-								<th scope="row"></th>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>tttt</td>
+								<td>yy</td>
+								<td>yyyy</td>
+								<td>yyy</td>
 							</tr>
 							<tr>
-								<th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+								<td>jjj</td>
+                                <td>ddd</td>
+                                <td>dd</td>
+                                <td>dddd</td>
 							</tr>
 						</tbody>
 					</table>
