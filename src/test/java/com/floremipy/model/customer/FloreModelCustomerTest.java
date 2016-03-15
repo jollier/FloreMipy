@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -107,6 +108,13 @@ public class FloreModelCustomerTest {
              CustomerLightDto result = modelDao.findCustomerLightById(id);
              System.out.println("result test FindCustomerLightById : " +result.toString());
              assertEquals(id,result.getId());
+       }
+       
+       @AfterClass
+   		public static void setUpAfterClass() throws Exception {
+    	   em.close();
+    	   emf.close();
+
        }
        
 
