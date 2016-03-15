@@ -30,7 +30,8 @@
                     -->
                     
                     <li><a href="<c:url value="/profil"/>"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
-                    <li><a href="<c:url value="/identification"/>"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>                 
+                    <li><a href="<c:url value="/identification"/>"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li> 
+                    <li><a href="<c:url value="/panier"/>"><span class="glyphicon glyphicon-log-in"></span> Mon panier</a></li>                  
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

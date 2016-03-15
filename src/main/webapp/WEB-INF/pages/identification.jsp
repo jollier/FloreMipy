@@ -14,6 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
      <div class="container">
 
        <div class="row">
