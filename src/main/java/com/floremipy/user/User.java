@@ -16,21 +16,33 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String firstname;
-
-	private String lastname;
 
 	private String password;
 
 	private String username;
 
 	private String usertype;
+	
+	private int idcustomer;
+	
+	
 
 	public User() {
 	}
+	
+
+//	public User(Long id, String password, String username, String usertype, Long idcustomer) {
+//		this.id = id;
+//		this.password = password;
+//		this.username = username;
+//		this.usertype = usertype;
+//		this.idcustomer = idcustomer;
+//		
+//	}
+
 
 	public Long getId() {
 		return this.id;
@@ -40,21 +52,6 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getFirstname() {
-		return this.firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return this.lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
 
 	public String getPassword() {
 		return this.password;
@@ -82,8 +79,18 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", password=" + password
-				+ ", username=" + username + ", usertype=" + usertype + "]";
+		return "User [id=" + id + ", password=" + password
+				+ ", username=" + username + ", usertype=" + usertype + ", idcustomer=" + idcustomer + "]";
+	}
+
+
+	public int getIdcustomer() {
+		return idcustomer;
+	}
+
+
+	public void setIdcustomer(int idcustomer) {
+		this.idcustomer = idcustomer;
 	}
 	
 	

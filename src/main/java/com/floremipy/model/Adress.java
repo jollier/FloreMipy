@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -21,6 +23,7 @@ public class Adress implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private String city;
@@ -39,6 +42,17 @@ public class Adress implements Serializable {
 
 	public Adress() {
 	}
+	
+	
+
+//	public Adress(String city, String location, String zipCode) {
+//		super();
+//		this.city = city;
+//		this.location = location;
+//		this.zipCode = zipCode;
+//	}
+
+
 
 	public int getId() {
 		return this.id;

@@ -1,0 +1,23 @@
+@CHARSET "ISO-8859-1";
+
+.wrapper-dropdown{
+	width:60px;
+	height:30px;
+}
+
+.wrapper-dropdown:focus {
+    border-radius: 5px 5px 0 0;
+    background: #caebff;
+    box-shadow: none;
+    border-bottom: none;
+    color: gray;
+}
+
+.wrapper-dropdown:focus:after {
+    border-color: #caebff transparent;
+}
+
+.wrapper-dropdown:focus .dropdown {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    max-height: 400px;
+}
