@@ -51,17 +51,16 @@ public class ProfilController {
 		//Verification que l'email n'existe pas déjà dans un customer
 		CustomerDto customerDtoCtrl = null;
 		customerDtoCtrl = customerService.getCustomerByEmail(profil.getEmail());
-		
 		if (customerDtoCtrl != null) {
-			model.addAttribute("message", "Compte déjà existant avec ce user !");
+			model.addAttribute("message", "Compte déjà existant avec cet email !");
 	    	return new ModelAndView("profil");
 		}
 		
 		//Verification que le name n'existe pas déjà dans un user
 		UserDto userDtoCtrl = null;
-		userDtoCtrl = userService.getUserByName(profil.getName());
+		userDtoCtrl = userService.getUserByName(profil.getLogin());
 		if (userDtoCtrl != null) {
-			model.addAttribute("message", "Compte déjà existant avec cet email !");
+			model.addAttribute("message", "Compte déjà existant pour ce user !");
 	    	return new ModelAndView("profil");
 		}
 		
