@@ -137,6 +137,15 @@ public class FloreModelArticleTest {
 		assertEquals(verifyArticle.getName(),name);
 	}
 	
+	@Test
+	public void testFindAllCategory() {
+		IArticleDao modelDao = new ArticleDao();
+		List<String> resultCategory = modelDao.findAllCategory();
+		for (String s : resultCategory) {
+			System.out.println("result test FindAllCategory : " +s);
+		}
+		assertTrue(resultCategory.size() > 0);
+	}
 
 	@AfterClass
 	public static void setUpAfterClass() throws Exception {
