@@ -32,7 +32,7 @@ public class ProfilController {
 
 	@RequestMapping(value = "/profil", method = RequestMethod.GET)
 	public ModelAndView profilGet(Model model,HttpServletRequest request){
-		Profil profil=data;
+		Profil profil=new Profil();
 		profil.setBUpdate(false);
 		
 		/*
@@ -77,8 +77,6 @@ public class ProfilController {
         } 
 		
 		model.addAttribute("profil", profil);
-		System.out.println("SESS/ " +session.getAttribute("id"));
-		System.out.println("SESS/ " +session.getAttribute("login"));
 		return new ModelAndView("profil");
 		
 	}
