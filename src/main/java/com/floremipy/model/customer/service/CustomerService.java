@@ -75,4 +75,8 @@ public class CustomerService implements ICustomerService {
 		return customerDao.findCustomerByEmail(email);
 	}
 
+	@Override
+	public CustomerDto getCustomerById(int id){
+		return customerDao.findCustomerById(id);
+				}
 }

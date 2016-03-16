@@ -15,8 +15,8 @@
 <title>Bootstrap Shop Cart</title>
 
 <!-- Bootstrap core CSS -->
- <link href="css/home/bootstrap.min.css" rel="stylesheet">
-
+<!--  link href="css/home/bootstrap.min.css" rel="stylesheet"-->
+<link href="/FloreMipy/css/bootstrap.min.css" rel="stylesheet">
 
 
 <style>
@@ -108,7 +108,11 @@ body {
     <c:import url="/WEB-INF/pages/footer.jsp" /></br>
 
 	</div>
+ <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>
