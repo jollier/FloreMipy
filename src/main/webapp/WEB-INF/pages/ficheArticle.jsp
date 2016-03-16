@@ -18,11 +18,11 @@
 <title>Fiche article</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../css/item/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="../css/item/shop-item.css" rel="stylesheet">
-<link href="../css/item/produit.css" rel="stylesheet">
+<link href="../css/shop-item.css" rel="stylesheet">
+<link href="../css/produit.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,46 +35,12 @@
 
 <body>
 
-	<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Start Bootstrap</a>
-			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="#">About</a></li>
-					<li><a href="#">Services</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container -->
-	</nav>
-
+	    <c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
+	
 	<!-- Page Content -->
 	<div class="container">
 
 		<div class="row">
-
-			<div class="col-md-3">
-				<p class="lead">Shop Name</p>
-				<div class="list-group">
-					<a href="#" class="list-group-item active">Category 1</a> <a
-						href="#" class="list-group-item">Category 2</a> <a href="#"
-						class="list-group-item">Category 3</a>
-				</div>
-			</div>
 
 			<div class="col-md-9">
 				<spring:url value="/ficheArticle" var="ficheArticleUrl" />
@@ -82,10 +48,10 @@
 				<form:form class="form-horizontal" method="post" modelAttribute="article" action="${ficheArticleUrl}">
 
 					<div class="thumbnail">
-						<img class="img-responsive" src="http://placehold.it/800x300"
+						<img class="img-responsive" src="/FloreMipy/${article.imgsrc}"
 							alt="">
 						<div class="caption-full">
-							<h3 class="pull-right">${price} TTC</h3>
+							<h3 class="pull-right">${price} € TTC</h3>
 							<p>
 							<h3>
 								<a href="#">${article.name}</a>
@@ -95,7 +61,8 @@
 								</div>
 							</h3>
 							<div class="text-right">
-								<span>Quantité à commander</span> <select id="quantite"
+								<span>Quantité à commander</span> 
+								<select id="quantite" var="qte"
 									class="wrapper-dropdown">
 									<c:forEach var="i" begin="1" end="${article.quantityInStock}" step="1">
 									<option><c:out value="${i}" />
@@ -105,8 +72,9 @@
 								<p>
 							</div>
 							<div class="text-right">
-								<span class="glyphicon glyphicon-shopping-cart"></span> <a
-									class="btn btn-success">Ajouter au panier</a>
+								<!-- <span class="glyphicon glyphicon-shopping-cart"></span> --> 
+								<!-- <a class="glyphicon glyphicon-user"> </a> -->
+								    <a href="/FloreMipy/ficheArticle/${article.id}/ajouter/?qte=${qte}" } class="btn btn-success">Ajouter au panier</a>
 							</div>
 							<p>${article.description}<a target="_blank"></a>.
 							</p>
@@ -124,14 +92,7 @@
 
 		<hr>
 
-		<!-- Footer -->
-		<footer>
-			<div class="row">
-				<div class="col-lg-12">
-					<p>Copyright &copy; Your Website 2016</p>
-				</div>
-			</div>
-		</footer>
+    <c:import url="/WEB-INF/pages/footer.jsp" /></br>
 
 	</div>
 	<!-- /.container -->

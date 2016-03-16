@@ -50,23 +50,23 @@ CREATE TABLE IF NOT EXISTS `article` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.article : ~11 rows (environ)
+-- Export de données de la table floremipi.article : ~13 rows (environ)
 DELETE FROM `article`;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 INSERT INTO `article` (`Id`, `Name`, `Description`, `Category`, `Imgsrc`, `QuantityInStock`) VALUES
-	(1, 'Câdre en boule', '', 'Arbres', 'img/cadre_en_boule.jpg', 10),
-	(2, 'Sapin', '', 'Arbres', 'img/Sapin.JPG', 10),
-	(3, 'Epinette bleue', '', 'Arbres', 'img/Epinette_bleue.jpg', 10),
-	(4, 'Chêne', '', 'Arbres', 'img/Chene.jpg', 10),
-	(5, 'Erable argenté', '', 'Arbres', 'img/Erable_argente.jpg', 10),
-	(6, 'Herbe à puce', '', 'Herbacées', 'img/Herbe_a_puce.jpg', 10),
-	(7, 'Poirier', '', 'Fruits', 'img/Poirier.jpg', 10),
-	(8, 'Catalpa', '', 'Arbres', 'img/Catalpa.jpg', 10),
-	(9, 'Pommier', '', 'Fruits', 'img/Pommier.jpg', 10),
-	(10, 'Génévrier', '', 'Arbustes', 'img/Genevrier.jpg', 10),
-	(11, 'Abricotier rustique', '', 'Fruits', 'img/Abricotier.jpg', 10),
-	(82, 'Cactus', ' ', 'Cactus', 'img/Dancing_cactus.gif', 12),
-	(83, 'Try and Pray', ' ', 'Arbres', 'img/Try_and_Pray.jpg', 1);
+	(1, 'Câdre en boule', 'Super cadre de Noël avec des boules (de Noël)', 'Arbres', 'img/cadre_en_boule.jpg', 10),
+	(2, 'Sapin', 'Ca sent le ...', 'Arbres', 'img/Sapin.JPG', 10),
+	(3, 'Epinette bleue', 'Epi net', 'Arbres', 'img/Epinette_bleue.jpg', 10),
+	(4, 'Chêne', 'SM bienvenu', 'Arbres', 'img/Chene.jpg', 10),
+	(5, 'Erable argenté', 'Tabernacle', 'Arbres', 'img/Erable_argente.jpg', 10),
+	(6, 'Herbe à puce', 'Gratt Gratt', 'Herbacées', 'img/Herbe_a_puce.jpg', 10),
+	(7, 'Poirier', 'Jean-Marie (RIP)', 'Fruits', 'img/Poirier.jpg', 10),
+	(8, 'Catalpa', '????', 'Arbres', 'img/Catalpa.jpg', 10),
+	(9, 'Pommier', 'Jean-Marie (private joke)', 'Fruits', 'img/Pommier.jpg', 10),
+	(10, 'Génévrier', 'hips', 'Arbustes', 'img/Genevrier.jpg', 10),
+	(11, 'Abricotier rustique', 'J\'adore sucer un abricot pendant des heures', 'Fruits', 'img/Abricotier.jpg', 10),
+	(82, 'Cactus', 'Aie ça pique', 'Cactus', 'img/Dancing_cactus.gif', 12),
+	(83, 'Try and Pray', 'Même pas cap !', 'Arbres', 'img/Try_and_Pray.jpg', 1);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipi. articleinprogress

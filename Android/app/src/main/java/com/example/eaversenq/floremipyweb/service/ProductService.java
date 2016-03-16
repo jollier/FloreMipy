@@ -44,7 +44,6 @@ public class ProductService {
         conn.setConnectTimeout(2000);
         conn.setReadTimeout(10000);
         conn.connect();
-
         if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
             return null;
         }

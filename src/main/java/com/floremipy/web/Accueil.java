@@ -36,12 +36,25 @@ public class Accueil {
 
 		return "accueil";
 	}
+
+	@RequestMapping("/cGVentes")
+	public ModelAndView cGVentes() {
 	
+		return new ModelAndView ("cGVentes");
+	}
+	
+	@RequestMapping("/cGEnvoi")
+	public ModelAndView cGEnvoi() {
+	
+		return new ModelAndView ("cGEnvoi");
+	}
+	
+
 		
-		@RequestMapping("/quiSommesNous")
+	@RequestMapping("/quiSommesNous")
 		
-		public ModelAndView test(){
-			return new ModelAndView("quiSommesNous");
-		}
+	public ModelAndView test(){
+		return new ModelAndView("quiSommesNous");
+	}
 
 }
