@@ -51,6 +51,7 @@ body {
 				<div class="panel-heading">
 					<h3 class="panel-title">Votre panier</h3>
 				</div>
+				    <% int var=0; %>
 				<div class="panel-body">
 					<table class="table table-sm">
 						<thead>
@@ -64,14 +65,14 @@ body {
 						<tbody>
 						
 
-							<c:forEach var="panier" items="${listArticlesPanier}">
+							<c:forEach var="panier"  items="${listArticlesPanier}">
 								<tr>
                                     <td>${ panier.nomArticle }</td>
 									<td>${ panier.prixArticle }</td>
 									<td>${ panier.qteCommandee }</td>
 									<td>${ panier.prixTotal }</td>
 								</tr>
-
+								
 							</c:forEach>
 
 						</tbody>
@@ -81,6 +82,12 @@ body {
 				</div>
 			</div>
 		</div>
+		
+	
+		
+<%-- 		      <c:forEach var="panier" items="${listArticlesPanier}">                                --%>
+<%--                                  <% var = var +  ${panier.prixTotal}; %> --%>
+<%--                             </c:forEach> --%>
 
 		<div class="col-xs-5 col-md-4 col-sm-4 col-lg-4">
 			<div class="panel panel-primary">
@@ -88,7 +95,7 @@ body {
 					<h3 class="panel-title">Total</h3>
 				</div>
 				<div class="panel-body">
-					<h2>XX euros</h2>
+					<h2> ${prixTotal} euros</h2>
 				</div>
 			</div>
 
