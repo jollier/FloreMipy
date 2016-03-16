@@ -8,7 +8,7 @@ public class ShoppingCart {
 	private String nomArticle;
 	private BigDecimal prixArticle;
 	private int qteCommandee;
-	private BigDecimal prixTotal;
+	private Double prixTotal;
 	
 	public int getIdArticle() {
 		return this.idArticle;
@@ -42,11 +42,11 @@ public class ShoppingCart {
 		this.qteCommandee = qteCommandee;
 	}
 
-	public BigDecimal getPrixTotal() {
+	public Double getPrixTotal() {
 		return this.prixTotal;
 	}
 
-	public void setPrixTotal(BigDecimal prixTotal) {
+	public void setPrixTotal(Double prixTotal) {
 		this.prixTotal = prixTotal;
 	}
 
@@ -63,10 +63,11 @@ public class ShoppingCart {
 		this.qteCommandee = qteCommandee;
 	}
 
-	public BigDecimal calculPrixTotal(BigDecimal prix, int q)
+	public Double calculPrixTotal(Double prix, int q)
 	{
-		BigDecimal total = new BigDecimal((int)q);
-		//BigDecimal total = (prix  qte2) 
+		Double qte2 = new Double((int)q);
+		Double p2 = new Double(prix);
+		Double total = (Double) (prix * qte2); 
 		return total;
 
 	}
