@@ -9,7 +9,8 @@ body {
 }
 
 .slide-image {
-    width: 350px;
+    min-width: 50%;
+    margin: 0 auto;
 }
 
 .carousel-holder {
@@ -42,6 +43,8 @@ body {
 
 .thumbnail {
     padding: 0;
+    width: 250px;
+    height: 250px
 }
 
 .thumbnail .caption-full {
@@ -52,3 +55,41 @@ body {
 footer {
     margin: 50px 0;
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #A0D468;
+  border-color: #689e2c;
+}
+
+.btn-primary:hover,
+.btn-primary.hover,
+.btn-primary:focus,
+.btn-primary.focus
+ {
+  background-color: #689e2c;
+  background-position: 0 -15px;
+  border-color: #008040;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #689e2c;
+  border-color: #008040;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff;
+  background-color: #689e2c;
+  border-color: #008040;
+}
+        
