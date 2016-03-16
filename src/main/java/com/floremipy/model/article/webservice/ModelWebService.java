@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,6 +62,28 @@ public class ModelWebService {
 		}
 
 		return list;
+	}
+	
+	
+	@RequestMapping("/Product/item{id}")
+	public ProductLight article(@PathVariable String id) {
+		int parsedId = Integer.parseInt(id);
+		ProductLight item= new ProductLight();
+		ArticleDto articleDto = articleService.findArticleById(parsedId);
+		
+			item.setId(articleDto.getId());
+			System.out.println(articleDto.getId());
+			item.setName(articleDto.getName());
+			item.setCategory(articleDto.getCategory());
+			item.setQuantityInStock(articleDto.getQuantityInStock());
+			
+			boolean lotMature = articleMature(articleDto.getId());
+			if (lotMature) {
+				item.setAlertLotMature(1);
+			}else{
+				item.setAlertLotMature(0);
+			}
+		return item;
 	}
 	
 	private boolean articleMature(int id){

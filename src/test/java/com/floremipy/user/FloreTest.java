@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,6 +18,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.floremipy.model.Version;
 import com.floremipy.user.dao.IUserDao;
 import com.floremipy.user.dao.UserDao;
 import com.floremipy.user.dto.UserDto;
@@ -34,9 +36,10 @@ public class FloreTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		int versionBaseUser = 7;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
+		Map<String, Object> propertiesMap = emf.getProperties();
+		int versionBaseUser = Integer.parseInt(propertiesMap.get("database.version").toString());
 		UserDbVersion version = em.find(UserDbVersion.class, 1);
 		
 		if (version.getVersion() != versionBaseUser) {
@@ -45,7 +48,7 @@ public class FloreTest {
 			System.out.println("********************************");
 			System.out.println("**Version de la BDD floremipyuser incorrecte**");
 			System.out.println("********************************");
-			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiUsers.sql");
+			System.out.println("Veuillez l'importer depuis sql/FloreMipiUsers.sql");
 			System.exit(1);
 		}
 		

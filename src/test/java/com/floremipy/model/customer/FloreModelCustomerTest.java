@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,12 +16,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.floremipy.model.Adress;
-import com.floremipy.model.Customer;
 import com.floremipy.model.Version;
 import com.floremipy.model.customer.dao.IModelCustomerDao;
 import com.floremipy.model.customer.dao.ModelCustomerDao;
 import com.floremipy.model.customer.dto.CustomerDto;
-import com.floremipy.model.customer.dto.CustomerLightDto;
+
 
 public class FloreModelCustomerTest {
 
@@ -32,9 +32,10 @@ public class FloreModelCustomerTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		int versionBaseUser = 7;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em =  emf.createEntityManager();
+		Map<String, Object> propertiesMap = emf.getProperties();
+		int versionBaseUser = Integer.parseInt(propertiesMap.get("database.version").toString());
 		Version version = em.find(Version.class, 1);
 
 		if (version.getVersion() != versionBaseUser) {
@@ -43,7 +44,7 @@ public class FloreModelCustomerTest {
 			System.out.println("********************************");
 			System.out.println("**Version de la BDD floremipi incorrecte**");
 			System.out.println("********************************");
-			System.out.println("Veuillez l'importer depuis srv-dev/PARTAGES/FloreMipy-2016-02-29/FloreMipy/FloreMipiInit.sql");
+			System.out.println("Veuillez l'importer depuis sql/FloreMipi.sql");
 
 			System.exit(1);
 		}
@@ -95,24 +96,7 @@ public class FloreModelCustomerTest {
 
 	}
 
-	@Test
-	public void testFindAllCustomersLight() {
-		IModelCustomerDao modelDao = new ModelCustomerDao();
-		List<CustomerLightDto> result = modelDao.findAllCustomersLight();
-		for(CustomerLightDto a : result){
-			System.out.println("result test FindAllArticlesLight : " +a);
-		}      
-		assertTrue(result.size() > 0);
-	}
 
-	@Test
-	public void testFindCustomerLightById() {
-		int id = 1;
-		IModelCustomerDao modelDao = new ModelCustomerDao();
-		CustomerLightDto result = modelDao.findCustomerLightById(id);
-		System.out.println("result test FindCustomerLightById : " +result.toString());
-		assertEquals(id,result.getId());
-	}
 
 	@AfterClass
 	public static void setUpAfterClass() throws Exception {

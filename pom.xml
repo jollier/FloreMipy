@@ -187,6 +187,7 @@
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
                 <jdbc.username>pic</jdbc.username>
                 <jdbc.password>pic</jdbc.password>
+                <jdbc.version>7</jdbc.version>
            
             </properties>
         </profile>
@@ -202,6 +203,7 @@
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password></jdbc.password>
+                <jdbc.version>7</jdbc.version>
                 
             </properties>
         </profile>
