@@ -6,11 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.floremipy.model.Customer;
 import com.floremipy.model.customer.dao.IModelCustomerDao;
 import com.floremipy.model.customer.dto.CustomerDto;
 import com.floremipy.user.dao.IUserDao;
 import com.floremipy.user.dto.UserDto;
+import com.floremipy.user.service.IUserService;
+
 
 @Service
 public class CustomerService implements ICustomerService {
@@ -21,6 +22,8 @@ public class CustomerService implements ICustomerService {
 	@Autowired
 	IUserDao userDao;
 	
+	@Autowired
+	IUserService userService;
 	
 	public void setCustomerDao(IModelCustomerDao customerDao) {
 		this.customerDao = customerDao;
@@ -31,8 +34,23 @@ public class CustomerService implements ICustomerService {
 	}
 
 	@Override
-	public CustomerDto save(CustomerDto customerDto) {
-		return customerDao.CustomerDaoSave(customerDto);
+	public String save(CustomerDto customerDto, UserDto userDto) {
+		String message = "";
+		
+		try {
+			// 1. Sauvegarde du user
+			UserDto userDtoSave = userService.create(userDto);
+			// 2. Sauvegarde du customer
+			CustomerDto customerDtoSave = customerDao.CustomerDaoSave(customerDto);
+			// 3. Mise à jour de l'id customer
+			userDtoSave.setIdcustomer(customerDtoSave.getId());
+			// 4. Enregistrement de ce nouveau UserDto avec l'id du customer
+			userService.save(userDtoSave);		
+		} catch (Exception e) {
+			e.printStackTrace();
+			message = "Problème lors de la sauvegarde de l'utilisateur. Veuillez contacter votre SAV !";
+		}	
+		return message;
 	}
 
 	
@@ -56,5 +74,5 @@ public class CustomerService implements ICustomerService {
 	public CustomerDto getCustomerByEmail(String email){
 		return customerDao.findCustomerByEmail(email);
 	}
-	
+
 }

@@ -63,11 +63,16 @@ public class FloreModelCustomerTest {
        
        @Test
        public void testCustomerDaoSave() {
-             ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
-             Adress adress = new Adress ("rue du village","31000","Toulouse");
-             CustomerDto customerDto = new CustomerDto (0,"test.teste@mail.com","Teste","Test","(555)555-5555",adress);
-             modelCustomerDao.CustomerDaoSave(customerDto);                        
+                      ModelCustomerDao modelCustomerDao = new ModelCustomerDao();
+                      Adress adress = new Adress();
+                      adress.setCity("Toulouse");
+                      adress.setLocation("rue du village");
+                      adress.setLocation("Toulouse");
+                      adress.setZipCode("31000");
+                      CustomerDto customerDto = new CustomerDto (0,"test.teste@mail.com","Teste","Test","(555)555-5555",adress);
+                      modelCustomerDao.CustomerDaoSave(customerDto);                        
        }
+
        
        
        @Test

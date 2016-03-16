@@ -107,37 +107,37 @@ public class ProfilController {
 		 * - mapping automatique de SPRING avec les valeurs de l'objet
 		 * 
 		 */
-//		profil.getName();
-	
+
+				
+		// *********************************************************
+		// *** Controle que les saisies n'existent pas déjà      ***
+		//**********************************************************
+		
+		//Verification que l'email n'existe pas déjà dans un customer
+		CustomerDto newCustomer = null;
+		newCustomer = customerService.getCustomerByEmail(profil.getEmail());
 		
 		if (!profil.getBUpdate()) {
-				
-			
-			// *********************************************************
-			// *** Controle que les saisies n'existent pas déjà      ***
-			//**********************************************************
-			
-			//Verification que l'email n'existe pas déjà dans un customer
-			CustomerDto customerDtoCtrl = null;
-			customerDtoCtrl = customerService.getCustomerByEmail(profil.getEmail());
-			if (customerDtoCtrl != null) {
+			if (newCustomer != null) {
 				model.addAttribute("message", "Compte déjà existant avec cet email !");
 		    	return new ModelAndView("profil");
 			}
-			
-			//Verification que le name n'existe pas déjà dans un user
-			UserDto userDtoCtrl = null;
-			userDtoCtrl = userService.getUserByName(profil.getLogin());
-			if (userDtoCtrl != null) {
+		}
+		
+		//Verification que le name n'existe pas déjà dans un user
+		UserDto newUserDto = null;
+		newUserDto = userService.getUserByName(profil.getLogin());
+		if (!profil.getBUpdate()) {
+			if (newUserDto != null) {
 				model.addAttribute("message", "Compte déjà existant pour ce user !");
 		    	return new ModelAndView("profil");
 			}
-		}	
+		}
 			
 		// *********************************************************
 		// ***           Passage à l'enregistrement              ***
 		// *********************************************************
-		CustomerDto newCustomer = new CustomerDto();
+		newCustomer = new CustomerDto();
 		
 		newCustomer.setEmail(profil.getEmail());
 		newCustomer.setFirstname(profil.getFirstName());
@@ -151,27 +151,25 @@ public class ProfilController {
 
 		newCustomer.setAdress(adress);
 
-		UserDto newUserDto = new UserDto();
+		newUserDto = new UserDto();
 		
 		newUserDto.setUsername(profil.getLogin());
 		newUserDto.setPassword(profil.getPassword());
 		newUserDto.setUsertype("user");
 		
+		String message="";
 		try {
-			// 1. Sauvegarde du user
-			UserDto userDtoSave = userService.create(newUserDto);
-			// 2. Sauvegarde du customer
-			CustomerDto customerDtoSave = customerService.save(newCustomer);
-			// 3. Mise à jour de l'id customer
-			userDtoSave.setIdcustomer(customerDtoSave.getId());
-			// 4. Enregistrement de ce nouveau UserDto avec l'id du customer
-			userService.save(userDtoSave);
+			
+			message = customerService.save(newCustomer, newUserDto);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		
+		if (!message.equals("")) {
+			model.addAttribute("message", message);
+			return new ModelAndView("/profil");
+		}
 		return new ModelAndView("/accueil");
 		
 	}

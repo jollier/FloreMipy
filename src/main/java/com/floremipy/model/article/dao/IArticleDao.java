@@ -22,5 +22,7 @@ public interface IArticleDao {
 	void deleteArticle(ArticleDto articleDto);
 	
 	void updateArticle(ArticleDto articleDto);
+	
+	List<String> findAllCategory();
 
 }
