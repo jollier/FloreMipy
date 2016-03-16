@@ -38,6 +38,14 @@ public class PanierController {
 //		listArticlesPanier.add(c);
 		model.addAttribute("listArticlesPanier", listArticlesPanier);
 		
+		Double prixTotal =0.00;
+		
+for (int i = 0; i < listArticlesPanier.size(); i++) {
+	prixTotal=prixTotal+listArticlesPanier.get(i).getPrixTotal();
+	
+}
+model.addAttribute("prixTotal", prixTotal);	
+		
 		return new ModelAndView("panier");
 	}
 
