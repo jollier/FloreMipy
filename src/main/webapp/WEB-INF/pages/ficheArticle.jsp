@@ -48,8 +48,9 @@
 				<form:form class="form-horizontal" method="post" modelAttribute="article" action="${ficheArticleUrl}">
 
 					<div class="thumbnail">
-						<img class="img-responsive" src="/FloreMipy/${article.imgsrc}"
-							alt="">
+					   <div class="cont-img">
+						<img class="img-responsive-art" src="/FloreMipy/${article.imgsrc}" alt="">
+					   </div>
 						<div class="caption-full">
 							<h3 class="pull-right">${price} € TTC</h3>
 							<p>
@@ -74,6 +75,7 @@
 							<div class="text-right">
 								<!-- <span class="glyphicon glyphicon-shopping-cart"></span> --> 
 								<!-- <a class="glyphicon glyphicon-user"> </a> -->
+                                <a class="img-add-cart" href="/FloreMipy/img/AddCart.jpg"> </a>
 								    <a href="/FloreMipy/ficheArticle/${article.id}/ajouter/?qte=${qte}" } class="btn btn-success">Ajouter au panier</a>
 							</div>
 							<p>${article.description}<a target="_blank"></a>.
