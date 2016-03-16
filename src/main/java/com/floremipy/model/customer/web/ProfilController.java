@@ -39,13 +39,16 @@ public class ProfilController {
 		 * test si session active 
 		 * Si oui: recupe des informations de l'utilisateur connecté
 		 */
-        HttpSession session = request.getSession(false);
-              
-		String login = (String) session.getAttribute("Email"); 
+       
+        HttpSession session = request.getSession();
+		String login = (String) session.getAttribute("login"); 
 				
         if ((session.getAttribute("id") != null) && (login!=null) ) {
 			// session active
-		    cust = customerService.getCustomerByEmail(login);
+        
+        	Integer id = (Integer) session.getAttribute("id");
+        	
+		    cust = customerService.getCustomerById(id);
 		    
 		    
 		    if (cust!=null) {
@@ -71,25 +74,11 @@ public class ProfilController {
 		    		profil.setBUpdate(true);
 		    	}
 		    }
-        } /*else {
-		    cust = customerService.getCustomerByLoginAndPassword("user1","user1");
-		    
-		    	profil.setFirstName(cust.getFirstname());
-		    	profil.setName(cust.getName());
-		    	profil.setEmail(cust.getEmail());
-		    	profil.setTel1(cust.getPhone());
-		    	profil.setTel1(cust.getPhone());
-		    	
-		    	// Adress
-		    	adress = cust.getAdress();
-		    	
-		    	profil.setCity(adress.getCity());
-		    	profil.setCP(adress.getZipCode());
-		    	profil.setAdresse(adress.getLocation());
-		    	
-        }*/
+        } 
 		
 		model.addAttribute("profil", profil);
+		System.out.println("SESS/ " +session.getAttribute("id"));
+		System.out.println("SESS/ " +session.getAttribute("login"));
 		return new ModelAndView("profil");
 		
 	}
