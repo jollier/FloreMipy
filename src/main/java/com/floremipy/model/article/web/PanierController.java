@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,7 +33,10 @@ public class PanierController {
 	
 	@RequestMapping("/panier")
 	
-	public ModelAndView test(){
+	public ModelAndView alimenterPanier(Model model){
+		ShoppingCart c = new ShoppingCart(1, "Pommier", new BigDecimal(100.00),1);
+		listArticlesPanier.add(c);
+		model.addAttribute("listArticlesPanier", listArticlesPanier);
 		
 		return new ModelAndView("panier");
 	}
