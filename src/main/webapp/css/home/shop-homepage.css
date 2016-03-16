@@ -59,3 +59,8 @@ div.required label:after {
     color: red;
 }
 label.required:after {content: " *"; color: red;}
+
+.list-group li a:hover :focus {
+    color:black;/*color turns white if not changed*/
+    background: none;           
+}
