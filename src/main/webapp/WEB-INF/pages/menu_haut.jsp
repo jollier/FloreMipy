@@ -49,6 +49,7 @@
                          <c:otherwise>
                              <li><a href="<c:url value="/profil"/>">Bonjour : <c:out value="${login}" /></a></li>                            
                              <li><a href="Deconnexion"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+                             <li><a href="<c:url value="/panier"/>"><span class="glyphicon glyphicon-shopping-cart"></span> Mon panier</a></li>
                          </c:otherwise>
                      </c:choose>            
                  </ul>
