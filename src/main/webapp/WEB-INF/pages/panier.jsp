@@ -15,8 +15,8 @@
 <title>Bootstrap Shop Cart</title>
 
 <!-- Bootstrap core CSS -->
- <link href="css/home/bootstrap.min.css" rel="stylesheet">
-
+<!--  link href="css/home/bootstrap.min.css" rel="stylesheet"-->
+<link href="/FloreMipy/css/bootstrap.min.css" rel="stylesheet">
 
 
 <style>
