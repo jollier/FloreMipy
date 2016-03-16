@@ -58,7 +58,7 @@ body {
 							<tr>
 								<th>Article</th>
 								<th>Prix unitaire</th>
-								<th>Qté</th>
+								<th>QtÃ©</th>
 								<th>Prix total</th>
 							</tr>
 						</thead>
@@ -70,7 +70,7 @@ body {
                                     <td>${ panier.nomArticle }</td>
 									<td>${ panier.prixArticle }</td>
 									<td>${ panier.qteCommandee }</td>
-									<td>${ panier.prixTotal }</td>
+									<td>${ panier.prixTotal } </td>
 								</tr>
 								
 							</c:forEach>
@@ -95,7 +95,7 @@ body {
 					<h3 class="panel-title">Total</h3>
 				</div>
 				<div class="panel-body">
-					<h2> ${prixTotal} euros</h2>
+					<h2> ${prixTotal}  euros</h2>
 				</div>
 			</div>
 
