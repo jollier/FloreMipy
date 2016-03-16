@@ -1,10 +1,8 @@
 package com.example.eaversenq.floremipyweb.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.eaversenq.floremipyweb.R;
@@ -13,7 +11,6 @@ import com.example.eaversenq.floremipyweb.service.ConnexionService;
 import com.example.eaversenq.floremipyweb.service.ProductService;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ProductActivity extends Activity {
@@ -33,7 +30,7 @@ public class ProductActivity extends Activity {
         class GetProductTask extends AsyncTask<Void, Integer, Product> {
 
             private final String URL_ROOT = "http://blblcar.cloudapp.net/";
-            private final String URL_SERVICE = URL_ROOT + "FloreMipy/Product?id=" + ConnexionService.getInstance().getCtx().getProductId();
+            private final String URL_SERVICE = URL_ROOT + "FloreMipy/Product/item" + ConnexionService.getInstance().getCtx().getProductId();
             private AtomicBoolean isThreadRunnning = new AtomicBoolean();
             private AtomicBoolean isThreadPausing = new AtomicBoolean();
 
