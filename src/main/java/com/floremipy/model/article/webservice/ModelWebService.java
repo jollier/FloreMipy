@@ -28,9 +28,11 @@ public class ModelWebService {
 	private List<ProductLight> list;
 
 	@RequestMapping(value = "/Product")
-	public ArticleDto article(@RequestParam(value="id", defaultValue="0") int id, @RequestParam String category,
-			@RequestParam String description, @RequestParam String imgsrc, @RequestParam String name, @RequestParam(value="quantityInStock", defaultValue="0") int quantityInStock) 
+//	public ArticleDto article(@RequestParam(value="id", defaultValue="0") int id, @RequestParam String category,
+//			@RequestParam String description, @RequestParam String imgsrc, @RequestParam String name, @RequestParam(value="quantityInStock", defaultValue="0") int quantityInStock)
+	public ArticleDto article(@RequestParam(value="id", defaultValue="0") int id)
 	{
+//		return new ArticleDto(id,category,description,imgsrc, name, quantityInStock);
 		return new ArticleDto(id,category,description,imgsrc, name, quantityInStock);
 	}
 
