@@ -18,8 +18,7 @@ public class IdentController {
 	
 	@Autowired
 	ICustomerService monService;
-	
-	
+		
 	@RequestMapping("/index")
 	
 	public ModelAndView test(){
@@ -50,7 +49,7 @@ public class IdentController {
 		    	
 		    } else {
 		    	model.addAttribute("message", "Login ou mot de passe incorrect");
-		    	return new ModelAndView("identification");
+		    	return new ModelAndView("accueil");
 		    }
 		}
 }

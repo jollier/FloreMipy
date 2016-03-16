@@ -35,7 +35,7 @@
 
 <body>
 
-	    <c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
+	<c:import url="/WEB-INF/pages/menu_haut.jsp" />
 	
 	<!-- Page Content -->
 	<div class="container">
@@ -82,8 +82,9 @@
 							</p>
 						</div>
 					</div>
+				</form:form>
 			</div>
-			</form:form>
+			
 
 		</div>
 
@@ -94,16 +95,18 @@
 
 		<hr>
 
-    <c:import url="/WEB-INF/pages/footer.jsp" /></br>
+        <c:import url="/WEB-INF/pages/footer.jsp" />
 
 	</div>
 	<!-- /.container -->
 
 	<!-- jQuery -->
-	<script src="../js/item/jquery.js"></script>
-
+	<script src="../js/jquery.js"></script>
+        
 	<!-- Bootstrap Core JavaScript -->
-	<script src="../js/item/bootstrap.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	
+	
 
 </body>
 

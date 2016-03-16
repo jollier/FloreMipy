@@ -13,10 +13,12 @@
 <meta charset="utf-8">
 <title>Floremipi.com - profil</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/home/bootstrap.min.css" rel="stylesheet">
+<!--  link href="css/home/bootstrap.min.css" rel="stylesheet"-->
+<link href="/FloreMipy/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="css/home/shop-homepage.css" rel="stylesheet">
+<!--  link href="css/home/shop-homepage.css" rel="stylesheet"-->
+<link href="/FloreMipy/css/shop-homepage.css" rel="stylesheet">
 <link href="fonts/*" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic,600italic,700italic|Varela+Round&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
@@ -173,9 +175,10 @@
 
                         <div class="form-group">
                                 <div class="col-lg-12 col-lg-offset-2">
+
+                                    <button type="submit" class="btn btn-success">Envoyer</button>
                                     <spring:url value="/accueil" var="accueil" htmlEscape="true" />
                                     <a href="${accueil}" type="reset" class="btn btn-default">Annuler </a>
-                                    <button type="submit" class="btn btn-primary">Envoyer</button>
                                 </div>
                         </div>
                         
