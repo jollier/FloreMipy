@@ -23,8 +23,6 @@ import com.floremipy.user.service.IUserService;
 public class ProfilController {
 
 	Profil data = new Profil();
-	boolean isNew = true;
-	
 	Adress adress = null;
 	CustomerDto cust = null;
 		
@@ -41,17 +39,17 @@ public class ProfilController {
 		 * test si session active 
 		 * Si oui: recupe des informations de l'utilisateur connecté
 		 */
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
               
 		String login = (String) session.getAttribute("Email"); 
-		String pwd = (String) session.getAttribute("Password"); 
-		
-        if ((session.getAttribute("id") != null) && (login!=null) && (pwd!=null)) {
+				
+        if ((session.getAttribute("id") != null) && (login!=null) ) {
 			// session active
-		    cust = customerService.getCustomerByLoginAndPassword(login, pwd);
+		    cust = customerService.getCustomerByEmail(login);
+		    
 		    
 		    if (cust!=null) {
-		    	isNew = false;
+				profil.setBUpdate(true);
 		    	
 		    	profil.setFirstName(cust.getFirstname());
 		    	profil.setName(cust.getName());
@@ -65,7 +63,6 @@ public class ProfilController {
 		    	profil.setCity(adress.getCity());
 		    	profil.setCP(adress.getZipCode());
 		    	profil.setAdresse(adress.getLocation());
-		    	
 		    	
 		    	UserDto userDto =userService.getUserByName(login);
 		    	if (userDto != null) {
@@ -99,7 +96,7 @@ public class ProfilController {
 
 	@RequestMapping(value = "/profil", method = RequestMethod.POST)
 	public ModelAndView profilPOST(@ModelAttribute("profil") Profil profil, Model model){
-		boolean bUdate = false;
+	
 		
 		/*
 		 *- crétaion d'un objet profil  (cf la clase à la fin de cette page).
