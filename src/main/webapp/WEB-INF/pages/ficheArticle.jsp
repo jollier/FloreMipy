@@ -35,7 +35,7 @@
 
 <body>
 
-	    <c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
+	<c:import url="/WEB-INF/pages/menu_haut.jsp" />
 	
 	<!-- Page Content -->
 	<div class="container">
@@ -48,8 +48,9 @@
 				<form:form class="form-horizontal" method="post" modelAttribute="article" action="${ficheArticleUrl}">
 
 					<div class="thumbnail">
-						<img class="img-responsive" src="/FloreMipy/${article.imgsrc}"
-							alt="">
+					   <div class="cont-img">
+						<img class="img-responsive-art" src="/FloreMipy/${article.imgsrc}" alt="">
+					   </div>
 						<div class="caption-full">
 							<h3 class="pull-right">${price} € TTC</h3>
 							<p>
@@ -74,14 +75,16 @@
 							<div class="text-right">
 								<!-- <span class="glyphicon glyphicon-shopping-cart"></span> --> 
 								<!-- <a class="glyphicon glyphicon-user"> </a> -->
-								    <a href="/FloreMipy/ficheArticle/${article.id}/ajouter/?qte=${qte}" } class="btn btn-success">Ajouter au panier</a>
+                                <a class="img-add-cart" href="/FloreMipy/img/AddCart.jpg"> </a>
+								    <a href="/FloreMipy/ficheArticle/${article.id}/ajouter/?qte=1" } class="btn btn-success">Ajouter au panier</a>
 							</div>
 							<p>${article.description}<a target="_blank"></a>.
 							</p>
 						</div>
 					</div>
+				</form:form>
 			</div>
-			</form:form>
+			
 
 		</div>
 
@@ -92,16 +95,18 @@
 
 		<hr>
 
-    <c:import url="/WEB-INF/pages/footer.jsp" /></br>
+        <c:import url="/WEB-INF/pages/footer.jsp" />
 
 	</div>
 	<!-- /.container -->
 
 	<!-- jQuery -->
-	<script src="../js/item/jquery.js"></script>
-
+	<script src="../js/jquery.js"></script>
+        
 	<!-- Bootstrap Core JavaScript -->
-	<script src="../js/item/bootstrap.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	
+	
 
 </body>
 

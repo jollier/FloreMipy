@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="en">
@@ -13,8 +15,8 @@
 <title>Bootstrap Shop Cart</title>
 
 <!-- Bootstrap core CSS -->
- <link href="css/home/bootstrap.min.css" rel="stylesheet">
-
+<!--  link href="css/home/bootstrap.min.css" rel="stylesheet"-->
+<link href="/FloreMipy/css/bootstrap.min.css" rel="stylesheet">
 
 
 <style>
@@ -42,42 +44,37 @@ body {
  <c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
 	<div class="container">
 
-       
+
 
 		<div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title">Votre panier</h3>
 				</div>
+				    <% int var=0; %>
 				<div class="panel-body">
 					<table class="table table-sm">
 						<thead>
 							<tr>
 								<th>Article</th>
-								<th>Réf</th>
-								<th>Prix</th>
-								<th>Qté</th>
+								<th>Prix unitaire</th>
+								<th>QtÃ©</th>
+								<th>Prix total</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>xx</td>
-								<td>yyy</td>
-								<td>zzzz</td>
-								<td>tttt</td>
-							</tr>
-							<tr>
-								<td>tttt</td>
-								<td>yy</td>
-								<td>yyyy</td>
-								<td>yyy</td>
-							</tr>
-							<tr>
-								<td>jjj</td>
-                                <td>ddd</td>
-                                <td>dd</td>
-                                <td>dddd</td>
-							</tr>
+						
+
+							<c:forEach var="panier"  items="${listArticlesPanier}">
+								<tr>
+                                    <td>${ panier.nomArticle }</td>
+									<td>${ panier.prixArticle }</td>
+									<td>${ panier.qteCommandee }</td>
+									<td>${ panier.prixTotal } </td>
+								</tr>
+								
+							</c:forEach>
+
 						</tbody>
 					</table>
 
@@ -85,6 +82,12 @@ body {
 				</div>
 			</div>
 		</div>
+		
+	
+		
+<%-- 		      <c:forEach var="panier" items="${listArticlesPanier}">                                --%>
+<%--                                  <% var = var +  ${panier.prixTotal}; %> --%>
+<%--                             </c:forEach> --%>
 
 		<div class="col-xs-5 col-md-4 col-sm-4 col-lg-4">
 			<div class="panel panel-primary">
@@ -92,7 +95,7 @@ body {
 					<h3 class="panel-title">Total</h3>
 				</div>
 				<div class="panel-body">
-					<h2>XX euros</h2>
+					<h2> ${prixTotal}  euros</h2>
 				</div>
 			</div>
 
@@ -105,7 +108,11 @@ body {
     <c:import url="/WEB-INF/pages/footer.jsp" /></br>
 
 	</div>
+ <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>
