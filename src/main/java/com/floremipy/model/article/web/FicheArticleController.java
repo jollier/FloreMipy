@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -76,27 +77,41 @@ public class FicheArticleController {
 			   System.out.println(qte);
 			   BigDecimal price = priceService.findPriceByArticleId(id);
 
-			   String qteString = request.getParameter("qte");
-
+			   String qteString = (String) request.getAttribute("qte");
+			   System.out.println(qteString);
 			   if (qteString == null)
 			   {
 				   qteString="1";
 			   }
-			   ShoppingCart articleCart = new ShoppingCart(id, articleDto.getName(), price, Integer.parseInt(qteString));
+			   ShoppingCart articleCart = new ShoppingCart(id, articleDto.getName(), price, Integer.parseInt(qteString));  
 			   
 			   
-			   Double priceInDouble = price.doubleValue();
-			   articleCart.setPrixTotal(articleCart.calculPrixTotal(priceInDouble, articleCart.getQteCommandee()));
-	            HttpSession session = request.getSession();            
-	            ArrayList<ShoppingCart> articlesPanier = (ArrayList<ShoppingCart>) session.getAttribute(PANIER); 
+			   
+	            HttpSession session = request.getSession();
+	             
+	            ArrayList<ShoppingCart> articlesPanier = (ArrayList<ShoppingCart>) session.getAttribute(PANIER);
+	             //HashMap<Integer, ShoppingCart> articlesPanier = (HashMap<Integer, ShoppingCart>) session.getAttribute(PANIER); 
 //	           
 	            /* Si aucune map n'existe, alors initialisation d'une nouvelle map */
-	            if ( articlesPanier == null ) {
+	             if ( articlesPanier == null ) {
 	            	articlesPanier = PanierController.listArticlesPanier;
-	            }
+	             }
 	            
+//	             if (articlesPanier.containsKey(id))
+//	             {
+//	            	 ShoppingCart c = articlesPanier.get(id);
+//	            	 c.setQteCommandee(c.getQteCommandee() + articleCart.getQteCommandee());
+//	            	 articlesPanier.put(id, c);
+//	             }
+//	             else
+//	             {
+	  			   Double priceInDouble = price.doubleValue();
+				   articleCart.setPrixTotal(articleCart.calculPrixTotal(priceInDouble, articleCart.getQteCommandee()));
+//				   articlesPanier.put(id,articleCart);
+//	             }
+				   articlesPanier.add(articleCart);
+				   
 ////	            /* Puis ajout de l'utilisateur dans la map */
-	            articlesPanier.add(articleCart);
 ////	            /* Et enfin (ré)enregistrement de la map en session */
 //	            System.out.println(articlesPanier.size());
 //

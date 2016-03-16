@@ -23,7 +23,7 @@ public class PanierController {
 //	@Autowired
 //	ShoppingCart shoppingCart;
 
-	//public static final HashMap<String, PanierController> articlesPanierHashMap = new HashMap<String, PanierController>();
+	//public static final HashMap<Integer, ShoppingCart> listArticlesPanier = new HashMap<Integer, ShoppingCart>();
 	public static final ArrayList<ShoppingCart> listArticlesPanier = new ArrayList<ShoppingCart>();
 	
     public PanierController() {
