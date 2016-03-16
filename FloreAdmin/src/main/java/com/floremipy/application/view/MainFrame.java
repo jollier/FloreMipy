@@ -33,11 +33,12 @@ import com.google.gson.JsonSyntaxException;
 import java.awt.CardLayout;
 
 @Component(value="Main")
-public class MainFrame implements FramePrincipal {
+public class MainFrame implements IFramePrincipal {
 
 	JFrame frame = null;
 	JPanel panelGeneral = null;
 	JPanel panelCentral = null;
+	
 	JPanel panelStatus = null;
 	
 	boolean ready = false;
@@ -167,26 +168,26 @@ public class MainFrame implements FramePrincipal {
 	}
 
 
-	@Override
-	public void addView(String name, JComponent component) {
-		System.out.println("addView : " + name + " / " + component);
-		System.out.println("panelCentral : " + panelCentral);
-		panelCentral.add(name,component);
-		
-	}
-
-	@Override
-	public void setActiveView(String name) {
-		System.out.println("setActiveView " +name );
-		((CardLayout)panelCentral.getLayout()).show(panelCentral, name);
-		
-	}
-
-	@Override
-	public void deleteView(JComponent component) {
-		((CardLayout)panelCentral.getLayout()).removeLayoutComponent(component);
-		
-	}
+//	@Override
+//	public void addView(String name, JComponent component) {
+//		System.out.println("addView : " + name + " / " + component);
+//		System.out.println("panelCentral : " + panelCentral);
+//		panelCentral.add(name,component);
+//		
+//	}
+//
+//	@Override
+//	public void setActiveView(String name) {
+//		System.out.println("setActiveView " +name );
+//		((CardLayout)panelCentral.getLayout()).show(panelCentral, name);
+//		
+//	}
+//
+//	@Override
+//	public void deleteView(JComponent component) {
+//		((CardLayout)panelCentral.getLayout()).removeLayoutComponent(component);
+//		
+//	}
 
 	@Override
 	public void view() {
@@ -210,6 +211,12 @@ public class MainFrame implements FramePrincipal {
 
 		
 	}
+
+	@Override
+	public JPanel getPanelCentral() {
+		return panelCentral;
+	}
+
 
 	@Override
 	public void setStatus(String status) {

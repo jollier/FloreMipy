@@ -1,60 +1,47 @@
 package com.floremipy.product.view;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
+import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
-import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
-import javax.swing.table.TableModel;
-import org.apache.log4j.Appender;
-import org.apache.log4j.Layout;
+
 import org.apache.log4j.Logger;
-import org.apache.log4j.spi.ErrorHandler;
-import org.apache.log4j.spi.Filter;
-import org.apache.log4j.spi.LoggingEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.floremipy.controller.IControler;
 import com.floremipy.product.model.IProductListModel;
 import com.floremipy.product.model.ProductLight;
 import com.floremipy.product.model.ProductLightTableModel;
+import com.floremipy.view.IFormView;
+import com.floremipy.view.IListView;
+import com.floremipy.view.IView;
 import com.google.gson.JsonSyntaxException;
 
-import javax.swing.JMenuBar;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JTextPane;
-
-//@org.springframework.stereotype.Component
 @org.springframework.stereotype.Component(value = "productListView")
 public class ProductListView extends JPanel implements IListView {
 
+	private static final String VIEW_NAME = "productListView";
+	
 	// @Autowired
 	public Logger log4j;
+
+	@Autowired
+	@Qualifier("productView")
+	IFormView productView;
 
 	@Autowired
 	@Qualifier("ProductListModel")
@@ -62,31 +49,15 @@ public class ProductListView extends JPanel implements IListView {
 
 	ArrayList<ProductLight> listProduct;
 
-	boolean ready = false;
+	JComponent panelCentral;
+	CardLayout cardlayout;
 
-//	public ProductListView(IProductListModel productListModel) {
-//		super();
-//		this.productListModel = productListModel;
-//		log4j = Logger.getLogger(ProductListView.class);
-//		// this.listProduct = listProduct;
-//		// initialize();
-//	}
-//
-//	JFrame productListFrame = null;
-//	JPanel productListPanel = null;
-//	JScrollPane scrollpane = null;
-//	JTable productList = null;
-//	JButton createButton = null;
-//	JButton updateButton = null;
-//	JButton deleteButton = null;
+	boolean ready = false;
 
 	public ProductListView() {
 		super();
 		initialize();
 	}
-
-	// JFrame productListFrame = null;
-	// JPanel productListPanel = null;
 
 	public JScrollPane scrollpane = null;
 	public JTable productList = null;
@@ -95,27 +66,6 @@ public class ProductListView extends JPanel implements IListView {
 	public JButton deleteButton = null;
 	public JTextPane textPane = null;
 
-	// public void view() {
-	// initialize();
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// try {
-	// /*
-	// * Lance le thread de la fenetre et la lecture des touches
-	// * du clavier
-	// */
-	//
-	// ready = true;
-	// productListFrame.setVisible(true);
-	//
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	//
-	// }
-
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -123,19 +73,20 @@ public class ProductListView extends JPanel implements IListView {
 
 		log4j = Logger.getLogger(ProductListView.class);
 		log4j.info("Initialisation");
-		// productListFrame = new JFrame();
 
 		textPane = new JTextPane();
 
 		productList = new JTable();
 
-		updateButton = new JButton("Update");
-		updateButton.setEnabled(false);
-		updateButton.addActionListener(e -> System.out.println("updateButton"));
-
-		deleteButton = new JButton("Delete");
-		deleteButton.setEnabled(false);
-		deleteButton.addActionListener(e -> System.out.println("deleteButton"));
+		// updateButton = new JButton("Update");
+		// updateButton.setEnabled(false);
+		// updateButton.addActionListener(e ->
+		// System.out.println("updateButton"));
+		//
+		// deleteButton = new JButton("Delete");
+		// deleteButton.setEnabled(false);
+		// deleteButton.addActionListener(e ->
+		// System.out.println("deleteButton"));
 
 		productList = new JTable();
 
@@ -145,7 +96,6 @@ public class ProductListView extends JPanel implements IListView {
 
 		scrollpane = new JScrollPane(productList);
 
-		// productListPanel = new JPanel(new BorderLayout());
 		this.setPreferredSize(new Dimension(800, 600));
 		this.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 10));
 
@@ -166,42 +116,37 @@ public class ProductListView extends JPanel implements IListView {
 		deleteButton = new JButton("Delete");
 		panel_1.add(deleteButton);
 		deleteButton.setEnabled(false);
-		deleteButton.addActionListener(e -> System.out.println("deleteButton"));
-		updateButton.addActionListener(e -> System.out.println("updateButton"));
-		// createButton.addActionListener(new ActionListener() {
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// System.out.println("createButton");
-		// }});
-		createButton.addActionListener(e -> System.out.println("createButton"));
+		// deleteButton.addActionListener(e ->
+		// System.out.println("deleteButton"));
+		// //deleteButton.getAction();
+		// updateButton.addActionListener(e ->
+		// System.out.println("updateButton"));
+		// // createButton.addActionListener(new ActionListener() {
+		// // @Override
+		// // public void actionPerformed(ActionEvent e) {
+		// // System.out.println("createButton");
+		// // }});
+		// createButton.addActionListener(e ->
+		// System.out.println("createButton"));
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-
-
-
-
-		
-		//		
-//		JMenuBar mb = new JMenuBar();
-//		JMenu fileMenu = new JMenu("File");
-//		fileMenu.add(new ShowDialogAction());
-//		fileMenu.add(new ExitAction());
-//		mb.add (fileMenu);
-//		setJMenuBar (mb);
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.floremipy.product.view.IListView#loadData()
 	 */
 	@Override
 	public void loadData() {
 		ProductLightTableModel model;
 		try {
-			//ArrayList<ProductLight> ProductList = new ArrayList<ProductLight>();
+			// ArrayList<ProductLight> ProductList = new
+			// ArrayList<ProductLight>();
 			ArrayList<ProductLight> ProductList = productListModel.getListProduct();
-//			for (ProductLight productLight : ProductList) {
-//				System.out.println("productLight " + productLight);
-//			}
+			// for (ProductLight productLight : ProductList) {
+			// System.out.println("productLight " + productLight);
+			// }
 			ProductLightTableModel modeltest = new ProductLightTableModel(ProductList);
 			model = modeltest;
 		} catch (JsonSyntaxException | IOException e1) {
@@ -214,17 +159,130 @@ public class ProductListView extends JPanel implements IListView {
 		}
 
 		productList.setModel(model);
+		if (model.getRowCount() > 0) {
+		updateButton.setEnabled(true);
+		deleteButton.setEnabled(true);
+		}
 	}
 
-	// public IProductListModel getProductListModel() {
-	// return productListModel;
+	@Override
+	public void addCreateActionListener(ActionListener l) {
+		createButton.addActionListener(l);
+
+	}
+
+	@Override
+	public void addUpdateActionListener(ActionListener l) {
+		updateButton.addActionListener(l);
+
+	}
+
+	@Override
+	public void addDeleteActionListener(ActionListener l) {
+		deleteButton.addActionListener(l);
+
+	}
+
+	@Override
+	public void removeAllActionListener() {
+		ActionListener[] listActionListener = createButton.getActionListeners();
+		for (int i = 0; i < listActionListener.length; i += 2) {
+			createButton.removeActionListener(listActionListener[i]);
+		}
+		listActionListener = updateButton.getActionListeners();
+		for (int i = 0; i < listActionListener.length; i += 2) {
+			updateButton.removeActionListener(listActionListener[i]);
+		}
+		listActionListener = deleteButton.getActionListeners();
+		for (int i = 0; i < listActionListener.length; i += 2) {
+			deleteButton.removeActionListener(listActionListener[i]);
+		}
+
+	}
+
+	// @Override
+	// public void addView(JComponent parent, String name, JComponent component)
+	// {
+	// System.out.println("addView : " + name + " / " + component);
+	// System.out.println("panelCentral : " + parent);
+	// panelCentral = parent;
+	// parent.add(name,component);
+	//
 	// }
 	//
+	// @Override
+	// public void setActiveView(String name) {
+	// System.out.println("setActiveView " +name );
+	// ((CardLayout)panelCentral.getLayout()).show(panelCentral, name);
 	//
-	// public void setProductListModel(IProductListModel productListModel) {
-	// System.out.println("setProductListModel " + productListModel);
-	// this.productListModel = productListModel;
-	// initialize();
 	// }
+	//
+	// @Override
+	// public void deleteView(JComponent component) {
+	// ((CardLayout)panelCentral.getLayout()).removeLayoutComponent(component);
+	//
+	// }
+
+	// @Override
+	// public void setControler(IControler controler) {
+	// // TODO Auto-generated method stub
+	//
+	// }
+
+	@Override
+	public void openView(JComponent parent) {
+		panelCentral = parent;
+		cardlayout = ((CardLayout)panelCentral.getLayout());
+		panelCentral.add(VIEW_NAME, this);
+
+		this.addCreateActionListener(e -> {
+			productView.openView(parent);
+			productView.addValidActionListener(e1 -> this.loadData());
+			System.out.println("createButton");
+		});
+
+		this.addUpdateActionListener(e -> {
+			int rowSelected = productList.getSelectedRow();
+			if (rowSelected != -1) {
+				long id = (long) productList.getValueAt(rowSelected, 4);
+				productView.openView(parent, id);
+				productView.addValidActionListener(e1 -> this.loadData());
+			}
+			System.out.println("updateButton");
+		});
+
+		this.addDeleteActionListener(e -> {
+			int rowSelected = productList.getSelectedRow();
+			if (rowSelected != -1) {
+				long id = (long) productList.getValueAt(rowSelected, 0);
+
+			}
+			System.out.println("deleteButton");
+		});
+
+		// createButton.addActionListener(new ActionListener() {
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// System.out.println("createButton");
+		// }});
+
+		this.loadData();
+		// ((ProductListView)productListView).loadData();
+		
+		cardlayout.show(panelCentral, VIEW_NAME);
+
+	}
+
+	@Override
+	public void openView(JComponent parent, long id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void closeView() {
+		// TODO Auto-generated method stub
+
+	}
 
 }
