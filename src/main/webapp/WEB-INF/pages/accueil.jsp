@@ -21,6 +21,7 @@
 
     <c:import url="/WEB-INF/pages/menu_haut.jsp" /></br>
 
+
     <!-- Page Content -->
     <div class="container">
 
