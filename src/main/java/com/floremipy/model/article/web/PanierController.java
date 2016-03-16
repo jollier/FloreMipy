@@ -34,8 +34,8 @@ public class PanierController {
 	@RequestMapping("/panier")
 	
 	public ModelAndView alimenterPanier(Model model){
-		ShoppingCart c = new ShoppingCart(1, "Pommier", new BigDecimal(100.00),1);
-		listArticlesPanier.add(c);
+//		ShoppingCart c = new ShoppingCart(1, "Pommier", new BigDecimal(100.00),1);
+//		listArticlesPanier.add(c);
 		model.addAttribute("listArticlesPanier", listArticlesPanier);
 		
 		return new ModelAndView("panier");
