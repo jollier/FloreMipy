@@ -19,8 +19,8 @@ public class PanierController {
 	@Autowired
 	ICustomerService monService;
 	
-	@Autowired
-	ShoppingCart shoppingCart;
+//	@Autowired
+//	ShoppingCart shoppingCart;
 
 	//public static final HashMap<String, PanierController> articlesPanierHashMap = new HashMap<String, PanierController>();
 	public static final ArrayList<ShoppingCart> listArticlesPanier = new ArrayList<ShoppingCart>();
