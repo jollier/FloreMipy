@@ -68,7 +68,7 @@ public class ProductWebService implements IProductWebService {
 	@Override
 	public Product readProduct(Long Id) throws JsonSyntaxException, UnsupportedEncodingException, IOException {
 		Product response;
-		URL url = new URL(SITEURL + "Product/get?" + Id);
+		URL url = new URL(SITEURL + "Product/item" + Id);
 		HttpURLConnection conn = jsonUtils.getConnexion(url);
 		response = jsonUtils.ProductRequest(conn);
 

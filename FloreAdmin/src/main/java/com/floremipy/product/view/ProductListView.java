@@ -254,7 +254,7 @@ public class ProductListView extends JPanel implements IListView {
 		this.addDeleteActionListener(e -> {
 			int rowSelected = productList.getSelectedRow();
 			if (rowSelected != -1) {
-				long id = (long) productList.getValueAt(rowSelected, 0);
+				long id = (long) productList.getValueAt(rowSelected, 4);
 
 			}
 			System.out.println("deleteButton");
