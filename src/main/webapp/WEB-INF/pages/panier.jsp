@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
@@ -67,10 +67,10 @@ body {
 
 							<c:forEach var="panier"  items="${listArticlesPanier}">
 								<tr>
-                                    <td>${ panier.nomArticle }</td>
-									<td>${ panier.prixArticle }</td>
-									<td>${ panier.qteCommandee }</td>
-									<td>${ panier.prixTotal } </td>
+                                    <td>${ panier.value.nomArticle }</td>
+									<td>${ panier.value.prixArticle } €</td>
+									<td>${ panier.value.qteCommandee }</td>
+									<td>${ panier.value.prixTotal } €</td>
 								</tr>
 								
 							</c:forEach>
@@ -95,7 +95,7 @@ body {
 					<h3 class="panel-title">Total</h3>
 				</div>
 				<div class="panel-body">
-					<h2> ${prixTotal}  euros</h2>
+					<h2> ${prixTotal} €</h2>
 				</div>
 			</div>
 

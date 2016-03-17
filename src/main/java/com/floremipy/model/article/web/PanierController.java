@@ -1,8 +1,11 @@
 package com.floremipy.model.article.web;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +26,8 @@ public class PanierController {
 //	@Autowired
 //	ShoppingCart shoppingCart;
 
-	//public static final HashMap<Integer, ShoppingCart> listArticlesPanier = new HashMap<Integer, ShoppingCart>();
-	public static final ArrayList<ShoppingCart> listArticlesPanier = new ArrayList<ShoppingCart>();
+	public static final HashMap<Integer, ShoppingCart> listArticlesPanier = new HashMap<Integer, ShoppingCart>();
+	//public static final ArrayList<ShoppingCart> listArticlesPanier = new ArrayList<ShoppingCart>();
 	
     public PanierController() {
         super();
@@ -34,17 +37,17 @@ public class PanierController {
 	@RequestMapping("/panier")
 	
 	public ModelAndView alimenterPanier(Model model){
-//		ShoppingCart c = new ShoppingCart(1, "Pommier", new BigDecimal(100.00),1);
-//		listArticlesPanier.add(c);
 		model.addAttribute("listArticlesPanier", listArticlesPanier);
+		Double prixTotal = 0.00;
+
+		for (Integer key : listArticlesPanier.keySet())
+		{
+			ShoppingCart art = listArticlesPanier.get(key);
+			prixTotal = prixTotal + Double.parseDouble(art.getPrixTotal());
+		}
+		//NumberFormat format = new DecimalFormat("#0.00");
 		
-		Double prixTotal =0.00;
-		
-for (int i = 0; i < listArticlesPanier.size(); i++) {
-	prixTotal=prixTotal+listArticlesPanier.get(i).getPrixTotal();
-	
-}
-model.addAttribute("prixTotal", prixTotal);	
+		model.addAttribute("prixTotal", String.format(Locale.ENGLISH,"%.2f",prixTotal));	
 		
 		return new ModelAndView("panier");
 	}

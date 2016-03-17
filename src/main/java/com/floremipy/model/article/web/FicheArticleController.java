@@ -74,50 +74,44 @@ public class FicheArticleController {
 			   ArticleDto articleDto = new ArticleDto();
 			   articleDto = articleService.findArticleById(id);
 			   
-			   System.out.println(qte);
+			   //System.out.println(qte);
 			   BigDecimal price = priceService.findPriceByArticleId(id);
 
 			   String qteString = (String) request.getAttribute("qte");
-			   System.out.println(qteString);
+			   //System.out.println(qteString);
 			   if (qteString == null)
 			   {
 				   qteString="1";
 			   }
-			   ShoppingCart articleCart = new ShoppingCart(id, articleDto.getName(), price, Integer.parseInt(qteString));  
+			   ShoppingCart articleCart = new ShoppingCart(); //id, articleDto.getName(), price, Integer.parseInt(qteString));  
 			   
 			   
 			   
 	            HttpSession session = request.getSession();
 	             
-	            ArrayList<ShoppingCart> articlesPanier = (ArrayList<ShoppingCart>) session.getAttribute(PANIER);
-	             //HashMap<Integer, ShoppingCart> articlesPanier = (HashMap<Integer, ShoppingCart>) session.getAttribute(PANIER); 
+	            //ArrayList<ShoppingCart> articlesPanier = (ArrayList<ShoppingCart>) session.getAttribute(PANIER);
+	             HashMap<Integer, ShoppingCart> articlesPanier = (HashMap<Integer, ShoppingCart>) session.getAttribute(PANIER); 
 //	           
 	            /* Si aucune map n'existe, alors initialisation d'une nouvelle map */
 	             if ( articlesPanier == null ) {
-	            	articlesPanier = PanierController.listArticlesPanier;
+	            	articlesPanier = (HashMap<Integer, ShoppingCart>) PanierController.listArticlesPanier;
 	             }
 	            
-//	             if (articlesPanier.containsKey(id))
-//	             {
-//	            	 ShoppingCart c = articlesPanier.get(id);
-//	            	 c.setQteCommandee(c.getQteCommandee() + articleCart.getQteCommandee());
-//	            	 articlesPanier.put(id, c);
-//	             }
-//	             else
-//	             {
-	  			   Double priceInDouble = price.doubleValue();
-				   articleCart.setPrixTotal(articleCart.calculPrixTotal(priceInDouble, articleCart.getQteCommandee()));
-//				   articlesPanier.put(id,articleCart);
-//	             }
-				   articlesPanier.add(articleCart);
-				   
-////	            /* Puis ajout de l'utilisateur dans la map */
-////	            /* Et enfin (ré)enregistrement de la map en session */
-//	            System.out.println(articlesPanier.size());
-//
-//	            session.setAttribute(PANIER, articlesPanier);
-	           // System.out.println(articlesPanier.size() + "/" + qteString);
-	            //			    
+	             if (articlesPanier.containsKey(id))
+	             {
+	            	 articleCart = articlesPanier.get(id);
+	            	 articleCart.setQteCommandee(articleCart.getQteCommandee() + Integer.parseInt(qteString));
+	             }
+	             else
+	             {
+	            	 articleCart.setIdArticle(id);
+	            	 articleCart.setNomArticle(articleDto.getName());
+	            	 articleCart.setPrixArticle(price);
+	            	 articleCart.setQteCommandee(Integer.parseInt(qteString));
+	             }
+  			   	 Double priceInDouble = price.doubleValue();
+  			   	 articleCart.setPrixTotal(articleCart.calculPrixTotal(priceInDouble, articleCart.getQteCommandee()));
+            	 articlesPanier.put(id, articleCart);
 			   
 		    return "redirect:/ficheArticle/"+id;
 		}
