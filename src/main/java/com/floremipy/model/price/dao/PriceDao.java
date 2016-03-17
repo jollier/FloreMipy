@@ -40,7 +40,7 @@ public class PriceDao implements IPriceDao{
 		String requete = 
 				"SELECT NEW com.floremipy.model.price.dto.PriceDto(" + 
 						"p.id, p.article.id, p.date, p.value) " +
-						"FROM Price p WHERE p.article.id = :id ORDER BY p.date" ;
+						"FROM Price p WHERE p.article.id = :id ORDER BY p.date DESC" ;
 		Query query = null;
 		query = em.createQuery(requete, PriceDto.class);
 		query.setParameter("id", id);
