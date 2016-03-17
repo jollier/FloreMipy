@@ -85,7 +85,7 @@ public class FloreModelPriceTest {
 	
 	@Test
 	public void testFindPriceById() {
-		int idPrice = 1;
+		int idPrice = 2;
 		IPriceDao priceDao = new PriceDao();
 		PriceDto priceDto = priceDao.findPriceById(idPrice);
 		assertEquals(priceDto.getId(), idPrice);
