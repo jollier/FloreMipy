@@ -112,6 +112,8 @@ public class FicheArticleController {
   			   	 Double priceInDouble = price.doubleValue();
   			   	 articleCart.setPrixTotal(articleCart.calculPrixTotal(priceInDouble, articleCart.getQteCommandee()));
             	 articlesPanier.put(id, articleCart);
+            	 
+            	 session.setAttribute("nbArticle", articlesPanier.size()); 
 			   
 		    return "redirect:/ficheArticle/"+id;
 		}

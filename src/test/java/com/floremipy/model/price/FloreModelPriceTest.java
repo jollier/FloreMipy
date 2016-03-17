@@ -74,7 +74,7 @@ public class FloreModelPriceTest {
 	
 	@Test
 	public void testFindPriceByArticleId() {
-		int articleId = 1;
+		int articleId = 2;
 		IPriceDao modelDao = new PriceDao();
 		List<PriceDto> resultPrices = modelDao.findPriceByArticleId(articleId);
 		for(PriceDto a : resultPrices){
@@ -85,7 +85,7 @@ public class FloreModelPriceTest {
 	
 	@Test
 	public void testFindPriceById() {
-		int idPrice = 1;
+		int idPrice = 2;
 		IPriceDao priceDao = new PriceDao();
 		PriceDto priceDto = priceDao.findPriceById(idPrice);
 		assertEquals(priceDto.getId(), idPrice);
