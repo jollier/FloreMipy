@@ -66,24 +66,11 @@ public class ModelWebService {
 	
 	
 	@RequestMapping("/Product/item{id}")
-	public ProductLight article(@PathVariable String id) {
+	public ArticleDto article(@PathVariable String id) {
 		int parsedId = Integer.parseInt(id);
-		ProductLight item= new ProductLight();
 		ArticleDto articleDto = articleService.findArticleById(parsedId);
-		
-			item.setId(articleDto.getId());
-			System.out.println(articleDto.getId());
-			item.setName(articleDto.getName());
-			item.setCategory(articleDto.getCategory());
-			item.setQuantityInStock(articleDto.getQuantityInStock());
-			
-			boolean lotMature = articleMature(articleDto.getId());
-			if (lotMature) {
-				item.setAlertLotMature(1);
-			}else{
-				item.setAlertLotMature(0);
-			}
-		return item;
+	
+		return articleDto;
 	}
 	
 	private boolean articleMature(int id){
