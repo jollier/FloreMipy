@@ -54,7 +54,6 @@
           </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success btn-sm">S'identifier</button> 
-        <spring:url value="/accueil" var="accueil" htmlEscape="true" />
         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
       </div>
     </div>

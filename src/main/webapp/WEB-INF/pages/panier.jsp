@@ -53,6 +53,7 @@ body {
 				</div>
 				    <% int var=0; %>
 				<div class="panel-body">
+				
 					<table class="table table-sm">
 						<thead>
 							<tr>
@@ -60,6 +61,7 @@ body {
 								<th>Prix unitaire</th>
 								<th>Qté</th>
 								<th>Prix total</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -71,13 +73,18 @@ body {
 									<td>${ panier.value.prixArticle } €</td>
 									<td>${ panier.value.qteCommandee }</td>
 									<td>${ panier.value.prixTotal } €</td>
+									<td>
+										<form class="form-horizontal"  method="Post" action="supprimerArticle">
+										   <input type="hidden" name="idArticle" value=${ panier.value.idArticle}> 
+										   <button type="submit" class="btn btn-danger btn-sm">supprimer</button> 
+										</form>
+									</td>
 								</tr>
 								
 							</c:forEach>
 
 						</tbody>
 					</table>
-
 
 				</div>
 			</div>

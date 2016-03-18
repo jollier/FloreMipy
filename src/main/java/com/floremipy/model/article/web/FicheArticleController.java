@@ -76,9 +76,9 @@ public class FicheArticleController {
 			   
 			   //System.out.println(qte);
 			   BigDecimal price = priceService.findPriceByArticleId(id);
-
-			   String qteString = (String) request.getAttribute("qte");
-			   //System.out.println(qteString);
+			    
+			   String qteString = (String) request.getParameter("qte");
+			   System.out.println(qteString);
 			   if (qteString == null)
 			   {
 				   qteString="1";

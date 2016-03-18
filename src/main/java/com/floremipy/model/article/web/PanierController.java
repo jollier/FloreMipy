@@ -1,20 +1,19 @@
 package com.floremipy.model.article.web;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.floremipy.model.ShoppingCart;
-import com.floremipy.model.article.service.IArticleService;
 import com.floremipy.model.customer.service.ICustomerService;
 
 @Controller
@@ -51,5 +50,35 @@ public class PanierController {
 		
 		return new ModelAndView("panier");
 	}
+	
+	
+	@RequestMapping(value="/supprimerArticle",  method = RequestMethod.POST)
+	public ModelAndView supprimerArticle(Model model,HttpServletRequest request){
+		
+		Integer idArticle = Integer.valueOf(request.getParameter("idArticle"));
+		System.out.println("mon ident est : " +idArticle);
+		
+		
+		System.out.println("Avant Suppression : " + listArticlesPanier.size());
+		listArticlesPanier.remove(idArticle );
+		System.out.println("Après Suppression : " + listArticlesPanier.size());
+		
+		model.addAttribute("listArticlesPanier", listArticlesPanier);
+		Double prixTotal = 0.00;
 
+		for (Integer key : listArticlesPanier.keySet())
+		{
+			ShoppingCart art = listArticlesPanier.get(key);
+			prixTotal = prixTotal + Double.parseDouble(art.getPrixTotal());
+		}
+		//NumberFormat format = new DecimalFormat("#0.00");
+		
+		model.addAttribute("prixTotal", String.format(Locale.ENGLISH,"%.2f",prixTotal));	
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("nbArticle", listArticlesPanier.size()); 
+		
+		return new ModelAndView("panier");
+	}
+	
 }
