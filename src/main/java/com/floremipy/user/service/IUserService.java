@@ -16,6 +16,8 @@ public interface IUserService {
 	public boolean delUser(User user);
 	
 	public void save(UserDto userDto);
+
+	public void update(UserDto userDto);
 	
 	public UserDto create(UserDto userDto);
 }
