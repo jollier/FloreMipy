@@ -44,12 +44,12 @@
                          <c:when test="${empty sessionScope.login}">
                              <li><a href="<c:url value="/profil"/>"><span class="glyphicon glyphicon-user"></span> S'inscrire</a></li>
                              <li><a href="#" onclick="init('click');"> <span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
-                             <li><a href="<c:url value="/panier"/>"><span class="glyphicon glyphicon-shopping-cart"></span> Mon panier <c:if test="$(nbArticle > 0)">(${nbArticle})</c:if></a></li>
+                             <li><a href="<c:url value="/panier"/>"><span class="glyphicon glyphicon-shopping-cart"></span> Mon panier <c:if test="${nbArticle > 0}">(${nbArticle})</c:if></a></li>
                          </c:when>    
                          <c:otherwise>
                              <li><a href="<c:url value="/profil"/>">Bonjour : <c:out value="${login}" /></a></li>                            
                              <li><a href="Deconnexion"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
-                             <li><a href="<c:url value="/panier"/>"><span class="glyphicon glyphicon-shopping-cart"></span> Mon panier <c:if test="$(nbArticle > 0)">(${nbArticle})</c:if></a></li>
+                             <li><a href="<c:url value="/panier"/>"><span class="glyphicon glyphicon-shopping-cart"></span> Mon panier <c:if test="${nbArticle > 0}">(${nbArticle})</c:if></a></li>
                          </c:otherwise>
                      </c:choose>            
                  </ul>
