@@ -47,9 +47,7 @@ public class ProfilController {
 			// session active
         
         	Integer id = (Integer) session.getAttribute("id");
-        	
-		    cust = customerService.getCustomerById(id);
-		    
+     	    cust = customerService.getCustomerById(id);
 		    
 		    if (cust!=null) {
 				profil.setBUpdate(true);
@@ -66,9 +64,11 @@ public class ProfilController {
 		    	profil.setCity(adress.getCity());
 		    	profil.setCP(adress.getZipCode());
 		    	profil.setAdresse(adress.getLocation());
+		    	profil.setBUpdate(true);
 		    	
 		    	UserDto userDto =userService.getUserByName(login);
 		    	if (userDto != null) {
+		    		profil.setIdUser(userDto.getId());
 		    		profil.setlogin(userDto.getUsername());
 		    		profil.setPassword(userDto.getPassword());
 		    		profil.setBUpdate(true);
@@ -82,8 +82,8 @@ public class ProfilController {
 	}
 
 	@RequestMapping(value = "/profil", method = RequestMethod.POST)
-	public ModelAndView profilPOST(@ModelAttribute("profil") Profil profil, Model model){
-	
+	public ModelAndView profilPOST(@ModelAttribute("profil") Profil profil, Model model,HttpServletRequest request){
+		long idUser=0;
 		
 		/*
 		 *- crétaion d'un objet profil  (cf la clase à la fin de cette page).
@@ -92,6 +92,25 @@ public class ProfilController {
 		 * 
 		 */
 
+		/*
+		 * Verification si l'on est en update
+		 */
+        HttpSession session = request.getSession();
+		String login = (String) session.getAttribute("login"); 
+				
+        if ((session.getAttribute("id") != null) && (login!=null) ) {
+			// session active
+        	Integer id = (Integer) session.getAttribute("id");
+            cust = customerService.getCustomerById(id);
+		    if (cust!=null) {
+		    	profil.setBUpdate(true)	;
+		    	UserDto userDto =userService.getUserByName(login);
+		    	if (userDto != null) {
+		    		idUser = userDto.getId();
+		    		
+		    	}
+		    }
+        }
 				
 		// *********************************************************
 		// *** Controle que les saisies n'existent pas déjà      ***
@@ -143,8 +162,15 @@ public class ProfilController {
 		
 		String message="";
 		try {
-			
-			message = customerService.save(newCustomer, newUserDto);
+			if (!profil.getBUpdate()) {
+				// Ajout
+				message = customerService.save(newCustomer, newUserDto); 
+			} else {
+				// Modification
+				newUserDto.setId(idUser);
+				newCustomer.setId((int) session.getAttribute("id"));
+				message = customerService.update(newCustomer, newUserDto);
+			};
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -180,11 +206,13 @@ class Profil {
 	private String password;
 	private String login;
 	private boolean bUpdate = false;
+	private long idUSer;
+	
 
 
 	public Profil(String iRadios, String nomEntreprise, String raisonSociale,
 			String sIRET, String iJuridique, String name, String firstName, String adresse, String cP, String city,
-			String country, String tel1, String tel2, String email, String tVA, String password, String login,boolean bUpdate) {
+			String country, String tel1, String tel2, String email, String tVA, String password, String login,boolean bUpdate, long idUSer) {
 		this.radios = iRadios;
 		this.nomEntreprise = nomEntreprise;
 		this.raisonSociale = raisonSociale;
@@ -203,6 +231,7 @@ class Profil {
 		this.login = login;
 		this.password = password;
 		this.bUpdate = bUpdate;
+		this.idUSer = idUSer;
 
 	}
 	
@@ -355,4 +384,12 @@ class Profil {
 		this.bUpdate = bUpdate;
 	}
 
+	public long getIdUser() {
+		return idUSer;
+	}
+	
+	public void setIdUser(long idUSer) {
+		this.idUSer = idUSer;
+	}
+	
 }
