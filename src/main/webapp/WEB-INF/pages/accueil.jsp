@@ -31,9 +31,25 @@
                 <p class="lead">Flore Mipy</p>
                 
                 <div class="btn-group-vertical">
-                    <a href="/FloreMipy/accueil?categorie=Toutes" class="btn btn-primary">Toutes</a>
-                    <c:forEach items="${catList}" var="cat"> 
-				        <a href="/FloreMipy/accueil?categorie=${cat}" class="btn btn-primary">${cat}</a>
+	                <c:choose>
+	                    <c:when test="${currentCategorie == 'Toutes'}">
+	                        <a href="/FloreMipy/accueil?categorie=Toutes" class="btn btn-primary categorie-selected">Toutes</a>
+	                    </c:when>
+	                    <c:otherwise>
+	                        <a href="/FloreMipy/accueil?categorie=Toutes" class="btn btn-primary">Toutes</a>
+	                    </c:otherwise>
+	                </c:choose>
+                        
+                    <c:forEach items="${catList}" var="cat">
+                         <c:choose>
+                            <c:when test="${cat != currentCategorie}">
+				                <a href="/FloreMipy/accueil?categorie=${cat}" class="btn btn-primary">${cat}</a>
+			                </c:when>
+			                <c:otherwise>
+			                     <a href="/FloreMipy/accueil?categorie=${cat}" class="btn btn-primary categorie-selected">${cat}</a>
+		                     </c:otherwise>
+		                </c:choose>
+				                
 				    </c:forEach>    
 				</div>   
             </div>
