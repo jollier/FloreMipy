@@ -291,7 +291,8 @@ INSERT INTO `price` (`Id`, `IdArticle`, `Value`, `Date`) VALUES
 	(8, 8, 25.99, '2013-11-01'),
 	(9, 9, 25.99, '2013-11-01'),
 	(10, 10, 15.99, '2013-11-01'),
-	(11, 11, 21.90, '2013-11-01');
+	(11, 11, 21.90, '2013-11-01'),
+	(12, 82, 10.99, '2016-03-22');
 /*!40000 ALTER TABLE `price` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipi. result

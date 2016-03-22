@@ -105,4 +105,10 @@ label.required:after {content: " *"; color: red;}
     background: none;           
 }
 
+.categorie-selected {
+	background-color: #689e2c;
+  background-position: 0 -15px;
+  border-color: #008040;
+}
+
         
