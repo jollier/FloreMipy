@@ -6,7 +6,7 @@
 <html>
 
 <!-- Modal -->
-<form class="form-horizontal"  method="Post" action="identification">
+<form class="form-horizontal"  method="Post" action="<c:url value='/identification'/>" >
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
