@@ -6,8 +6,8 @@ import javax.swing.table.AbstractTableModel;
 
 public class ProductLightTableModel extends AbstractTableModel {
 
-	int PRODUCTLIGHTCOLUMNCOUNT = 4;
-	final public String[] names = {"Nom", "Catégorie", "Stock", "Alert Lot mature"};
+	int PRODUCTLIGHTCOLUMNCOUNT = 5;
+	final public String[] names = {"Nom", "Catégorie", "Stock", "Alert Lot mature", "Id"};
 	
 	ArrayList<ProductLight> listProduct;
 	
@@ -46,7 +46,9 @@ public class ProductLightTableModel extends AbstractTableModel {
             case 3:
                 value = productLight.getAlertLotMature();
                 break;
-        }
+            case 4:
+                value = productLight.getId();
+                break;        }
         return value;
         
 	}

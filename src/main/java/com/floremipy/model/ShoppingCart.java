@@ -1,6 +1,10 @@
 package com.floremipy.model;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class ShoppingCart {
 
@@ -8,7 +12,7 @@ public class ShoppingCart {
 	private String nomArticle;
 	private BigDecimal prixArticle;
 	private int qteCommandee;
-	private Double prixTotal;
+	private String prixTotal;
 	
 	public int getIdArticle() {
 		return this.idArticle;
@@ -42,11 +46,11 @@ public class ShoppingCart {
 		this.qteCommandee = qteCommandee;
 	}
 
-	public Double getPrixTotal() {
+	public String getPrixTotal() {
 		return this.prixTotal;
 	}
 
-	public void setPrixTotal(Double prixTotal) {
+	public void setPrixTotal(String prixTotal) {
 		this.prixTotal = prixTotal;
 	}
 
@@ -63,12 +67,17 @@ public class ShoppingCart {
 		this.qteCommandee = qteCommandee;
 	}
 
-	public Double calculPrixTotal(Double prix, int q)
+	public String calculPrixTotal(Double prix, int q)
 	{
 		Double qte2 = new Double((int)q);
 		Double p2 = new Double(prix);
 		Double total = (Double) (prix * qte2); 
-		return total;
+		
+		return String.format(Locale.ENGLISH,"%.2f",total);	
+		
+
+		
+		
 
 	}
 	

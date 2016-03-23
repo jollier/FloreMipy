@@ -9,7 +9,8 @@ body {
 }
 
 .slide-image {
-    min-width: 50%;
+    max-width: 380px;
+    max-height: 220px;
     margin: 0 auto;
 }
 
@@ -102,6 +103,12 @@ label.required:after {content: " *"; color: red;}
 .list-group li a:hover :focus {
     color:black;/*color turns white if not changed*/
     background: none;           
+}
+
+.categorie-selected {
+	background-color: #689e2c;
+  background-position: 0 -15px;
+  border-color: #008040;
 }
 
         

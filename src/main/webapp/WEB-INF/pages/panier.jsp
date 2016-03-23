@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Bootstrap Shop Cart</title>
+<title>Floremipy - Panier</title>
 
 <!-- Bootstrap core CSS -->
 <!--  link href="css/home/bootstrap.min.css" rel="stylesheet"-->
@@ -51,36 +51,50 @@ body {
 				<div class="panel-heading">
 					<h3 class="panel-title">Votre panier</h3>
 				</div>
+				    <% int var=0; %>
 				<div class="panel-body">
+				
 					<table class="table table-sm">
 						<thead>
 							<tr>
 								<th>Article</th>
 								<th>Prix unitaire</th>
-								<th>Qt�</th>
+								<th>Qté</th>
 								<th>Prix total</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 						
 
-							<c:forEach var="panier" items="${listArticlesPanier}">
+							<c:forEach var="panier"  items="${listArticlesPanier}">
 								<tr>
-                                    <td>${ panier.nomArticle }</td>
-									<td>${ panier.prixArticle }</td>
-									<td>${ panier.qteCommandee }</td>
-									<td>${ panier.prixTotal }</td>
+                                    <td>${ panier.value.nomArticle }</td>
+									<td>${ panier.value.prixArticle } €</td>
+									<td>${ panier.value.qteCommandee }</td>
+									<td>${ panier.value.prixTotal } €</td>
+									<td>
+										<form class="form-horizontal"  method="Post" action="supprimerArticle">
+										   <input type="hidden" name="idArticle" value=${ panier.value.idArticle}> 
+										   <button type="submit" class="btn btn-danger btn-sm">supprimer</button> 
+										</form>
+									</td>
 								</tr>
-
+								
 							</c:forEach>
 
 						</tbody>
 					</table>
 
-
 				</div>
 			</div>
 		</div>
+		
+	
+		
+<%-- 		      <c:forEach var="panier" items="${listArticlesPanier}">                                --%>
+<%--                                  <% var = var +  ${panier.prixTotal}; %> --%>
+<%--                             </c:forEach> --%>
 
 		<div class="col-xs-5 col-md-4 col-sm-4 col-lg-4">
 			<div class="panel panel-primary">
@@ -88,7 +102,7 @@ body {
 					<h3 class="panel-title">Total</h3>
 				</div>
 				<div class="panel-body">
-					<h2>XX euros</h2>
+					<h2> ${prixTotal} €</h2>
 				</div>
 			</div>
 

@@ -31,6 +31,15 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+<script language="JavaScript">
+    
+    function ajouterAuPanier() {
+    	var qte = document.getElementById('quantite').value;
+    	var url = "/FloreMipy/ficheArticle/${article.id}/ajouter/?qte=" + qte;
+    	document.location.href = url;
+    }
+</script>
 </head>
 
 <body>
@@ -63,10 +72,9 @@
 							</h3>
 							<div class="text-right">
 								<span>Quantité à commander</span> 
-								<select id="quantite" var="qte"
-									class="wrapper-dropdown">
+								<select id="quantite" name="quantite" class="wrapper-dropdown">
 									<c:forEach var="i" begin="1" end="${article.quantityInStock}" step="1">
-									<option><c:out value="${i}" />
+									   <option value="${i}"><c:out value="${i}" /></option>
 								</c:forEach>
 								</select>
 								<p>
@@ -76,7 +84,7 @@
 								<!-- <span class="glyphicon glyphicon-shopping-cart"></span> --> 
 								<!-- <a class="glyphicon glyphicon-user"> </a> -->
                                 <a class="img-add-cart" href="/FloreMipy/img/AddCart.jpg"> </a>
-								    <a href="/FloreMipy/ficheArticle/${article.id}/ajouter/?qte=1" } class="btn btn-success">Ajouter au panier</a>
+                                <a href="#" onclick="ajouterAuPanier();" class="btn btn-success">Ajouter au panier</a>
 							</div>
 							<p>${article.description}<a target="_blank"></a>.
 							</p>

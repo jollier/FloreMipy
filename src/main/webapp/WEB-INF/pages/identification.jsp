@@ -6,7 +6,7 @@
 <html>
 
 <!-- Modal -->
-<form class="form-horizontal"  method="Post" action="identification">
+<form class="form-horizontal"  method="Post" action="<c:url value='/identification'/>" >
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -54,7 +54,6 @@
           </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success btn-sm">S'identifier</button> 
-        <spring:url value="/accueil" var="accueil" htmlEscape="true" />
         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
       </div>
     </div>
