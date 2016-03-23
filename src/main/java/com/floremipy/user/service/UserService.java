@@ -42,6 +42,10 @@ public class UserService implements IUserService{
 		userDao.updateUser(userDto);
 	}
 	
+	public void update(UserDto userDto) {
+		userDao.updateUser(userDto);
+	}
+	
 	public UserDto create(UserDto userDto) {
 		return userDao.createNewUser(userDto);
 	}

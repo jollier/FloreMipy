@@ -13,4 +13,6 @@ public interface IModelCustomerDao {
 	List<CustomerDto> findAllCustomers();
 	CustomerDto findCustomerById(int id);
 	CustomerDto findCustomerByEmail(String email);
+
+	void CustomerDaoUpdate(CustomerDto customerDto);
 }

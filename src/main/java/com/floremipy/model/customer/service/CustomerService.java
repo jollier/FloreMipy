@@ -52,6 +52,23 @@ public class CustomerService implements ICustomerService {
 		}	
 		return message;
 	}
+	
+	@Override
+	public String update(CustomerDto customerDto, UserDto userDto) {
+		String message = "";
+		
+		try {
+			// 1. Update du user
+			userService.update(userDto);
+			// 2. Update du customer
+			customerDao.CustomerDaoUpdate(customerDto);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			message = "Problème lors de la sauvegarde de l'utilisateur. Veuillez contacter votre SAV !";
+		}	
+		return message;
+	}
 
 	
 	@Override

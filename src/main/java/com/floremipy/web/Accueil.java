@@ -24,6 +24,11 @@ public class Accueil {
 	public String getdata(@RequestParam(value="categorie", defaultValue="Toutes", required=false) String categorie, Model model) {
 		List<ArticleDto> artList = null;
 
+		if(categorie.equals("") || categorie.equals(null)) {
+			categorie = "Toutes";
+		}
+		model.addAttribute("currentCategorie", categorie);
+		
 		if(!categorie.equals("Toutes")) {
 			artList = accueilService.findAllArticlesByCategory(categorie);
 		} else {
