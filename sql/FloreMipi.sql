@@ -2,7 +2,7 @@
 -- Hôte :                        127.0.0.1
 -- Version du serveur:           10.1.9-MariaDB - mariadb.org binary distribution
 -- SE du serveur:                Win32
--- HeidiSQL Version:             9.3.0.5055
+-- HeidiSQL Version:             9.3.0.5057
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -56,22 +56,22 @@ CREATE TABLE IF NOT EXISTS `article` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.article : ~12 rows (environ)
+-- Export de données de la table floremipi.article : ~14 rows (environ)
 DELETE FROM `article`;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 INSERT INTO `article` (`Id`, `Name`, `Description`, `Category`, `Imgsrc`, `QuantityInStock`) VALUES
-	(1, 'Câdre en boule', 'Super cadre de Noël avec des boules de Noël.', 'Arbres', 'img/cadre_en_boule.jpg', 10),
-	(2, 'Sapin', 'À Noël, optez pour le sapin naturel Nobilis d\'une hauteur de 100/150 cm ! Décoré selon vos envies, il trouvera sa place chez vous avec son beau feuillage gris-bleu.', 'Arbres', 'img/Sapin.JPG', 10),
-	(3, 'Epinette bleue', 'Variété de conifère nain, de forme conique compacte, pouvant atteindre 3 m de hauteur. Feuillage bleu lumineux. De faible développement, il convient à un petit jardin ou à une culture en bac.', 'Arbres', 'img/Epinette_bleue.jpg', 10),
-	(4, 'Chêne', 'Arbre à la cime régulière pyramidale, à la végétation dense. Feuillage persistant, vert foncé, lisse dessus, duveteux dessous. Fleurs jaunes en chatons, en mai. Glands de 2 à 3 cm réunis par 2 ou 3.', 'Arbres', 'img/Chene.jpg', 10),
-	(5, 'Erable argenté', 'Incroyable, cet Érable d\'exception, prêt à planter, vous offrira un panache de couleur à l\'automne ! Il sera livré chez vous par camion grue sans frais supplémentaires en région parisienne.', 'Arbres', 'img/Erable_argente.jpg', 10),
-	(6, 'Alisier torminal', 'L\'Alisier torminal est un arbre appartenant au genre des sorbiers, de la famille des Rosacées. Il est relativement rare et vit de manière dispersée dans la forêt.', 'Rosacees', 'img/Alisier_torminal.jpg', 10),
-	(7, 'Poirier', 'Variété ancienne très productive appréciée pour ses gros fruits d\'été. Chair juteuse, bien blanche, fondante et très sucrée.', 'Fruits', 'img/Poirier.jpg', 10),
-	(8, 'Catalpa', 'Arbre à cime globuleuse, applatie. Feuillage caduc, vert clair. Fleurs rose pâle strié de jaune avec la gorge tâcheté de violet foncé. Fruits en longues gousses pendantes, vertes.', 'Arbres', 'img/Catalpa.jpg', 10),
-	(9, 'Pommier', 'Variété colonnaire de pommier, \'Versailles\' offre avec générosité de savoureuses pommes d\'automne, croquantes et juteuses.', 'Fruits', 'img/Pommier.jpg', 10),
-	(10, 'Génévrier', 'Un "genévrier de Hollywood\' qui intrigue et charme par son étrange port. À découvrir !', 'Arbustes', 'img/Genevrier.jpg', 10),
-	(11, 'Abricotier rustique', 'Cet abricotier à une floraison abondante étalée tout au long du printemps, qui permet aux fleurs d´échapper aux gelées. Les fruits sont de très bonne qualité.', 'Fruits', 'img/Abricotier.jpg', 10),
-	(82, 'Cactus', 'Faciles à cultiver et décoratives, ces plantes, appelées cactées, cactus ou plantes grasses, vivent longtemps à la maison. La plupart d\'entre elles vous surprendront par de magnifiques floraisons.', 'Cactus', 'img/Cactus.jpg', 12);
+	(1, 'Câdre en boule', 'Super cadre de Noël avec des boules de Noël.', 'Arbres', 'cadre_en_boule.jpg', 10),
+	(2, 'Sapin', 'À Noël, optez pour le sapin naturel Nobilis d\'une hauteur de 100/150 cm ! Décoré selon vos envies, il trouvera sa place chez vous avec son beau feuillage gris-bleu.', 'Arbres', 'Sapin.jpg', 10),
+	(3, 'Epinette bleue', 'Variété de conifère nain, de forme conique compacte, pouvant atteindre 3 m de hauteur. Feuillage bleu lumineux. De faible développement, il convient à un petit jardin ou à une culture en bac.', 'Arbres', 'Epinette_bleue.jpg', 10),
+	(4, 'Chêne', 'Arbre à la cime régulière pyramidale, à la végétation dense. Feuillage persistant, vert foncé, lisse dessus, duveteux dessous. Fleurs jaunes en chatons, en mai. Glands de 2 à 3 cm réunis par 2 ou 3.', 'Arbres', 'Chene.jpg', 10),
+	(5, 'Erable argenté', 'Incroyable, cet Érable d\'exception, prêt à planter, vous offrira un panache de couleur à l\'automne ! Il sera livré chez vous par camion grue sans frais supplémentaires en région parisienne.', 'Arbres', 'Erable_argente.jpg', 10),
+	(6, 'Alisier torminal', 'L\'Alisier torminal est un arbre appartenant au genre des sorbiers, de la famille des Rosacées. Il est relativement rare et vit de manière dispersée dans la forêt.', 'Rosacees', 'Alisier_torminal.jpg', 10),
+	(7, 'Poirier', 'Variété ancienne très productive appréciée pour ses gros fruits d\'été. Chair juteuse, bien blanche, fondante et très sucrée.', 'Fruits', 'Poirier.jpg', 10),
+	(8, 'Catalpa', 'Arbre à cime globuleuse, applatie. Feuillage caduc, vert clair. Fleurs rose pâle strié de jaune avec la gorge tâcheté de violet foncé. Fruits en longues gousses pendantes, vertes.', 'Arbres', 'Catalpa.jpg', 10),
+	(9, 'Pommier', 'Variété colonnaire de pommier, \'Versailles\' offre avec générosité de savoureuses pommes d\'automne, croquantes et juteuses.', 'Fruits', 'Pommier.jpg', 10),
+	(10, 'Génévrier', 'Un "genévrier de Hollywood\' qui intrigue et charme par son étrange port. À découvrir !', 'Arbustes', 'Genevrier.jpg', 10),
+	(11, 'Abricotier rustique', 'Cet abricotier à une floraison abondante étalée tout au long du printemps, qui permet aux fleurs d´échapper aux gelées. Les fruits sont de très bonne qualité.', 'Fruits', 'Abricotier.jpg', 10),
+	(82, 'Cactus', 'Faciles à cultiver et décoratives, ces plantes, appelées cactées, cactus ou plantes grasses, vivent longtemps à la maison. La plupart d\'entre elles vous surprendront par de magnifiques floraisons.', 'Cactus', 'Cactus.jpg', 12);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipi. articleinprogress
@@ -275,9 +275,9 @@ CREATE TABLE IF NOT EXISTS `price` (
   PRIMARY KEY (`Id`),
   KEY `IdArticle` (`IdArticle`),
   CONSTRAINT `price_ibfk_1` FOREIGN KEY (`IdArticle`) REFERENCES `article` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Export de données de la table floremipi.price : ~11 rows (environ)
+-- Export de données de la table floremipi.price : ~12 rows (environ)
 DELETE FROM `price`;
 /*!40000 ALTER TABLE `price` DISABLE KEYS */;
 INSERT INTO `price` (`Id`, `IdArticle`, `Value`, `Date`) VALUES
@@ -322,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `version` (
 DELETE FROM `version`;
 /*!40000 ALTER TABLE `version` DISABLE KEYS */;
 INSERT INTO `version` (`id`, `version`) VALUES
-	(1, 8);
+	(1, 9);
 /*!40000 ALTER TABLE `version` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
