@@ -2,7 +2,7 @@
 -- Hôte :                        127.0.0.1
 -- Version du serveur:           10.1.9-MariaDB - mariadb.org binary distribution
 -- SE du serveur:                Win32
--- HeidiSQL Version:             9.3.0.5055
+-- HeidiSQL Version:             9.3.0.5057
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `userdbversion` (
 DELETE FROM `userdbversion`;
 /*!40000 ALTER TABLE `userdbversion` DISABLE KEYS */;
 INSERT INTO `userdbversion` (`id`, `version`) VALUES
-	(1, 8);
+	(1, 9);
 /*!40000 ALTER TABLE `userdbversion` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipyuser. users
