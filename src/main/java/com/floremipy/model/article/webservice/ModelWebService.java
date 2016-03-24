@@ -73,6 +73,17 @@ public class ModelWebService {
 		return articleDto;
 	}
 	
+//	@RequestMapping("/Product/imageitem{id}")
+//	public ArticleDto imageArticle(@PathVariable String id) {
+//		int parsedId = Integer.parseInt(id);
+//		ArticleDto articleDto = articleService.findArticleById(parsedId);
+//	
+//		return articleDto;
+//	}
+	
+	
+	
+	
 	private boolean articleMature(int id){
 		Date today = new Date();
 		List<ArticleInProgressDto> result = articleInProgressService.findArticleInProgressByArticleId(id);

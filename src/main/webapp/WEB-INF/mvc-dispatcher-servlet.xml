@@ -21,7 +21,8 @@
         <property name="prefix" value="/WEB-INF/pages/" />
         <property name="suffix" value=".jsp" />
     </bean>
-    <mvc:resources mapping="/img/**" location="/img/"/>
+    <!-- <mvc:resources mapping="/img/**" location="/img/"/> -->
+    <mvc:resources mapping="/img/**" location="file:///C:/workspace/FloreMipy/img/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/fonts/**" location="/fonts/"/>
     
