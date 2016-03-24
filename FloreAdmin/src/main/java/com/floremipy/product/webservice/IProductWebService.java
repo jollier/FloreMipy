@@ -16,9 +16,9 @@ public interface IProductWebService {
 
 	ArrayList<ProductLight> getAllProductLight() throws  MalformedURLException, UnsupportedEncodingException, IOException;
 	
-	public void createProduct(Product product);
-	public Product readProduct(Long Id) throws JsonSyntaxException, UnsupportedEncodingException, IOException;
-	public void updateProduct(Long Id);
-	public Product deleteProduct(Long Id);
+	public boolean createProduct(Product product) throws IOException;
+	public Product readProduct(Long Id) throws IOException;
+	public boolean updateProduct(Product product) throws IOException;
+	public boolean deleteProduct(Long Id);
 
 }
