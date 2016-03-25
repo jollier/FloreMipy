@@ -30,9 +30,6 @@ public class ProductWebService implements IProductWebService {
 	
 	@Autowired
 	JsonUtils jsonUtils;
-	
-	// private static final String SITEURL =
-	// "http://locomaps.cloudapp.net/LocoMaps/";
 
 	/*
 	 * (non-Javadoc)
@@ -41,7 +38,7 @@ public class ProductWebService implements IProductWebService {
 	 * com.floremipy.product.webservice.IProductWebService#getAllProductLight()
 	 */
 	@Override
-	public ArrayList<ProductLight> getAllProductLight() throws MalformedURLException, UnsupportedEncodingException, IOException {
+	public ArrayList<ProductLight> getAllProductLight() throws IOException {
 		ArrayList<ProductLight> response = new ArrayList<ProductLight>();
 
 		//JsonUtils jsonUtils = new JsonUtils();
@@ -56,36 +53,48 @@ public class ProductWebService implements IProductWebService {
 
 	
 	public ProductWebService() {
-		//super();
+
 	}
 
 	@Override
-	public void createProduct(Product product) {
-		// TODO Auto-generated method stub
+	public boolean createProduct(Product product) throws IOException {
+		URL url = new URL(SITEURL + "Product/add");
+		HttpURLConnection conn = jsonUtils.getConnexion(url);
+		boolean response = jsonUtils.productCreateRequest(conn, product);
+
+		return response;
 		
 	}
 
 	@Override
-	public Product readProduct(Long Id) throws JsonSyntaxException, UnsupportedEncodingException, IOException {
+	public Product readProduct(Long Id) throws IOException {
 		Product response;
 		URL url = new URL(SITEURL + "Product/item" + Id);
 		HttpURLConnection conn = jsonUtils.getConnexion(url);
-		response = jsonUtils.ProductRequest(conn);
+		response = jsonUtils.productReadRequest(conn);
 
 		return response;
 	}
 
 	@Override
-	public void updateProduct(Long Id) {
-		// TODO Auto-generated method stub
+	public boolean updateProduct(Product product) throws IOException {
+		URL url = new URL(SITEURL + "Product/update");
+		HttpURLConnection conn = jsonUtils.getConnexion(url);
+		boolean response = jsonUtils.productUpdateRequest(conn, product);
+
+		return response;
 		
 	}
 
+
+
 	@Override
-	public Product deleteProduct(Long Id) {
+	public boolean deleteProduct(Long Id) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
+
+
 	
 
 }

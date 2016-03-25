@@ -81,4 +81,66 @@ public class PanierController {
 		return new ModelAndView("panier");
 	}
 	
+	@RequestMapping(value="/ajouterArticle",  method = RequestMethod.POST)
+	public ModelAndView ajouterArticle(Model model,HttpServletRequest request){
+		
+		Integer idArticle = Integer.valueOf(request.getParameter("idArticleAjou"));
+	
+		
+		ShoppingCart article = listArticlesPanier.get(idArticle);
+	    int nbr =	article.getQteCommandee();
+	    article.setQteCommandee(nbr+1);
+	 
+	    Double priceInDouble = article.getPrixArticle().doubleValue();
+	    article.setPrixTotal(article.calculPrixTotal(priceInDouble, article.getQteCommandee()));
+		
+		model.addAttribute("listArticlesPanier", listArticlesPanier);
+		Double prixTotal = 0.00;
+
+		for (Integer key : listArticlesPanier.keySet())
+		{
+			ShoppingCart art = listArticlesPanier.get(key);
+			prixTotal = prixTotal + Double.parseDouble(art.getPrixTotal());
+		}
+		
+		model.addAttribute("prixTotal", String.format(Locale.ENGLISH,"%.2f",prixTotal));	
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("nbArticle", listArticlesPanier.size()); 
+		
+		return new ModelAndView("panier");
+	}
+	
+	@RequestMapping(value="/soustraitArticle",  method = RequestMethod.POST)
+	public ModelAndView soustraitArticle(Model model,HttpServletRequest request){
+		
+		Integer idArticle = Integer.valueOf(request.getParameter("idArticleMoins"));
+	
+		
+		ShoppingCart article = listArticlesPanier.get(idArticle);
+	    int nbr =	article.getQteCommandee();
+	    if  (nbr > 1)  {
+	            article.setQteCommandee(nbr-1);
+	    }
+	 
+	    Double priceInDouble = article.getPrixArticle().doubleValue();
+	    article.setPrixTotal(article.calculPrixTotal(priceInDouble, article.getQteCommandee()));
+		
+		model.addAttribute("listArticlesPanier", listArticlesPanier);
+		Double prixTotal = 0.00;
+
+		for (Integer key : listArticlesPanier.keySet())
+		{
+			ShoppingCart art = listArticlesPanier.get(key);
+			prixTotal = prixTotal + Double.parseDouble(art.getPrixTotal());
+		}
+		
+		model.addAttribute("prixTotal", String.format(Locale.ENGLISH,"%.2f",prixTotal));	
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("nbArticle", listArticlesPanier.size()); 
+		
+		return new ModelAndView("panier");
+	}
+	
 }

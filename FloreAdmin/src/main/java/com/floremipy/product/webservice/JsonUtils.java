@@ -5,10 +5,12 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -85,7 +87,7 @@ public class JsonUtils {
 		return response;
 	}
 	
-	public Product ProductRequest(HttpURLConnection conn)
+	public Product productReadRequest(HttpURLConnection conn)
 			throws IOException, UnsupportedEncodingException, JsonSyntaxException {
 		Product response;
 		this.conn = conn;
@@ -150,6 +152,11 @@ public class JsonUtils {
 		return response;
 	}
 	
+	private String convertProductToJSon(Product product) {
+		String response;
+		response = new Gson().toJson(product, Product.class);
+		return response;
+	}
 	
 	public HttpURLConnection getConnexion(URL url) throws IOException {
 		HttpURLConnection conn;
@@ -157,5 +164,67 @@ public class JsonUtils {
 		conn.setConnectTimeout(2000);
 		conn.setReadTimeout(10000);
 		return conn;
+	}
+
+	public boolean productCreateRequest(HttpURLConnection conn, Product product) throws IOException {
+		this.conn = conn;
+		boolean response = false;
+		conn.setDoOutput(true);
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json");
+		this.conn.connect();
+
+		OutputStream os = conn.getOutputStream();
+		os.write(convertProductToJSon(product).getBytes());
+		os.flush();
+		
+		if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+			throw new RuntimeException("Failed : HTTP error code : "
+				+ conn.getResponseCode());
+		}
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+
+		String output;
+		System.out.println("Output from Server .... \n");
+		while ((output = br.readLine()) != null) {
+			System.out.println(output);
+		}
+
+		conn.disconnect();
+
+		return response;
+	}
+
+	public boolean productUpdateRequest(HttpURLConnection conn, Product product) throws IOException {
+		this.conn = conn;
+		boolean response = false;
+		conn.setDoOutput(true);
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json");
+		this.conn.connect();
+
+		OutputStream os = conn.getOutputStream();
+		os.write(convertProductToJSon(product).getBytes());
+		os.flush();
+		
+		if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+			throw new RuntimeException("Failed : HTTP error code : "
+				+ conn.getResponseCode());
+		}
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+
+		String output;
+		System.out.println("Output from Server .... \n");
+		while ((output = br.readLine()) != null) {
+			System.out.println(output);
+		}
+
+		conn.disconnect();
+
+		return response;
 	}
 }

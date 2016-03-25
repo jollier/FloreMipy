@@ -4,12 +4,13 @@ import javax.swing.JComponent;
 
 import com.floremipy.controller.IControler;
 
-public interface IView {
+public interface IView extends StatusSetter{
 
-	public void openView(JComponent parent, long id);
-	public void openView(JComponent parent);	//public void setControler(IControler controler);
+	//public void RegisterStatusSetter(StatusSetter st);
+
+	//public void setControler(IControler controler);
 	
-	public void closeView();
+	//public void closeView();
 	
 	public void removeAllActionListener();
 	
