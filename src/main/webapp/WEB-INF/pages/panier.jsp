@@ -59,7 +59,9 @@ body {
 							<tr>
 								<th>Article</th>
 								<th>Prix unitaire</th>
+								<th></th>
 								<th>Qté</th>
+								<th></th>
 								<th>Prix total</th>
 								<th></th>
 							</tr>
@@ -71,8 +73,14 @@ body {
 								<tr>
                                     <td>${ panier.value.nomArticle }</td>
 									<td>${ panier.value.prixArticle } €</td>
+									<td><form class="form-horizontal"  method="Post" action="soustraitArticle">  <input type="hidden" name="idArticleMoins" value=${ panier.value.idArticle}> 
+                                           <button type="submit" class="btn btn-success btn-sm">-</button> 
+                                        </form> </td>
 									<td>${ panier.value.qteCommandee }</td>
-									<td>${ panier.value.prixTotal } €</td>
+									<td><form class="form-horizontal"  method="Post" action="ajouterArticle">  <input type="hidden" name="idArticleAjou" value=${ panier.value.idArticle}> 
+                                           <button type="submit" class="btn btn-success btn-sm">+</button> 
+                                        </form> </td>
+									<td>${ panier.value.prixTotal } €</td> 
 									<td>
 										<form class="form-horizontal"  method="Post" action="supprimerArticle">
 										   <input type="hidden" name="idArticle" value=${ panier.value.idArticle}> 

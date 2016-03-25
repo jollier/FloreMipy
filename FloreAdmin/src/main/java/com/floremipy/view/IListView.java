@@ -2,8 +2,14 @@ package com.floremipy.view;
 
 import java.awt.event.ActionListener;
 
-public interface IListView extends IView {
+import javax.swing.JComponent;
 
+import com.floremipy.application.view.IFramePrincipal;
+
+public interface IListView extends IView, RefreshCallback {
+
+	public void openView(IFramePrincipal mainFrame, JComponent parent);
+	
 	void loadData();
 	
 	public void addCreateActionListener(ActionListener l);
