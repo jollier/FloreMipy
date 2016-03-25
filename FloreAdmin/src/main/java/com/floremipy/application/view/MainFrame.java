@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import com.floremipy.product.model.ProductLight;
 import com.floremipy.product.model.ProductLightTableModel;
+import com.floremipy.view.StatusSetter;
 import com.google.gson.JsonSyntaxException;
 import java.awt.CardLayout;
 
@@ -40,6 +41,7 @@ public class MainFrame implements IFramePrincipal {
 	JPanel panelCentral = null;
 	
 	JPanel panelStatus = null;
+	JTextPane textPane = null;
 	
 	boolean ready = false;
 	
@@ -60,7 +62,7 @@ public class MainFrame implements IFramePrincipal {
 
 		frame = new JFrame();
 	
-		JTextPane textPane = new JTextPane();
+		textPane = new JTextPane();
 		
 //		productList = new JTable();
 //
@@ -220,7 +222,7 @@ public class MainFrame implements IFramePrincipal {
 
 	@Override
 	public void setStatus(String status) {
-		// TODO Auto-generated method stub
+		textPane.setText(status);
 		
 	}
 }
