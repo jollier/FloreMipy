@@ -41,10 +41,10 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="/FloreMipy/img/ecole1.jpg" alt="">
+                                    <img class="slide-image" src="ecole1.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="/FloreMipy/img/ecole2.jpg" alt="">
+                                    <img class="slide-image" src="ecole2.jpg" alt="">
                                 </div>
 
                             </div>
