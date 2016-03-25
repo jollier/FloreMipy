@@ -116,13 +116,12 @@ body {
 
 			<div class="text-center">
 				 <button type="submit" class="btn btn-success btn-sm"> Commander</button>
-                                    
-			</div>
+            </div>
 		</div>
-
+    </div>
     <c:import url="/WEB-INF/pages/footer.jsp" /></br>
 
-	</div>
+	
  <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
