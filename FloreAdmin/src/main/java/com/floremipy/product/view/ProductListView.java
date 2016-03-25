@@ -22,13 +22,17 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.floremipy.application.view.IFramePrincipal;
 import com.floremipy.controller.IControler;
 import com.floremipy.product.model.IProductListModel;
 import com.floremipy.product.model.ProductLight;
 import com.floremipy.product.model.ProductLightTableModel;
+import com.floremipy.view.CallMode;
 import com.floremipy.view.IFormView;
 import com.floremipy.view.IListView;
 import com.floremipy.view.IView;
+import com.floremipy.view.ReturnType;
+import com.floremipy.view.StatusSetter;
 import com.google.gson.JsonSyntaxException;
 
 @org.springframework.stereotype.Component(value = "productListView")
@@ -49,8 +53,11 @@ public class ProductListView extends JPanel implements IListView {
 
 	ArrayList<ProductLight> listProduct;
 
+	IFramePrincipal mainFrame;
 	JComponent panelCentral;
 	CardLayout cardlayout;
+	
+	CallMode FormCallMode = null;
 
 	boolean ready = false;
 
@@ -65,6 +72,8 @@ public class ProductListView extends JPanel implements IListView {
 	public JButton updateButton = null;
 	public JButton deleteButton = null;
 	public JTextPane textPane = null;
+	
+	//StatusSetter mainFrameStatus = null;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -154,7 +163,8 @@ public class ProductListView extends JPanel implements IListView {
 					JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
 			log4j.error("Erreur lecture Liste de produits", e1);
-			textPane.setText("Erreur lecture Liste de produits");
+			//textPane.setText("Erreur lecture Liste de produits");
+			this.mainFrame.setStatus("Erreur lecture Liste de produits");
 			model = new ProductLightTableModel(new ArrayList<ProductLight>());
 		}
 
@@ -162,7 +172,11 @@ public class ProductListView extends JPanel implements IListView {
 		if (model.getRowCount() > 0) {
 		updateButton.setEnabled(true);
 		deleteButton.setEnabled(true);
+		} else {
+			updateButton.setEnabled(false);
+			deleteButton.setEnabled(false);	
 		}
+		System.out.println("data load");
 	}
 
 	@Override
@@ -223,21 +237,19 @@ public class ProductListView extends JPanel implements IListView {
 	//
 	// }
 
-	// @Override
-	// public void setControler(IControler controler) {
-	// // TODO Auto-generated method stub
-	//
-	// }
 
 	@Override
-	public void openView(JComponent parent) {
+	public void openView(IFramePrincipal mainFrame, JComponent parent) {
+		this.mainFrame = mainFrame;
 		panelCentral = parent;
 		cardlayout = ((CardLayout)panelCentral.getLayout());
 		panelCentral.add(VIEW_NAME, this);
+		this.mainFrame.setStatus("Liste de produits");
 
 		this.addCreateActionListener(e -> {
-			productView.openView(parent);
-			productView.addValidActionListener(e1 -> this.loadData());
+			productView.registerRefreshCallback(this);
+			productView.create(this.mainFrame, parent);
+			//productView.addValidActionListener(e1 -> this.loadData());
 			System.out.println("createButton");
 		});
 
@@ -245,8 +257,10 @@ public class ProductListView extends JPanel implements IListView {
 			int rowSelected = productList.getSelectedRow();
 			if (rowSelected != -1) {
 				long id = (long) productList.getValueAt(rowSelected, 4);
-				productView.openView(parent, id);
-				productView.addValidActionListener(e1 -> this.loadData());
+				productView.registerRefreshCallback(this);
+				productView.update(this.mainFrame, parent, id);
+				//productView.addValidActionListener(e1 -> this.loadData());
+
 			}
 			System.out.println("updateButton");
 		});
@@ -273,16 +287,28 @@ public class ProductListView extends JPanel implements IListView {
 
 	}
 
-	@Override
-	public void openView(JComponent parent, long id) {
-		// TODO Auto-generated method stub
 
+	@Override
+	public void refreshCallback(ReturnType rt) {
+
+		if (rt.equals(ReturnType.VALID)) {
+		// Mise à jour de la liste
+		loadData();
+		}
+		this.setStatus("Liste de produits");
+
+		
 	}
 
 	@Override
-	public void closeView() {
-		// TODO Auto-generated method stub
-
+	public void setStatus(String s) {
+		this.mainFrame.setStatus(s);
+		
 	}
+
+
+
+	
+
 
 }

@@ -28,7 +28,7 @@ public class FloreMipyController  {
 
 	@Autowired
 	@Qualifier("productListView")
-	IView productListView;
+	IListView productListView;
 	// IListView productListView;
 
 
@@ -52,7 +52,7 @@ public class FloreMipyController  {
 		// ((MainFrame)framePrincipal).initialize();
 		
 		
-		productListView.openView(framePrincipal.getPanelCentral());
+		productListView.openView(framePrincipal, framePrincipal.getPanelCentral());
 		
 		
 		

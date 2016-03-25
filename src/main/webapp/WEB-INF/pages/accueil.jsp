@@ -67,13 +67,13 @@
 	                            </ol>
 	                            <div class="carousel-inner">
 	                                <div class="item active">
-	                                    <img class="slide-image" src="/FloreMipy/img/promo_1.jpg" alt="">
+	                                    <img class="slide-image" src="promo_1.jpg" alt="">
 	                                </div>
 	                                <div class="item">
-	                                    <img class="slide-image" src="/FloreMipy/img/Buis_1.jpg" alt="">
+	                                    <img class="slide-image" src="Buis_1.jpg" alt="">
 	                                </div>
 	                                <div class="item">
-	                                    <img class="slide-image" src="/FloreMipy/img/Arbuste_persistant_1.jpg" alt="">
+	                                    <img class="slide-image" src="Arbuste_persistant_1.jpg" alt="">
 	                                </div>
 	                            </div>
 	                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
