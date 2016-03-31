@@ -3,14 +3,14 @@ package com.floremipy.product.view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.VetoableChangeListener;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -48,6 +48,7 @@ public class ProductView extends JPanel implements IFormView {
 	// data
 	Long id;
 	Product product;
+	Image image;
 	
 	// View CallMode
 	private CallMode callMode;
@@ -68,6 +69,8 @@ public class ProductView extends JPanel implements IFormView {
 	IFramePrincipal mainFrame;
 	JComponent panelCentral;
 	CardLayout cardlayout;
+	JLabel imageProduit;
+	JPanel panel_1;
 
 
 	public ProductView() {
@@ -83,7 +86,7 @@ public class ProductView extends JPanel implements IFormView {
 
 		this.setPreferredSize(new Dimension(800, 600));
 		this.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 10));
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		this.add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.LABEL_COMPONENT_GAP_COLSPEC,
@@ -104,9 +107,9 @@ public class ProductView extends JPanel implements IFormView {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
+				RowSpec.decode("max(93dlu;default)"),
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,}));
+				RowSpec.decode("max(35dlu;default)"),}));
 		
 		JLabel lblname = new JLabel("Nom");
 		panel_1.add(lblname, "2, 2, right, center");
@@ -126,6 +129,7 @@ public class ProductView extends JPanel implements IFormView {
 		panel_1.add(lblDescription, "2, 6, right, default");
 		
 		textAreaDescription = new JTextArea();
+		textAreaDescription.setLineWrap(true);
 		textAreaDescription.setRows(10);
 		panel_1.add(textAreaDescription, "4, 6, fill, top");
 		
@@ -141,6 +145,10 @@ public class ProductView extends JPanel implements IFormView {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		imageProduit = new JLabel();
+		imageProduit.setText("image");
+		panel_1.add(imageProduit, "4, 10, fill, fill");
+		imageProduit.setIcon(null);
 		panel_1.add(btnValider, "2, 12");
 		
 		btnAnnuler = new JButton("Annuler");
@@ -153,7 +161,9 @@ public class ProductView extends JPanel implements IFormView {
 	@Override
 	public void loadData() throws IOException {
 		product = productWebService.readProduct(this.id);
+		image = productWebService.getImageProduct(product.getImgsrc());
 		mapProduct2View();
+		
 		
 	}
 
@@ -164,6 +174,8 @@ public class ProductView extends JPanel implements IFormView {
 			textCategory.setText(product.getCategory());
 			textAreaDescription.setText(product.getDescription());
 			spinner.setValue(product.getQuantityInStock());
+			imageProduit.setIcon(new ImageIcon(image));
+			panel_1.repaint();
 		}
 	}
 
@@ -256,7 +268,7 @@ public class ProductView extends JPanel implements IFormView {
 			e.printStackTrace();
 		}
 		} else if (this.callMode == CallMode.CREATE) {
-			this.product = new Product(0,"","","",0);
+			this.product = new Product(0,"","","","",0);
 			mapProduct2View();
 		}
 

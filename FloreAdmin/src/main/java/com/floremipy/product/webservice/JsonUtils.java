@@ -1,5 +1,6 @@
 package com.floremipy.product.webservice;
 
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -12,10 +13,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import org.apache.commons.codec.binary.Base64;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -56,19 +60,19 @@ public class JsonUtils {
 		this.conn = conn;
 
 		// *************** Stub HttpURLConnection **************
-//		MockitoAnnotations.initMocks(this);
-//		this.conn = Mockito.mock(HttpURLConnection.class);
-//		String jsonExpected = "[{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1},"
-//				+ "{\"id\":2,\"category\":\"Fagacées\",\"description\":\"\",\"name\":\"Chêne\",\"quantityInStock\":10,\"alertLotMature\":0}]";
-//		InputStream ProductLightJsonExpected = null;
-//
-//		ProductLightJsonExpected = new ByteArrayInputStream(jsonExpected.getBytes("UTF-8"));
-//
-//		Mockito.when(this.conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
-//		Mockito.when(this.conn.getInputStream()).thenReturn(ProductLightJsonExpected);
-//		
+		//		MockitoAnnotations.initMocks(this);
+		//		this.conn = Mockito.mock(HttpURLConnection.class);
+		//		String jsonExpected = "[{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1},"
+		//				+ "{\"id\":2,\"category\":\"Fagacées\",\"description\":\"\",\"name\":\"Chêne\",\"quantityInStock\":10,\"alertLotMature\":0}]";
+		//		InputStream ProductLightJsonExpected = null;
+		//
+		//		ProductLightJsonExpected = new ByteArrayInputStream(jsonExpected.getBytes("UTF-8"));
+		//
+		//		Mockito.when(this.conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+		//		Mockito.when(this.conn.getInputStream()).thenReturn(ProductLightJsonExpected);
+		//		
 		// *************** Fin du Stub **************
-		
+
 		this.conn.connect();
 
 		// expect HTTP 200 OK, so we don't mistakenly save error report
@@ -81,30 +85,30 @@ public class JsonUtils {
 			// connection.getResponseMessage();
 		} else {
 
-		response = convertJSonToListProductLight(readWebStream());
+			response = convertJSonToListProductLight(readWebStream());
 		}
 
 		return response;
 	}
-	
+
 	public Product productReadRequest(HttpURLConnection conn)
 			throws IOException, UnsupportedEncodingException, JsonSyntaxException {
 		Product response;
 		this.conn = conn;
 
 		// *************** Stub HttpURLConnection **************
-//		MockitoAnnotations.initMocks(this);
-//		this.conn = Mockito.mock(HttpURLConnection.class);
-//		String jsonExpected = "{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1}";
-//		InputStream productJsonExpected = null;
-//
-//		productJsonExpected = new ByteArrayInputStream(jsonExpected.getBytes("UTF-8"));
-//
-//		Mockito.when(this.conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
-//		Mockito.when(this.conn.getInputStream()).thenReturn(productJsonExpected);
-//		
+		//		MockitoAnnotations.initMocks(this);
+		//		this.conn = Mockito.mock(HttpURLConnection.class);
+		//		String jsonExpected = "{\"id\":1,\"category\":\"Conifère\",\"description\":\"\",\"name\":\"Sapin\",\"quantityInStock\":5,\"alertLotMature\":1}";
+		//		InputStream productJsonExpected = null;
+		//
+		//		productJsonExpected = new ByteArrayInputStream(jsonExpected.getBytes("UTF-8"));
+		//
+		//		Mockito.when(this.conn.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+		//		Mockito.when(this.conn.getInputStream()).thenReturn(productJsonExpected);
+		//		
 		// *************** Fin du Stub **************
-		
+
 		this.conn.connect();
 
 		// expect HTTP 200 OK, so we don't mistakenly save error report
@@ -117,7 +121,7 @@ public class JsonUtils {
 			// connection.getResponseMessage();
 		} else {
 
-		response = convertJSonToProduct(readWebStream());
+			response = convertJSonToProduct(readWebStream());
 		}
 
 		return response;
@@ -138,6 +142,25 @@ public class JsonUtils {
 		return responseStr;
 	}
 
+	private byte[] readWebBytesStream() throws IOException {
+		byte[] encodedBytes;
+		byte[] decodedBytes;
+		String responseStr;
+		int tailleDonnees = this.conn.getContentLength();
+		InputStream is = this.conn.getInputStream();
+		StringBuilder responseStrBuilder = new StringBuilder();
+
+		BufferedReader streamReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+		int inputStr;
+		while ((inputStr = streamReader.read()) != -1)
+			responseStrBuilder.append(inputStr);
+
+		responseStr = responseStrBuilder.toString();
+		encodedBytes = responseStr.getBytes(StandardCharsets.UTF_8);
+		decodedBytes = Base64.decodeBase64(encodedBytes);
+		return decodedBytes;
+	}
+
 	private ArrayList<ProductLight> convertJSonToListProductLight(String responseStr) {
 		ArrayList<ProductLight> response;
 		Type listType = new TypeToken<ArrayList<ProductLight>>() {
@@ -145,19 +168,19 @@ public class JsonUtils {
 		response = new Gson().fromJson(responseStr, listType);
 		return response;
 	}
-	
+
 	private Product convertJSonToProduct(String responseStr) {
 		Product response;
 		response = new Gson().fromJson(responseStr, Product.class);
 		return response;
 	}
-	
+
 	private String convertProductToJSon(Product product) {
 		String response;
 		response = new Gson().toJson(product, Product.class);
 		return response;
 	}
-	
+
 	public HttpURLConnection getConnexion(URL url) throws IOException {
 		HttpURLConnection conn;
 		conn = (HttpURLConnection) url.openConnection();
@@ -177,10 +200,10 @@ public class JsonUtils {
 		OutputStream os = conn.getOutputStream();
 		os.write(convertProductToJSon(product).getBytes());
 		os.flush();
-		
+
 		if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
 			throw new RuntimeException("Failed : HTTP error code : "
-				+ conn.getResponseCode());
+					+ conn.getResponseCode());
 		}
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -208,10 +231,10 @@ public class JsonUtils {
 		OutputStream os = conn.getOutputStream();
 		os.write(convertProductToJSon(product).getBytes());
 		os.flush();
-		
+
 		if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
 			throw new RuntimeException("Failed : HTTP error code : "
-				+ conn.getResponseCode());
+					+ conn.getResponseCode());
 		}
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -226,5 +249,11 @@ public class JsonUtils {
 		conn.disconnect();
 
 		return response;
+	}
+
+	public Image getImageProductRequest(URL url) throws IOException {
+		Image image = null;
+		image = ImageIO.read(url);
+		return image;
 	}
 }

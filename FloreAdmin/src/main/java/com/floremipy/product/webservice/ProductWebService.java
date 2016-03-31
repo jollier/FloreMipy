@@ -1,27 +1,16 @@
 package com.floremipy.product.webservice;
 
-import java.io.BufferedReader;
+import java.awt.Image;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.floremipy.product.model.Product;
 import com.floremipy.product.model.ProductLight;
-import com.floremipy.view.IFormView;
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 
 @Component(value="ProductWebService")
 public class ProductWebService implements IProductWebService {
@@ -93,7 +82,14 @@ public class ProductWebService implements IProductWebService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public Image getImageProduct(String imgsrc) throws IOException {
+		URL url = new URL(SITEURL + imgsrc);
+		Image response = jsonUtils.getImageProductRequest(url);
 
+		return response;
+	}
 
 	
 
