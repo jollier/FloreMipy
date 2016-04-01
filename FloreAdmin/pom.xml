@@ -89,15 +89,18 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.2</version>
+        </dependency>
 
 	</dependencies>
 
     <profiles>
         <profile>
             <id>prod</id>
-            <properties>
-                <site.url>http://localhost:8080/FloreMipy/</site.url>
-            </properties>
+
         </profile>
  
         <profile>
@@ -105,9 +108,7 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <site.url>http://localhost:8080/FloreMipy/</site.url>
-            </properties>
+
         </profile>
     </profiles>
 

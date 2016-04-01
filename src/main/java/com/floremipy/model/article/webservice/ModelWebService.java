@@ -19,6 +19,7 @@ import com.floremipy.model.article.dto.ArticleDto;
 import com.floremipy.model.article.service.IArticleService;
 import com.floremipy.model.articleinprogress.dto.ArticleInProgressDto;
 import com.floremipy.model.articleinprogress.service.IArticleInProgressService;
+import org.apache.commons.codec.binary.Base64;
 
 
 
@@ -68,6 +69,15 @@ public class ModelWebService {
 		return list;
 	}
 	
+	@RequestMapping("/Product/getImageItem{id}")
+	public byte[] getImageItem(@PathVariable String id) {
+		int parsedId = Integer.parseInt(id);
+		System.out.println(id);
+		byte[] image = articleService.getImageByArticleId(parsedId);
+		// encode en base64 pour regler pb de caracteres speciaux
+		byte[] encodedbytes = Base64.encodeBase64(image);
+		return encodedbytes;
+	}
 	
 	@RequestMapping("/Product/item{id}")
 	public ArticleDto article(@PathVariable String id) {

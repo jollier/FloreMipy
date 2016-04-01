@@ -1,15 +1,13 @@
 package com.floremipy.product.webservice;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Service;
-
 import com.floremipy.product.model.Product;
 import com.floremipy.product.model.ProductLight;
-import com.google.gson.JsonSyntaxException;
 
 
 public interface IProductWebService {
@@ -20,5 +18,6 @@ public interface IProductWebService {
 	public Product readProduct(Long Id) throws IOException;
 	public boolean updateProduct(Product product) throws IOException;
 	public boolean deleteProduct(Long Id);
+	public Image getImageProduct(String imgsrc) throws IOException;
 
 }

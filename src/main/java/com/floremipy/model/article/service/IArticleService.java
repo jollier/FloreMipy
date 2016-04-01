@@ -24,6 +24,8 @@ public interface IArticleService {
 	void deleteArticle(ArticleDto articleDto);
 	
 	void updateArticle(ArticleDto articleDto);
+	
+	public byte[] getImageByArticleId(int id);
 
 
 }
