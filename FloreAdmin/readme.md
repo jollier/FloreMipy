@@ -7,4 +7,10 @@ Base directory :
 ${workspace_loc:/FloreAdmin}
 
 Goals :
-compile exec:java -Dexec.mainClass="com.floremipy.FloreAdminApplication"
+compile exec:java -Dexec.mainClass="com.floremipy.FloreAdminApplication" -Dspring.profiles.active="dev"
+ou
+compile exec:java -Dexec.mainClass="com.floremipy.FloreAdminApplication" -Dspring.profiles.active="prod"
+
+si nécessaire, modifier les fichiers :
+resources/com/floremipy/application-dev.properties
+resources/com/floremipy/application-prod.properties

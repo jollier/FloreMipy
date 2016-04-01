@@ -11,10 +11,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+//import org.junit.runners.Parameterized.Parameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.core.env.Environment;
 
 import com.floremipy.product.model.Product;
 import com.floremipy.product.model.ProductLight;
@@ -26,10 +29,17 @@ import com.google.gson.reflect.TypeToken;
 @Component(value="ProductWebService")
 public class ProductWebService implements IProductWebService {
 
-	private static final String SITEURL = "http://localhost:8080/FloreMipy/";
+	//private static final String SITEURL = "http://localhost:8080/FloreMipy/";
+	//private static String SITEURL = "http://localhost:8080/FloreMipy/";
 	
 	@Autowired
 	JsonUtils jsonUtils;
+	
+    @Value("${site.url}")
+    private String SITEURL;
+
+	//@Autowired
+	//Environment environment;
 
 	/*
 	 * (non-Javadoc)
@@ -51,9 +61,12 @@ public class ProductWebService implements IProductWebService {
 	}
 
 
-	
 	public ProductWebService() {
-
+		//SITEURL = //environment.getProperty("site.url");
+		//System.out.println(SITEURL);
+		//SITEURL = System.getProperty("site.url");
+		//java.util.Properties props = new java.util.Properties();
+		//SITEURL = props.getProperty("site.url");
 	}
 
 	@Override

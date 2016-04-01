@@ -92,7 +92,24 @@
 
 	</dependencies>
 
-
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <site.url>http://localhost:8080/FloreMipy/</site.url>
+            </properties>
+        </profile>
+ 
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <site.url>http://localhost:8080/FloreMipy/</site.url>
+            </properties>
+        </profile>
+    </profiles>
 
 
 </project>
