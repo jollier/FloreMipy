@@ -245,7 +245,6 @@ public class ProductView extends JPanel implements IFormView {
 		this.panelCentral.add(VIEW_NAME,this);
 
 		this.addValidActionListener(e1 -> {
-			System.out.println("Valide productView");
 			try {
 				saveData();
 			} catch (Exception e) {
@@ -261,7 +260,6 @@ public class ProductView extends JPanel implements IFormView {
 			//panelCentral.closeView(this);
 		});
 		this.addCancelActionListener(e1 -> {
-			System.out.println("Abandonne productView");
 			cardlayout.removeLayoutComponent(this);
 			refreshToCallback.refreshCallback(ReturnType.CANCEL);
 			this.removeAllActionListener();
@@ -273,7 +271,6 @@ public class ProductView extends JPanel implements IFormView {
 		
 			this.loadData();
 		} catch (JsonSyntaxException | IOException e) {
-			// TODO Auto-generated catch block
 			// Mise à jour du status
 			e.printStackTrace();
 		}

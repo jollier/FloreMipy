@@ -126,4 +126,19 @@ public class ModelWebService {
 		return mature;
 		
 	}
+	
+	@RequestMapping(value = "/Product/delete/{id}", method = RequestMethod.POST)
+	public ResponseEntity deleteArticle(@PathVariable String id) {
+		int parsedId = Integer.parseInt(id);
+		ArticleDto articleDto = articleService.findArticleById(parsedId);
+
+		ResponseEntity response;
+		if (articleDto != null) {
+			articleService.deleteArticle(articleDto);
+			response = new ResponseEntity(HttpStatus.OK);
+		} else {
+			response = new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+		}
+		return response;
+	}
 }
