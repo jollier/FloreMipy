@@ -1,35 +1,32 @@
 package com.floremipy.product.webservice;
 
-import java.io.BufferedReader;
+import java.awt.Image;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+//import org.junit.runners.Parameterized.Parameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.core.env.Environment;
+
 
 import com.floremipy.product.model.Product;
 import com.floremipy.product.model.ProductLight;
-import com.floremipy.view.IFormView;
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 
 @Component(value="ProductWebService")
 public class ProductWebService implements IProductWebService {
 
-	private static final String SITEURL = "http://localhost:8080/FloreMipy/";
-	
 	@Autowired
 	JsonUtils jsonUtils;
+	
+    @Value("${site.url}")
+    private String SITEURL;
 
 	/*
 	 * (non-Javadoc)
@@ -41,8 +38,6 @@ public class ProductWebService implements IProductWebService {
 	public ArrayList<ProductLight> getAllProductLight() throws IOException {
 		ArrayList<ProductLight> response = new ArrayList<ProductLight>();
 
-		//JsonUtils jsonUtils = new JsonUtils();
-		
 		URL url = new URL(SITEURL + "Product/list");
 		HttpURLConnection conn = jsonUtils.getConnexion(url);
 		response = jsonUtils.listProductLightRequest(conn);
@@ -51,7 +46,6 @@ public class ProductWebService implements IProductWebService {
 	}
 
 
-	
 	public ProductWebService() {
 
 	}
@@ -89,11 +83,22 @@ public class ProductWebService implements IProductWebService {
 
 
 	@Override
-	public boolean deleteProduct(Long Id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public boolean deleteProduct(Long Id) throws IOException {
+		URL url = new URL(SITEURL + "Product/delete/" + Id);
+		HttpURLConnection conn = jsonUtils.getConnexion(url);
+		boolean response = jsonUtils.productDeleteRequest(conn);
 
+		return response;
+		
+	}
+	
+	@Override
+	public Image getImageProduct(String imgsrc) throws IOException {
+		URL url = new URL(SITEURL + imgsrc);
+		Image response = jsonUtils.getImageProductRequest(url);
+
+		return response;
+	}
 
 	
 
