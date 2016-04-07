@@ -3,6 +3,7 @@ package com.floremipy.product.webservice;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -82,9 +83,13 @@ public class ProductWebService implements IProductWebService {
 
 
 	@Override
-	public boolean deleteProduct(Long Id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteProduct(Long Id) throws IOException {
+		URL url = new URL(SITEURL + "Product/delete/" + Id);
+		HttpURLConnection conn = jsonUtils.getConnexion(url);
+		boolean response = jsonUtils.productDeleteRequest(conn);
+
+		return response;
+		
 	}
 	
 	@Override

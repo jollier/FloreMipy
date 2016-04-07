@@ -17,7 +17,7 @@ public interface IProductWebService {
 	public boolean createProduct(Product product) throws IOException;
 	public Product readProduct(Long Id) throws IOException;
 	public boolean updateProduct(Product product) throws IOException;
-	public boolean deleteProduct(Long Id);
+	public boolean deleteProduct(Long Id) throws IOException;
 	public Image getImageProduct(String imgsrc) throws IOException;
 	public boolean uploadImage(String imageFile) throws IOException;
 

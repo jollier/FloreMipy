@@ -248,6 +248,29 @@ public class JsonUtils {
 		return response;
 	}
 
+	public boolean productDeleteRequest(HttpURLConnection conn) throws IOException {
+		this.conn = conn;
+		boolean response = false;
+		conn.setDoOutput(true);
+		conn.setRequestMethod("POST");
+
+		this.conn.connect();
+
+		// expect HTTP 200 OK, so we don't mistakenly save error report
+		// instead of the file
+		if (this.conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+ 
+			// "Server returned HTTP " +
+			// connection.getResponseCode() + " " +
+			// connection.getResponseMessage();
+		} else {
+
+			response = true;
+		}
+
+		return response;
+	}
+	
 	public Image getImageProductRequest(URL url) throws IOException {
 		Image image = null;
 		image = ImageIO.read(url);
