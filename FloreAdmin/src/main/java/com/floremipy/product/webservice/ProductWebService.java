@@ -94,6 +94,13 @@ public class ProductWebService implements IProductWebService {
 
 		return response;
 	}
+	
+	public boolean uploadImage(String imageFile) throws IOException {
+		URL url = new URL(SITEURL + "Product/uploadImage");
+		HttpURLConnection conn = jsonUtils.getConnexion(url);
+		boolean response = jsonUtils.productImageUpdatePost(conn, imageFile);
+		return false;
+	}
 
 	
 
