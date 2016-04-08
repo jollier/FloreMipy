@@ -61,7 +61,7 @@ public class ProductView extends JPanel implements IFormView {
 	Product product;
 	Image image;
 	boolean isImageModified = false;
-	String imageFileNameWithPath;
+	String imageFileNameWithPath, imageFileName;
 	
 	// View CallMode
 	private CallMode callMode;
@@ -161,12 +161,6 @@ public class ProductView extends JPanel implements IFormView {
 		});
 		
 		btnParcourir = new JButton("...");
-//		btnParcourir.addActionListener(new ActionListener() {
-//			// fileChooser()
-//			public void actionPerformed(ActionEvent e) {
-//				
-//			}
-//		});
 		panel_1.add(btnParcourir, "2, 10");
 		imageProduit = new JLabel();
 		imageProduit.setText("image");
@@ -220,8 +214,8 @@ public class ProductView extends JPanel implements IFormView {
 		
 		if (this.callMode == CallMode.UPDATE) {
 			boolean res = productWebService.updateProduct(product);
-			System.out.println(res);
-			res = productWebService.uploadImage(imageFileNameWithPath);
+			System.out.println(res + " productWebService.updateProduct");
+			res = productWebService.uploadImage(imageFileName, imageFileNameWithPath);
 			System.out.println(res);
 		} else if (this.callMode == CallMode.CREATE) {
 			boolean res = productWebService.createProduct(product);
@@ -283,7 +277,7 @@ public class ProductView extends JPanel implements IFormView {
 			} catch (IOException e) {
 			}
 			image = (Image) img;
-			product.setImgsrc(imageFileNameWithPath);
+			product.setImgsrc(imageFileName);
 			mapProduct2View();
 			isImageModified = true;
 			
@@ -357,7 +351,7 @@ public class ProductView extends JPanel implements IFormView {
 		   System.out.println("You chose to open this file: " +
 		        chooser.getSelectedFile().getName());
 		   result = chooser.getSelectedFile().getAbsolutePath();
-		   imageFileNameWithPath = chooser.getSelectedFile().getName();
+		   imageFileName = chooser.getSelectedFile().getName();
 		}
 		return result;
 	}

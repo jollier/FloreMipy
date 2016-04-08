@@ -87,6 +87,7 @@ public class ModelWebService {
 	@RequestMapping(value = "/Product/uploadImage", method = RequestMethod.POST)
 	public ResponseEntity<String> updateImageItem(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
 		ResponseEntity<String> response = null;
+		System.out.println("updateImageItem: " + name);
 		if (!file.isEmpty()) {
 			try {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("img/" + name)));
