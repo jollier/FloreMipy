@@ -109,10 +109,10 @@ public class UserDao implements Serializable, IUserDao{
 	
 	public void updateUser (UserDto userDto){
 		User user = em.find(User.class,	userDto.getId());
-		//user.setIdcustomer(userDto.getIdcustomer());
+		user.setIdcustomer(userDto.getIdcustomer());
 		user.setPassword(userDto.getPassword());
 		user.setUsername(userDto.getUsername());
-		//user.setUsertype(userDto.getUsertype());
+		user.setUsertype(userDto.getUsertype());
 		em.getTransaction().begin();
 		em.merge(user);
 		em.flush();
