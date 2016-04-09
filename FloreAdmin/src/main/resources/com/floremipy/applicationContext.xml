@@ -17,6 +17,8 @@
     <!-- ANNOTATIONS POUR LA CREATION DE BEANS -->
     <context:component-scan base-package="com.floremipy" />
 
-
+    <context:property-placeholder
+            location="classpath:com/floremipy/application-${spring.profiles.active}.properties"
+            ignore-unresolvable="true" />
 
 </beans>

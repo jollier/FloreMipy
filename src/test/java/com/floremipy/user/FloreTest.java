@@ -142,6 +142,9 @@ public class FloreTest {
 		UserDto newUser = userDao.createNewUser(userDto);
 		System.out.println("result test testCreateNewUser : " +newUser.toString());
 		assertTrue(newUser.getId() != 0L);
+		//rollback en supprimant le user créé
+		userDao.deleteUser(newUser);
+		System.out.println("Rollback testCreateNewUser success");
 	}
 	
 	@Test
@@ -151,13 +154,21 @@ public class FloreTest {
 		String name = "testupdateUser " + localDateTime.toString();
 		IUserDao userDao = new UserDao();
 		String usertype = "user";
+		
+		//creation du user
 		UserDto userDto = new UserDto(null,name, name, usertype, 2);
 		UserDto newUserDto = userDao.createNewUser(userDto);
+		
+		//modification du user
 		name = name + "Update";		
 		newUserDto.setUsername(name);
 		userDao.updateUser(newUserDto);		
 		UserDto verifyUser = userDao.findUserByUserName(name);
 		assertEquals(verifyUser.getUsername(),name);
+		
+		//rollback en supprimant le user créé
+		userDao.deleteUser(newUserDto);
+		System.out.println("Rollback testUpdateUser success");
 				
 	}
 	

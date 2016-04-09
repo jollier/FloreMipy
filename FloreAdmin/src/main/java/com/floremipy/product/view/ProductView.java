@@ -3,22 +3,27 @@ package com.floremipy.product.view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.VetoableChangeListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,10 +40,16 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.Sizes;
 
 @org.springframework.stereotype.Component(value = "productView")
 public class ProductView extends JPanel implements IFormView {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static final String VIEW_NAME = "productView";
 	
 	@Autowired
@@ -48,6 +59,9 @@ public class ProductView extends JPanel implements IFormView {
 	// data
 	Long id;
 	Product product;
+	Image image;
+	boolean isImageModified = false;
+	String imageFileNameWithPath, imageFileName;
 	
 	// View CallMode
 	private CallMode callMode;
@@ -68,6 +82,9 @@ public class ProductView extends JPanel implements IFormView {
 	IFramePrincipal mainFrame;
 	JComponent panelCentral;
 	CardLayout cardlayout;
+	JLabel imageProduit;
+	JPanel panel_1;
+	private JButton btnParcourir;
 
 
 	public ProductView() {
@@ -83,7 +100,7 @@ public class ProductView extends JPanel implements IFormView {
 
 		this.setPreferredSize(new Dimension(800, 600));
 		this.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 10));
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		this.add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.LABEL_COMPONENT_GAP_COLSPEC,
@@ -104,9 +121,9 @@ public class ProductView extends JPanel implements IFormView {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
+				new RowSpec(RowSpec.CENTER, Sizes.bounded(Sizes.DEFAULT, Sizes.constant("83dlu", false), Sizes.constant("100dlu", false)), 0),
 				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,}));
+				RowSpec.decode("max(35dlu;default)"),}));
 		
 		JLabel lblname = new JLabel("Nom");
 		panel_1.add(lblname, "2, 2, right, center");
@@ -126,6 +143,7 @@ public class ProductView extends JPanel implements IFormView {
 		panel_1.add(lblDescription, "2, 6, right, default");
 		
 		textAreaDescription = new JTextArea();
+		textAreaDescription.setLineWrap(true);
 		textAreaDescription.setRows(10);
 		panel_1.add(textAreaDescription, "4, 6, fill, top");
 		
@@ -141,6 +159,13 @@ public class ProductView extends JPanel implements IFormView {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		btnParcourir = new JButton("...");
+		panel_1.add(btnParcourir, "2, 10");
+		imageProduit = new JLabel();
+		imageProduit.setText("image");
+		panel_1.add(imageProduit, "4, 10, fill, fill");
+		imageProduit.setIcon(null);
 		panel_1.add(btnValider, "2, 12");
 		
 		btnAnnuler = new JButton("Annuler");
@@ -153,7 +178,14 @@ public class ProductView extends JPanel implements IFormView {
 	@Override
 	public void loadData() throws IOException {
 		product = productWebService.readProduct(this.id);
+		String imgsrc = product.getImgsrc();
+		if (imgsrc!=null){
+			image = productWebService.getImageProduct(imgsrc);
+		} else {
+			image = null;
+		}
 		mapProduct2View();
+		
 		
 	}
 
@@ -164,6 +196,12 @@ public class ProductView extends JPanel implements IFormView {
 			textCategory.setText(product.getCategory());
 			textAreaDescription.setText(product.getDescription());
 			spinner.setValue(product.getQuantityInStock());
+			if (image != null) {
+				imageProduit.setIcon(new ImageIcon(image));
+			} else {
+				imageProduit.setIcon(null);
+			}
+			panel_1.repaint();
 		}
 	}
 
@@ -176,6 +214,8 @@ public class ProductView extends JPanel implements IFormView {
 		
 		if (this.callMode == CallMode.UPDATE) {
 			boolean res = productWebService.updateProduct(product);
+			System.out.println(res + " productWebService.updateProduct");
+			res = productWebService.uploadImage(imageFileName, imageFileNameWithPath);
 			System.out.println(res);
 		} else if (this.callMode == CallMode.CREATE) {
 			boolean res = productWebService.createProduct(product);
@@ -192,13 +232,16 @@ public class ProductView extends JPanel implements IFormView {
 		
 	}
 
-
 	@Override
 	public void addCancelActionListener(ActionListener l) {
 		btnAnnuler.addActionListener(l);
 		
 	}
-
+	
+	public void addParcourirActionListener(ActionListener l) {
+		btnParcourir.addActionListener(l);
+		
+	}
 
 	@Override
 	public void removeAllActionListener() {
@@ -210,10 +253,13 @@ public class ProductView extends JPanel implements IFormView {
         for (int i = 0; i < listActionListener.length; i+=2) {
         	btnAnnuler.removeActionListener(listActionListener[i]);
         }
+        listActionListener =  btnParcourir.getActionListeners();
+        for (int i = 0; i < listActionListener.length; i+=2) {
+        	btnParcourir.removeActionListener(listActionListener[i]);
+        }
         
         refreshToCallback = null;
 	}
-
 
 	public void openView(IFramePrincipal mainFrame, JComponent parent, long id) {
 		this.mainFrame = mainFrame;
@@ -221,9 +267,23 @@ public class ProductView extends JPanel implements IFormView {
 		this.id = id;
 		this.cardlayout = ((CardLayout)panelCentral.getLayout());
 		this.panelCentral.add(VIEW_NAME,this);
+		
+		this.addParcourirActionListener(e1 -> {
+			System.out.println("Parcourir...");
+			BufferedImage img = null;
+			try {
+				imageFileNameWithPath = fileChooser(parent);
+			    img = ImageIO.read(new File(imageFileNameWithPath));
+			} catch (IOException e) {
+			}
+			image = (Image) img;
+			product.setImgsrc(imageFileName);
+			mapProduct2View();
+			isImageModified = true;
+			
+		});
 
 		this.addValidActionListener(e1 -> {
-			System.out.println("Valide productView");
 			try {
 				saveData();
 			} catch (Exception e) {
@@ -239,7 +299,6 @@ public class ProductView extends JPanel implements IFormView {
 			//panelCentral.closeView(this);
 		});
 		this.addCancelActionListener(e1 -> {
-			System.out.println("Abandonne productView");
 			cardlayout.removeLayoutComponent(this);
 			refreshToCallback.refreshCallback(ReturnType.CANCEL);
 			this.removeAllActionListener();
@@ -251,12 +310,12 @@ public class ProductView extends JPanel implements IFormView {
 		
 			this.loadData();
 		} catch (JsonSyntaxException | IOException e) {
-			// TODO Auto-generated catch block
 			// Mise à jour du status
 			e.printStackTrace();
 		}
 		} else if (this.callMode == CallMode.CREATE) {
-			this.product = new Product(0,"","","",0);
+			this.product = new Product(0,"","","","",0);
+			image = null;
 			mapProduct2View();
 		}
 
@@ -264,7 +323,6 @@ public class ProductView extends JPanel implements IFormView {
 		cardlayout.show(panelCentral, VIEW_NAME);
 		
 	}
-
 
 	@Override
 	public void update(IFramePrincipal mainFrame, JComponent parent, Long id) {
@@ -274,13 +332,28 @@ public class ProductView extends JPanel implements IFormView {
 		
 	}
 
-
 	@Override
 	public void create(IFramePrincipal mainFrame, JComponent parent) {
 		this.callMode = CallMode.CREATE;
 		openView(mainFrame, parent, 0L);
 		mainFrame.setStatus("Création du produit");
 		
+	}
+	
+	public String fileChooser(JComponent parent) {
+		String result = "";
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		    "JPG Images", "jpg");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(parent);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+		   System.out.println("You chose to open this file: " +
+		        chooser.getSelectedFile().getName());
+		   result = chooser.getSelectedFile().getAbsolutePath();
+		   imageFileName = chooser.getSelectedFile().getName();
+		}
+		return result;
 	}
 
 

@@ -18,5 +18,4 @@ public interface IListView extends IView, RefreshCallback {
 	
 
 
-
 }
