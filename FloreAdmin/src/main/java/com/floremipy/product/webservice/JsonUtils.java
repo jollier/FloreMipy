@@ -2,32 +2,28 @@ package com.floremipy.product.webservice;
 
 import java.awt.Image;
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 import org.apache.commons.codec.binary.Base64;
-import org.mockito.InjectMocks;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.stereotype.Component;
 
 import com.floremipy.product.model.Product;
 import com.floremipy.product.model.ProductLight;
-import com.floremipy.product.model.ProductLightTableModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -142,24 +138,24 @@ public class JsonUtils {
 		return responseStr;
 	}
 
-	private byte[] readWebBytesStream() throws IOException {
-		byte[] encodedBytes;
-		byte[] decodedBytes;
-		String responseStr;
-		int tailleDonnees = this.conn.getContentLength();
-		InputStream is = this.conn.getInputStream();
-		StringBuilder responseStrBuilder = new StringBuilder();
-
-		BufferedReader streamReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-		int inputStr;
-		while ((inputStr = streamReader.read()) != -1)
-			responseStrBuilder.append(inputStr);
-
-		responseStr = responseStrBuilder.toString();
-		encodedBytes = responseStr.getBytes(StandardCharsets.UTF_8);
-		decodedBytes = Base64.decodeBase64(encodedBytes);
-		return decodedBytes;
-	}
+//	private byte[] readWebBytesStream() throws IOException {
+//		byte[] encodedBytes;
+//		byte[] decodedBytes;
+//		String responseStr;
+//		int tailleDonnees = this.conn.getContentLength();
+//		InputStream is = this.conn.getInputStream();
+//		StringBuilder responseStrBuilder = new StringBuilder();
+//
+//		BufferedReader streamReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+//		int inputStr;
+//		while ((inputStr = streamReader.read()) != -1)
+//			responseStrBuilder.append(inputStr);
+//
+//		responseStr = responseStrBuilder.toString();
+//		encodedBytes = responseStr.getBytes(StandardCharsets.UTF_8);
+//		decodedBytes = Base64.decodeBase64(encodedBytes);
+//		return decodedBytes;
+//	}
 
 	private ArrayList<ProductLight> convertJSonToListProductLight(String responseStr) {
 		ArrayList<ProductLight> response;
@@ -267,7 +263,6 @@ public class JsonUtils {
 			// connection.getResponseCode() + " " +
 			// connection.getResponseMessage();
 		} else {
-
 			response = true;
 		}
 
@@ -278,5 +273,54 @@ public class JsonUtils {
 		Image image = null;
 		image = ImageIO.read(url);
 		return image;
+	}
+	
+	public boolean productImageUpdatePost(HttpURLConnection conn, String imageFileName, String imageFileNameWithPath) throws IOException {
+		String charset = "UTF-8";
+		String CRLF = "\r\n";
+		String boundary = Long.toHexString(System.currentTimeMillis());
+		File binaryFile = new File(imageFileNameWithPath);
+		this.conn = conn;
+		boolean response = false;
+		conn.setConnectTimeout(10000);
+		conn.setDoInput(true);
+		conn.setDoOutput(true);
+		conn.setUseCaches(false); 
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Connection", "Keep-Alive");
+		conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+		conn.setRequestProperty("Accept", "*/*");
+		try (	OutputStream output = conn.getOutputStream();
+			    PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
+				)
+		{
+			writer.append("--" + boundary).append(CRLF);
+			writer.append("Content-Disposition: form-data; name=\"name\"").append(CRLF).append(CRLF);
+			writer.append(imageFileName).append(CRLF);
+			
+			writer.append("--" + boundary).append(CRLF);
+			writer.append("Content-Disposition: form-data; name=\"file\"; filename=\"" + imageFileName + "\"").append(CRLF);
+			writer.append("Content-Type: image/jpeg").append(CRLF);
+		    writer.append("Content-Transfer-Encoding: binary").append(CRLF);
+		    writer.append(CRLF).flush();
+		    FileInputStream input = new FileInputStream(binaryFile);
+	        byte[] buffer = new byte[4096];
+	        int bytesRead = -1;
+	        while ((bytesRead = input.read(buffer)) != -1) {
+	        	output.write(buffer, 0, bytesRead);
+	        }
+	        output.flush();// Important before continuing with writer!
+	        input.close();
+		    
+		    writer.append(CRLF).flush(); // CRLF is important! It indicates end of boundary.
+
+		    // End of multipart/form-data.
+		    writer.append("--" + boundary + "--").append(CRLF).flush();
+		    
+		    int responseCode = ((HttpURLConnection) conn).getResponseCode();
+		    System.out.println(responseCode); // Should be 200
+		    writer.close();
+		    return (responseCode == 200);
+		}
 	}
 }

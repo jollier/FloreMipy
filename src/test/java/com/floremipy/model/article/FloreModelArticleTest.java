@@ -97,6 +97,10 @@ public class FloreModelArticleTest {
 		ArticleDto newArticle = articleDao.createArticle(articleDto);
 		System.out.println("result test testCreateArticle : " +newArticle.toString());
 		assertTrue(newArticle.getId() != 0L);
+		
+		//rollback creation article
+		articleDao.deleteArticle(newArticle);
+		System.out.println("Rollback Creation article Success");
 	}
 	
 	@Test
@@ -137,6 +141,11 @@ public class FloreModelArticleTest {
 		
 		ArticleDto verifyArticle = articleDao.findArticleByName(name);
 		assertEquals(verifyArticle.getName(),name);
+		
+		//rollback update article
+		articleDao.deleteArticle(newArticleDto);
+		System.out.println("Rollback update articlesuccess");
+		
 	}
 	
 	@Test
