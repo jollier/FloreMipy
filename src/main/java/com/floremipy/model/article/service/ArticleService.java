@@ -1,6 +1,12 @@
 package com.floremipy.model.article.service;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
+
+import javax.xml.ws.WebServiceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +17,8 @@ import com.floremipy.model.article.dto.ArticleDto;
 
 @Service
 public class ArticleService implements IArticleService {
+	
+    private String imagesPath = "img/";
 	
 	@Autowired
 	IArticleDao articleDao;
@@ -63,6 +71,25 @@ public class ArticleService implements IArticleService {
 	public List<String> findAllCategories() {
 		return articleDao.findAllCategory();
 	}
-
+	
+	@Override
+	public byte[] getImageByArticleId(int id) {
+		
+		ArticleDto articleDto = articleDao.findArticleById(id);
+		String imageFileName = articleDto.getImgsrc();
+		try {
+            File file = new File(imagesPath + imageFileName);
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream inputStream = new BufferedInputStream(fis);
+            byte[] fileBytes = new byte[(int) file.length()];
+            inputStream.read(fileBytes);
+            inputStream.close();
+             
+            return fileBytes;
+        } catch (IOException ex) {
+            System.err.println(ex);
+            return null;
+        }      
+	}
 }
 

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class Deconnexion {
@@ -14,6 +15,6 @@ public class Deconnexion {
 			session.setAttribute("login", null);
 			session.setAttribute("id", null);
 			session.invalidate();
-			return "accueil";
+			return "redirect:/accueil";
 		}
 }

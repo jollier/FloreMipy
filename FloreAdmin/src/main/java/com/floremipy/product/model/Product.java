@@ -5,14 +5,16 @@ public class Product {
 	long id;
 	String name;
 	String description;
+	String imgsrc;
 	String category;
 	int quantityInStock;
 	
-	public Product(long id, String name, String description, String category, int quantityInStock) {
+	public Product(long id, String name, String description, String imgsrc, String category, int quantityInStock) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.imgsrc = imgsrc;
 		this.category = category;
 		this.quantityInStock = quantityInStock;
 	}
@@ -46,6 +48,12 @@ public class Product {
 	}
 	public void setQuantityInStock(int quantityInStock) {
 		this.quantityInStock = quantityInStock;
+	}
+	public String getImgsrc() {
+		return imgsrc;
+	}
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
 	}
 	
 	
