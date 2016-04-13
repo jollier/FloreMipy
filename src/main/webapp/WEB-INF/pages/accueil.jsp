@@ -93,8 +93,9 @@
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
                                 <!-- <img src="http://placehold.it/320x150" alt=""> -->
-                                <img src="/FloreMipy/${art.imgsrc}" alt="" width="50">
-                                
+                                <a href="/FloreMipy/ficheArticle/${art.id}">
+                                    <img src="/FloreMipy/${art.imgsrc}" alt="" width="50">
+                                </a>
                                 <url value="/FloreMipy/ficheArticle/${art.id}" var="articleUrl" />
                                 
                                 <div class="caption">
