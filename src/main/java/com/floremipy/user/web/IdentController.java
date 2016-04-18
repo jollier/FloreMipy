@@ -45,7 +45,8 @@ public class IdentController {
 		    	HttpSession session = request.getSession(true);
 		    	session.setAttribute("login", login);
 		    	session.setAttribute("id", monCus.getId());
-		    	return new ModelAndView("accueil");
+		    	return new ModelAndView("redirect:/accueil");
+//		    	return new ModelAndView("accueil");
 		    	
 		    } else {
 		    	model.addAttribute("message", "Login ou mot de passe incorrect");

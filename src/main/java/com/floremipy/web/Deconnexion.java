@@ -14,6 +14,6 @@ public class Deconnexion {
 			session.setAttribute("login", null);
 			session.setAttribute("id", null);
 			session.invalidate();
-			return "accueil";
+			return "redirect:/accueil";
 		}
 }
