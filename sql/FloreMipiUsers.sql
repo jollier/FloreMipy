@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `userdbversion` (
 DELETE FROM `userdbversion`;
 /*!40000 ALTER TABLE `userdbversion` DISABLE KEYS */;
 INSERT INTO `userdbversion` (`id`, `version`) VALUES
-	(1, 9);
+	(1, 10);
 /*!40000 ALTER TABLE `userdbversion` ENABLE KEYS */;
 
 -- Export de la structure de la table floremipyuser. users
