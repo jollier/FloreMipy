@@ -24,7 +24,7 @@ body {
 }
 
 .caption {
-    height: 130px;
+    height: 100px;
     overflow: auto;
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 .thumbnail img {
-	height:120px;
+	height:110px;
     width: 100px;
 }
 

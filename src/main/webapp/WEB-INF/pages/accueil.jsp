@@ -93,13 +93,18 @@
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
                                 <!-- <img src="http://placehold.it/320x150" alt=""> -->
-                                <a href="/FloreMipy/ficheArticle/${art.id}">
-                                    <img src="/FloreMipy/${art.imgsrc}" alt="" width="50">
-                                </a>
+
+                                 <h4><a href="/FloreMipy/ficheArticle/${art.id}"><c:out value="${art.name}" /></a></h4>
+                                 
+                                      <img src="/FloreMipy/${art.imgsrc}" alt="" width="50">
+<%--                                 <a  href="/FloreMipy/ficheArticle/${art.id}"> --%>
+<%--                                     <img src="/FloreMipy/${art.imgsrc}" alt="" width="50" > --%>
+<!--                                 </a> -->
+                               
                                 <url value="/FloreMipy/ficheArticle/${art.id}" var="articleUrl" />
-                                
+                       
                                 <div class="caption">
-                                    <h4><a href="/FloreMipy/ficheArticle/${art.id}"><c:out value="${art.name}" /></a></h4>
+                                   
                                     <p><c:out value="${art.description}" /></p>
                                 </div>
                             </div>
